@@ -1,0 +1,78 @@
+{"qid": "q1", "question": "What is the first-line treatment approach for metastatic non-small cell lung cancer with EGFR mutation?", "topic": "NSCLC", "gold_url": "https://www.cancer.gov/types/lung/hp/non-small-cell-lung-treatment-pdq"}
+{"qid": "q4", "question": "What treatment options are commonly considered for ALK-positive metastatic non-small cell lung cancer?", "topic": "NSCLC", "gold_url": "https://www.cancer.gov/types/lung/hp/non-small-cell-lung-treatment-pdq"}
+{"qid": "q5", "question": "How is high PD-L1 expression used in treatment decision-making for metastatic non-small cell lung cancer?", "topic": "NSCLC", "gold_url": "https://www.cancer.gov/types/lung/hp/non-small-cell-lung-treatment-pdq"}
+{"qid": "q6", "question": "What is the role of targeted therapy in EGFR-mutated non-small cell lung cancer?", "topic": "NSCLC", "gold_url": "https://www.cancer.gov/types/lung/hp/non-small-cell-lung-treatment-pdq"}
+{"qid": "q7", "question": "How does treatment differ between localized and metastatic non-small cell lung cancer?", "topic": "NSCLC", "gold_url": "https://www.cancer.gov/types/lung/hp/non-small-cell-lung-treatment-pdq"}
+{"qid": "q8", "question": "When is chemotherapy used in non-small cell lung cancer?", "topic": "NSCLC", "gold_url": "https://www.cancer.gov/types/lung/hp/non-small-cell-lung-treatment-pdq"}
+{"qid": "q9", "question": "What is the general role of immunotherapy in non-small cell lung cancer?", "topic": "NSCLC", "gold_url": "https://www.cancer.gov/types/lung/hp/non-small-cell-lung-treatment-pdq"}
+{"qid": "q10", "question": "How are treatment decisions made for patients with newly diagnosed non-small cell lung cancer?", "topic": "NSCLC", "gold_url": "https://www.cancer.gov/types/lung/hp/non-small-cell-lung-treatment-pdq"}
+{"qid": "q11", "question": "What are common systemic therapy options for advanced non-small cell lung cancer?", "topic": "NSCLC", "gold_url": "https://www.cancer.gov/types/lung/hp/non-small-cell-lung-treatment-pdq"}
+{"qid": "q12", "question": "How does biomarker testing influence treatment selection in non-small cell lung cancer?", "topic": "NSCLC", "gold_url": "https://www.cancer.gov/types/lung/hp/non-small-cell-lung-treatment-pdq"}
+{"qid": "q13", "question": "What is the role of surgery in non-small cell lung cancer treatment?", "topic": "NSCLC", "gold_url": "https://www.cancer.gov/types/lung/hp/non-small-cell-lung-treatment-pdq"}
+{"qid": "q14", "question": "When is radiation therapy used for non-small cell lung cancer?", "topic": "NSCLC", "gold_url": "https://www.cancer.gov/types/lung/hp/non-small-cell-lung-treatment-pdq"}
+{"qid": "q15", "question": "What factors influence first-line therapy selection in metastatic non-small cell lung cancer?", "topic": "NSCLC", "gold_url": "https://www.cancer.gov/types/lung/hp/non-small-cell-lung-treatment-pdq"}
+{"qid": "q16", "question": "What treatments may be considered after progression on initial therapy in non-small cell lung cancer?", "topic": "NSCLC", "gold_url": "https://www.cancer.gov/types/lung/hp/non-small-cell-lung-treatment-pdq"}
+{"qid": "q17", "question": "How is recurrent non-small cell lung cancer generally managed?", "topic": "NSCLC", "gold_url": "https://www.cancer.gov/types/lung/hp/non-small-cell-lung-treatment-pdq"}
+{"qid": "q18", "question": "What is the treatment approach for unresectable non-small cell lung cancer?", "topic": "NSCLC", "gold_url": "https://www.cancer.gov/types/lung/hp/non-small-cell-lung-treatment-pdq"}
+{"qid": "q19", "question": "How are stage-based treatment decisions made in non-small cell lung cancer?", "topic": "NSCLC", "gold_url": "https://www.cancer.gov/types/lung/hp/non-small-cell-lung-treatment-pdq"}
+{"qid": "q20", "question": "What is the role of maintenance therapy in advanced non-small cell lung cancer?", "topic": "NSCLC", "gold_url": "https://www.cancer.gov/types/lung/hp/non-small-cell-lung-treatment-pdq"}
+{"qid": "q21", "question": "What are common treatment strategies for small cell lung cancer?", "topic": "SCLC", "gold_url": "https://www.cancer.gov/types/lung/hp/small-cell-lung-treatment-pdq"}
+{"qid": "q22", "question": "How does treatment differ between limited-stage and extensive-stage small cell lung cancer?", "topic": "SCLC", "gold_url": "https://www.cancer.gov/types/lung/hp/small-cell-lung-treatment-pdq"}
+{"qid": "q23", "question": "What is the role of chemotherapy in small cell lung cancer?", "topic": "SCLC", "gold_url": "https://www.cancer.gov/types/lung/hp/small-cell-lung-treatment-pdq"}
+{"qid": "q24", "question": "When is radiation therapy used in small cell lung cancer?", "topic": "SCLC", "gold_url": "https://www.cancer.gov/types/lung/hp/small-cell-lung-treatment-pdq"}
+{"qid": "q25", "question": "What systemic therapies are used for extensive-stage small cell lung cancer?", "topic": "SCLC", "gold_url": "https://www.cancer.gov/types/lung/hp/small-cell-lung-treatment-pdq"}
+{"qid": "q26", "question": "How is recurrent small cell lung cancer generally treated?", "topic": "SCLC", "gold_url": "https://www.cancer.gov/types/lung/hp/small-cell-lung-treatment-pdq"}
+{"qid": "q27", "question": "What is the role of immunotherapy in small cell lung cancer?", "topic": "SCLC", "gold_url": "https://www.cancer.gov/types/lung/hp/small-cell-lung-treatment-pdq"}
+{"qid": "q28", "question": "How are treatment decisions made for newly diagnosed small cell lung cancer?", "topic": "SCLC", "gold_url": "https://www.cancer.gov/types/lung/hp/small-cell-lung-treatment-pdq"}
+{"qid": "q29", "question": "What are common first-line treatments for extensive-stage small cell lung cancer?", "topic": "SCLC", "gold_url": "https://www.cancer.gov/types/lung/hp/small-cell-lung-treatment-pdq"}
+{"qid": "q30", "question": "How is progressive small cell lung cancer managed after initial response?", "topic": "SCLC", "gold_url": "https://www.cancer.gov/types/lung/hp/small-cell-lung-treatment-pdq"}
+{"qid": "q31", "question": "What are common treatment options for HER2-positive breast cancer?", "topic": "Breast", "gold_url": "https://www.cancer.gov/types/breast/hp/breast-treatment-pdq"}
+{"qid": "q32", "question": "How is triple-negative breast cancer generally treated?", "topic": "Breast", "gold_url": "https://www.cancer.gov/types/breast/hp/breast-treatment-pdq"}
+{"qid": "q33", "question": "What is the role of endocrine therapy in hormone receptor-positive breast cancer?", "topic": "Breast", "gold_url": "https://www.cancer.gov/types/breast/hp/breast-treatment-pdq"}
+{"qid": "q34", "question": "When is neoadjuvant therapy used in breast cancer?", "topic": "Breast", "gold_url": "https://www.cancer.gov/types/breast/hp/breast-treatment-pdq"}
+{"qid": "q35", "question": "What is the purpose of adjuvant therapy in breast cancer?", "topic": "Breast", "gold_url": "https://www.cancer.gov/types/breast/hp/breast-treatment-pdq"}
+{"qid": "q36", "question": "How does treatment differ between early-stage and metastatic breast cancer?", "topic": "Breast", "gold_url": "https://www.cancer.gov/types/breast/hp/breast-treatment-pdq"}
+{"qid": "q37", "question": "What are typical treatment approaches for metastatic HER2-positive breast cancer?", "topic": "Breast", "gold_url": "https://www.cancer.gov/types/breast/hp/breast-treatment-pdq"}
+{"qid": "q38", "question": "How are treatment decisions made for hormone receptor-positive breast cancer?", "topic": "Breast", "gold_url": "https://www.cancer.gov/types/breast/hp/breast-treatment-pdq"}
+{"qid": "q39", "question": "What is the role of chemotherapy in breast cancer?", "topic": "Breast", "gold_url": "https://www.cancer.gov/types/breast/hp/breast-treatment-pdq"}
+{"qid": "q40", "question": "When is surgery used in breast cancer treatment?", "topic": "Breast", "gold_url": "https://www.cancer.gov/types/breast/hp/breast-treatment-pdq"}
+{"qid": "q41", "question": "What is the role of radiation therapy in breast cancer?", "topic": "Breast", "gold_url": "https://www.cancer.gov/types/breast/hp/breast-treatment-pdq"}
+{"qid": "q42", "question": "How is recurrent breast cancer generally managed?", "topic": "Breast", "gold_url": "https://www.cancer.gov/types/breast/hp/breast-treatment-pdq"}
+{"qid": "q43", "question": "What factors influence treatment selection in breast cancer?", "topic": "Breast", "gold_url": "https://www.cancer.gov/types/breast/hp/breast-treatment-pdq"}
+{"qid": "q44", "question": "How is locally advanced breast cancer typically treated?", "topic": "Breast", "gold_url": "https://www.cancer.gov/types/breast/hp/breast-treatment-pdq"}
+{"qid": "q45", "question": "What is the role of HER2-targeted therapy in breast cancer?", "topic": "Breast", "gold_url": "https://www.cancer.gov/types/breast/hp/breast-treatment-pdq"}
+{"qid": "q46", "question": "How are treatment goals different in curative versus metastatic breast cancer settings?", "topic": "Breast", "gold_url": "https://www.cancer.gov/types/breast/hp/breast-treatment-pdq"}
+{"qid": "q47", "question": "What treatment options are commonly considered for hormone receptor-positive metastatic breast cancer?", "topic": "Breast", "gold_url": "https://www.cancer.gov/types/breast/hp/breast-treatment-pdq"}
+{"qid": "q48", "question": "How does biomarker status affect breast cancer treatment planning?", "topic": "Breast", "gold_url": "https://www.cancer.gov/types/breast/hp/breast-treatment-pdq"}
+{"qid": "q49", "question": "What are common systemic therapy approaches for advanced breast cancer?", "topic": "Breast", "gold_url": "https://www.cancer.gov/types/breast/hp/breast-treatment-pdq"}
+{"qid": "q50", "question": "How is treatment selected for patients with newly diagnosed breast cancer?", "topic": "Breast", "gold_url": "https://www.cancer.gov/types/breast/hp/breast-treatment-pdq"}
+{"qid": "q51", "question": "What are standard treatment components for colon cancer?", "topic": "Colon", "gold_url": "https://www.cancer.gov/types/colorectal/hp/colon-treatment-pdq"}
+{"qid": "q52", "question": "How does treatment differ between early-stage and metastatic colon cancer?", "topic": "Colon", "gold_url": "https://www.cancer.gov/types/colorectal/hp/colon-treatment-pdq"}
+{"qid": "q53", "question": "What is the role of surgery in colon cancer treatment?", "topic": "Colon", "gold_url": "https://www.cancer.gov/types/colorectal/hp/colon-treatment-pdq"}
+{"qid": "q54", "question": "When is adjuvant chemotherapy used in colon cancer?", "topic": "Colon", "gold_url": "https://www.cancer.gov/types/colorectal/hp/colon-treatment-pdq"}
+{"qid": "q55", "question": "How is metastatic colon cancer generally treated?", "topic": "Colon", "gold_url": "https://www.cancer.gov/types/colorectal/hp/colon-treatment-pdq"}
+{"qid": "q56", "question": "What systemic therapy options are commonly used in advanced colon cancer?", "topic": "Colon", "gold_url": "https://www.cancer.gov/types/colorectal/hp/colon-treatment-pdq"}
+{"qid": "q57", "question": "How are treatment decisions made for resectable versus unresectable colon cancer?", "topic": "Colon", "gold_url": "https://www.cancer.gov/types/colorectal/hp/colon-treatment-pdq"}
+{"qid": "q58", "question": "What is the role of biomarker testing in colon cancer treatment selection?", "topic": "Colon", "gold_url": "https://www.cancer.gov/types/colorectal/hp/colon-treatment-pdq"}
+{"qid": "q59", "question": "How is recurrent colon cancer generally managed?", "topic": "Colon", "gold_url": "https://www.cancer.gov/types/colorectal/hp/colon-treatment-pdq"}
+{"qid": "q60", "question": "What factors influence therapy choice in colon cancer?", "topic": "Colon", "gold_url": "https://www.cancer.gov/types/colorectal/hp/colon-treatment-pdq"}
+{"qid": "q61", "question": "How is adult acute myeloid leukemia generally treated?", "topic": "AML", "gold_url": "https://www.cancer.gov/types/leukemia/hp/adult-aml-treatment-pdq"}
+{"qid": "q62", "question": "What is induction therapy in adult acute myeloid leukemia?", "topic": "AML", "gold_url": "https://www.cancer.gov/types/leukemia/hp/adult-aml-treatment-pdq"}
+{"qid": "q63", "question": "What is the purpose of consolidation therapy in adult acute myeloid leukemia?", "topic": "AML", "gold_url": "https://www.cancer.gov/types/leukemia/hp/adult-aml-treatment-pdq"}
+{"qid": "q64", "question": "How does age or fitness affect treatment selection in adult acute myeloid leukemia?", "topic": "AML", "gold_url": "https://www.cancer.gov/types/leukemia/hp/adult-aml-treatment-pdq"}
+{"qid": "q65", "question": "What treatment approaches are used for relapsed adult acute myeloid leukemia?", "topic": "AML", "gold_url": "https://www.cancer.gov/types/leukemia/hp/adult-aml-treatment-pdq"}
+{"qid": "q66", "question": "How is newly diagnosed adult acute myeloid leukemia managed?", "topic": "AML", "gold_url": "https://www.cancer.gov/types/leukemia/hp/adult-aml-treatment-pdq"}
+{"qid": "q67", "question": "What is the role of stem cell transplantation in adult acute myeloid leukemia?", "topic": "AML", "gold_url": "https://www.cancer.gov/types/leukemia/hp/adult-aml-treatment-pdq"}
+{"qid": "q68", "question": "How are supportive care measures used in adult acute myeloid leukemia treatment?", "topic": "AML", "gold_url": "https://www.cancer.gov/types/leukemia/hp/adult-aml-treatment-pdq"}
+{"qid": "q69", "question": "What factors influence prognosis and treatment planning in adult acute myeloid leukemia?", "topic": "AML", "gold_url": "https://www.cancer.gov/types/leukemia/hp/adult-aml-treatment-pdq"}
+{"qid": "q70", "question": "How is treatment selected for older adults with acute myeloid leukemia?", "topic": "AML", "gold_url": "https://www.cancer.gov/types/leukemia/hp/adult-aml-treatment-pdq"}
+{"qid": "q71", "question": "How is chronic lymphocytic leukemia generally managed?", "topic": "CLL", "gold_url": "https://www.cancer.gov/types/leukemia/hp/cll-treatment-pdq"}
+{"qid": "q72", "question": "When is watchful waiting used in chronic lymphocytic leukemia?", "topic": "CLL", "gold_url": "https://www.cancer.gov/types/leukemia/hp/cll-treatment-pdq"}
+{"qid": "q73", "question": "What are common treatment options for symptomatic chronic lymphocytic leukemia?", "topic": "CLL", "gold_url": "https://www.cancer.gov/types/leukemia/hp/cll-treatment-pdq"}
+{"qid": "q74", "question": "How do targeted therapies influence treatment of chronic lymphocytic leukemia?", "topic": "CLL", "gold_url": "https://www.cancer.gov/types/leukemia/hp/cll-treatment-pdq"}
+{"qid": "q75", "question": "How is relapsed or refractory chronic lymphocytic leukemia generally treated?", "topic": "CLL", "gold_url": "https://www.cancer.gov/types/leukemia/hp/cll-treatment-pdq"}
+{"qid": "q76", "question": "What factors guide treatment selection in chronic lymphocytic leukemia?", "topic": "CLL", "gold_url": "https://www.cancer.gov/types/leukemia/hp/cll-treatment-pdq"}
+{"qid": "q77", "question": "How does disease stage affect management in chronic lymphocytic leukemia?", "topic": "CLL", "gold_url": "https://www.cancer.gov/types/leukemia/hp/cll-treatment-pdq"}
+{"qid": "q78", "question": "What is the role of immunotherapy or monoclonal antibodies in chronic lymphocytic leukemia?", "topic": "CLL", "gold_url": "https://www.cancer.gov/types/leukemia/hp/cll-treatment-pdq"}
+{"qid": "q79", "question": "How is treatment approached in older adults with chronic lymphocytic leukemia?", "topic": "CLL", "gold_url": "https://www.cancer.gov/types/leukemia/hp/cll-treatment-pdq"}
+{"qid": "q80", "question": "What are the general goals of therapy in chronic lymphocytic leukemia?", "topic": "CLL", "gold_url": "https://www.cancer.gov/types/leukemia/hp/cll-treatment-pdq"}

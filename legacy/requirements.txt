@@ -1,0 +1,13 @@
+openai
+python-dotenv
+requests
+beautifulsoup4
+lxml
+sentence-transformers
+torch
+numpy
+pandas
+scikit-learn
+tqdm
+datasets
+matplotlib

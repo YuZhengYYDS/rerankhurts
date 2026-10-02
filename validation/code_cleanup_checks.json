@@ -1,0 +1,49 @@
+{
+  "date": "2026-09-28",
+  "status": "pass_with_one_platform_test_skipped",
+  "scope": "Code organization, offline scientific-result consistency and release packaging; no model rerun or new human study.",
+  "test_command": "pixi run --locked -e gpu test -rs",
+  "tests": {
+    "passed": 134,
+    "failed": 0,
+    "skipped": 1,
+    "skipped_test": "tests/test_release_packaging.py::test_rejects_source_symlink",
+    "skip_reason": "Windows WinError 1314: creating a real filesystem symbolic link requires privileges not available to this process. ZIP-embedded symbolic-link rejection was tested successfully."
+  },
+  "before_and_after_integrity": {
+    "protected_files_checked": 521,
+    "changed": 0,
+    "by_area": {
+      "paper": 20,
+      "results": 164,
+      "result": 1,
+      "experiments_excluding_root_readme": 331,
+      "frozen_root_scripts": 5
+    },
+    "migration_entries_checked": 31,
+    "migration_original_and_destination_hash_errors": 0,
+    "archived_files_and_requirements_preserved_byte_for_byte": 7
+  },
+  "offline_verification": {
+    "command": "pixi run --locked verify",
+    "frozen_manifest_references_checked": 218,
+    "hash_errors": 0,
+    "e3_records_checked": 3100,
+    "e3_integrity_status": "pass",
+    "simulation_paired_endpoint_status": "pass"
+  },
+  "reanalysis_comparison": {
+    "e0_same_named_csv_and_json_files_identical": 14,
+    "e3_csv_json_png_files_identical": 11,
+    "e3_copied_input_files_included_in_count": 4,
+    "e3_recomputed_output_files_included_in_count": 7,
+    "pdf_binary_comparison": "not performed because regeneration can change PDF timestamp metadata",
+    "original_paper_and_result_files_modified": false
+  },
+  "legacy_validation": {
+    "python_files_static_compilation_passed": 29,
+    "legacy_model_or_api_workflows_executed": false,
+    "dependency_scope": "Historical requirements are preserved in legacy/requirements.txt; the legacy tool collection was not fully executed under current Pixi environments."
+  },
+  "archive_verification": "Each final archive is verified by scripts/verify_release.py during packaging. Archive checksums are recorded separately in dist/sha256sums.json to avoid self-referential hashes."
+}

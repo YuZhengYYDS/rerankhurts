@@ -1,0 +1,5 @@
+﻿source,n_distinct_sources,mean_relevance,scored_0,scored_1,scored_2,annotation_source,valid_for_human_eval_claim
+nci_gold,1027,1.7663,3,234,790,llm_judge_automatic,False
+pubmed,1556,0.937,412,830,314,llm_judge_automatic,False
+textbook,328,0.8933,98,167,63,llm_judge_automatic,False
+nci_non_gold,441,0.1927,371,55,15,llm_judge_automatic,False

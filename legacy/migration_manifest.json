@@ -1,0 +1,262 @@
+{
+  "purpose": "Historical tooling reorganization; frozen experiment and E0 input files remain at original paths and bytes.",
+  "files": [
+    {
+      "original_path": "_chain_validated9.sh",
+      "new_path": "legacy/archive/_chain_validated9.sh",
+      "original_sha256": "a3fa7a5873f8a402d2552ccffeaf83766ea0a003cbeb3bd8ae2df1fa5f786fdd",
+      "archival_only": true,
+      "new_sha256": "a3fa7a5873f8a402d2552ccffeaf83766ea0a003cbeb3bd8ae2df1fa5f786fdd",
+      "preserved_original_bytes": true
+    },
+    {
+      "original_path": "_rerun_judges.sh",
+      "new_path": "legacy/archive/_rerun_judges.sh",
+      "original_sha256": "3b97c4ec4a22d143d0726c721c0d806ca524653fc3d5b854de0810153dbd4c19",
+      "archival_only": true,
+      "new_sha256": "3b97c4ec4a22d143d0726c721c0d806ca524653fc3d5b854de0810153dbd4c19",
+      "preserved_original_bytes": true
+    },
+    {
+      "original_path": "analyze_results.py",
+      "new_path": "legacy/analyze_results.py",
+      "original_sha256": "2aad1689ac36a4e551f7489ef45279140b5ea148a05fca62f40e750cf2965b15",
+      "archival_only": false,
+      "new_sha256": "e8401d20e12b7736c34ad4379980c07572e9c7b7c00bf5bb4916e6c4ad3fd456",
+      "preserved_original_bytes": false
+    },
+    {
+      "original_path": "annotate_questions.py",
+      "new_path": "legacy/annotate_questions.py",
+      "original_sha256": "8aab55007fe6251597876ad4400b09b14549964b90561f26847c83c122518f7a",
+      "archival_only": false,
+      "new_sha256": "c4500ef3e71ac9271c30ffb0cc8618a338137a47859c6827599256c733616a5f",
+      "preserved_original_bytes": false
+    },
+    {
+      "original_path": "archive_results.py",
+      "new_path": "legacy/archive_results.py",
+      "original_sha256": "25415eba87536f5613aff8f9d0b7d27e8d52a29cb8f24402f2c691f743125e97",
+      "archival_only": false,
+      "new_sha256": "f8030c992f5f6c48ac28f3f8520b36d5d1a5c994fd766844aa3e2c0e93bba5c7",
+      "preserved_original_bytes": false
+    },
+    {
+      "original_path": "build_annotation_template.py",
+      "new_path": "legacy/build_annotation_template.py",
+      "original_sha256": "5e2761513b3e24f0e9a1a839cf9b5717fc46dc96e9cc9acd0c6907a436793923",
+      "archival_only": false,
+      "new_sha256": "0b85be691a9e104b4446b2587760831ecbdf8d01997031e873fa8344cfa76c63",
+      "preserved_original_bytes": false
+    },
+    {
+      "original_path": "build_case_study_table.py",
+      "new_path": "legacy/archive/build_case_study_table.py",
+      "original_sha256": "1b82b471e070519c4b8d0a822e4f2d7fdca1223b5f5d7ff6087963e3f917e4c5",
+      "archival_only": true,
+      "new_sha256": "1b82b471e070519c4b8d0a822e4f2d7fdca1223b5f5d7ff6087963e3f917e4c5",
+      "preserved_original_bytes": true
+    },
+    {
+      "original_path": "build_corpus.py",
+      "new_path": "legacy/build_corpus.py",
+      "original_sha256": "0beccc69438ad1121a5f800b088b74ae09014568eb0a83377538151c600c0654",
+      "archival_only": false,
+      "new_sha256": "58ca23fd0040c963a0148d93788aed84748eb2bc7e7cf7551d83d2d8f719748d",
+      "preserved_original_bytes": false
+    },
+    {
+      "original_path": "build_expanded_benchmark.py",
+      "new_path": "legacy/build_expanded_benchmark.py",
+      "original_sha256": "4c5ba6c9aec8d1e7cd7e4317d6b9ced0139d533f9671e9c832703026a600e852",
+      "archival_only": false,
+      "new_sha256": "cbedb5294f70cd5b664eb0a57afc44c5eb40246d07c5ebe51b4051c9107fb7a9",
+      "preserved_original_bytes": false
+    },
+    {
+      "original_path": "build_grounded_questions.py",
+      "new_path": "legacy/build_grounded_questions.py",
+      "original_sha256": "7a1d3d87abe0c27e6dd9374342a399d42c7715956a9b210fdb05ccd262ab6c0d",
+      "archival_only": false,
+      "new_sha256": "fe30b65d53a4f98166cc68eb59ecb0d26558d42382c63322c20287006dc654f9",
+      "preserved_original_bytes": false
+    },
+    {
+      "original_path": "build_revision_assets.py",
+      "new_path": "legacy/build_revision_assets.py",
+      "original_sha256": "5ea1bd5d4bf6611d8b5b3245219808e091c4e5f930052ed8e23af0c7566c68a6",
+      "archival_only": false,
+      "new_sha256": "845c82aeab7a59a37182058aa4366271936c6ccee5006645ca140dc4fdb42d63",
+      "preserved_original_bytes": false
+    },
+    {
+      "original_path": "combine_revision_results.py",
+      "new_path": "legacy/combine_revision_results.py",
+      "original_sha256": "75ed06e9022740f9708edb84ddd0dc94e1b44cef508e798e3735ab040c96de16",
+      "archival_only": false,
+      "new_sha256": "3ec114ebd48e12bece3f7278f136e06daf591659f301fb2bca2f87e7a6eb3a82",
+      "preserved_original_bytes": false
+    },
+    {
+      "original_path": "curate_paper_assets.py",
+      "new_path": "legacy/curate_paper_assets.py",
+      "original_sha256": "c42891f7b063c428fd13c8325d4dea3b7af3498bfddc1b689cb20fa350eddadc",
+      "archival_only": false,
+      "new_sha256": "0ef3ad4101de0008e856041d7cc3795ee5baa936d42a0e031517f9d70a3e8dcf",
+      "preserved_original_bytes": false
+    },
+    {
+      "original_path": "finalize_expanded_benchmark.py",
+      "new_path": "legacy/finalize_expanded_benchmark.py",
+      "original_sha256": "1ec8dae05a21d138fc6ced0508f6dd854c1d24d4531fd07de0e64feb3a3dd98a",
+      "archival_only": false,
+      "new_sha256": "61c7db4714cb5d36fcd43a1da603b729bd814999bdf50e9c891067a9b32d58e7",
+      "preserved_original_bytes": false
+    },
+    {
+      "original_path": "init_projec.py",
+      "new_path": "legacy/archive/init_projec.py",
+      "original_sha256": "8ecacde8fe5b0fa42157d7439b750a64f85eb113cddc1b934b02e574fe63df10",
+      "archival_only": true,
+      "new_sha256": "8ecacde8fe5b0fa42157d7439b750a64f85eb113cddc1b934b02e574fe63df10",
+      "preserved_original_bytes": true
+    },
+    {
+      "original_path": "inspect_corpus.py",
+      "new_path": "legacy/archive/inspect_corpus.py",
+      "original_sha256": "87456a0df0f4b4184bacc90e608bb90a53a27316554e8ddd0f8c11c4bfe397e6",
+      "archival_only": true,
+      "new_sha256": "87456a0df0f4b4184bacc90e608bb90a53a27316554e8ddd0f8c11c4bfe397e6",
+      "preserved_original_bytes": true
+    },
+    {
+      "original_path": "llm_judge.py",
+      "new_path": "legacy/llm_judge.py",
+      "original_sha256": "2d646399b9bdf524151aaf609fc840bbae24ea83810fd5fb406a19741addf285",
+      "archival_only": false,
+      "new_sha256": "ca52196cc7de82964a48bf2b44b24bf9dffe4c1eeaf41f43fd22c5778589d62d",
+      "preserved_original_bytes": false
+    },
+    {
+      "original_path": "make_figures.py",
+      "new_path": "legacy/make_figures.py",
+      "original_sha256": "99296a0214dd6924b117edd3f3a9439c0831d89cbd13cc81fd2d4799c2170dfd",
+      "archival_only": false,
+      "new_sha256": "6f2358750ac8917c869f0e677969abeed663346176e21040b23216fa64a876f7",
+      "preserved_original_bytes": false
+    },
+    {
+      "original_path": "make_heatmaps.py",
+      "new_path": "legacy/make_heatmaps.py",
+      "original_sha256": "19d93a391a1024874c3b806c1d6f1548aaea198968819e8ba09412d74b6797b5",
+      "archival_only": false,
+      "new_sha256": "3fc2dd75c8dfe841fbff76793c88b3a732f542e72d59ac6f8b639391d75392e1",
+      "preserved_original_bytes": false
+    },
+    {
+      "original_path": "make_main_table.py",
+      "new_path": "legacy/make_main_table.py",
+      "original_sha256": "547b2b24b225a45055e53e1885ab585e3386b0d3a59d0e50eb3b04cbd9ed7670",
+      "archival_only": false,
+      "new_sha256": "8075a7685941aecdc25cbfd3dd2fe6ac1d5ac453d6061662f8641d0f3845ade2",
+      "preserved_original_bytes": false
+    },
+    {
+      "original_path": "make_revision_tables.py",
+      "new_path": "legacy/make_revision_tables.py",
+      "original_sha256": "58b0379f5de9b4f4b6a64136093e956ad2cef345a3fb57afc42dd2633ccd489f",
+      "archival_only": false,
+      "new_sha256": "6445cb0d32da2dee45cd2a7a7dff35ab39f1ad124f8cb6b7f85ad70a1807eae7",
+      "preserved_original_bytes": false
+    },
+    {
+      "original_path": "package_emnlp_results.py",
+      "new_path": "legacy/package_emnlp_results.py",
+      "original_sha256": "cc67d77867e9202365e29314c27854d102669309f68d61950576121a6d767b0f",
+      "archival_only": false,
+      "new_sha256": "3b301c57db30dbf099baea1c0a28fa8bfe52caa5710590eb28fe30fa87d8865e",
+      "preserved_original_bytes": false
+    },
+    {
+      "original_path": "prepare_human_eval_packets.py",
+      "new_path": "legacy/prepare_human_eval_packets.py",
+      "original_sha256": "b9bd73d3448aecb4d511ef963d3d14ce64442557ca0dd52340bea7d9c2daa04b",
+      "archival_only": false,
+      "new_sha256": "3f34c954568e63fbd746371f008f0f8b2d4fd7d77967e1f7955587d80f4cd031",
+      "preserved_original_bytes": false
+    },
+    {
+      "original_path": "purge_leaky_questions.py",
+      "new_path": "legacy/purge_leaky_questions.py",
+      "original_sha256": "460b283947318f496157ce7cd799313612657c9ade1ae26f16b48188eae29f2f",
+      "archival_only": false,
+      "new_sha256": "a03f26da16f9b850d1f64505e059ef3a18dbf331969f4e29dd90a62b647ec9b1",
+      "preserved_original_bytes": false
+    },
+    {
+      "original_path": "report_figures.py",
+      "new_path": "legacy/archive/report_figures.py",
+      "original_sha256": "c1e9bdd556049a85ca7fa6b3669210589841666e71b58a03d58871ea72e5b3d9",
+      "archival_only": true,
+      "new_sha256": "c1e9bdd556049a85ca7fa6b3669210589841666e71b58a03d58871ea72e5b3d9",
+      "preserved_original_bytes": true
+    },
+    {
+      "original_path": "requirements.txt",
+      "new_path": "legacy/requirements.txt",
+      "original_sha256": "077ff006ca03b100e95a2e37fc98bafaf0e3e67ede6c39843634bf7c252dd60c",
+      "archival_only": false,
+      "new_sha256": "077ff006ca03b100e95a2e37fc98bafaf0e3e67ede6c39843634bf7c252dd60c",
+      "preserved_original_bytes": true
+    },
+    {
+      "original_path": "run_p3_matrix.py",
+      "new_path": "legacy/run_p3_matrix.py",
+      "original_sha256": "f79bde94d2fbc1b97b02fb293319042083357ee8ac853db25b373fce553c71da",
+      "archival_only": false,
+      "new_sha256": "b59f8b80a2b7ec98f9d8f90d6253c3d188401e26d6ae1fecc0039ec7d9ba51c0",
+      "preserved_original_bytes": false
+    },
+    {
+      "original_path": "run_p4_expanded.py",
+      "new_path": "legacy/run_p4_expanded.py",
+      "original_sha256": "de18e7b152236fe0d3ceedf68d77cfd0463ed11881981e2079c1b108fdea053e",
+      "archival_only": false,
+      "new_sha256": "beb0624d98c254ed4a2fcbddd8e4e18707ff88ee6a731273999d9759fb4c17db",
+      "preserved_original_bytes": false
+    },
+    {
+      "original_path": "run_view_analyses.py",
+      "new_path": "legacy/run_view_analyses.py",
+      "original_sha256": "fd0b6c1653f744d8b88773fccb8521726b85ce9bb0976b81a8ab0ed0be7c1b90",
+      "archival_only": false,
+      "new_sha256": "d74dd1bdad5e2a3d68fd18c3c667e9ab3817cdd04999792426c95963b1a1ef9e",
+      "preserved_original_bytes": false
+    },
+    {
+      "original_path": "sanitize_release.py",
+      "new_path": "legacy/sanitize_release.py",
+      "original_sha256": "7d5ab41dfae83c5b294b9f6686489ad34472fe164833aaa0227c8e54be1e79d0",
+      "archival_only": false,
+      "new_sha256": "d256ca6852cfb7d38a18b9d363e9fc04e371e3866481258e8b386ece25e8dc8c",
+      "preserved_original_bytes": false
+    },
+    {
+      "original_path": "verify_expanded_questions.py",
+      "new_path": "legacy/verify_expanded_questions.py",
+      "original_sha256": "17f55f5b4af376d72e7083abb2de6e2607d1fac40de19810861c32bbab409b58",
+      "archival_only": false,
+      "new_sha256": "55e6676f9e05ee677db6f23c2133f1acd978dffc05798da1205da41717f07fd1",
+      "preserved_original_bytes": false
+    }
+  ],
+  "validation": {
+    "historical_scripts_executed": false,
+    "checks": [
+      "static Python compilation without importing modules",
+      "explicit local import and subprocess path review",
+      "frozen E0 input hash preservation",
+      "archival and original requirements byte preservation"
+    ]
+  }
+}

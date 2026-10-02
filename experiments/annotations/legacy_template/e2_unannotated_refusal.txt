@@ -1,0 +1,14 @@
+Actual unannotated-input rejection check. Exit code: 1
+No result written: True
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "<repository>\experiments\analyze_selection.py", line 216, in <module>
+    main()
+  File "<repository>\experiments\analyze_selection.py", line 205, in main
+    validate(rows, spec, args.allow_legacy_diagnostic)
+  File "<repository>\experiments\analyze_selection.py", line 24, in validate
+    require_human_utility(rows)
+  File "<repository>\experiments\protocol.py", line 208, in require_human_utility
+    raise ValueError("E2 requires independent human utility labels; none were supplied.")
+ValueError: E2 requires independent human utility labels; none were supplied.

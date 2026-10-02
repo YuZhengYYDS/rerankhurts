@@ -1,0 +1,8 @@
+﻿mode,num_questions,composite_mean,ci_low,ci_high,annotation_source,valid_for_human_eval_claim,delta_vs_baseline,delta_ci_low,delta_ci_high,p_value_bootstrap,separated_from_baseline_95ci,delta_reask,delta_reordered,same_sign_all_passes
+rrf_hybrid,155,4.6753,4.5677,4.7634,llm_judge_automatic,False,0.028,-0.0817,0.1312,0.6184,False,0.2333,0.2667,True
+rerank_source_aware,155,4.6667,4.5677,4.7527,llm_judge_automatic,False,0.0194,-0.1011,0.1334,0.7848,False,0.1333,0.0917,True
+baseline,155,4.6473,4.5441,4.7333,llm_judge_automatic,False,,,,,,,,
+rerank_medcpt,155,4.6215,4.5204,4.7161,llm_judge_automatic,False,-0.0258,-0.129,0.0731,0.5976,False,0.0917,0.0833,False
+rerank,155,4.5677,4.4559,4.671,llm_judge_automatic,False,-0.0796,-0.1914,0.0301,0.1652,False,-0.0667,-0.0333,True
+rerank_bge_base,155,4.5505,4.4366,4.6581,llm_judge_automatic,False,-0.0968,-0.2172,0.0172,0.11,False,0.075,0.0833,False
+rerank_bge_m3,155,4.5204,4.3935,4.6387,llm_judge_automatic,False,-0.1269,-0.2538,-0.0064,0.0396,True,-0.05,-0.1167,True

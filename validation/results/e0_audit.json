@@ -1,0 +1,171 @@
+{
+  "schema_version": 1,
+  "kind": "offline_frozen_log_recomputation_not_model_rerun",
+  "audit_script_sha256": "2fd3e6191f1ef201cbffba30b07f217651bbc6f9fc9958af77f191a29ea5f876",
+  "scope": {
+    "retrieval_log_files": 47,
+    "query_system_rows": 14062,
+    "summary_rows": 198,
+    "published_cells_checked": 417,
+    "published_cell_failures": 12,
+    "explained_historical_cell_failures": 12,
+    "unexpected_published_cell_failures": 0,
+    "row_integrity_issues": 0
+  },
+  "question_sets": {
+    "original100": {
+      "n": 100,
+      "gold_count_distribution": {
+        "1": 100
+      },
+      "distinct_gold_pages": 7
+    },
+    "audited78": {
+      "n": 78,
+      "gold_count_distribution": {
+        "1": 78
+      },
+      "distinct_gold_pages": 6
+    },
+    "expanded155": {
+      "n": 155,
+      "gold_count_distribution": {
+        "1": 155
+      },
+      "distinct_gold_pages": 20
+    }
+  },
+  "metric_contract": {
+    "original_recall_at_k": "First gold URL at a chunk position <= k: a hit rate, not multi-gold recall.",
+    "original_ndcg_at_10": "1/log2(1+first gold chunk rank), zero after 10; only first hit contributes; implicit IDCG=1.",
+    "original_mrr": "Reciprocal first gold chunk rank in complete stored ranking (not MRR@10).",
+    "final_gold_page_hit": "G: gold page in actual final_urls; no claim of content support or compliance with a prespecified source policy.",
+    "distinct_page_metrics": "Stable unique URL order; binary relevance; IDCG from ALL frozen gold pages, including unretrieved ones. Ten pages and ten chunks are different budgets.",
+    "url_matching": "Exact string after outer whitespace stripping, matching the frozen original scorer; no URL canonicalization.",
+    "missing_annotation": "Hard error or flagged unmatched record; never treated as irrelevant.",
+    "query_normalization": "Only named normalization log is joined by stable qid despite changed question text; tracked explicitly."
+  },
+  "e0_findings": [
+    {
+      "id": "E0-NORMALIZED-JOIN",
+      "status": "scoring_bug_identified",
+      "detail": "Seven changed queries per mode fail the original (qid, question) annotation join and are scored zero. All released rewritten query texts are reproduced by generate_normalized_questions.py. Stable qid with validated rewrite recovers their original gold; see normalization_join_diagnosis.csv and corrected_normalization_metrics.csv."
+    },
+    {
+      "id": "E0-LLM-RUNS",
+      "status": "discrepancy_reproduced",
+      "detail": "iso78 and original78 slice of exp155 are different frozen outputs; see cross_run_comparison.csv. Historical run IDs, API response IDs and timestamps are absent. Retain both with source file hashes; no repeated-run distribution can be inferred."
+    },
+    {
+      "id": "E0-NODEDUP",
+      "status": "configuration_explained",
+      "detail": "ablation_no_dedup retains reranking; ablation_base_no_dedup removes cap without reranking. Compare their named configurations, not the generic NoDedup label."
+    },
+    {
+      "id": "E0-RANK-CUTOFF",
+      "status": "recomputed",
+      "detail": "Full-list, top-10, and top-4 transition tables are provided separately. Both-missing is cutoff dependent; final hit equality can conceal offsetting losses and rescues."
+    },
+    {
+      "id": "E0-POOL-DEPTH",
+      "status": "configuration_explained",
+      "detail": "Depth24 uses pool100, whereas pool24 reranks the post-cap pool from 24 retrieved chunks. The unreranked tail is appended by implementation. These are not the same setting."
+    },
+    {
+      "id": "E0-CASE-STUDIES",
+      "status": "corrected_cases_available",
+      "detail": "Prior examples q58 (5->12) and q9 (8->12) are ranking degradations with no top-4 loss. true_top4_transitions.csv enumerates actual delivered gold-page losses/rescues."
+    },
+    {
+      "id": "E0-LLM-NAMING",
+      "status": "implementation_reviewed",
+      "detail": "The LLM sees a candidate list and assigns each chunk a 0-2 score (500 characters each); stable sorting yields order. Describe as joint-context ordinal chunk scoring, not direct list permutation. temperature=0; request failures silently return all-zero scores in historical code."
+    }
+  ],
+  "limitations": [
+    "Only ranking/final URLs are in compact retrieval logs; no candidate IDs, chunk IDs, raw candidate URLs, final text, or raw model responses. Earlier-stage plots and content utility cannot be independently rebuilt from these logs.",
+    "URL-level candidate equality cannot establish identical chunk-level candidate sets.",
+    "Original and expanded questions use only designated NCI pages; the expansion includes original questions and source-conditioned construction, not independent external validation.",
+    "All present evaluation labels are automatic. No human U, acceptable multi-source labels, clinical validation, or independent E1/E2 test is present.",
+    "Four chunks is not a fixed tokenizer-measured token budget. Stored latency is historical wall time; hardware/model revision/API cost metadata are incomplete.",
+    "Recorded configuration tables can omit modes present in merged logs. File hashes identify frozen artifacts, not historical model snapshots or a missing run manifest.",
+    "Question and page-cluster bootstrap intervals are descriptive sensitivity analyses; few page groups and unadjusted multiple comparisons limit inferential claims."
+  ],
+  "automatic_judge_inventory": [
+    {
+      "file": "p4_judge_answer_eval.csv",
+      "rows": 1085,
+      "annotation_sources": [
+        "llm_judge_automatic"
+      ],
+      "human_claim_true_count": 0
+    },
+    {
+      "file": "p4_judge_relevance_eval.csv",
+      "rows": 3352,
+      "annotation_sources": [
+        "llm_judge_automatic"
+      ],
+      "human_claim_true_count": 0
+    },
+    {
+      "file": "p4_judge_stability.csv",
+      "rows": 280,
+      "annotation_sources": [
+        "llm_judge_automatic"
+      ],
+      "human_claim_true_count": 0
+    }
+  ],
+  "normalization_historical_join_reproduction": [
+    {
+      "source": "supp_query_normalization_legacy_join",
+      "subset": "all",
+      "mode": "baseline",
+      "num_questions": 78,
+      "hit_at_5_chunk": 0.8717948717948718,
+      "hit_at_10_chunk": 0.8974358974358975,
+      "mrr_first_gold_chunk": 0.8022773279352227,
+      "first_gold_discount_at_10": 0.8248482940907335,
+      "final_gold_page_hit": 0.8461538461538461,
+      "hit_full_ranking": 0.9102564102564102,
+      "url_recall_at_10_distinct_pages": 0.8974358974358975,
+      "url_ndcg_at_10_distinct_pages": 0.8248482940907335,
+      "mrr_first_gold_distinct_page": 0.8022773279352227,
+      "rerank_ms": 0.0
+    },
+    {
+      "source": "supp_query_normalization_legacy_join",
+      "subset": "all",
+      "mode": "control_dense_only",
+      "num_questions": 78,
+      "hit_at_5_chunk": 0.8461538461538461,
+      "hit_at_10_chunk": 0.8461538461538461,
+      "mrr_first_gold_chunk": 0.7927350427350427,
+      "first_gold_discount_at_10": 0.8063178110347996,
+      "final_gold_page_hit": 0.8461538461538461,
+      "hit_full_ranking": 0.8461538461538461,
+      "url_recall_at_10_distinct_pages": 0.8461538461538461,
+      "url_ndcg_at_10_distinct_pages": 0.8063178110347996,
+      "mrr_first_gold_distinct_page": 0.7927350427350427,
+      "rerank_ms": 0.0
+    },
+    {
+      "source": "supp_query_normalization_legacy_join",
+      "subset": "all",
+      "mode": "rerank",
+      "num_questions": 78,
+      "hit_at_5_chunk": 0.8589743589743589,
+      "hit_at_10_chunk": 0.8846153846153846,
+      "mrr_first_gold_chunk": 0.664545177045177,
+      "first_gold_discount_at_10": 0.7179736618098456,
+      "final_gold_page_hit": 0.8333333333333334,
+      "hit_full_ranking": 0.9102564102564102,
+      "url_recall_at_10_distinct_pages": 0.8846153846153846,
+      "url_ndcg_at_10_distinct_pages": 0.7179736618098456,
+      "mrr_first_gold_distinct_page": 0.664545177045177,
+      "rerank_ms": 16.65951282051282
+    }
+  ],
+  "issues": []
+}

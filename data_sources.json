@@ -1,0 +1,141 @@
+[
+  {
+    "name": "nci_guidelines",
+    "role": "corpus",
+    "type": "web_urls_file",
+    "enabled": true,
+    "path": "urls.txt",
+    "license": "public_web",
+    "notes": "Primary NCI/PDQ pages used by the original project."
+  },
+  {
+    "name": "medrag_textbooks_oncology",
+    "role": "corpus",
+    "type": "hf_dataset",
+    "enabled": true,
+    "dataset": "MedRAG/textbooks",
+    "split": "train",
+    "title_field": "title",
+    "text_fields": ["content"],
+    "id_field": "id",
+    "max_records": 2500,
+    "include_any_keywords": [
+      "oncology",
+      "cancer",
+      "tumor",
+      "tumour",
+      "carcinoma",
+      "adenocarcinoma",
+      "sarcoma",
+      "lymphoma",
+      "leukemia",
+      "leukaemia",
+      "melanoma",
+      "chemotherapy",
+      "radiotherapy",
+      "immunotherapy",
+      "targeted therapy"
+    ],
+    "license": "see_hf_card",
+    "notes": "Broad medical textbooks; only oncology-related passages should be kept."
+  },
+  {
+    "name": "pubmed_cancer_abstracts",
+    "role": "corpus",
+    "type": "hf_dataset",
+    "enabled": true,
+    "dataset": "cyberpsych/PubMed-Cancer-NLP-Textual-Dataset",
+    "split": "train",
+    "title_field": "Title",
+    "text_fields": ["Abstract"],
+    "prefix_fields": ["Cancer Type"],
+    "id_field": "PMID",
+    "url_template": "https://pubmed.ncbi.nlm.nih.gov/{PMID}/",
+    "max_records": 4000,
+    "shuffle": true,
+    "seed": 42,
+    "include_any_keywords": [
+      "treatment",
+      "therapy",
+      "therapeutic",
+      "chemotherapy",
+      "immunotherapy",
+      "radiotherapy",
+      "surgery",
+      "surgical",
+      "management",
+      "targeted"
+    ],
+    "license": "apache-2.0",
+    "notes": "Large cancer abstract corpus; filtered to treatment-oriented abstracts."
+  },
+  {
+    "name": "oncqa",
+    "role": "qa_benchmark",
+    "type": "hf_dataset",
+    "enabled": false,
+    "dataset": "shanchen/OncQA",
+    "split": "train",
+    "license": "cc-by-sa-4.0",
+    "notes": "Useful for evaluating patient-message response quality, not as a retrieval corpus."
+  },
+  {
+    "name": "cancerguide",
+    "role": "qa_benchmark",
+    "type": "hf_dataset",
+    "enabled": false,
+    "dataset": "microsoft/CancerGUIDE",
+    "split": "train",
+    "license": "cc-by-4.0",
+    "notes": "Synthetic oncology notes with treatment recommendations; useful as an external benchmark."
+  },
+  {
+    "name": "oncology_qa",
+    "role": "qa_benchmark",
+    "type": "hf_dataset",
+    "enabled": false,
+    "dataset": "Rumiii/Oncology_QA",
+    "split": "train",
+    "license": "apache-2.0",
+    "notes": "Large synthetic oncology QA dataset; better as an auxiliary question bank than a knowledge corpus."
+  },
+  {
+    "name": "cancer_myth",
+    "role": "qa_benchmark",
+    "type": "hf_dataset",
+    "enabled": false,
+    "dataset": "Cancer-Myth/Cancer-Myth",
+    "split": "validation",
+    "license": "cc-by-4.0",
+    "notes": "Specialized benchmark for false presuppositions in patient oncology questions."
+  },
+  {
+    "name": "ragcare_qa",
+    "role": "qa_benchmark",
+    "type": "hf_dataset",
+    "enabled": false,
+    "dataset": "ChatMED-Project/RAGCare-QA",
+    "split": "train",
+    "license": "see_hf_card",
+    "notes": "Mixed-domain medical QA benchmark; only the oncology subset should be used."
+  },
+  {
+    "name": "kaggle_cancer_qa",
+    "role": "qa_benchmark",
+    "type": "local_csv",
+    "enabled": false,
+    "path": "data/kaggle_cancer_qa.csv",
+    "source_url": "https://www.kaggle.com/datasets/gvaldenebro/cancer-q-and-a-dataset/",
+    "license": "cc-by-4.0",
+    "notes": "MedQuAD-derived cancer QA pairs. Requires local Kaggle download before use."
+  },
+  {
+    "name": "cancer_trial_eligibility",
+    "role": "classification_benchmark",
+    "type": "local_csv",
+    "enabled": false,
+    "path": "data/eligibilityforcancerclinicaltrials.csv",
+    "source_url": "https://www.kaggle.com/datasets/auriml/eligibilityforcancerclinicaltrials",
+    "notes": "Clinical-trial eligibility classification data. Not aligned with the current treatment QA task."
+  }
+]

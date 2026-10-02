@@ -1,0 +1,8 @@
+﻿mode,num_questions,mean_faithfulness,rate_faithfulness_le2,rate_faithfulness_lt5,abstention_ok_rate,annotation_source,valid_for_human_eval_claim
+rerank_source_aware,155,4.8194,0.0258,0.0839,0.9548,llm_judge_automatic,False
+rrf_hybrid,155,4.8129,0.0258,0.0968,0.9613,llm_judge_automatic,False
+baseline,155,4.8,0.0194,0.1032,0.9677,llm_judge_automatic,False
+rerank_medcpt,155,4.7871,0.0258,0.1097,0.9677,llm_judge_automatic,False
+rerank,155,4.7161,0.0387,0.1355,0.9548,llm_judge_automatic,False
+rerank_bge_base,155,4.6968,0.0258,0.1613,0.9677,llm_judge_automatic,False
+rerank_bge_m3,155,4.6129,0.0581,0.1935,0.9355,llm_judge_automatic,False

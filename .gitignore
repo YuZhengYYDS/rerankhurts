@@ -1,0 +1,29 @@
+# Credentials. `.env.example` is the template; `.env` never ships.
+.env
+
+# Model weights and the embedding cache are downloaded on first use.
+.cache/
+__pycache__/
+*.pyc
+
+# Virtualenv, if you make one in the tree.
+.venv/
+.pixi/
+.pytest_cache/
+.ruff_cache/
+dist/
+build/
+*.aux
+*.log
+*.out
+*.blg
+*.fdb_latexmk
+*.fls
+experiments/runs/**/cache/
+experiments/runs/smoke*/
+experiments/runs/**/progress.log
+
+# Scratch: `results_archive/` is the local round history and is not part of the
+# release. `github_release/` is this release's own output.
+results_archive/
+github_release/

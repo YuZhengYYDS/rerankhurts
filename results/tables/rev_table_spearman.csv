@@ -1,0 +1,4 @@
+﻿metric_a,metric_b,spearman_rho,num_systems
+gold_url_hit_top4,graded_relevance_0to2,0.018019,7
+gold_url_hit_top4,answer_composite_1to5,0.234244,7
+graded_relevance_0to2,answer_composite_1to5,-0.285714,7

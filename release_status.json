@@ -1,0 +1,129 @@
+{
+  "release_date": "2026-09-28",
+  "target_repository": "https://github.com/YuZhengYYDS/rerankhuts",
+  "publication_status": "public_artifact_pending_private_repository_delivery",
+  "paper_status": "rewritten_submission_manuscript_with_requested_overview_placeholder",
+  "E0": {
+    "status": "completed",
+    "logs": 47,
+    "rows": 14062,
+    "cells_checked": 417,
+    "matching_cells": 405,
+    "explained_historical_defects": 12
+  },
+  "E1": {
+    "status": "pending",
+    "reason": "No independent domain-qualified human annotations were supplied or collected"
+  },
+  "E2": {
+    "status": "implementation_and_tests_only",
+    "reason": "Independent information needs and adjudicated human evidence utility are required"
+  },
+  "E3": {
+    "status": "source_retention_experiment_completed",
+    "questions": 155,
+    "configurations": 20,
+    "records": 3100,
+    "human_utility_measured": false
+  },
+  "E4": {
+    "status": "pending_independent_external_workload"
+  },
+  "E5": {
+    "status": "partial_component_cost_measurements",
+    "production_load_benchmark": false
+  },
+  "environment": {
+    "manager": "pixi",
+    "version": "0.81.0",
+    "tested_platform": "win-64",
+    "locked_platforms": [
+      "win-64",
+      "linux-64"
+    ]
+  },
+  "no_paid_API_calls_in_new_experiment": true,
+  "verification": {
+    "automated_tests_passed": 134,
+    "automated_tests_skipped": 1,
+    "test_environment": "pixi gpu on win-64; one source-symlink creation test skipped due to Windows privilege restrictions",
+    "original_protocol_and_oracle_tests_passed": 73,
+    "code_cleanup_checks": "validation/code_cleanup_checks.json",
+    "e3_integrity_records_checked": 3100,
+    "e3_integrity_errors": 0,
+    "resume_verified": true,
+    "simulation_integrity_records_checked": 2400,
+    "simulation_resume_verified": true,
+    "simulation_independent_audit": "validation/simulation_audit.json",
+    "manuscript_checks": "validation/manuscript_checks.json",
+    "simulation_endpoint_pairs": "validation/simulation_endpoint_pairs.json"
+  },
+  "repository_visibility": "private",
+  "paper_pages_including_references": 9,
+  "controlled_simulation": {
+    "status": "completed",
+    "dataset_revision": 2,
+    "annotation_source": "synthetic_oracle",
+    "worlds": 60,
+    "tasks": 120,
+    "configurations": 20,
+    "records": 2400,
+    "corpus_chunks": 780,
+    "dev_worlds": 20,
+    "test_worlds": 40,
+    "human_E1_or_E2_completed": false,
+    "external_real_world_replication": false,
+    "primary_U_sim_delta": -0.125,
+    "primary_conditional_95ci": [
+      -0.25,
+      0.0
+    ],
+    "interpretation": "All ten configurations tie on development U_sim; the G-selected configuration is among these maximizers. The fixed tie rule yields a nonpositive held-out contrast, not evidence that page-retention selection harms fact coverage."
+  },
+  "paper_title": "[Experiment, Analysis, and Benchmark] What Survives the Context Budget? Source Retention and Fact Coverage in RAG",
+  "authors": [
+    {
+      "name": "Zheng Yu",
+      "affiliations": [
+        "Sun Yat-Sen University",
+        "Shenzhen Loop Area Institute"
+      ],
+      "author_order": 1,
+      "first_author": true,
+      "corresponding_author": false
+    },
+    {
+      "name": "Jingbang Chen",
+      "affiliations": [
+        "The Chinese University of Hong Kong, Shenzhen",
+        "Shenzhen Loop Area Institute"
+      ],
+      "author_order": 2,
+      "first_author": false,
+      "corresponding_author": true
+    }
+  ],
+  "code_organization": {
+    "entry_point": "python -m rerankhuts",
+    "pixi_entry_point": "pixi run --locked workflow",
+    "maintained_legacy_tools_moved": 24,
+    "archived_historical_tools": 6,
+    "migration_manifest": "legacy/migration_manifest.json",
+    "frozen_file_references_verified": 218,
+    "scientific_results_changed": false,
+    "model_experiments_rerun_for_cleanup": false
+  },
+  "manuscript_revision": {
+    "full_rewrite": true,
+    "author_information_supplied": true,
+    "overview_placeholder_page": 2,
+    "overview_placeholder_height_cm": 4.1,
+    "remaining_submission_preparation": [
+      "Replace requested Overview figure space",
+      "Provide ORCIDs and submission-system contact metadata",
+      "Establish public artifact access",
+      "Author review of final manuscript and AI disclosure"
+    ],
+    "author_roles_confirmed": true
+  }
+}

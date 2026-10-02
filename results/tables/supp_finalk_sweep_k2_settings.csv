@@ -1,0 +1,3 @@
+﻿name,description,retrieve_pool_size,final_top_k,use_dense,use_sparse,use_rerank,use_dedup,max_chunks_per_url,hybrid_alpha,rerank_depth,sparse_backend,fusion_method,fusion_depth,rerank_model,rerank_kind
+baseline,Dense retrieval with larger candidate pool plus URL diversity cap.,24,2,True,False,False,True,2,0.65,,tfidf,linear,,,cross_encoder
+rerank,Dense retrieval plus reranking and URL diversity cap.,24,2,True,False,True,True,2,0.65,,tfidf,linear,,,cross_encoder

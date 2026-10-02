@@ -1,0 +1,48 @@
+source,question_set,rows,modes,question_text_differences,expected_normalized_query,missing_query_counts,has_raw_candidates,has_final_chunk_ids,has_final_evidence_texts,has_run_timestamp
+p4_expanded_judge_answers,expanded155,1085,7,0,False,"{""baseline"": 0, ""rerank"": 0, ""rerank_bge_base"": 0, ""rerank_bge_m3"": 0, ""rerank_medcpt"": 0, ""rerank_source_aware"": 0, ""rrf_hybrid"": 0}",False,False,False,False
+p4_expanded_retrieval_combined,expanded155,2015,13,0,False,"{""baseline"": 0, ""bm25_base"": 0, ""bm25_only"": 0, ""control_dense_only"": 0, ""hybrid_bm25"": 0, ""rerank"": 0, ""rerank_bge_base"": 0, ""rerank_bge_m3"": 0, ""rerank_llm"": 0, ""rerank_medcpt"": 0, ""rerank_source_aware"": 0, ""rrf_hybrid"": 0, ""rrf_hybrid_rerank"": 0}",False,False,False,False
+p4_iso_v2corpus_78q,audited78,1014,13,0,False,"{""baseline"": 0, ""bm25_base"": 0, ""bm25_only"": 0, ""control_dense_only"": 0, ""hybrid_bm25"": 0, ""rerank"": 0, ""rerank_bge_base"": 0, ""rerank_bge_m3"": 0, ""rerank_llm"": 0, ""rerank_medcpt"": 0, ""rerank_source_aware"": 0, ""rrf_hybrid"": 0, ""rrf_hybrid_rerank"": 0}",False,False,False,False
+rag_results_experiments,audited78,780,10,0,False,"{""ablation_no_dedup"": 0, ""ablation_small_pool"": 0, ""baseline"": 0, ""bm25_base"": 0, ""bm25_only"": 0, ""control_dense_only"": 0, ""hybrid_bm25"": 0, ""rerank"": 0, ""rrf_hybrid"": 0, ""rrf_hybrid_rerank"": 0}",False,False,False,False
+supp_bm25_grid_k09b04,audited78,156,2,0,False,"{""bm25_base"": 0, ""bm25_only"": 0}",False,False,False,False
+supp_bm25_grid_k09b075,audited78,156,2,0,False,"{""bm25_base"": 0, ""bm25_only"": 0}",False,False,False,False
+supp_bm25_grid_k09b09,audited78,156,2,0,False,"{""bm25_base"": 0, ""bm25_only"": 0}",False,False,False,False
+supp_bm25_grid_k12b04,audited78,156,2,0,False,"{""bm25_base"": 0, ""bm25_only"": 0}",False,False,False,False
+supp_bm25_grid_k12b075,audited78,156,2,0,False,"{""bm25_base"": 0, ""bm25_only"": 0}",False,False,False,False
+supp_bm25_grid_k12b09,audited78,156,2,0,False,"{""bm25_base"": 0, ""bm25_only"": 0}",False,False,False,False
+supp_bm25_grid_k15b04,audited78,156,2,0,False,"{""bm25_base"": 0, ""bm25_only"": 0}",False,False,False,False
+supp_bm25_grid_k15b075,audited78,156,2,0,False,"{""bm25_base"": 0, ""bm25_only"": 0}",False,False,False,False
+supp_bm25_grid_k15b09,audited78,156,2,0,False,"{""bm25_base"": 0, ""bm25_only"": 0}",False,False,False,False
+supp_dedup_sweep_c1,audited78,312,4,0,False,"{""ablation_base_no_dedup"": 0, ""ablation_no_dedup"": 0, ""baseline"": 0, ""rerank"": 0}",False,False,False,False
+supp_dedup_sweep_c2,audited78,312,4,0,False,"{""ablation_base_no_dedup"": 0, ""ablation_no_dedup"": 0, ""baseline"": 0, ""rerank"": 0}",False,False,False,False
+supp_dedup_sweep_c3,audited78,312,4,0,False,"{""ablation_base_no_dedup"": 0, ""ablation_no_dedup"": 0, ""baseline"": 0, ""rerank"": 0}",False,False,False,False
+supp_dedup_sweep_cinf,audited78,312,4,0,False,"{""ablation_base_no_dedup"": 0, ""ablation_no_dedup"": 0, ""baseline"": 0, ""rerank"": 0}",False,False,False,False
+supp_finalk_sweep_k2,audited78,156,2,0,False,"{""baseline"": 0, ""rerank"": 0}",False,False,False,False
+supp_finalk_sweep_k4,audited78,156,2,0,False,"{""baseline"": 0, ""rerank"": 0}",False,False,False,False
+supp_finalk_sweep_k6,audited78,156,2,0,False,"{""baseline"": 0, ""rerank"": 0}",False,False,False,False
+supp_finalk_sweep_k8,audited78,156,2,0,False,"{""baseline"": 0, ""rerank"": 0}",False,False,False,False
+supp_new_rerankers_combined,audited78,546,7,0,False,"{""baseline"": 0, ""rerank"": 0, ""rerank_bge_base"": 0, ""rerank_bge_m3"": 0, ""rerank_llm"": 0, ""rerank_medcpt"": 0, ""rerank_source_aware"": 0}",False,False,False,False
+supp_pool_sweep_p04,audited78,156,2,0,False,"{""baseline"": 0, ""rerank"": 0}",False,False,False,False
+supp_pool_sweep_p08,audited78,156,2,0,False,"{""baseline"": 0, ""rerank"": 0}",False,False,False,False
+supp_pool_sweep_p16,audited78,156,2,0,False,"{""baseline"": 0, ""rerank"": 0}",False,False,False,False
+supp_pool_sweep_p24,audited78,156,2,0,False,"{""baseline"": 0, ""rerank"": 0}",False,False,False,False
+supp_pool_sweep_p40,audited78,156,2,0,False,"{""baseline"": 0, ""rerank"": 0}",False,False,False,False
+supp_pool_sweep_p80,audited78,156,2,0,False,"{""baseline"": 0, ""rerank"": 0}",False,False,False,False
+supp_query_normalization,audited78,234,3,21,True,"{""baseline"": 0, ""control_dense_only"": 0, ""rerank"": 0}",False,False,False,False
+supp_rerank_depth_d010,audited78,156,2,0,False,"{""rerank"": 0, ""rrf_hybrid_rerank"": 0}",False,False,False,False
+supp_rerank_depth_d024,audited78,156,2,0,False,"{""rerank"": 0, ""rrf_hybrid_rerank"": 0}",False,False,False,False
+supp_rerank_depth_d050,audited78,156,2,0,False,"{""rerank"": 0, ""rrf_hybrid_rerank"": 0}",False,False,False,False
+supp_rerank_depth_d100,audited78,156,2,0,False,"{""rerank"": 0, ""rrf_hybrid_rerank"": 0}",False,False,False,False
+supp_source_ablation_all,audited78,156,2,0,False,"{""baseline"": 0, ""rerank"": 0}",False,False,False,False
+supp_source_ablation_nci_only,audited78,156,2,0,False,"{""baseline"": 0, ""rerank"": 0}",False,False,False,False
+supp_source_ablation_nci_pubmed,audited78,156,2,0,False,"{""baseline"": 0, ""rerank"": 0}",False,False,False,False
+supp_source_ablation_nci_textbook,audited78,156,2,0,False,"{""baseline"": 0, ""rerank"": 0}",False,False,False,False
+supp_source_ablation_pubmed_only,audited78,156,2,0,False,"{""baseline"": 0, ""rerank"": 0}",False,False,False,False
+supp_source_ablation_textbook_only,audited78,156,2,0,False,"{""baseline"": 0, ""rerank"": 0}",False,False,False,False
+supp_strong_baselines_full100,original100,900,9,0,False,"{""baseline"": 0, ""bm25_base"": 0, ""bm25_only"": 0, ""control_dense_only"": 0, ""control_hybrid"": 0, ""hybrid_bm25"": 0, ""rerank"": 0, ""rrf_hybrid"": 0, ""rrf_hybrid_rerank"": 0}",False,False,False,False
+supp_strong_baselines_validated,audited78,780,10,0,False,"{""ablation_no_dedup"": 0, ""ablation_small_pool"": 0, ""baseline"": 0, ""bm25_base"": 0, ""bm25_only"": 0, ""control_dense_only"": 0, ""hybrid_bm25"": 0, ""rerank"": 0, ""rrf_hybrid"": 0, ""rrf_hybrid_rerank"": 0}",False,False,False,False
+supp_strong_dense_BAAI__bge_base_en_v1_5,audited78,156,2,0,False,"{""baseline"": 0, ""rerank"": 0}",False,False,False,False
+supp_strong_dense_intfloat__e5_base_v2,audited78,156,2,0,False,"{""baseline"": 0, ""rerank"": 0}",False,False,False,False
+supp_strong_reranker_minilm_l12_d010,audited78,156,2,0,False,"{""baseline"": 0, ""rerank"": 0}",False,False,False,False
+supp_strong_reranker_minilm_l12_d024,audited78,156,2,0,False,"{""baseline"": 0, ""rerank"": 0}",False,False,False,False
+supp_strong_reranker_minilm_l12_d050,audited78,156,2,0,False,"{""baseline"": 0, ""rerank"": 0}",False,False,False,False
+supp_strong_reranker_minilm_l12_d100,audited78,156,2,0,False,"{""baseline"": 0, ""rerank"": 0}",False,False,False,False

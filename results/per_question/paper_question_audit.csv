@@ -1,0 +1,101 @@
+qid,question
+q1,What is the first-line treatment approach for metastatic non-small cell lung cancer with EGFR mutation?
+q2,What are common treatment options for HER2-positive breast cancer?
+q3,How is adult acute myeloid leukemia generally treated?
+q4,What treatment options are commonly considered for ALK-positive metastatic non-small cell lung cancer?
+q5,How is high PD-L1 expression used in treatment decision-making for metastatic non-small cell lung cancer?
+q6,What is the role of targeted therapy in EGFR-mutated non-small cell lung cancer?
+q7,How does treatment differ between localized and metastatic non-small cell lung cancer?
+q8,When is chemotherapy used in non-small cell lung cancer?
+q9,What is the general role of immunotherapy in non-small cell lung cancer?
+q10,How are treatment decisions made for patients with newly diagnosed non-small cell lung cancer?
+q11,What are common systemic therapy options for advanced non-small cell lung cancer?
+q12,How does biomarker testing influence treatment selection in non-small cell lung cancer?
+q13,What is the role of surgery in non-small cell lung cancer treatment?
+q14,When is radiation therapy used for non-small cell lung cancer?
+q15,What factors influence first-line therapy selection in metastatic non-small cell lung cancer?
+q16,What treatments may be considered after progression on initial therapy in non-small cell lung cancer?
+q17,How is recurrent non-small cell lung cancer generally managed?
+q18,What is the treatment approach for unresectable non-small cell lung cancer?
+q19,How are stage-based treatment decisions made in non-small cell lung cancer?
+q20,What is the role of maintenance therapy in advanced non-small cell lung cancer?
+q21,What are common treatment strategies for small cell lung cancer?
+q22,How does treatment differ between limited-stage and extensive-stage small cell lung cancer?
+q23,What is the role of chemotherapy in small cell lung cancer?
+q24,When is radiation therapy used in small cell lung cancer?
+q25,What systemic therapies are used for extensive-stage small cell lung cancer?
+q26,How is recurrent small cell lung cancer generally treated?
+q27,What is the role of immunotherapy in small cell lung cancer?
+q28,How are treatment decisions made for newly diagnosed small cell lung cancer?
+q29,What are common first-line treatments for extensive-stage small cell lung cancer?
+q30,How is progressive small cell lung cancer managed after initial response?
+q31,What are common treatment options for HER2-positive breast cancer?
+q32,How is triple-negative breast cancer generally treated?
+q33,What is the role of endocrine therapy in hormone receptor-positive breast cancer?
+q34,When is neoadjuvant therapy used in breast cancer?
+q35,What is the purpose of adjuvant therapy in breast cancer?
+q36,How does treatment differ between early-stage and metastatic breast cancer?
+q37,What are typical treatment approaches for metastatic HER2-positive breast cancer?
+q38,How are treatment decisions made for hormone receptor-positive breast cancer?
+q39,What is the role of chemotherapy in breast cancer?
+q40,When is surgery used in breast cancer treatment?
+q41,What is the role of radiation therapy in breast cancer?
+q42,How is recurrent breast cancer generally managed?
+q43,What factors influence treatment selection in breast cancer?
+q44,How is locally advanced breast cancer typically treated?
+q45,What is the role of HER2-targeted therapy in breast cancer?
+q46,How are treatment goals different in curative versus metastatic breast cancer settings?
+q47,What treatment options are commonly considered for hormone receptor-positive metastatic breast cancer?
+q48,How does biomarker status affect breast cancer treatment planning?
+q49,What are common systemic therapy approaches for advanced breast cancer?
+q50,How is treatment selected for patients with newly diagnosed breast cancer?
+q51,What are standard treatment components for colon cancer?
+q52,How does treatment differ between early-stage and metastatic colon cancer?
+q53,What is the role of surgery in colon cancer treatment?
+q54,When is adjuvant chemotherapy used in colon cancer?
+q55,How is metastatic colon cancer generally treated?
+q56,What systemic therapy options are commonly used in advanced colon cancer?
+q57,How are treatment decisions made for resectable versus unresectable colon cancer?
+q58,What is the role of biomarker testing in colon cancer treatment selection?
+q59,How is recurrent colon cancer generally managed?
+q60,What factors influence therapy choice in colon cancer?
+q61,How is adult acute myeloid leukemia generally treated?
+q62,What is induction therapy in adult acute myeloid leukemia?
+q63,What is the purpose of consolidation therapy in adult acute myeloid leukemia?
+q64,How does age or fitness affect treatment selection in adult acute myeloid leukemia?
+q65,What treatment approaches are used for relapsed adult acute myeloid leukemia?
+q66,How is newly diagnosed adult acute myeloid leukemia managed?
+q67,What is the role of stem cell transplantation in adult acute myeloid leukemia?
+q68,How are supportive care measures used in adult acute myeloid leukemia treatment?
+q69,What factors influence prognosis and treatment planning in adult acute myeloid leukemia?
+q70,How is treatment selected for older adults with acute myeloid leukemia?
+q71,How is chronic lymphocytic leukemia generally managed?
+q72,When is watchful waiting used in chronic lymphocytic leukemia?
+q73,What are common treatment options for symptomatic chronic lymphocytic leukemia?
+q74,How do targeted therapies influence treatment of chronic lymphocytic leukemia?
+q75,How is relapsed or refractory chronic lymphocytic leukemia generally treated?
+q76,What factors guide treatment selection in chronic lymphocytic leukemia?
+q77,How does disease stage affect management in chronic lymphocytic leukemia?
+q78,What is the role of immunotherapy or monoclonal antibodies in chronic lymphocytic leukemia?
+q79,How is treatment approached in older adults with chronic lymphocytic leukemia?
+q80,What are the general goals of therapy in chronic lymphocytic leukemia?
+q81,What is the role of precision medicine in oncology treatment selection?
+q82,How does biomarker testing affect systemic therapy decisions in cancer treatment?
+q83,When are targeted therapies preferred over standard chemotherapy in oncology?
+q84,What is the role of multidisciplinary care in cancer treatment planning?
+q85,How do stage and molecular profile jointly influence oncology treatment choices?
+q86,"What factors commonly determine whether surgery, radiation, or systemic therapy is prioritized?"
+q87,How are treatment goals different between curative and palliative oncology settings?
+q88,What is the role of maintenance therapy in oncology?
+q89,How are recurrent cancers generally managed compared with newly diagnosed cancers?
+q90,How is evidence insufficiency handled when treatment guidance is not directly supported by available oncology evidence?
+q91,What role does molecular testing play in non-small cell lung cancer treatment planning?
+q92,How does HER2 status influence treatment selection in breast cancer?
+q93,How does performance status affect treatment intensity in oncology?
+q94,What are general principles for selecting first-line versus later-line therapy in oncology?
+q95,How is progressive disease typically managed after first-line treatment failure in oncology?
+q96,What role do clinical trials play in oncology treatment planning?
+q97,How are adverse effects and patient tolerance considered in oncology treatment decisions?
+q98,What general treatment categories are used across solid tumors and hematologic malignancies?
+q99,How does metastatic disease change treatment intent and strategy in oncology?
+q100,What types of evidence are most important when making evidence-grounded oncology treatment recommendations?

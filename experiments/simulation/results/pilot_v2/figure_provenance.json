@@ -1,0 +1,10 @@
+{
+  "kind": "controlled_synthetic_figure",
+  "endpoint": "complete fact coverage, not human utility",
+  "inputs": {
+    "summary.csv": "1d8534cbe5109ab5be20da4c55b83fddcce29eb1d8b8575737b24756bfbd682f",
+    "selection.json": "50b89c966045285ebe33d85e2cc913422fd3d7b0209975fdde4c99e94fedee7e",
+    "status.json": "8067892d2f8ec3226291b32f9183b510cbaad7922c47d859071d1ce39f144a9f"
+  },
+  "script_sha256": "2d3988042a20017eeb9ab6c0fdcf66a7032cff82e8a16781ca781c463e6f777d"
+}

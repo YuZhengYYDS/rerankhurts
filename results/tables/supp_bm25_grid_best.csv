@@ -1,0 +1,2 @@
+﻿mode,bm25_k1,bm25_b,num_questions,recall_at_10,mrr,ndcg_at_10,final_top_k_hit_rate
+bm25_base,1.2,0.4,78.0,0.8974358974358975,0.5999316756881197,0.6672194773925059,0.7307692307692307

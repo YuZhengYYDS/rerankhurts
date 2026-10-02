@@ -1,0 +1,13 @@
+﻿preset,mode,n_questions,ndcg_at_10,ci_low,ci_high
+all,baseline,78,0.8696,0.8057,0.925
+all,rerank,78,0.7703,0.7087,0.8291
+nci_only,baseline,78,0.9953,0.9858,1.0
+nci_only,rerank,78,0.9811,0.9621,0.9953
+nci_textbook,baseline,78,0.9858,0.9669,1.0
+nci_textbook,rerank,78,0.9763,0.9574,0.9953
+nci_pubmed,baseline,78,0.8729,0.8103,0.9271
+nci_pubmed,rerank,78,0.7679,0.7064,0.8268
+pubmed_only,baseline,78,0.0,0.0,0.0
+pubmed_only,rerank,78,0.0,0.0,0.0
+textbook_only,baseline,78,0.0,0.0,0.0
+textbook_only,rerank,78,0.0,0.0,0.0

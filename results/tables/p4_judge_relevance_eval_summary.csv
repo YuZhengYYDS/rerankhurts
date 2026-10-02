@@ -1,0 +1,8 @@
+﻿mode,num_questions,num_distinct_sources,mean_distinct_sources_per_question,distinct_source_mean_relevance,distinct_source_rel2_rate,annotation_source,valid_for_human_eval_claim
+rerank_medcpt,155,496,3.2,1.1741935483870967,0.36881720430107523,llm_judge_automatic,False
+rerank_bge_m3,155,479,3.0903225806451613,1.1510752688172043,0.3790322580645161,llm_judge_automatic,False
+rrf_hybrid,155,476,3.0709677419354837,1.1064516129032258,0.35913978494623655,llm_judge_automatic,False
+rerank_bge_base,155,496,3.2,1.0817204301075267,0.3462365591397849,llm_judge_automatic,False
+baseline,155,478,3.0838709677419356,1.0758064516129033,0.3311827956989247,llm_judge_automatic,False
+rerank,155,499,3.2193548387096773,1.0510752688172043,0.34569892473118274,llm_judge_automatic,False
+rerank_source_aware,155,428,2.761290322580645,0.9376344086021506,0.3494623655913978,llm_judge_automatic,False

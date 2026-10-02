@@ -1,0 +1,9 @@
+﻿mode,num_questions,faithfulness_deterministic_rate,faithfulness_order_stable_rate,faithfulness_order_within_1_rate,citation_support_deterministic_rate,citation_support_order_stable_rate,citation_support_order_within_1_rate,helpfulness_deterministic_rate,helpfulness_order_stable_rate,helpfulness_order_within_1_rate,abstention_ok_deterministic_rate,abstention_ok_order_stable_rate,abstention_ok_order_within_1_rate,rows,rows_truncated,annotation_source,valid_for_human_eval_claim
+ALL,40,0.9857,0.9357,0.9964,0.9893,0.9321,0.9964,0.9786,0.8536,1.0,0.9964,0.9786,1.0,280,238,llm_judge_automatic,False
+baseline,40,1.0,0.975,1.0,1.0,0.975,1.0,1.0,0.9,1.0,1.0,1.0,1.0,40,34,llm_judge_automatic,False
+rerank,40,0.975,0.925,1.0,0.975,0.9,1.0,0.95,0.825,1.0,0.975,0.925,1.0,40,30,llm_judge_automatic,False
+rerank_bge_base,40,0.975,0.95,1.0,0.975,0.95,1.0,1.0,0.775,1.0,1.0,0.975,1.0,40,33,llm_judge_automatic,False
+rerank_bge_m3,40,0.975,0.85,0.975,0.975,0.85,0.975,0.975,0.825,1.0,1.0,0.975,1.0,40,38,llm_judge_automatic,False
+rerank_medcpt,40,1.0,0.925,1.0,1.0,0.925,1.0,1.0,0.875,1.0,1.0,0.975,1.0,40,30,llm_judge_automatic,False
+rerank_source_aware,40,0.975,0.95,1.0,1.0,0.95,1.0,0.95,0.85,1.0,1.0,1.0,1.0,40,40,llm_judge_automatic,False
+rrf_hybrid,40,1.0,0.975,1.0,1.0,0.975,1.0,0.975,0.925,1.0,1.0,1.0,1.0,40,33,llm_judge_automatic,False

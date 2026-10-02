@@ -1,0 +1,202 @@
+{
+  "status": "PASS",
+  "verification": "Independent recomputation from per_record.csv using Python CSV, integer success counts and NumPy paired-group bootstrap; evaluator functions were not imported. Published selection.json was used only after recomputation to check agreement.",
+  "records": 2400,
+  "worlds": 60,
+  "tasks": 120,
+  "budgets": {
+    "512": {
+      "budget": 512,
+      "n_dev": 20,
+      "n_test": 40,
+      "structural_order": [
+        "p16_off_none_b512",
+        "p16_pre_none_b512",
+        "p64_off_none_b512",
+        "p64_pre_none_b512",
+        "p16_off_m3_b512",
+        "p16_pre_m3_b512",
+        "p16_post_m3_b512",
+        "p64_off_m3_b512",
+        "p64_pre_m3_b512",
+        "p64_post_m3_b512"
+      ],
+      "dev_success_counts": {
+        "G_final": {
+          "p16_off_none_b512": 6,
+          "p16_pre_none_b512": 6,
+          "p64_off_none_b512": 6,
+          "p64_pre_none_b512": 6,
+          "p16_off_m3_b512": 7,
+          "p16_pre_m3_b512": 5,
+          "p16_post_m3_b512": 7,
+          "p64_off_m3_b512": 6,
+          "p64_pre_m3_b512": 4,
+          "p64_post_m3_b512": 6
+        },
+        "U_sim": {
+          "p16_off_none_b512": 12,
+          "p16_pre_none_b512": 12,
+          "p64_off_none_b512": 12,
+          "p64_pre_none_b512": 12,
+          "p16_off_m3_b512": 12,
+          "p16_pre_m3_b512": 12,
+          "p16_post_m3_b512": 12,
+          "p64_off_m3_b512": 12,
+          "p64_pre_m3_b512": 12,
+          "p64_post_m3_b512": 12
+        }
+      },
+      "dev_ties": {
+        "G_final": [
+          "p16_off_m3_b512",
+          "p16_post_m3_b512"
+        ],
+        "U_sim": [
+          "p16_off_none_b512",
+          "p16_pre_none_b512",
+          "p64_off_none_b512",
+          "p64_pre_none_b512",
+          "p16_off_m3_b512",
+          "p16_pre_m3_b512",
+          "p16_post_m3_b512",
+          "p64_off_m3_b512",
+          "p64_pre_m3_b512",
+          "p64_post_m3_b512"
+        ]
+      },
+      "selected": {
+        "G_final": "p16_off_m3_b512",
+        "U_sim": "p16_off_none_b512"
+      },
+      "test_counts_out_of_40": {
+        "G_final": {
+          "G_final": 12,
+          "U_sim": 27
+        },
+        "U_sim": {
+          "G_final": 12,
+          "U_sim": 22
+        }
+      },
+      "paired_delta": -0.125,
+      "paired_difference_counts": {
+        "-1": 6,
+        "0": 33,
+        "1": 1
+      },
+      "paired_bootstrap_95CI": [
+        -0.25,
+        0.0
+      ],
+      "G_winner_is_U_tied_optimum": true
+    },
+    "2048": {
+      "budget": 2048,
+      "n_dev": 20,
+      "n_test": 40,
+      "structural_order": [
+        "p16_off_none_b2048",
+        "p16_pre_none_b2048",
+        "p64_off_none_b2048",
+        "p64_pre_none_b2048",
+        "p16_off_m3_b2048",
+        "p16_pre_m3_b2048",
+        "p16_post_m3_b2048",
+        "p64_off_m3_b2048",
+        "p64_pre_m3_b2048",
+        "p64_post_m3_b2048"
+      ],
+      "dev_success_counts": {
+        "G_final": {
+          "p16_off_none_b2048": 15,
+          "p16_pre_none_b2048": 15,
+          "p64_off_none_b2048": 15,
+          "p64_pre_none_b2048": 15,
+          "p16_off_m3_b2048": 16,
+          "p16_pre_m3_b2048": 16,
+          "p16_post_m3_b2048": 16,
+          "p64_off_m3_b2048": 20,
+          "p64_pre_m3_b2048": 20,
+          "p64_post_m3_b2048": 20
+        },
+        "U_sim": {
+          "p16_off_none_b2048": 15,
+          "p16_pre_none_b2048": 15,
+          "p64_off_none_b2048": 15,
+          "p64_pre_none_b2048": 15,
+          "p16_off_m3_b2048": 16,
+          "p16_pre_m3_b2048": 16,
+          "p16_post_m3_b2048": 16,
+          "p64_off_m3_b2048": 16,
+          "p64_pre_m3_b2048": 16,
+          "p64_post_m3_b2048": 16
+        }
+      },
+      "dev_ties": {
+        "G_final": [
+          "p64_off_m3_b2048",
+          "p64_pre_m3_b2048",
+          "p64_post_m3_b2048"
+        ],
+        "U_sim": [
+          "p16_off_m3_b2048",
+          "p16_pre_m3_b2048",
+          "p16_post_m3_b2048",
+          "p64_off_m3_b2048",
+          "p64_pre_m3_b2048",
+          "p64_post_m3_b2048"
+        ]
+      },
+      "selected": {
+        "G_final": "p64_off_m3_b2048",
+        "U_sim": "p16_off_m3_b2048"
+      },
+      "test_counts_out_of_40": {
+        "G_final": {
+          "G_final": 35,
+          "U_sim": 34
+        },
+        "U_sim": {
+          "G_final": 29,
+          "U_sim": 33
+        }
+      },
+      "paired_delta": -0.025,
+      "paired_difference_counts": {
+        "-1": 1,
+        "0": 39
+      },
+      "paired_bootstrap_95CI": [
+        -0.075,
+        0.0
+      ],
+      "G_winner_is_U_tied_optimum": true
+    }
+  },
+  "verified_frozen_data_and_code_sha256": {
+    "experiments\\simulation\\data\\pilot_v2\\corpus.jsonl": "ad81fc2900e49fe845b6782828823bd44efa17978ade7b99abca99cbd137485f",
+    "experiments\\simulation\\data\\pilot_v2\\oracle.jsonl": "45a2e45d060140efbb2d1b707359fb975406ce33ba1317d4239e8e5948b8ac40",
+    "experiments\\simulation\\data\\pilot_v2\\questions.jsonl": "dd4d1051b435bbac89d9845c1aedb0e64ba70bef34c4512f7a54031ce9b4a9d8",
+    "experiments\\simulation\\generate.py": "2c8002580e9470faf626fe6d99c70c3ef11b40f4105a64c0fb7c801059e7913f",
+    "experiments\\protocol.py": "53d8d4c78c641abc6b4c1bfea98576a1cb401df10635e1379005f41c3cf50df9",
+    "experiments\\simulation\\backend.py": "7b0fb020375101ba511ae0a5faa17b8a4813aa894d3cd9b29e84f4a3a80d2eaa",
+    "experiments/simulation/evaluate.py": "9bd86f0ad776174992e4ad1c77f93314116596d3dfc34104aebb43406c7ff7ab"
+  },
+  "model_snapshot_match": true,
+  "all_published_output_hashes_match": true,
+  "all_120_trace_hashes_match": true,
+  "annotation_source": "synthetic_oracle",
+  "human_E2_complete": false,
+  "interpretation": [
+    "At512, all ten configurations tie on development U_sim at12/20, including the G-selected configuration; different selected IDs arise from the structural tie rule, not demonstrated development utility superiority.",
+    "The test interval conditions on the development-selected pair and does not incorporate a new independent development sample.",
+    "Sixty fictional worlds and120 paired policy tasks are not120 independent information needs; primary selection uses only20dev/40test open-policy needs.",
+    "These are controlled coverage measurements, not human utility or external real-world validation."
+  ],
+  "source_files": {
+    "per_record.csv": "e5f7558e3f42ff3b5b6ce7437e6fd31035a580ca1b9814f0e85ba3b46715fb46",
+    "specification.json": "d2099555326cc132f7a64b2fc14f93b46bf2d8897345544638881282c4af8679",
+    "selection.json": "50b89c966045285ebe33d85e2cc913422fd3d7b0209975fdde4c99e94fedee7e"
+  }
+}

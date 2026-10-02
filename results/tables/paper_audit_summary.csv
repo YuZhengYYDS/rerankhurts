@@ -1,0 +1,7 @@
+﻿metric,value
+total_questions,100
+validated_questions,78
+held_out_general_questions,20
+duplicate_extra_questions,2
+general_questions_with_specific_terms,2
+duplicate_question_groups,2

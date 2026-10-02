@@ -1,0 +1,8 @@
+﻿mode,num_questions,gold_url_hit_top4,graded_relevance_0to2,answer_composite_1to5,annotation_source,valid_for_human_eval_claim
+rrf_hybrid,155,0.9548387096774194,1.1064516129032258,4.675268817204301,llm_judge_automatic,False
+rerank_source_aware,155,1.0,0.9376344086021506,4.666666666666667,llm_judge_automatic,False
+baseline,155,0.9161290322580645,1.0758064516129033,4.647311827956989,llm_judge_automatic,False
+rerank_medcpt,155,0.9483870967741935,1.1741935483870967,4.6215053763440865,llm_judge_automatic,False
+rerank,155,0.9225806451612903,1.0510752688172043,4.567741935483871,llm_judge_automatic,False
+rerank_bge_base,155,0.9161290322580645,1.0817204301075267,4.550537634408602,llm_judge_automatic,False
+rerank_bge_m3,155,0.967741935483871,1.1510752688172043,4.520430107526882,llm_judge_automatic,False

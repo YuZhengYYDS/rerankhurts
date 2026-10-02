@@ -1,0 +1,10 @@
+{
+  "endpoint": "designated-page retention G, not human evidence utility",
+  "questions": 155,
+  "page_clusters": 20,
+  "bootstrap_repeats": 5000,
+  "seed": 20260924,
+  "analysis_status": "exploratory contrasts specified after implementation; not a preregistered confirmatory E2 test",
+  "run_identity": "1867babc94e10eb955a769afb625d56cba98902d4ccd33d236e6e253b10ee2de",
+  "input_sha256": "f92ccfc818ad886866bbc6a207cfe09ddaec3f29815862a0e0aab9e6c13e1d04"
+}

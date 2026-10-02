@@ -1,0 +1,19 @@
+﻿full_label,short_label,source_group,avg_retrieval_ms,ndcg_at_10
+intfloat/e5-base-v2 | baseline,E5-base,model_upgrade,0.19765384615384612,0.8816354450532123
+BAAI/bge-base-en-v1.5 | baseline,BGE-base,model_upgrade,0.24919230769230774,0.8381854666644833
+Dense,Dense,baseline_family,0.5344358974358974,0.8464579360805876
+Base,Base,baseline_family,0.6412051282051282,0.8695551779455986
+BM25,BM25,baseline_family,2.460102564102564,0.666412439472046
+BM25+Dedup,BM25+D,baseline_family,2.479089743589743,0.667219477392506
+RRF,RRF,baseline_family,2.964448717948718,0.8171048218115108
+Hybrid-BM25,H-BM25,baseline_family,2.9893717948717944,0.8314096660294263
+Small pool,Small pool,baseline_family,10.403705128205127,0.818527518833934
+intfloat/e5-base-v2 | rerank,E5-b+RR,model_upgrade,13.83933333333333,0.7627099470146024
+BAAI/bge-base-en-v1.5 | rerank,BGE-b+RR,model_upgrade,14.184423076923073,0.7907196259871753
+BAAI/bge-small-en-v1.5 | RR depth 10,L12-d10,model_upgrade,17.584743589743592,0.814940562426747
+No URL cap,No URL cap,baseline_family,24.860282051282052,0.8082570229655511
+BAAI/bge-small-en-v1.5 | RR depth 24,L12-d24,model_upgrade,36.25708974358974,0.7813621661970441
+BAAI/bge-small-en-v1.5 | RR depth 100,L12-d100,model_upgrade,76.4960641025641,0.7538931391759445
+Rerank,RR,baseline_family,120.78735897435898,0.7703010881779823
+RRF+Rerank,RRF+RR,baseline_family,123.00358974358976,0.7232341566089941
+BAAI/bge-small-en-v1.5 | RR depth 50,L12-d50,model_upgrade,131.79870512820517,0.7610880794901936

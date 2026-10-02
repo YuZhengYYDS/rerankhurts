@@ -1,0 +1,17 @@
+contrast,pool,budget,n_questions,n_page_clusters,G_difference,ci95_low,ci95_high,analysis
+m3_minus_none_no_cap,16,512,155,20,0.03870967741935484,-0.015308084772370485,0.1111111111111111,exploratory; paired page-cluster percentile bootstrap; no multiplicity-adjusted claim
+m3_minus_none_pre_cap,16,512,155,20,0.025806451612903226,-0.026845637583892617,0.09836376055638346,exploratory; paired page-cluster percentile bootstrap; no multiplicity-adjusted claim
+cap_by_reranking_interaction,16,512,155,20,-0.012903225806451613,-0.044694821979488035,0.0,exploratory; paired page-cluster percentile bootstrap; no multiplicity-adjusted claim
+post_cap_minus_pre_cap_m3,16,512,155,20,0.012903225806451613,0.0,0.04469482197948801,exploratory; paired page-cluster percentile bootstrap; no multiplicity-adjusted claim
+m3_minus_none_no_cap,16,2048,155,20,0.0064516129032258064,0.0,0.021743097429387438,exploratory; paired page-cluster percentile bootstrap; no multiplicity-adjusted claim
+m3_minus_none_pre_cap,16,2048,155,20,0.0064516129032258064,0.0,0.021743097429387438,exploratory; paired page-cluster percentile bootstrap; no multiplicity-adjusted claim
+cap_by_reranking_interaction,16,2048,155,20,0.0,0.0,0.0,exploratory; paired page-cluster percentile bootstrap; no multiplicity-adjusted claim
+post_cap_minus_pre_cap_m3,16,2048,155,20,0.0,0.0,0.0,exploratory; paired page-cluster percentile bootstrap; no multiplicity-adjusted claim
+m3_minus_none_no_cap,64,512,155,20,0.03870967741935484,-0.012050018254837532,0.10126796099897363,exploratory; paired page-cluster percentile bootstrap; no multiplicity-adjusted claim
+m3_minus_none_pre_cap,64,512,155,20,0.0064516129032258064,-0.05714285714285714,0.08139534883720931,exploratory; paired page-cluster percentile bootstrap; no multiplicity-adjusted claim
+cap_by_reranking_interaction,64,512,155,20,-0.03225806451612903,-0.06666666666666667,0.0,exploratory; paired page-cluster percentile bootstrap; no multiplicity-adjusted claim
+post_cap_minus_pre_cap_m3,64,512,155,20,0.03225806451612903,0.0,0.06666666666666667,exploratory; paired page-cluster percentile bootstrap; no multiplicity-adjusted claim
+m3_minus_none_no_cap,64,2048,155,20,0.01935483870967742,0.0,0.03902534298780486,exploratory; paired page-cluster percentile bootstrap; no multiplicity-adjusted claim
+m3_minus_none_pre_cap,64,2048,155,20,0.0064516129032258064,-0.013071895424836602,0.030540223135642898,exploratory; paired page-cluster percentile bootstrap; no multiplicity-adjusted claim
+cap_by_reranking_interaction,64,2048,155,20,-0.012903225806451613,-0.02617801047120419,0.0,exploratory; paired page-cluster percentile bootstrap; no multiplicity-adjusted claim
+post_cap_minus_pre_cap_m3,64,2048,155,20,0.012903225806451613,0.0,0.02617801047120419,exploratory; paired page-cluster percentile bootstrap; no multiplicity-adjusted claim

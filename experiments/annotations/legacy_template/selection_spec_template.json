@@ -1,0 +1,13 @@
+{
+  "status": "TEMPLATE_ONLY_NOT_FROZEN_NOT_AN_EXPERIMENT",
+  "dev_groups": [],
+  "test_groups": [],
+  "configs": [],
+  "tie_order": [],
+  "primary_metric": null,
+  "token_budget": null,
+  "delta": null,
+  "seed": 20260924,
+  "bootstrap_repetitions": 10000,
+  "frozen_before_test_inspection": false
+}

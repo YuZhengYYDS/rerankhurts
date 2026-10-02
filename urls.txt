@@ -1,0 +1,7 @@
+https://www.cancer.gov/types/lung/hp/non-small-cell-lung-treatment-pdq
+https://www.cancer.gov/types/lung/hp/small-cell-lung-treatment-pdq
+https://www.cancer.gov/types/breast/hp/breast-treatment-pdq
+https://www.cancer.gov/types/colorectal/hp/colon-treatment-pdq
+https://www.cancer.gov/types/leukemia/hp/adult-aml-treatment-pdq
+https://www.cancer.gov/types/leukemia/hp/cll-treatment-pdq
+https://www.cancer.gov/publications/pdq/information-summaries/genetics

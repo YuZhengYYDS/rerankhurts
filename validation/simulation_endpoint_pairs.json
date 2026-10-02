@@ -1,0 +1,610 @@
+{
+  "status": "PASS",
+  "annotation_source": "synthetic_oracle",
+  "valid_for_human_eval_claim": false,
+  "scope": "Independent recount of paired endpoint frequencies from the frozen per-record CSV; no evaluator functions or model execution used. Upstream complete-span oracle scores are inputs to this audit.",
+  "subset": {
+    "split": "test",
+    "policy": "open",
+    "budget": 512,
+    "n_independent_worlds": 40
+  },
+  "cell_order": [
+    "G1_U1",
+    "G1_U0",
+    "G0_U1",
+    "G0_U0"
+  ],
+  "configuration_cross_tabs": {
+    "dense": {
+      "config_id": "p16_off_none_b512",
+      "n_test_worlds": 40,
+      "cells": {
+        "G1_U1": 8,
+        "G1_U0": 4,
+        "G0_U1": 14,
+        "G0_U0": 14
+      },
+      "counts_in_cell_order": [
+        8,
+        4,
+        14,
+        14
+      ],
+      "G_successes": 12,
+      "U_sim_successes": 22
+    },
+    "m3": {
+      "config_id": "p16_off_m3_b512",
+      "n_test_worlds": 40,
+      "cells": {
+        "G1_U1": 8,
+        "G1_U0": 4,
+        "G0_U1": 19,
+        "G0_U0": 9
+      },
+      "counts_in_cell_order": [
+        8,
+        4,
+        19,
+        9
+      ],
+      "G_successes": 12,
+      "U_sim_successes": 27
+    }
+  },
+  "paired_changes": [
+    {
+      "G_delta_m3_minus_dense": -1,
+      "U_sim_delta_m3_minus_dense": 0,
+      "count": 4,
+      "group_ids": [
+        "3bb9edfbec5610731aeb4386c89cd093",
+        "4e04ae1bf24bc369cb00252ce5cb8ec3",
+        "c13298e4b25c8db26af42422cc16c221",
+        "fa1aed1925092312defbc8c7cd300903"
+      ]
+    },
+    {
+      "G_delta_m3_minus_dense": -1,
+      "U_sim_delta_m3_minus_dense": 1,
+      "count": 2,
+      "group_ids": [
+        "7f383030ae7f181959e6d162f931ae4c",
+        "de340b5324ef93e9935e8fa8c60b86bd"
+      ]
+    },
+    {
+      "G_delta_m3_minus_dense": 0,
+      "U_sim_delta_m3_minus_dense": 0,
+      "count": 24,
+      "group_ids": [
+        "04d920534d8d6b7b972af85fe168c27c",
+        "0c080ffdc7c4fe42ce0ad031acef4957",
+        "31d58b448fef95d91e8b2c1c60239f24",
+        "4cc2064fdb427e648c96f9ba9e9eb979",
+        "4ea06a96479af58d290f30f423f41695",
+        "50e719e10978eb89ea09f392384ea35a",
+        "7f3716706fef5ac7506be4d217d56aa8",
+        "820174900615519c848cd3441f63e2ac",
+        "91e71667f8ff94dc6d636e2b032c1a58",
+        "93854713daec8ef523514e05a3f7f83a",
+        "9c1e40ef043bebeb4d4dc9cbf714f6ac",
+        "a7277d282ed14cc71ef634ab0e9dee4b",
+        "adcb8c6e501bc91aa5092157aa635ae4",
+        "b9369b404c076ef6e01a4a7102ffafed",
+        "bb40aae77a063bf9ab2a3c3da613c225",
+        "bc134cb2a0371474806605f41a81f76e",
+        "cfa162292873426d87ea66d639b5952e",
+        "d6ebf137948c2185822c50950aff30e0",
+        "df5bf0a70d6b0db2d769253164f85334",
+        "eb634dea5b576ac8973ebd85c4a31851",
+        "ec000b183035c059ea391a6f0ec7ac8f",
+        "f4b9066adb214782e6d450ffe1b72497",
+        "f5af3755ad5a27cb5ea733cf5b00d5cd",
+        "f8ffb938ac6191e0688b1e44963f3a15"
+      ]
+    },
+    {
+      "G_delta_m3_minus_dense": 0,
+      "U_sim_delta_m3_minus_dense": 1,
+      "count": 4,
+      "group_ids": [
+        "06f935786691c01a04dc4058c2afd446",
+        "51075d41ae249f0c648c137fbd9b3db2",
+        "77a88aeb5506401ec26b2f09b6dc5063",
+        "eb04b231a1ca1bc8a4150a20b4595530"
+      ]
+    },
+    {
+      "G_delta_m3_minus_dense": 1,
+      "U_sim_delta_m3_minus_dense": -1,
+      "count": 1,
+      "group_ids": [
+        "d565fda64c498859b8e5cd8a3f53c01d"
+      ]
+    },
+    {
+      "G_delta_m3_minus_dense": 1,
+      "U_sim_delta_m3_minus_dense": 0,
+      "count": 5,
+      "group_ids": [
+        "19c8e4dd179e05a606d4a30749ac3bc1",
+        "3004bf92679d50f09d9267b99f923127",
+        "5890565ca59411520e6fb2ddbef0ce0f",
+        "e688e48ef4f0c3a0ed29fdd7aa9e6e3c",
+        "f05b6f4ba3f63d702384bb31b6cc475e"
+      ]
+    }
+  ],
+  "opposite_direction_changes": {
+    "G_down_U_up": {
+      "count": 2,
+      "group_ids": [
+        "7f383030ae7f181959e6d162f931ae4c",
+        "de340b5324ef93e9935e8fa8c60b86bd"
+      ]
+    },
+    "G_up_U_down": {
+      "count": 1,
+      "group_ids": [
+        "d565fda64c498859b8e5cd8a3f53c01d"
+      ]
+    }
+  },
+  "manuscript_claim_checks": {
+    "dense_cells_match_manuscript": true,
+    "m3_cells_match_manuscript": true,
+    "two_worlds_lose_G_gain_U": true,
+    "one_world_gains_G_loses_U": true
+  },
+  "per_world_pairs": [
+    {
+      "group_id": "04d920534d8d6b7b972af85fe168c27c",
+      "qid": "9947cb3dee3aa60a416ed0b2a7709d9a",
+      "scenario": "aligned",
+      "dense_G": 1,
+      "dense_U_sim": 1,
+      "m3_G": 1,
+      "m3_U_sim": 1,
+      "G_delta_m3_minus_dense": 0,
+      "U_sim_delta_m3_minus_dense": 0
+    },
+    {
+      "group_id": "06f935786691c01a04dc4058c2afd446",
+      "qid": "8357c95dfedf491c2c9a44b250a90349",
+      "scenario": "alternative_source",
+      "dense_G": 0,
+      "dense_U_sim": 0,
+      "m3_G": 0,
+      "m3_U_sim": 1,
+      "G_delta_m3_minus_dense": 0,
+      "U_sim_delta_m3_minus_dense": 1
+    },
+    {
+      "group_id": "0c080ffdc7c4fe42ce0ad031acef4957",
+      "qid": "042e967b6de40e966c0c1727913aafce",
+      "scenario": "aligned",
+      "dense_G": 1,
+      "dense_U_sim": 1,
+      "m3_G": 1,
+      "m3_U_sim": 1,
+      "G_delta_m3_minus_dense": 0,
+      "U_sim_delta_m3_minus_dense": 0
+    },
+    {
+      "group_id": "19c8e4dd179e05a606d4a30749ac3bc1",
+      "qid": "eddb32a779aff2bfa551c158bbdc2fb5",
+      "scenario": "late_evidence",
+      "dense_G": 0,
+      "dense_U_sim": 0,
+      "m3_G": 1,
+      "m3_U_sim": 0,
+      "G_delta_m3_minus_dense": 1,
+      "U_sim_delta_m3_minus_dense": 0
+    },
+    {
+      "group_id": "3004bf92679d50f09d9267b99f923127",
+      "qid": "ad9e0151c863ffcdb152b52b0ac94499",
+      "scenario": "distributed",
+      "dense_G": 0,
+      "dense_U_sim": 0,
+      "m3_G": 1,
+      "m3_U_sim": 0,
+      "G_delta_m3_minus_dense": 1,
+      "U_sim_delta_m3_minus_dense": 0
+    },
+    {
+      "group_id": "31d58b448fef95d91e8b2c1c60239f24",
+      "qid": "61035a89f3a2fa4ea95bc057417e9bae",
+      "scenario": "distributed",
+      "dense_G": 0,
+      "dense_U_sim": 0,
+      "m3_G": 0,
+      "m3_U_sim": 0,
+      "G_delta_m3_minus_dense": 0,
+      "U_sim_delta_m3_minus_dense": 0
+    },
+    {
+      "group_id": "3bb9edfbec5610731aeb4386c89cd093",
+      "qid": "4cabba2088377cdb0a1de836592c4fdf",
+      "scenario": "stale_version",
+      "dense_G": 1,
+      "dense_U_sim": 0,
+      "m3_G": 0,
+      "m3_U_sim": 0,
+      "G_delta_m3_minus_dense": -1,
+      "U_sim_delta_m3_minus_dense": 0
+    },
+    {
+      "group_id": "4cc2064fdb427e648c96f9ba9e9eb979",
+      "qid": "431451673681d7c483a351689edefe97",
+      "scenario": "stale_version",
+      "dense_G": 0,
+      "dense_U_sim": 1,
+      "m3_G": 0,
+      "m3_U_sim": 1,
+      "G_delta_m3_minus_dense": 0,
+      "U_sim_delta_m3_minus_dense": 0
+    },
+    {
+      "group_id": "4e04ae1bf24bc369cb00252ce5cb8ec3",
+      "qid": "5d0bd87c63fa3fea4511a4fd641af6a8",
+      "scenario": "stale_version",
+      "dense_G": 1,
+      "dense_U_sim": 1,
+      "m3_G": 0,
+      "m3_U_sim": 1,
+      "G_delta_m3_minus_dense": -1,
+      "U_sim_delta_m3_minus_dense": 0
+    },
+    {
+      "group_id": "4ea06a96479af58d290f30f423f41695",
+      "qid": "bfe5b73c58addf84d55e872828977205",
+      "scenario": "near_match",
+      "dense_G": 0,
+      "dense_U_sim": 1,
+      "m3_G": 0,
+      "m3_U_sim": 1,
+      "G_delta_m3_minus_dense": 0,
+      "U_sim_delta_m3_minus_dense": 0
+    },
+    {
+      "group_id": "50e719e10978eb89ea09f392384ea35a",
+      "qid": "afe44af36b710b03274054bc41b11ffd",
+      "scenario": "alternative_source",
+      "dense_G": 0,
+      "dense_U_sim": 1,
+      "m3_G": 0,
+      "m3_U_sim": 1,
+      "G_delta_m3_minus_dense": 0,
+      "U_sim_delta_m3_minus_dense": 0
+    },
+    {
+      "group_id": "51075d41ae249f0c648c137fbd9b3db2",
+      "qid": "fd4fffb9faf5ca2bd816291b78b45170",
+      "scenario": "alternative_source",
+      "dense_G": 0,
+      "dense_U_sim": 0,
+      "m3_G": 0,
+      "m3_U_sim": 1,
+      "G_delta_m3_minus_dense": 0,
+      "U_sim_delta_m3_minus_dense": 1
+    },
+    {
+      "group_id": "5890565ca59411520e6fb2ddbef0ce0f",
+      "qid": "adf5f62fc8a316d89b962b3db005fa37",
+      "scenario": "near_match",
+      "dense_G": 0,
+      "dense_U_sim": 1,
+      "m3_G": 1,
+      "m3_U_sim": 1,
+      "G_delta_m3_minus_dense": 1,
+      "U_sim_delta_m3_minus_dense": 0
+    },
+    {
+      "group_id": "77a88aeb5506401ec26b2f09b6dc5063",
+      "qid": "a22fb1d128c280bd16f846bab2d3d58e",
+      "scenario": "alternative_source",
+      "dense_G": 0,
+      "dense_U_sim": 0,
+      "m3_G": 0,
+      "m3_U_sim": 1,
+      "G_delta_m3_minus_dense": 0,
+      "U_sim_delta_m3_minus_dense": 1
+    },
+    {
+      "group_id": "7f3716706fef5ac7506be4d217d56aa8",
+      "qid": "c6300ae73ac4983472d56928502cfb27",
+      "scenario": "stale_version",
+      "dense_G": 0,
+      "dense_U_sim": 1,
+      "m3_G": 0,
+      "m3_U_sim": 1,
+      "G_delta_m3_minus_dense": 0,
+      "U_sim_delta_m3_minus_dense": 0
+    },
+    {
+      "group_id": "7f383030ae7f181959e6d162f931ae4c",
+      "qid": "f276240da799f04c0b36c346052368e0",
+      "scenario": "stale_version",
+      "dense_G": 1,
+      "dense_U_sim": 0,
+      "m3_G": 0,
+      "m3_U_sim": 1,
+      "G_delta_m3_minus_dense": -1,
+      "U_sim_delta_m3_minus_dense": 1
+    },
+    {
+      "group_id": "820174900615519c848cd3441f63e2ac",
+      "qid": "39a67bc97dd7ad5412dc2285f9a40d0b",
+      "scenario": "near_match",
+      "dense_G": 0,
+      "dense_U_sim": 1,
+      "m3_G": 0,
+      "m3_U_sim": 1,
+      "G_delta_m3_minus_dense": 0,
+      "U_sim_delta_m3_minus_dense": 0
+    },
+    {
+      "group_id": "91e71667f8ff94dc6d636e2b032c1a58",
+      "qid": "4ca714dde38a8b0675ec15db2f152fd1",
+      "scenario": "near_match",
+      "dense_G": 0,
+      "dense_U_sim": 1,
+      "m3_G": 0,
+      "m3_U_sim": 1,
+      "G_delta_m3_minus_dense": 0,
+      "U_sim_delta_m3_minus_dense": 0
+    },
+    {
+      "group_id": "93854713daec8ef523514e05a3f7f83a",
+      "qid": "1f455fef43cbaccd4ee96867ccd082f7",
+      "scenario": "alternative_source",
+      "dense_G": 0,
+      "dense_U_sim": 1,
+      "m3_G": 0,
+      "m3_U_sim": 1,
+      "G_delta_m3_minus_dense": 0,
+      "U_sim_delta_m3_minus_dense": 0
+    },
+    {
+      "group_id": "9c1e40ef043bebeb4d4dc9cbf714f6ac",
+      "qid": "4e4ae3398b37e3ae6c0941399162500b",
+      "scenario": "distributed",
+      "dense_G": 0,
+      "dense_U_sim": 0,
+      "m3_G": 0,
+      "m3_U_sim": 0,
+      "G_delta_m3_minus_dense": 0,
+      "U_sim_delta_m3_minus_dense": 0
+    },
+    {
+      "group_id": "a7277d282ed14cc71ef634ab0e9dee4b",
+      "qid": "2c8e0b760239b1347ec39d935eb503fe",
+      "scenario": "distributed",
+      "dense_G": 0,
+      "dense_U_sim": 0,
+      "m3_G": 0,
+      "m3_U_sim": 0,
+      "G_delta_m3_minus_dense": 0,
+      "U_sim_delta_m3_minus_dense": 0
+    },
+    {
+      "group_id": "adcb8c6e501bc91aa5092157aa635ae4",
+      "qid": "187ff9c89bc0ba18d76140a6cca620bb",
+      "scenario": "late_evidence",
+      "dense_G": 0,
+      "dense_U_sim": 0,
+      "m3_G": 0,
+      "m3_U_sim": 0,
+      "G_delta_m3_minus_dense": 0,
+      "U_sim_delta_m3_minus_dense": 0
+    },
+    {
+      "group_id": "b9369b404c076ef6e01a4a7102ffafed",
+      "qid": "6885b2bc6a8cbefa884fed6f5e8343a4",
+      "scenario": "late_evidence",
+      "dense_G": 0,
+      "dense_U_sim": 0,
+      "m3_G": 0,
+      "m3_U_sim": 0,
+      "G_delta_m3_minus_dense": 0,
+      "U_sim_delta_m3_minus_dense": 0
+    },
+    {
+      "group_id": "bb40aae77a063bf9ab2a3c3da613c225",
+      "qid": "d167a375b21b116478dd7816bea306bd",
+      "scenario": "late_evidence",
+      "dense_G": 0,
+      "dense_U_sim": 0,
+      "m3_G": 0,
+      "m3_U_sim": 0,
+      "G_delta_m3_minus_dense": 0,
+      "U_sim_delta_m3_minus_dense": 0
+    },
+    {
+      "group_id": "bc134cb2a0371474806605f41a81f76e",
+      "qid": "6bdcf6fbe3d7bccaa775144cf8b5c01c",
+      "scenario": "distributed",
+      "dense_G": 1,
+      "dense_U_sim": 0,
+      "m3_G": 1,
+      "m3_U_sim": 0,
+      "G_delta_m3_minus_dense": 0,
+      "U_sim_delta_m3_minus_dense": 0
+    },
+    {
+      "group_id": "c13298e4b25c8db26af42422cc16c221",
+      "qid": "6533a0ab32142fe4ad0efcd061ee65d6",
+      "scenario": "aligned",
+      "dense_G": 1,
+      "dense_U_sim": 1,
+      "m3_G": 0,
+      "m3_U_sim": 1,
+      "G_delta_m3_minus_dense": -1,
+      "U_sim_delta_m3_minus_dense": 0
+    },
+    {
+      "group_id": "cfa162292873426d87ea66d639b5952e",
+      "qid": "6c7ca1be7b1da87b55214637852cde1f",
+      "scenario": "aligned",
+      "dense_G": 1,
+      "dense_U_sim": 1,
+      "m3_G": 1,
+      "m3_U_sim": 1,
+      "G_delta_m3_minus_dense": 0,
+      "U_sim_delta_m3_minus_dense": 0
+    },
+    {
+      "group_id": "d565fda64c498859b8e5cd8a3f53c01d",
+      "qid": "e8806f3cca0bcddae7b93146771815dc",
+      "scenario": "distributed",
+      "dense_G": 0,
+      "dense_U_sim": 1,
+      "m3_G": 1,
+      "m3_U_sim": 0,
+      "G_delta_m3_minus_dense": 1,
+      "U_sim_delta_m3_minus_dense": -1
+    },
+    {
+      "group_id": "d6ebf137948c2185822c50950aff30e0",
+      "qid": "ac3ccb8dff878d42ae652b348c027fdc",
+      "scenario": "distributed",
+      "dense_G": 0,
+      "dense_U_sim": 1,
+      "m3_G": 0,
+      "m3_U_sim": 1,
+      "G_delta_m3_minus_dense": 0,
+      "U_sim_delta_m3_minus_dense": 0
+    },
+    {
+      "group_id": "de340b5324ef93e9935e8fa8c60b86bd",
+      "qid": "03f2f6dd5a3d27ceb90b3ddea533abd3",
+      "scenario": "near_match",
+      "dense_G": 1,
+      "dense_U_sim": 0,
+      "m3_G": 0,
+      "m3_U_sim": 1,
+      "G_delta_m3_minus_dense": -1,
+      "U_sim_delta_m3_minus_dense": 1
+    },
+    {
+      "group_id": "df5bf0a70d6b0db2d769253164f85334",
+      "qid": "2b09e98ce2ea8e7201023998da3f5a39",
+      "scenario": "late_evidence",
+      "dense_G": 0,
+      "dense_U_sim": 0,
+      "m3_G": 0,
+      "m3_U_sim": 0,
+      "G_delta_m3_minus_dense": 0,
+      "U_sim_delta_m3_minus_dense": 0
+    },
+    {
+      "group_id": "e688e48ef4f0c3a0ed29fdd7aa9e6e3c",
+      "qid": "9786d714cda4090cd5031647cf810a64",
+      "scenario": "aligned",
+      "dense_G": 0,
+      "dense_U_sim": 1,
+      "m3_G": 1,
+      "m3_U_sim": 1,
+      "G_delta_m3_minus_dense": 1,
+      "U_sim_delta_m3_minus_dense": 0
+    },
+    {
+      "group_id": "eb04b231a1ca1bc8a4150a20b4595530",
+      "qid": "06af54e904adcd59c948e446449a68a8",
+      "scenario": "alternative_source",
+      "dense_G": 0,
+      "dense_U_sim": 0,
+      "m3_G": 0,
+      "m3_U_sim": 1,
+      "G_delta_m3_minus_dense": 0,
+      "U_sim_delta_m3_minus_dense": 1
+    },
+    {
+      "group_id": "eb634dea5b576ac8973ebd85c4a31851",
+      "qid": "d6ba6685edb8de40cadf2497381555b3",
+      "scenario": "stale_version",
+      "dense_G": 0,
+      "dense_U_sim": 1,
+      "m3_G": 0,
+      "m3_U_sim": 1,
+      "G_delta_m3_minus_dense": 0,
+      "U_sim_delta_m3_minus_dense": 0
+    },
+    {
+      "group_id": "ec000b183035c059ea391a6f0ec7ac8f",
+      "qid": "eee920eaf4a28fecdb26ce183543c96b",
+      "scenario": "aligned",
+      "dense_G": 1,
+      "dense_U_sim": 1,
+      "m3_G": 1,
+      "m3_U_sim": 1,
+      "G_delta_m3_minus_dense": 0,
+      "U_sim_delta_m3_minus_dense": 0
+    },
+    {
+      "group_id": "f05b6f4ba3f63d702384bb31b6cc475e",
+      "qid": "1e914bff831eaaba176f7dd23855efc4",
+      "scenario": "near_match",
+      "dense_G": 0,
+      "dense_U_sim": 1,
+      "m3_G": 1,
+      "m3_U_sim": 1,
+      "G_delta_m3_minus_dense": 1,
+      "U_sim_delta_m3_minus_dense": 0
+    },
+    {
+      "group_id": "f4b9066adb214782e6d450ffe1b72497",
+      "qid": "a39628e84c91509dc30aa55bb62a2d4e",
+      "scenario": "late_evidence",
+      "dense_G": 0,
+      "dense_U_sim": 0,
+      "m3_G": 0,
+      "m3_U_sim": 0,
+      "G_delta_m3_minus_dense": 0,
+      "U_sim_delta_m3_minus_dense": 0
+    },
+    {
+      "group_id": "f5af3755ad5a27cb5ea733cf5b00d5cd",
+      "qid": "22541a8ccb890be3473eb18604200a42",
+      "scenario": "aligned",
+      "dense_G": 1,
+      "dense_U_sim": 1,
+      "m3_G": 1,
+      "m3_U_sim": 1,
+      "G_delta_m3_minus_dense": 0,
+      "U_sim_delta_m3_minus_dense": 0
+    },
+    {
+      "group_id": "f8ffb938ac6191e0688b1e44963f3a15",
+      "qid": "269413d80d14d2d3b647e6a9f6dda822",
+      "scenario": "alternative_source",
+      "dense_G": 0,
+      "dense_U_sim": 1,
+      "m3_G": 0,
+      "m3_U_sim": 1,
+      "G_delta_m3_minus_dense": 0,
+      "U_sim_delta_m3_minus_dense": 0
+    },
+    {
+      "group_id": "fa1aed1925092312defbc8c7cd300903",
+      "qid": "00dffb1f3890caac5d54d091393797f3",
+      "scenario": "stale_version",
+      "dense_G": 1,
+      "dense_U_sim": 1,
+      "m3_G": 0,
+      "m3_U_sim": 1,
+      "G_delta_m3_minus_dense": -1,
+      "U_sim_delta_m3_minus_dense": 0
+    }
+  ],
+  "interpretation": "The paired counts establish endpoint disagreement in this controlled environment. They do not establish harmful URL-based selection, human evidence quality, or real-world transfer. Forty worlds are the paired units; repeated configurations do not create additional independent samples.",
+  "sha256": {
+    "per_record_csv": "e5f7558e3f42ff3b5b6ce7437e6fd31035a580ca1b9814f0e85ba3b46715fb46",
+    "evaluation_status": "8067892d2f8ec3226291b32f9183b510cbaad7922c47d859071d1ce39f144a9f",
+    "frozen_specification": "d2099555326cc132f7a64b2fc14f93b46bf2d8897345544638881282c4af8679",
+    "audit_code": "90ab4811199803cdd4fc66d8475d80f746d136ddfefde23b0dbbb4a0dd74b55f"
+  }
+}

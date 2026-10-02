@@ -1,0 +1,17 @@
+﻿topic,url,status,chunks,title
+Prostate,https://www.cancer.gov/types/prostate/hp/prostate-treatment-pdq,ok,41,Prostate Cancer Treatment (PDQ®) - NCI
+Ovarian,https://www.cancer.gov/types/ovarian/hp/ovarian-epithelial-treatment-pdq,ok,31,"Ovarian Epithelial, Fallopian, & Peritoneal Cancer Treatment (PDQ®) - NCI"
+Pancreatic,https://www.cancer.gov/types/pancreatic/hp/pancreatic-treatment-pdq,ok,8,Pancreatic Cancer Treatment (PDQ®) - NCI
+Melanoma,https://www.cancer.gov/types/skin/hp/melanoma-treatment-pdq,ok,26,Melanoma Treatment (PDQ®) - NCI
+Kidney,https://www.cancer.gov/types/kidney/hp/kidney-treatment-pdq,ok,22,Renal Cell Cancer Treatment (PDQ®) - NCI
+Bladder,https://www.cancer.gov/types/bladder/hp/bladder-treatment-pdq,ok,31,Bladder Cancer Treatment (PDQ®) - NCI
+Gastric,https://www.cancer.gov/types/stomach/hp/stomach-treatment-pdq,ok,12,Gastric Cancer Treatment (PDQ®) - NCI
+Esophageal,https://www.cancer.gov/types/esophageal/hp/esophageal-treatment-pdq,ok,11,Esophageal Cancer Treatment (PDQ®) - NCI
+Cervical,https://www.cancer.gov/types/cervical/hp/cervical-treatment-pdq,ok,19,Cervical Cancer Treatment (PDQ®) - NCI
+Endometrial,https://www.cancer.gov/types/uterine/hp/endometrial-treatment-pdq,ok,10,Endometrial Cancer Treatment (PDQ®) - NCI
+Liver,https://www.cancer.gov/types/liver/hp/adult-liver-treatment-pdq,ok,13,Primary Liver Cancer Treatment (PDQ®) - NCI
+Brain,https://www.cancer.gov/types/brain/hp/adult-brain-treatment-pdq,ok,18,Central Nervous System Tumors Treatment (PDQ®) - NCI
+Thyroid,https://www.cancer.gov/types/thyroid/hp/thyroid-treatment-pdq,ok,12,Thyroid Cancer Treatment (PDQ®) - NCI
+Myeloma,https://www.cancer.gov/types/myeloma/hp/myeloma-treatment-pdq,ok,32,Plasma Cell Neoplasms (Including Multiple Myeloma) Treatment (PDQ®) - NCI
+Lymphoma,https://www.cancer.gov/types/lymphoma/hp/adult-nhl-treatment-pdq,ok,38,Indolent B-Cell Non-Hodgkin Lymphoma Treatment (PDQ®) - NCI
+Sarcoma,https://www.cancer.gov/types/soft-tissue-sarcoma/hp/adult-soft-tissue-treatment-pdq,ok,15,Soft Tissue Sarcoma Treatment (PDQ®) - NCI

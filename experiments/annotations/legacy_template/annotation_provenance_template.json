@@ -1,0 +1,12 @@
+{
+  "status": "TEMPLATE_ONLY_NO_HUMAN_LABELS",
+  "kind": "human_adjudication",
+  "annotator_ids": [],
+  "adjudicator_id": "",
+  "rubric_file": "",
+  "rubric_sha256": "",
+  "construction_manifest_file": "",
+  "construction_manifest_sha256": "",
+  "adjudication_records_file": "",
+  "adjudication_records_sha256": ""
+}
