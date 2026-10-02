@@ -1,0 +1,2 @@
+# Research manifests hash exact bytes. Preserve file bytes on every platform.
+* -text
