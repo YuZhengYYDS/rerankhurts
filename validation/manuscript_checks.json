@@ -1,26 +1,38 @@
 {
   "status": "passed",
-  "page_count": 9,
+  "checked_date": "2026-10-02",
+  "page_count": 13,
+  "body_page_count": 12,
+  "exempt_material_starts_page": 13,
+  "page_limit_policy": "https://icde2027.github.io/submission-guidelines.html",
   "overview_page": 2,
   "overview_height_cm": 4.1,
   "author_names_verified": [
     "Zheng Yu",
     "Jingbang Chen"
   ],
-  "affiliations_verified": true,
-  "citation_keys_resolved": 16,
-  "unresolved_reference_markers": false,
-  "overfull_boxes": false,
-  "visual_review": "All nine final rendered pages reviewed; author-role block and page-2 Overview inspected in detail.",
-  "source_matches_compiler_staging": true,
-  "sha256": {
-    "main.tex": "68ad4c44c95ce08f590a32aed1b9fd1cea856acad0aaef21589de0f16007d390",
-    "authors.tex": "1999042e282551f808209ab1ccc3937e64ce44904650ecaf62ada8272a62d027",
-    "references.bib": "feeadf0216f122738eabb68f08092b61b1c6ea2d5b3bcb681225697edcb7efbd",
-    "main.pdf": "18bb9aedeee2380362b130abb3ef7a2257d1a703482dc59f7e6a96a600ef4455"
-  },
-  "remaining_intentional_placeholder": "Overview graphic, requested by user",
-  "github_upload_status": "pending_existing_browser_file_access_block",
   "first_author": "Zheng Yu",
-  "corresponding_author": "Jingbang Chen"
+  "corresponding_author": "Jingbang Chen",
+  "affiliations_verified": true,
+  "citation_keys_resolved": 18,
+  "unresolved_reference_markers": false,
+  "undefined_references": false,
+  "overfull_boxes": false,
+  "visual_review": "All 13 pages rendered with Poppler and reviewed in page contact sheets; pages 1, 2, 8, 12 and 13 inspected individually for authors, Overview space, tables, answer/latency plot and bibliography. All four scientific figure PNGs also reviewed.",
+  "source_matches_compiler_staging": true,
+  "build_identity": "paper/build_manifest.json",
+  "sha256": {
+    "main.tex": "508ed3970482fce27bfb7e89153dd40bb8b5f7753691bc958f05ca0aa26e4911",
+    "authors.tex": "1999042e282551f808209ab1ccc3937e64ce44904650ecaf62ada8272a62d027",
+    "references.bib": "5d7e845d2f9752fb2114f26188ebd7c15f6d098e05d046e4254a27705a07fbb4",
+    "main.pdf": "a0720a54bbf0c64bde41cf2adce80d851b6a8e5ce84c58a2b3cbadb8e103dc33",
+    "build_manifest.json": "9e0accacc578971895661ec46f9cedca41b27997b6590aa3b3045158d1c4c1d0"
+  },
+  "compiler_warnings": [
+    "Tectonic 0.15.0 bibliography change-detection consistency warning and six-pass stopping notice; all 18 references resolve in the PDF",
+    "Underfull text boxes in two paragraphs; no overfull boxes or visual clipping"
+  ],
+  "remaining_intentional_placeholder": "Overview graphic, requested by user",
+  "github_upload_status": "Baseline and core pushed and byte-verified; this final paper is included in the release payload, whose external delivery receipt records publication separately",
+  "scientific_audit": "Core mechanism claims and downstream/timing statistics independently reviewed against saved outputs; human review is not represented as complete"
 }

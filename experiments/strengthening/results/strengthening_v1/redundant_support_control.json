@@ -1,0 +1,8 @@
+{
+  "task_configuration_records": 1862,
+  "distinct_worlds": 19,
+  "raw_full_support_records": 1854,
+  "membership_violations": 0,
+  "definition": "Single full-support chunk plus 12 exact copies under one URL; high-concentration variant, no source filter/refill",
+  "interpretation": "Checks preservation of at least one full support in membership, not equality of budgeted final coverage."
+}

@@ -1,0 +1,111 @@
+{
+  "status": "complete",
+  "scope": "Controlled fictional administrative simulation",
+  "primary": [
+    {
+      "name": "cap_order_512",
+      "family": "primary_cap_order",
+      "analysis": "prespecified_primary",
+      "subgroup": "all_test",
+      "endpoint": "U_sim",
+      "left_config": "dense_p64_m3_post2_b512_prefix_prefix512_dprefix512_polnone",
+      "right_config": "dense_p64_m3_pre2_b512_prefix_prefix512_dprefix512_polnone",
+      "n_task_pairs": 600,
+      "left_world_mean": 0.22666666666666666,
+      "right_world_mean": 0.22666666666666666,
+      "n_worlds": 300,
+      "difference": 0.0,
+      "ci95_low": 0.0,
+      "ci95_high": 0.0,
+      "p_sign_flip": 1.0,
+      "positive_worlds": 0,
+      "negative_worlds": 0,
+      "zero_worlds": 300,
+      "all_world_differences_zero": true,
+      "empirical_interval_degenerate": true,
+      "interval_interpretation": "Empirical zero/degenerate variation; not proof of equivalence",
+      "p_assumption": "World-difference sign exchangeability under the null; not randomized policy assignment",
+      "p_holm": 1.0
+    },
+    {
+      "name": "cap_order_2048",
+      "family": "primary_cap_order",
+      "analysis": "prespecified_primary",
+      "subgroup": "all_test",
+      "endpoint": "U_sim",
+      "left_config": "dense_p64_m3_post2_b2048_prefix_prefix512_dprefix512_polnone",
+      "right_config": "dense_p64_m3_pre2_b2048_prefix_prefix512_dprefix512_polnone",
+      "n_task_pairs": 600,
+      "left_world_mean": 0.51,
+      "right_world_mean": 0.49,
+      "n_worlds": 300,
+      "difference": 0.02,
+      "ci95_low": 0.008333333333333333,
+      "ci95_high": 0.03333333333333333,
+      "p_sign_flip": 0.0038998050097495125,
+      "positive_worlds": 14,
+      "negative_worlds": 2,
+      "zero_worlds": 284,
+      "all_world_differences_zero": false,
+      "empirical_interval_degenerate": false,
+      "interval_interpretation": "Seed-stratified paired-world percentile bootstrap 95%",
+      "p_assumption": "World-difference sign exchangeability under the null; not randomized policy assignment",
+      "p_holm": 0.007799610019499025
+    }
+  ],
+  "n_exploratory_contrasts": 446,
+  "study_plan_sha256": "074b840e66408deeb7dce116a83245bf5fd3213e20137559c5fc96fc3b4afb0a",
+  "analysis_code_sha256": "3150ba3dabed932d0b878fd0ec2f25a5dd61537ab223cbb1a6c76134d7cd9277",
+  "evaluated_per_record_sha256": "c574c4b707d011be99b7bc39fa5dd765b0c44e0a759c68902eb4a0cb8368bbb0",
+  "statistics": {
+    "unit": "world",
+    "within_world": "equal paired-variant mean",
+    "bootstrap": "generation-seed stratified",
+    "repetitions": 5000,
+    "sign_flip_repetitions": 20000,
+    "seed": 20261002,
+    "primary_correction": "Holm across the two prespecified endpoints",
+    "exploratory_correction": "BH within each explicitly named family; subgroup effects are exploratory",
+    "equivalence": "No equivalence margin was prespecified; zero estimates do not establish equivalence"
+  },
+  "acceptance_mapping": {
+    "A": "Generator and independent parser audits; human semantic audit remains pending",
+    "B": "Stage support flow, cap controls, budget geometry and packer-specific relaxed bounds",
+    "C": "Matched configurations and per-template/model contrasts; conditional on fixed simulator families",
+    "D": "Separate downstream answer-model report required; not inferred from U_sim",
+    "E": "Nonempty, unconditional compliance and admissible coverage of explicit source filters",
+    "F": "Separate actual online-request timing report required; no latency inferred from shared-cache traces"
+  },
+  "human_audit_complete": false,
+  "clinical_generalization_established": false,
+  "auxiliary_runs": {
+    "answers": {
+      "status": "complete",
+      "worlds": 60,
+      "comparisons": 8,
+      "per_answer_sha256": "3e266b08be026dac423d56bc780beb8ca048157dbc995de831e73dac85d6d755",
+      "interpretation": "Actual model outputs; exact fictional truth and source grounding are separate endpoints. No human-answer-quality claim."
+    },
+    "timing": {
+      "status": "complete",
+      "worlds": 24,
+      "requests": 480,
+      "requests_sha256": "fd6b9f131a9628bf624dff21cbfb13a96c2270a65a2636156ed25f09b944e277",
+      "interpretation": "Request p50/p95 are descriptive actual-request quantiles; world CIs use per-world repeated-request means. Repetitions are not independent worlds."
+    }
+  },
+  "output_hashes": {
+    "primary_contrasts.csv": "90baadb4c3428bcd5def4608820716755073624681bbbca4ff1852687f264013",
+    "summary.csv": "a2be02bd0bf2b58c770c294201bdaf60efc06ca7a61d8f6aa862beab75c7ce82",
+    "subgroup_summary.csv": "fdb84453f42f60460425121f24be5b7c533b7322d53b481bf87aab7513c2d1df",
+    "support_flow.csv": "03963be4107ad6e094f7aa4cc5310f919108b734a043961f238acf9e7d0d655a",
+    "source_coverage_four_cells.csv": "6be29900bc3aae43c1af0c95abf0a3b436dd4bcc121feba09871f44c8614f9be",
+    "exploratory_contrasts.csv": "0f33df8b89db2282da464e9e4bb477d5976559fa54c72a7eaf41f910310ec9d1",
+    "controls.json": "28026dce3e839cefc2080a1a151d399c2cc7138fc5b267642b38b0c9f761aaf0",
+    "redundant_support_control.json": "692c5bad03ff35c49a108bb12103a97ce30bc8bd9ca0e1a22fb6464c554fdc01",
+    "legacy_null_audit.json": "21622ed7fb7605b103b3f5ea0829d1e3b0d5b9d9d50166d0349be27bb340444e",
+    "answer_contrasts.csv": "ebcf9cd04ab440444e6800f3bb3a76d6269909f9d0082ebd45a823bae07f2e7b",
+    "answer_world_summary.csv": "444f24478096ec1584c0af8dfa5dbfdf71a8ba631aa24fef0bc61e61d388ec7c",
+    "timing_world_contrasts.csv": "81d79c6303234914e34f350ca00c0b393edbb93708c2df1cac79d34620768807"
+  }
+}

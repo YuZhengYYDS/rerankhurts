@@ -1,5 +1,12 @@
 # E0: independent audit of frozen results
 
+For the completed 360-world strengthening study, use
+`pixi run --locked strengthen-verify --require-complete` from the repository root.
+Its offline checker is `scripts/check_strengthening_files.py`; the
+[strengthening guide](../docs/STRENGTHENING_GUIDE.md) describes its data, traces,
+independent scoring, answers and request timing. The historical E0 audit below
+retains its original scope; automatic checks do not complete human review.
+
 Run from the repository root (standard library only):
 
 ```powershell

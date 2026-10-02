@@ -2,11 +2,52 @@
 
 ## 论文
 
-`paper/main.pdf` 与 `paper/main.tex` 是当前九页稿件，`authors.tex` 记录 Zheng Yu
-为第一作者、Jingbang Chen 为通讯作者。Overview 在第二页保留空白；本轮代码整理
-不会改动论文或实验结论。
+`paper/main.tex` 是当前稿件源文件，`paper/main.pdf` 是最近一次通过构建检查的PDF；
+扩展实验已经完成，论文输入与最终编译须对应同一组已核验结果。`authors.tex` 记录 Zheng Yu 为第一作者、
+Jingbang Chen 为通讯作者，第二页保留 Overview 图片位置。页数以最终构建报告为准，
+正文最多12页，参考文献与AI内容致谢不计入。
 
-## 新 E3：155 题 × 20 配置
+## 扩展实验：360个世界、720任务 × 124配置
+
+完整流程与指标说明见 [STRENGTHENING_GUIDE.md](STRENGTHENING_GUIDE.md)，
+研究设计见 [模块说明](../experiments/strengthening/README.md)。2026-10-02当前状态：
+四阶段自动化部分已完成：89,280条主推断及独立评分记录、720个实际回答、576个正式计时请求。
+计时另有8次warm-up不计入结果；主推断、评分、回答和计时分别记录 `complete`。
+
+输入在 `experiments/strengthening/data/strengthening_v1/`：
+
+- `corpus.jsonl`、`questions.jsonl`：公开推断接口，720个互相隔离的80-chunk集合。
+- `truth.jsonl`、`metadata.jsonl`、`claims.jsonl`：世界事实、配对与split信息、已由独立parser核对的断言。
+- `specification.json`：生成代码、计划、维度及数据哈希。
+- `audit/`：独立文本解析审计和60世界人工审核包；人工表仍为空，不能视为人审结果。
+
+实际主推断在 `experiments/runs/strengthening_v1/`：`manifest.json` 固定124配置、
+模型、代码和输入身份，`traces/` 保存720个压缩逐题轨迹，`status.json` 记录主推断完成数。
+每个独立世界的两个任务只改变来源URL集中度，不能当作两份独立世界。
+
+评估与分析位于 `experiments/strengthening/results/strengthening_v1/`。
+下列已完成产物由对应状态、来源哈希和完整性检查关联：
+
+- `per_record.csv`、`feasibility.csv`、`status.json`：实际交付跨度评分、预算必要可行性界和输入身份。
+- `primary_contrasts.csv`、`exploratory_contrasts.csv`、`subgroup_summary.csv`：世界级主对比、探索族和分层分析。
+- `support_flow.csv`、`source_coverage_four_cells.csv`、`controls.json`、`redundant_support_control.json`：阶段支持损失、G/U组合及结构控制。
+- `answers/`：60测试世界、两个变体、六条件的实际Qwen回答、输入prompt、token成本与评分。
+- `timing/`：24测试世界、每世界一个变体、四配置的96个first-pass和480个steady测量；8次warm-up不计入。
+- `analysis.json`、`figures/manifest.json`：统计设置、输入身份和图文件来源。
+
+`paper/strengthening.tex` 引用 `paper/generated/strengthening_methods.tex` 与
+`paper/generated/strengthening_results.tex`。方法与预期规模不代替结果；正文结论应取自
+完整评估、世界级统计和经核验的图表。新增结果与旧E3、`pilot_v2` 使用不同目录。
+
+```text
+# 新复现尚未结束时可使用的检查，不将PENDING当作完成
+pixi run --locked strengthen-verify --allow-in-progress
+
+# 已完成交付结果的严格检查
+pixi run --locked strengthen-verify --require-complete
+```
+
+## 冻结 E3：155 题 × 20 配置
 
 在 `experiments/runs/e3_m3/`：
 
@@ -18,11 +59,11 @@
 - `factorial_diagnostics.json`：另八个 cap/re-ranker 交互。
 - `G_factorial.pdf`：论文页面保留率热图。
 
-`paper/build_e3_table.py` 从上述冻结文件生成论文表 I 和来源记录。
+`paper/build_e3_table.py` 从上述冻结文件生成论文E3表和来源记录。
 `validation/results/e3_integrity.json` 保存独立轨迹核验；执行 `verify` 的新报告
 写在 `build/verification/e3/`。
 
-## 仿真：60 个世界、120 个任务 × 20 配置
+## 冻结 pilot_v2：60 个世界、120 个任务 × 20 配置
 
 输入在 `experiments/simulation/data/pilot_v2/`：corpus、questions、oracle 与 specification。
 实际模型轨迹在 `experiments/runs/simulation_pilot_v2/`，共 120 个逐任务 trace。
@@ -37,7 +78,7 @@
 - `status.json`：完整性、输入与输出哈希，明确标记 synthetic_oracle。
 - `selection_comparison.pdf`：论文测试集配置对比图。
 
-`paper/build_simulation_table.py` 生成论文表 II。
+`paper/build_simulation_table.py` 生成论文pilot选择比较表。
 `validation/simulation_audit.json` 为独立结果复核；
 `validation/simulation_endpoint_pairs.json` 为论文 G/U 配对频数的独立复算。
 
@@ -57,5 +98,23 @@
 `pixi run --locked -e gpu sim-evaluate` 将完整 oracle 复算写到
 `build/reanalysis/simulation/`。这些路径不进入发布包。
 
+扩展实验的无模型重算入口为：
+
+```text
+pixi run --locked -e gpu strengthen-evaluate --output build/reanalysis/strengthening
+pixi run --locked strengthen-analyze --results build/reanalysis/strengthening --answers experiments/strengthening/results/strengthening_v1/answers --timing experiments/strengthening/results/strengthening_v1/timing
+```
+
+该评分只需要固定fast tokenizer，不运行检索或答案模型。答案/测时目录必须是已完成版本，
+缺失或未完成的步骤不能通过新增CSV名称补成结果。输入与模型准备细节见扩展实验指南。
+
 结果专用 ZIP 保留上述冻结文件的原相对路径和来源清单。它便于查看结果，
 但不等于完整复现包；需要代码与输入语料时请使用 `rerankhuts_icde2027.zip`。
+代码分包显式包含 `experiments/strengthening/study_plan.json` 与 `.gitattributes`；
+结果分包包含新结果、主轨迹、研究计划和扩展指南，完整包另含全部输入数据。
+
+基线和扩展核心版本已经推送并核验至 [私有GitHub仓库](https://github.com/YuZhengYYDS/rerankhuts)。
+[Release下载入口](https://github.com/YuZhengYYDS/rerankhuts/releases/tag/icde2027-strengthening-20261002)
+的发布状态以实际附件及上传校验回执为准，与已完成的实验状态分别核验。
+60世界人工审核与外部真实场景复现仍未完成；私有交付也不等于满足EAB开放artifact要求，
+提交准备仍需公开可访问的复现地址。

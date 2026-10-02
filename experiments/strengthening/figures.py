@@ -84,7 +84,7 @@ def budget_and_mechanisms(frame, plt):
     for variant in ("low_concentration", "high_concentration"):
         columns = []
         for cap in (1, 2, 4):
-            pairs = cap_delta(frame, 512, cap)
+            pairs = cap_delta(frame, 2048, cap)
             means = world_mean(pairs[pairs.variant_id == variant], "difference", "scenario")
             columns.append(means.reindex(SCENARIOS).to_numpy())
         matrices.append(np.column_stack(columns))
@@ -94,7 +94,7 @@ def budget_and_mechanisms(frame, plt):
         image = axis.imshow(matrix, aspect="auto", cmap="RdBu", vmin=-scale, vmax=scale)
         axis.set_xticks(range(3), ["cap1", "cap2", "cap4"])
         axis.set_yticks(range(6), SCENARIO_LABELS if index == 0 else [""] * 6)
-        axis.set_title(f"{chr(100 + index)}  {variant}: post − pre, B=512", loc="left", fontweight="bold")
+        axis.set_title(f"{chr(100 + index)}  {variant}: post − pre, B=2048", loc="left", fontweight="bold")
         for y in range(6):
             for x in range(3):
                 value = matrix[y, x]
@@ -107,7 +107,7 @@ def budget_and_mechanisms(frame, plt):
 def support_and_source(frame, plt):
     fig, axes = plt.subplots(2, 2, figsize=(6.8, 5.0), constrained_layout=True)
     stages = ["raw", "pre_cap", "rerank", "post_cap", "post_policy", "final"]
-    stage_names = ["Candidates", "Pre-cap", "Rerank", "Post-cap", "Policy", "Budget"]
+    stage_names = ["Candidates", "Pre-cap", "Rerank", "Post-cap", "Policy (off)", "Budget"]
     for index, budget in enumerate((512, 2048)):
         axis = axes[0, index]
         for stage in ("pre", "post"):
@@ -161,6 +161,8 @@ def visibility_packing_policy(frame, plt):
                          label=short[stage] if budget == 512 else None)
     axis.set_xlim(-.04, 1.04)
     style_axes(axis, "d  Allowed-source filter placement", "Unconditional source compliance", "Admissible full coverage", True)
+    axis.text(.96, .88, "Three filter stages coincide", transform=axis.transAxes,
+              ha="right", va="top", fontsize=6)
     axis.legend(frameon=False, fontsize=5.6, loc="lower left")
     return fig
 
@@ -248,9 +250,9 @@ def generate(results=DEFAULT_OUTPUT, output=None):
                 "source_csv_sha256": {name: sha256(results / name) for name in sorted(set(sources))},
                 "figure_sha256": {path.name: sha256(path) for path in generated},
                 "captions": {
-                    "budget_and_mechanisms": "Test-world means under the designed mixture. QA is an unseen rendering family on held-out worlds, not a within-world template intervention. Lower panels show conditional post-minus-pre differences; printed zeros are rounded descriptive estimates, not equivalence claims.",
-                    "support_and_source": "Full-set membership is scored before the final budget stage. Pure sorting preserves membership. The joint G/U shares average paired variants within each world; designated-source retention and complete fact coverage are distinct endpoints.",
-                    "visibility_packing_policy": "Fixed matched submatrices: packing and CE-view contrasts use post cap2, dense-view contrasts use no cap. Policy panel includes constrained tasks only; empty outputs count as noncompliant. Points/bars are descriptive world means; no per-task independence or inferential interval is implied.",
+                    "budget_and_mechanisms": "Test-world means under the designed mixture. QA is an unseen rendering family on held-out worlds, not a within-world template intervention. Upper panels retain all four budgets, including the null primary result at 512 tokens. Lower panels show conditional post-minus-pre differences at the other prespecified primary budget, 2048 tokens; printed zeros are rounded descriptive estimates, not equivalence claims.",
+                    "support_and_source": "Full-set membership is scored before the final budget stage. Pure sorting preserves membership, and source-policy filtering is disabled in this matched comparison. The joint G/U shares average paired variants within each world; designated-source retention and complete fact coverage are distinct endpoints.",
+                    "visibility_packing_policy": "Fixed matched submatrices: packing and CE-view contrasts use post cap2, dense-view contrasts use no cap. Policy panel includes constrained tasks only; empty outputs count as noncompliant. The three filter placements have coincident aggregate coordinates at each budget. Points/bars are descriptive world means; no per-task independence or inferential interval is implied.",
                     "answers_and_timing": "Actual local answer-model outputs and online requests. Confidence bars come from exploratory seed-stratified paired-world analysis. Latency p50/p95 summarize measured requests; the interval panel first averages repetitions within each world. These are fictional administrative tasks, not clinical validation."},
                 "human_semantic_audit_complete": False}
     dump_json(output / "manifest.json", manifest)

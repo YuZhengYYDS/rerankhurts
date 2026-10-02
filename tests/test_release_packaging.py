@@ -22,6 +22,7 @@ def repository(tmp_path):
         "LICENSE": "Example license\n",
         "pixi.toml": "[workspace]\n",
         "pixi.lock": "version: 6\n",
+        ".gitattributes": "*.jsonl text eol=lf\n",
         ".env.example": "TOKEN=\n",
         "rerankhuts/__main__.py": "print('entrypoint')\n",
         "legacy/old.py": "print('archived source')\n",
@@ -29,11 +30,20 @@ def repository(tmp_path):
         "release_status.json": '{"ready":false}\n',
         "docs/RESULTS_GUIDE.md": "Result directory guide\n",
         "docs/CODE_GUIDE.md": "Code directory guide\n",
+        "docs/STRENGTHENING_GUIDE.md": "Strengthening result interpretation guide\n",
         "scripts/tool.py": "print('tool')\n",
         "tests/test_tool.py": "def test_example(): pass\n",
         "data/input.jsonl": '{"input":1}\n',
         "questions_v2.jsonl": '{"qid":"one"}\n',
         "experiments/simulation/data/pilot_v2/oracle.jsonl": '{"private_to_scoring":true}\n',
+        "experiments/README.md": "Experiment directory guide\n",
+        "experiments/simulation/README.md": "Pilot experiment guide\n",
+        "experiments/strengthening/README.md": "Strengthening design and reproduction guide\n",
+        "experiments/strengthening/backend.py": "print('new inference backend')\n",
+        "experiments/strengthening/study_plan.json": '{"status":"design_fixed_before_new_model_outcomes"}\n',
+        "experiments/strengthening/data/strengthening_v1/corpus.jsonl": '{"text":"fictional evidence"}\n',
+        "experiments/strengthening/data/strengthening_v1/specification.json": '{"schema_version":"strengthening-v1"}\n',
+        "experiments/strengthening/data/strengthening_v1/audit/README.md": "Pending human review packet guide\n",
         "paper/main.tex": "\\documentclass{article}\n",
         "paper/main.pdf": "%PDF-example\n",
         "paper/references.bib": "@misc{example}\n",
@@ -42,6 +52,15 @@ def repository(tmp_path):
         "result/old_result.json": '{"result":1}\n',
         "experiments/runs/frozen/traces/one.json.gz": "retained compressed trace\n",
         "experiments/simulation/results/pilot_v2/per_record.csv": "qid,U\none,1\n",
+        "experiments/runs/strengthening_v1/manifest.json": '{"expected_records":89280}\n',
+        "experiments/runs/strengthening_v1/traces/one.json.gz": "new compressed trace\n",
+        "experiments/strengthening/results/strengthening_v1/README.md": "New result file guide\n",
+        "experiments/strengthening/results/strengthening_v1/per_record.csv": "qid,U_sim\none,1\n",
+        "experiments/strengthening/results/strengthening_v1/integrity.json": '{"status":"PASS"}\n',
+        "experiments/strengthening/results/strengthening_v1/primary_cap_order.png": "plot payload\n",
+        "experiments/strengthening/results/strengthening_v1/answers/responses/one.json": '{"response":"unknown"}\n',
+        "experiments/strengthening/results/strengthening_v1/timing/requests.jsonl": '{"latency_ms":1.0}\n',
+        "validation/README.md": "Independent audit guide\n",
         "validation/report.json": '{"status":"PASS"}\n',
         "validation/audit.py": "print('audit')\n",
         "config/defaults.json": '{"seed":2027}\n',
@@ -50,6 +69,8 @@ def repository(tmp_path):
         ".pixi/envs/default/python.exe", ".cache/model.bin", "environments/python.exe",
         "src/__pycache__/tool.pyc", "node_modules/dependency.js", ".pytest_cache/nodeids",
         "experiments/runs/frozen/cache/scores.json", "experiments/runs/smoke2/trace.json",
+        "experiments/runs/strengthening_v1/cache/document_embeddings.npy",
+        "experiments/strengthening/results/strengthening_v1/cache/temporary.json",
         "results_archive/old.csv", "github_release/old.py", "build/main.pdf",
         "oldrelease.zip", "nested/saved.ZIP", ".env", ".env.production", "credentials.json",
         "credentials/nested/token.txt", "secrets.yaml", "client_secret_123.json",
@@ -98,6 +119,33 @@ def test_release_membership_manifests_and_split_packages(repository):
             assert archive.namelist() == sorted(archive.namelist())
             assert {entry.date_time for entry in archive.infolist()} == {package.ZIP_TIMESTAMP}
     assert verify.verify_release(output) == report
+
+
+def test_strengthening_split_preserves_protocol_and_all_result_layers(repository):
+    """Published split archives retain the new workflow without copying raw data."""
+    root, files, excluded = repository
+    package.package(root, split=True)
+    output = root / "dist"
+    full = archive_manifest(output / "rerankhuts_icde2027.zip")
+    code = archive_manifest(output / "rerankhuts_icde2027_code.zip")
+    results = archive_manifest(output / "rerankhuts_icde2027_results.zip")
+    protocol_files = {".gitattributes", "experiments/strengthening/study_plan.json",
+                      "experiments/strengthening/backend.py"}
+    assert protocol_files <= set(code)
+    result_files = {name for name in files if name.startswith((
+        "experiments/runs/strengthening_v1/", "experiments/strengthening/results/"))}
+    assert result_files <= set(results)
+    assert not result_files & set(code)
+    assert {"experiments/README.md", "experiments/strengthening/README.md",
+            "experiments/simulation/README.md", "validation/README.md",
+            "experiments/strengthening/study_plan.json", "docs/STRENGTHENING_GUIDE.md"} <= set(results)
+    data_files = {name for name in files if name.startswith("experiments/strengthening/data/")}
+    assert data_files <= set(full)
+    assert not data_files & (set(code) | set(results))
+    assert not set(excluded) & (set(code) | set(results) | set(full))
+    # Every convenience-archive entry has the same content identity as the full release.
+    for subset in (code, results):
+        assert all(record == full[name] for name, record in subset.items())
 
 
 def test_deterministic_archive_bytes_ignore_source_mtimes(repository):
@@ -257,3 +305,130 @@ def test_standalone_verify_and_build_verify_clis(repository):
                              check=True, capture_output=True, text=True)
     assert json.loads(checked.stdout)["status"] == "PASS"
     assert before == {p.name: p.stat().st_mtime_ns for p in (root / "dist").iterdir()}
+
+
+def record_paper_build(root):
+    """A tiny successful-build fixture; no TeX or actual PDF rendering needed."""
+    paper = root / "paper"
+    for name, content in {
+        "figures/overview.pdf": b"figure PDF",
+        "figures/main.pdf": b"another figure, not the compiled main.pdf",
+        "local.sty": b"style source",
+        "README.md": b"Build instructions can change independently",
+        "build_table.py": b"# Not a TeX compilation input",
+    }.items():
+        path = paper / name
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_bytes(content)
+
+    def identity(name):
+        payload = (paper / name).read_bytes()
+        return {"bytes": len(payload), "sha256": hashlib.sha256(payload).hexdigest()}
+
+    record = {
+        "status": "PASS",
+        "inputs": {name: identity(name) for name in (
+            "main.tex", "references.bib", "figures/overview.pdf", "figures/main.pdf", "local.sty")},
+        "outputs": {name: identity(name) for name in ("main.pdf", "main.bbl")},
+        "page_check": {"body_pages": 11, "total_pages": 12,
+                       "exempt_material_starts_page": 12, "body_page_limit": 12},
+    }
+    (paper / "build_manifest.json").write_text(json.dumps(record), encoding="utf-8")
+    return record
+
+
+def test_successful_paper_build_is_bound_and_shipped(repository):
+    root, _, _ = repository
+    record_paper_build(root)
+    # Documentation and table-generation Python are not compiler inputs.
+    (root / "paper/README.md").write_text("Updated instructions", encoding="utf-8")
+    assert package.package(root)["status"] == "PASS"
+    paper = archive_manifest(root / "dist/paper_icde2027_clean.zip")
+    assert {"build_manifest.json", "main.pdf", "main.bbl", "figures/main.pdf"} <= set(paper)
+
+
+@pytest.mark.parametrize("name", ["main.tex", "main.pdf", "main.bbl", "figures/overview.pdf"])
+def test_stale_paper_input_or_output_blocks_packaging_before_copy(repository, name):
+    root, _, _ = repository
+    record_paper_build(root)
+    path = root / "paper" / name
+    original = path.read_bytes()
+    path.write_bytes(bytes([original[0] ^ 1]) + original[1:])
+    with pytest.raises(ValueError, match="Paper build SHA-256 mismatch"):
+        package.package(root)
+    assert not (root / "dist").exists()
+
+
+@pytest.mark.parametrize("change", ["add", "remove"])
+def test_paper_input_membership_changes_require_rebuild(repository, change):
+    root, _, _ = repository
+    record_paper_build(root)
+    if change == "add":
+        (root / "paper/figures/new.png").write_bytes(b"new compiler input")
+    else:
+        (root / "paper/references.bib").unlink()
+    with pytest.raises(ValueError, match="Paper build input membership differs"):
+        package.package(root)
+    assert not (root / "dist").exists()
+
+
+@pytest.mark.parametrize("name", ["../outside.tex", "C:/outside.tex", "figures\\outside.tex"])
+def test_paper_build_manifest_rejects_escaping_input_names(repository, name):
+    root, _, _ = repository
+    record = record_paper_build(root)
+    record["inputs"][name] = record["inputs"]["main.tex"]
+    (root / "paper/build_manifest.json").write_text(json.dumps(record), encoding="utf-8")
+    with pytest.raises(ValueError, match="[Pp]ath"):
+        package.package(root)
+    assert not (root / "dist").exists()
+
+
+@pytest.mark.parametrize("field,value,message", [
+    ("status", "FAILED", "status PASS"),
+    ("body_pages", 13, "1 to 12 pages"),
+    ("body_pages", True, "1 to 12 pages"),
+    ("total_pages", 10, "total_pages"),
+    ("exempt_material_starts_page", 11, "exempt_material_starts_page"),
+])
+def test_paper_build_rejects_failed_or_inconsistent_page_check(repository, field, value, message):
+    root, _, _ = repository
+    record = record_paper_build(root)
+    if field == "status":
+        record[field] = value
+    else:
+        record["page_check"][field] = value
+    (root / "paper/build_manifest.json").write_text(json.dumps(record), encoding="utf-8")
+    with pytest.raises(ValueError, match=message):
+        package.package(root)
+    assert not (root / "dist").exists()
+
+
+def test_paper_build_rejects_noncompiler_input_and_missing_output(repository):
+    root, _, _ = repository
+    record = record_paper_build(root)
+    path = root / "paper/build_manifest.json"
+    record["inputs"]["README.md"] = {"bytes": 0, "sha256": hashlib.sha256(b"").hexdigest()}
+    path.write_text(json.dumps(record), encoding="utf-8")
+    with pytest.raises(ValueError, match="invalid compiled input"):
+        package.package(root)
+    del record["inputs"]["README.md"]
+    del record["outputs"]["main.bbl"]
+    path.write_text(json.dumps(record), encoding="utf-8")
+    with pytest.raises(ValueError, match="output membership differs"):
+        package.package(root)
+    assert not (root / "dist").exists()
+
+
+def test_paper_change_between_build_check_and_archive_snapshot_is_rejected(repository, monkeypatch):
+    root, _, _ = repository
+    record_paper_build(root)
+    original = package.manifest_for
+
+    def change_then_snapshot(members, source_root):
+        (root / "paper/main.tex").write_text("changed after build check", encoding="utf-8")
+        return original(members, source_root)
+
+    monkeypatch.setattr(package, "manifest_for", change_then_snapshot)
+    with pytest.raises(ValueError, match="Paper build changed while preparing"):
+        package.package(root)
+    assert not (root / "dist").exists()

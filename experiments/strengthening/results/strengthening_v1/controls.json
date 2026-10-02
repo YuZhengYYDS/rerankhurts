@@ -1,0 +1,226 @@
+[
+  {
+    "post": "dense_p64_m3_post1_b512_prefix_prefix512_dprefix512_polnone",
+    "pre": "dense_p64_m3_pre1_b512_prefix_prefix512_dprefix512_polnone",
+    "eligible_no_op_tasks": 180,
+    "different_delivery_no_op_tasks": 0,
+    "interpretation": "Constructive no-op invariant; support-preserving redundancy is separately measured in support_flow."
+  },
+  {
+    "post": "dense_p64_m3_post2_b512_prefix_prefix512_dprefix512_polnone",
+    "pre": "dense_p64_m3_pre2_b512_prefix_prefix512_dprefix512_polnone",
+    "eligible_no_op_tasks": 229,
+    "different_delivery_no_op_tasks": 0,
+    "interpretation": "Constructive no-op invariant; support-preserving redundancy is separately measured in support_flow."
+  },
+  {
+    "post": "dense_p64_m3_post4_b512_prefix_prefix512_dprefix512_polnone",
+    "pre": "dense_p64_m3_pre4_b512_prefix_prefix512_dprefix512_polnone",
+    "eligible_no_op_tasks": 360,
+    "different_delivery_no_op_tasks": 0,
+    "interpretation": "Constructive no-op invariant; support-preserving redundancy is separately measured in support_flow."
+  },
+  {
+    "post": "dense_p64_m3_post1_b2048_prefix_prefix512_dprefix512_polnone",
+    "pre": "dense_p64_m3_pre1_b2048_prefix_prefix512_dprefix512_polnone",
+    "eligible_no_op_tasks": 180,
+    "different_delivery_no_op_tasks": 0,
+    "interpretation": "Constructive no-op invariant; support-preserving redundancy is separately measured in support_flow."
+  },
+  {
+    "post": "dense_p64_m3_post2_b2048_prefix_prefix512_dprefix512_polnone",
+    "pre": "dense_p64_m3_pre2_b2048_prefix_prefix512_dprefix512_polnone",
+    "eligible_no_op_tasks": 229,
+    "different_delivery_no_op_tasks": 0,
+    "interpretation": "Constructive no-op invariant; support-preserving redundancy is separately measured in support_flow."
+  },
+  {
+    "post": "dense_p64_m3_post4_b2048_prefix_prefix512_dprefix512_polnone",
+    "pre": "dense_p64_m3_pre4_b2048_prefix_prefix512_dprefix512_polnone",
+    "eligible_no_op_tasks": 360,
+    "different_delivery_no_op_tasks": 0,
+    "interpretation": "Constructive no-op invariant; support-preserving redundancy is separately measured in support_flow."
+  },
+  {
+    "post": "dense_p64_m3_post1_refill_b512_prefix_prefix512_dprefix512_polnone",
+    "pre": "dense_p64_m3_pre1_refill_b512_prefix_prefix512_dprefix512_polnone",
+    "eligible_no_op_tasks": 0,
+    "different_delivery_no_op_tasks": 0,
+    "interpretation": "Constructive no-op invariant; support-preserving redundancy is separately measured in support_flow."
+  },
+  {
+    "post": "dense_p64_m3_post2_refill_b512_prefix_prefix512_dprefix512_polnone",
+    "pre": "dense_p64_m3_pre2_refill_b512_prefix_prefix512_dprefix512_polnone",
+    "eligible_no_op_tasks": 0,
+    "different_delivery_no_op_tasks": 0,
+    "interpretation": "Constructive no-op invariant; support-preserving redundancy is separately measured in support_flow."
+  },
+  {
+    "post": "dense_p64_minilm_post2_b512_prefix_prefix512_dprefix512_polnone",
+    "pre": "dense_p64_minilm_pre2_b512_prefix_prefix512_dprefix512_polnone",
+    "eligible_no_op_tasks": 229,
+    "different_delivery_no_op_tasks": 0,
+    "interpretation": "Constructive no-op invariant; support-preserving redundancy is separately measured in support_flow."
+  },
+  {
+    "post": "bm25_p64_m3_post2_b512_prefix_prefix512_dprefix512_polnone",
+    "pre": "bm25_p64_m3_pre2_b512_prefix_prefix512_dprefix512_polnone",
+    "eligible_no_op_tasks": 229,
+    "different_delivery_no_op_tasks": 0,
+    "interpretation": "Constructive no-op invariant; support-preserving redundancy is separately measured in support_flow."
+  },
+  {
+    "post": "fusion_p64_m3_post2_b512_prefix_prefix512_dprefix512_polnone",
+    "pre": "fusion_p64_m3_pre2_b512_prefix_prefix512_dprefix512_polnone",
+    "eligible_no_op_tasks": 229,
+    "different_delivery_no_op_tasks": 0,
+    "interpretation": "Constructive no-op invariant; support-preserving redundancy is separately measured in support_flow."
+  },
+  {
+    "post": "dense_p64_m3_post2_b512_whole_prefix512_dprefix512_polnone",
+    "pre": "dense_p64_m3_pre2_b512_whole_prefix512_dprefix512_polnone",
+    "eligible_no_op_tasks": 229,
+    "different_delivery_no_op_tasks": 0,
+    "interpretation": "Constructive no-op invariant; support-preserving redundancy is separately measured in support_flow."
+  },
+  {
+    "post": "dense_p64_m3_post2_b512_window_prefix512_dprefix512_polnone",
+    "pre": "dense_p64_m3_pre2_b512_window_prefix512_dprefix512_polnone",
+    "eligible_no_op_tasks": 229,
+    "different_delivery_no_op_tasks": 0,
+    "interpretation": "Constructive no-op invariant; support-preserving redundancy is separately measured in support_flow."
+  },
+  {
+    "post": "dense_p64_m3_post2_b512_prefix_prefix128_dprefix512_polnone",
+    "pre": "dense_p64_m3_pre2_b512_prefix_prefix128_dprefix512_polnone",
+    "eligible_no_op_tasks": 229,
+    "different_delivery_no_op_tasks": 0,
+    "interpretation": "Constructive no-op invariant; support-preserving redundancy is separately measured in support_flow."
+  },
+  {
+    "post": "dense_p64_m3_post2_b512_prefix_window512_dprefix512_polnone",
+    "pre": "dense_p64_m3_pre2_b512_prefix_window512_dprefix512_polnone",
+    "eligible_no_op_tasks": 229,
+    "different_delivery_no_op_tasks": 0,
+    "interpretation": "Constructive no-op invariant; support-preserving redundancy is separately measured in support_flow."
+  },
+  {
+    "post": "dense_p64_m3_post2_b512_prefix_prefix512_dprefix512_polpre_retrieve",
+    "pre": "dense_p64_m3_pre2_b512_prefix_prefix512_dprefix512_polpre_retrieve",
+    "eligible_no_op_tasks": 229,
+    "different_delivery_no_op_tasks": 0,
+    "interpretation": "Constructive no-op invariant; support-preserving redundancy is separately measured in support_flow."
+  },
+  {
+    "post": "dense_p64_m3_post2_b512_prefix_prefix512_dprefix512_polpost_retrieve",
+    "pre": "dense_p64_m3_pre2_b512_prefix_prefix512_dprefix512_polpost_retrieve",
+    "eligible_no_op_tasks": 229,
+    "different_delivery_no_op_tasks": 0,
+    "interpretation": "Constructive no-op invariant; support-preserving redundancy is separately measured in support_flow."
+  },
+  {
+    "post": "dense_p64_m3_post2_b512_prefix_prefix512_dprefix512_polpost_rerank",
+    "pre": "dense_p64_m3_pre2_b512_prefix_prefix512_dprefix512_polpost_rerank",
+    "eligible_no_op_tasks": 229,
+    "different_delivery_no_op_tasks": 0,
+    "interpretation": "Constructive no-op invariant; support-preserving redundancy is separately measured in support_flow."
+  },
+  {
+    "post": "dense_p16_m3_post2_b512_prefix_prefix512_dprefix512_polnone",
+    "pre": "dense_p16_m3_pre2_b512_prefix_prefix512_dprefix512_polnone",
+    "eligible_no_op_tasks": 377,
+    "different_delivery_no_op_tasks": 0,
+    "interpretation": "Constructive no-op invariant; support-preserving redundancy is separately measured in support_flow."
+  },
+  {
+    "post": "dense_p64_m3_post1_refill_b2048_prefix_prefix512_dprefix512_polnone",
+    "pre": "dense_p64_m3_pre1_refill_b2048_prefix_prefix512_dprefix512_polnone",
+    "eligible_no_op_tasks": 0,
+    "different_delivery_no_op_tasks": 0,
+    "interpretation": "Constructive no-op invariant; support-preserving redundancy is separately measured in support_flow."
+  },
+  {
+    "post": "dense_p64_m3_post2_refill_b2048_prefix_prefix512_dprefix512_polnone",
+    "pre": "dense_p64_m3_pre2_refill_b2048_prefix_prefix512_dprefix512_polnone",
+    "eligible_no_op_tasks": 0,
+    "different_delivery_no_op_tasks": 0,
+    "interpretation": "Constructive no-op invariant; support-preserving redundancy is separately measured in support_flow."
+  },
+  {
+    "post": "dense_p64_minilm_post2_b2048_prefix_prefix512_dprefix512_polnone",
+    "pre": "dense_p64_minilm_pre2_b2048_prefix_prefix512_dprefix512_polnone",
+    "eligible_no_op_tasks": 229,
+    "different_delivery_no_op_tasks": 0,
+    "interpretation": "Constructive no-op invariant; support-preserving redundancy is separately measured in support_flow."
+  },
+  {
+    "post": "bm25_p64_m3_post2_b2048_prefix_prefix512_dprefix512_polnone",
+    "pre": "bm25_p64_m3_pre2_b2048_prefix_prefix512_dprefix512_polnone",
+    "eligible_no_op_tasks": 229,
+    "different_delivery_no_op_tasks": 0,
+    "interpretation": "Constructive no-op invariant; support-preserving redundancy is separately measured in support_flow."
+  },
+  {
+    "post": "fusion_p64_m3_post2_b2048_prefix_prefix512_dprefix512_polnone",
+    "pre": "fusion_p64_m3_pre2_b2048_prefix_prefix512_dprefix512_polnone",
+    "eligible_no_op_tasks": 229,
+    "different_delivery_no_op_tasks": 0,
+    "interpretation": "Constructive no-op invariant; support-preserving redundancy is separately measured in support_flow."
+  },
+  {
+    "post": "dense_p64_m3_post2_b2048_whole_prefix512_dprefix512_polnone",
+    "pre": "dense_p64_m3_pre2_b2048_whole_prefix512_dprefix512_polnone",
+    "eligible_no_op_tasks": 229,
+    "different_delivery_no_op_tasks": 0,
+    "interpretation": "Constructive no-op invariant; support-preserving redundancy is separately measured in support_flow."
+  },
+  {
+    "post": "dense_p64_m3_post2_b2048_window_prefix512_dprefix512_polnone",
+    "pre": "dense_p64_m3_pre2_b2048_window_prefix512_dprefix512_polnone",
+    "eligible_no_op_tasks": 229,
+    "different_delivery_no_op_tasks": 0,
+    "interpretation": "Constructive no-op invariant; support-preserving redundancy is separately measured in support_flow."
+  },
+  {
+    "post": "dense_p64_m3_post2_b2048_prefix_prefix128_dprefix512_polnone",
+    "pre": "dense_p64_m3_pre2_b2048_prefix_prefix128_dprefix512_polnone",
+    "eligible_no_op_tasks": 229,
+    "different_delivery_no_op_tasks": 0,
+    "interpretation": "Constructive no-op invariant; support-preserving redundancy is separately measured in support_flow."
+  },
+  {
+    "post": "dense_p64_m3_post2_b2048_prefix_window512_dprefix512_polnone",
+    "pre": "dense_p64_m3_pre2_b2048_prefix_window512_dprefix512_polnone",
+    "eligible_no_op_tasks": 229,
+    "different_delivery_no_op_tasks": 0,
+    "interpretation": "Constructive no-op invariant; support-preserving redundancy is separately measured in support_flow."
+  },
+  {
+    "post": "dense_p64_m3_post2_b2048_prefix_prefix512_dprefix512_polpre_retrieve",
+    "pre": "dense_p64_m3_pre2_b2048_prefix_prefix512_dprefix512_polpre_retrieve",
+    "eligible_no_op_tasks": 229,
+    "different_delivery_no_op_tasks": 0,
+    "interpretation": "Constructive no-op invariant; support-preserving redundancy is separately measured in support_flow."
+  },
+  {
+    "post": "dense_p64_m3_post2_b2048_prefix_prefix512_dprefix512_polpost_retrieve",
+    "pre": "dense_p64_m3_pre2_b2048_prefix_prefix512_dprefix512_polpost_retrieve",
+    "eligible_no_op_tasks": 229,
+    "different_delivery_no_op_tasks": 0,
+    "interpretation": "Constructive no-op invariant; support-preserving redundancy is separately measured in support_flow."
+  },
+  {
+    "post": "dense_p64_m3_post2_b2048_prefix_prefix512_dprefix512_polpost_rerank",
+    "pre": "dense_p64_m3_pre2_b2048_prefix_prefix512_dprefix512_polpost_rerank",
+    "eligible_no_op_tasks": 229,
+    "different_delivery_no_op_tasks": 0,
+    "interpretation": "Constructive no-op invariant; support-preserving redundancy is separately measured in support_flow."
+  },
+  {
+    "post": "dense_p16_m3_post2_b2048_prefix_prefix512_dprefix512_polnone",
+    "pre": "dense_p16_m3_pre2_b2048_prefix_prefix512_dprefix512_polnone",
+    "eligible_no_op_tasks": 377,
+    "different_delivery_no_op_tasks": 0,
+    "interpretation": "Constructive no-op invariant; support-preserving redundancy is separately measured in support_flow."
+  }
+]

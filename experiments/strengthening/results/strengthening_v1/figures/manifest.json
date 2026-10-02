@@ -1,0 +1,30 @@
+{
+  "status": "complete",
+  "figures_code_sha256": "d577e9ad45b5a10851967cf76c45b56a975a1ed77fc38dd8d4a1cafe6ea6a591",
+  "source_csv_sha256": {
+    "answer_contrasts.csv": "ebcf9cd04ab440444e6800f3bb3a76d6269909f9d0082ebd45a823bae07f2e7b",
+    "answers/per_answer.csv": "3e266b08be026dac423d56bc780beb8ca048157dbc995de831e73dac85d6d755",
+    "exploratory_contrasts.csv": "0f33df8b89db2282da464e9e4bb477d5976559fa54c72a7eaf41f910310ec9d1",
+    "per_record.csv": "c574c4b707d011be99b7bc39fa5dd765b0c44e0a759c68902eb4a0cb8368bbb0",
+    "primary_contrasts.csv": "90baadb4c3428bcd5def4608820716755073624681bbbca4ff1852687f264013",
+    "timing/summary.csv": "2b6ce8a5a54e778b2912d6d792f22b26df515df45d8a0ddc3760d69bf58a847a",
+    "timing_world_contrasts.csv": "81d79c6303234914e34f350ca00c0b393edbb93708c2df1cac79d34620768807"
+  },
+  "figure_sha256": {
+    "budget_and_mechanisms.pdf": "ff2f2db31e71e78b4778401e51bd4c16d4132a44937c11fb7f9d55160701a933",
+    "budget_and_mechanisms.png": "ba47dc6a5d9c8a018a6f6765f81401cc49e522fa03d30e94e1d3046c2e402ff1",
+    "support_and_source.pdf": "b233f27208397535898ef62a74b9d0ae7358171177873774d448f62dfddec4eb",
+    "support_and_source.png": "5c7bafef4a0570e2b19008242ef98fc4c672da4d93e3f98aecae0cbb1252bda7",
+    "visibility_packing_policy.pdf": "1976068ee95a8533cbe87d8348fd0d7285e02c499addf462b0d6da574a2526c1",
+    "visibility_packing_policy.png": "eca9689b99ff9f1af29e5358a005f118aa78e511184178cf06f2614541470fd1",
+    "answers_and_timing.pdf": "d7509b7c71b30fe1390b7108e10ab4d0f0ac91484c99a2804fb33dcd8953b300",
+    "answers_and_timing.png": "9f90136dffe5f0569f95f7d4b45469172849cc342d46adb51b489cf7d1fe4f06"
+  },
+  "captions": {
+    "budget_and_mechanisms": "Test-world means under the designed mixture. QA is an unseen rendering family on held-out worlds, not a within-world template intervention. Upper panels retain all four budgets, including the null primary result at 512 tokens. Lower panels show conditional post-minus-pre differences at the other prespecified primary budget, 2048 tokens; printed zeros are rounded descriptive estimates, not equivalence claims.",
+    "support_and_source": "Full-set membership is scored before the final budget stage. Pure sorting preserves membership, and source-policy filtering is disabled in this matched comparison. The joint G/U shares average paired variants within each world; designated-source retention and complete fact coverage are distinct endpoints.",
+    "visibility_packing_policy": "Fixed matched submatrices: packing and CE-view contrasts use post cap2, dense-view contrasts use no cap. Policy panel includes constrained tasks only; empty outputs count as noncompliant. The three filter placements have coincident aggregate coordinates at each budget. Points/bars are descriptive world means; no per-task independence or inferential interval is implied.",
+    "answers_and_timing": "Actual local answer-model outputs and online requests. Confidence bars come from exploratory seed-stratified paired-world analysis. Latency p50/p95 summarize measured requests; the interval panel first averages repetitions within each world. These are fictional administrative tasks, not clinical validation."
+  },
+  "human_semantic_audit_complete": false
+}

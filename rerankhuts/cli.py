@@ -65,7 +65,8 @@ def commands_for(name: str, extra: list[str]) -> list[list[str]]:
     if name == "tables":
         return [["scripts/check_frozen_files.py"],
                 ["paper/build_e3_table.py", E3_RUN],
-                ["paper/build_simulation_table.py", SIM_RESULTS]]
+                ["paper/build_simulation_table.py", SIM_RESULTS],
+                ["paper/build_strengthening_table.py"]]
     if name in {"analyze-e3", "interactions-e3"}:
         script = (["scripts/analyze_factorial.py"] if name == "analyze-e3" else
                   ["-m", "experiments.analyze_factorial"])

@@ -1,8 +1,8 @@
 {
-  "release_date": "2026-09-28",
+  "release_date": "2026-10-02",
   "target_repository": "https://github.com/YuZhengYYDS/rerankhuts",
-  "publication_status": "public_artifact_pending_private_repository_delivery",
-  "paper_status": "rewritten_submission_manuscript_with_requested_overview_placeholder",
+  "publication_status": "private_repository_delivery",
+  "paper_status": "revised_manuscript_with_completed_automated_strengthening_and_requested_overview_placeholder",
   "E0": {
     "status": "completed",
     "logs": 47,
@@ -30,8 +30,12 @@
     "status": "pending_independent_external_workload"
   },
   "E5": {
-    "status": "partial_component_cost_measurements",
-    "production_load_benchmark": false
+    "status": "representative_independent_online_requests_completed",
+    "requests": 576,
+    "worlds": 24,
+    "warmup_requests_excluded": 8,
+    "production_load_benchmark": false,
+    "scope": "Resident models and indexes; retrieval, reranking, packing and trace construction; excludes initialization, generation and serialization"
   },
   "environment": {
     "manager": "pixi",
@@ -44,9 +48,9 @@
   },
   "no_paid_API_calls_in_new_experiment": true,
   "verification": {
-    "automated_tests_passed": 134,
+    "automated_tests_passed": 233,
     "automated_tests_skipped": 1,
-    "test_environment": "pixi gpu on win-64; one source-symlink creation test skipped due to Windows privilege restrictions",
+    "test_environment": "Full suite in the Pixi gpu environment on win-64; CUDA hidden from pytest; one source-symlink test skipped for Windows privilege restrictions",
     "original_protocol_and_oracle_tests_passed": 73,
     "code_cleanup_checks": "validation/code_cleanup_checks.json",
     "e3_integrity_records_checked": 3100,
@@ -56,10 +60,12 @@
     "simulation_resume_verified": true,
     "simulation_independent_audit": "validation/simulation_audit.json",
     "manuscript_checks": "validation/manuscript_checks.json",
-    "simulation_endpoint_pairs": "validation/simulation_endpoint_pairs.json"
+    "simulation_endpoint_pairs": "validation/simulation_endpoint_pairs.json",
+    "test_report": "validation/strengthening_tests_20261002.xml",
+    "strengthening_completion": "validation/strengthening_completion.json"
   },
   "repository_visibility": "private",
-  "paper_pages_including_references": 9,
+  "paper_pages_including_references": 13,
   "controlled_simulation": {
     "status": "completed",
     "dataset_revision": 2,
@@ -125,5 +131,36 @@
       "Author review of final manuscript and AI disclosure"
     ],
     "author_roles_confirmed": true
+  },
+  "paper_body_pages": 12,
+  "strengthening_study": {
+    "status": "all_automated_experiment_stages_completed",
+    "data_revision": "strengthening_v1",
+    "worlds": 360,
+    "dev_worlds": 60,
+    "test_worlds": 300,
+    "held_out_qa_document_worlds": 150,
+    "tasks": 720,
+    "chunks": 57600,
+    "configurations": 124,
+    "records": 89280,
+    "answers": 720,
+    "answer_worlds": 60,
+    "timed_requests": 576,
+    "timing_worlds": 24,
+    "primary_post_minus_pre_512": 0.0,
+    "primary_post_minus_pre_2048": 0.02,
+    "human_semantic_audit_complete": false,
+    "external_real_world_replication": false,
+    "study_plan": "experiments/strengthening/study_plan.json",
+    "results": "experiments/strengthening/results/strengthening_v1",
+    "guide": "docs/STRENGTHENING_GUIDE.md"
+  },
+  "github_delivery": {
+    "baseline_commit": "74a63e2a586af8ee697ca800bd379fe4dd4c5064",
+    "verified_core_commit": "d39a53b406cf1228fdb3ea1916c61feba091ba01",
+    "release_tag": "icde2027-strengthening-20261002",
+    "verification": "Final remote asset sizes and SHA-256 recorded separately in the delivery receipt",
+    "public_access_established": false
   }
 }

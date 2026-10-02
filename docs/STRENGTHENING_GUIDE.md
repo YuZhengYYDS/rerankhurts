@@ -1,6 +1,6 @@
 # 扩展实验的运行、复核与结果读取
 
-本指南对应 `strengthening_v1`。实验研究虚构行政档案中的来源集中度、评分可见范围和证据打包机制；不是临床数据验证。数据先生成并独立审计，再按冻结配置执行模型。当前是否完成，以各目录的 `status.json` 和完整性检查为准；下文的规模是固定的预期规模，不代替运行状态。
+本指南对应 `strengthening_v1`。实验研究虚构行政档案中的来源集中度、评分可见范围和证据打包机制；不是临床数据验证。数据先生成并独立审计，再按冻结配置执行模型。2026-10-02四阶段自动化部分已完成：89,280条主推断及独立评分记录、720个实际模型回答、576个在线请求测量，另有8次warm-up不计入结果。各步骤分别记录 `complete`；复核仍应检查相应 `status.json`、来源哈希与完整性。
 
 所有命令从仓库根目录执行。先从 [Pixi 官方文档](https://pixi.sh/latest/installation/) 安装 Pixi 并使 `pixi` 可在终端调用；使用仓库中的 `pixi.toml`、`pixi.lock`，不要将本机 `.pixi/` 复制给其他机器。代码和模型缓存可放在带空格或中文的路径中。
 
@@ -20,7 +20,7 @@ pixi run --locked test
 python scripts/check_strengthening_files.py --require-complete
 ```
 
-在实验仍进行时可使用 `--allow-in-progress`；其 `PENDING` 只表示存在未完成步骤，不是实验完成声明。离线完整性通过也不等于人工语义审计通过。
+在新的复现尚未结束时可使用 `--allow-in-progress`；其 `PENDING` 只表示存在未完成步骤，不是实验完成声明。离线完整性通过也不等于人工语义审计通过。
 
 ## 固定的数据与独立单位
 
@@ -84,7 +84,7 @@ pixi run --locked python -m experiments.strengthening.figures --results build/re
 pixi run --locked strengthen-verify --run build/reproduction/strengthening_run --results build/reproduction/strengthening_results --require-complete
 ```
 
-完整推断矩阵有 **124 个定向配置**，预期 `720 × 124 = 89,280` 条记录，包含 28 个主预算/cap 格子和预先选定的机制、模型、来源策略子矩阵；它不是所有因素的完整笛卡尔积。精确配置见 `experiments/strengthening/protocol.py` 和 run 的 `manifest.json`。
+完整推断矩阵有 **124 个定向配置**，已完成 `720 × 124 = 89,280` 条记录，包含 28 个主预算/cap 格子和预先选定的机制、模型、来源策略子矩阵；它不是所有因素的完整笛卡尔积。精确配置见 `experiments/strengthening/protocol.py` 和 run 的 `manifest.json`。
 
 `strengthen-run` 按题写入压缩轨迹，可在身份一致时使用原命令续跑。`--limit 2` 只用于 smoke，输出必须另选目录，状态保留完整分母并标为 partial。对这样的 smoke 做评估时显式加入 `--allow-partial`；分析程序拒绝把 partial 当成完整研究结果。
 
@@ -131,6 +131,8 @@ pixi run --locked strengthen-analyze --results build/reanalysis/strengthening --
 - `analysis.json`、`figures/manifest.json`：分析设置、源文件哈希、图文件哈希与图注；图同时输出 PDF/PNG。
 
 人工语义审计仍是 **pending**。`data/strengthening_v1/audit/` 下提供了 60 个世界的盲于模型配置/结果的审核包和两位独立 reviewer 的空表。自动 parser、单元测试、哈希校验和模型回答均不能冒充真人审核。真正完成时需保存独立填写、分歧及处理记录，而不是把空表状态改成通过。
+
+独立的外部真实场景复现尚未完成。基线和扩展核心已推送并核验至私有GitHub仓库，交付包下载入口为 [icde2027-strengthening-20261002 Release](https://github.com/YuZhengYYDS/rerankhuts/releases/tag/icde2027-strengthening-20261002)，发布状态以该页实际附件及上传校验回执为准。仓库保持private；为ICDE EAB提供公开可访问artifact仍属单独的提交准备。
 
 旧 `experiments/runs/e3_m3/`、`experiments/simulation/data/pilot_v2/`、`experiments/runs/simulation_pilot_v2/` 和旧结果保持原版本。`legacy_null_audit.json` 只是从旧保存结果重算 pre/post 差异，不是重新运行旧模型，也不允许用新世界结果覆盖原有零效应、并列或反向选择结果。
 

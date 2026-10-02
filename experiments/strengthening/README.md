@@ -2,6 +2,8 @@
 
 This directory implements the prospectively specified experiments in [study_plan.json](study_plan.json). It contains a new synthetic workload and separate inference, evidence evaluation, answer generation, and latency measurement. Earlier replay and pilot data, code, and results remain separate. This document describes the design and commands; it does not report experimental outcomes.
 
+As of 2026-10-02, the automated portions of all four phases are complete: 89,280 main inference records and independent evidence evaluations, 720 actual model answers, and 576 online request measurements, with eight warm-ups excluded. Each stage has its own completed status record. The 60-world human review remains pending, and external real-world replication has not been performed. The baseline and strengthening core are verified in the private repository; the four delivery archives use this [Release download location](https://github.com/YuZhengYYDS/rerankhuts/releases/tag/icde2027-strengthening-20261002). Its assets and upload verification receipt determine publication status. Private delivery does not complete the separate EAB requirement for openly accessible artifacts.
+
 ## Data and independent units
 
 The frozen dataset is [data/strengthening_v1](data/strengthening_v1). Seeds `20261002`, `20261003`, and `20261004` each generate 20 development and 100 test worlds: **360 independent worlds**, with **720 paired tasks** and **57,600 chunks**. Each task searches its own 80-chunk tenant collection. A latent world, including both variants, belongs to exactly one split. Statistical inference uses worlds, not chunks, tasks, or configurations as independent observations.

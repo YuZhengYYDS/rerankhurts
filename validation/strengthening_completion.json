@@ -1,0 +1,69 @@
+{
+  "status": "AUTOMATED_EXPERIMENTS_COMPLETE",
+  "scope": "Four scheduled phases executed locally ahead of their proposed dates",
+  "phase_1": {
+    "completed": [
+      "Prospectively frozen specification and two primary comparisons",
+      "Independent semantic text parser",
+      "Group-disjoint dev/test and held-out document rendering"
+    ],
+    "remaining": [
+      "Two genuine human reviewers for the 60-world audit packet"
+    ]
+  },
+  "phase_2": {
+    "completed": [
+      "89,280 actual inference records",
+      "URL-only paired interventions",
+      "Budget/packing/visibility mechanism measurements",
+      "Constructive no-op and redundant support checks"
+    ]
+  },
+  "phase_3": {
+    "completed": [
+      "Second cross-encoder and three retrieval strategies",
+      "720 actual answers with closed-book and wrong-world evidence",
+      "Explicit source-filter placement",
+      "576 independently executed requests plus 8 excluded warm-ups"
+    ]
+  },
+  "phase_4": {
+    "completed": [
+      "Revised manuscript",
+      "Four new scientific multipanel figures and verified tables",
+      "Locked Pixi environments",
+      "Full, paper, code and results archive workflow"
+    ],
+    "remaining": [
+      "User-requested Overview illustration space",
+      "Public artifact access before EAB submission",
+      "Author ORCIDs and submission-system metadata",
+      "Final author review"
+    ]
+  },
+  "not_claimed": [
+    "Human sufficiency or human answer review",
+    "Clinical utility",
+    "External real-world replication",
+    "Production service throughput or cold-start timing"
+  ],
+  "no_paid_API_calls": true,
+  "test_counts": {
+    "passed": 233,
+    "skipped": 1
+  },
+  "hashes": {
+    "experiments/strengthening/study_plan.json": "074b840e66408deeb7dce116a83245bf5fd3213e20137559c5fc96fc3b4afb0a",
+    "experiments/strengthening/data/strengthening_v1/specification.json": "90daa40eec2c4603bebb5918f1e77b21b7d59f9df659edb55deb84d793b8143b",
+    "experiments/strengthening/data/strengthening_v1/audit/report.json": "906887a3cf11b662994570b60c837b8e38986e4b5ddc245c5240f179ab7d01e6",
+    "experiments/runs/strengthening_v1/manifest.json": "70188a50c99625c1895d9b26f05b7a3f0bb4ca42078a2ca81775e95cfdf1e317",
+    "experiments/runs/strengthening_v1/status.json": "9aa984433ec8da4578b0cb5eddb0e07efbdb99ea980dedffbfebf9d0afc17bae",
+    "experiments/strengthening/results/strengthening_v1/status.json": "48171ef34628a926400807471ecbdcba4b29a1631bdfc7887f398666224a3774",
+    "experiments/strengthening/results/strengthening_v1/answers/status.json": "f2f8b387cad00a2850edbe55412dd4753f237c4f0c539ba59b7878bbe4b89a68",
+    "experiments/strengthening/results/strengthening_v1/timing/status.json": "7c2fbc8ca5c77f057d896f7b56f6892872a2d13f2bef06c8e1ff997f06b8f877",
+    "experiments/strengthening/results/strengthening_v1/analysis.json": "d3d45527aab55e51f1e07acf5eb26022d823c2f63f15d82c551de66b06857690",
+    "experiments/strengthening/results/strengthening_v1/figures/manifest.json": "995937f87ae9578c62e1d1970228e8a91d253fea38495994ec880d9735c8850c",
+    "paper/build_manifest.json": "9e0accacc578971895661ec46f9cedca41b27997b6590aa3b3045158d1c4c1d0",
+    "validation/strengthening_tests_20261002.xml": "4afc96e45d8d58112478a8edaeb88685f176f53f1409dcf761dce8ba49fe29fb"
+  }
+}
