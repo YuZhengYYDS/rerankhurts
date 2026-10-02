@@ -37,6 +37,15 @@ COMMANDS = {
     "package": "Build full/paper archives; --split adds code/results archives.",
     "verify-package": "Validate archive paths, hashes and payload membership (offline).",
     "test": "Run the test suite in the current Pixi environment.",
+    "strengthen-models": "Download/verify immutable local model snapshots (GPU environment).",
+    "strengthen-generate": "Generate the frozen 360-world strengthening workload.",
+    "strengthen-audit": "Independently parse and audit the new synthetic data (offline).",
+    "strengthen-run": "Run/resume the 124-configuration strengthening experiment (GPU).",
+    "strengthen-evaluate": "Independently score delivered spans from strengthening traces (GPU dependencies).",
+    "strengthen-analyze": "Compute world-level contrasts and summaries for strengthening results.",
+    "strengthen-answers": "Run the actual local answer model and evidence controls (GPU).",
+    "strengthen-timing": "Measure complete online requests without reused query/pair scores (GPU).",
+    "strengthen-verify": "Verify strengthening data, traces, answers and timing without models (offline).",
 }
 COMPOSITE = {"verify", "tables", "analyze-e3", "interactions-e3"}
 
@@ -74,6 +83,15 @@ def commands_for(name: str, extra: list[str]) -> list[list[str]]:
         "package": ["scripts/package_release.py"],
         "verify-package": ["scripts/verify_release.py"],
         "test": ["-m", "pytest", "tests", "-q"],
+        "strengthen-models": ["-m", "experiments.strengthening.download_models"],
+        "strengthen-generate": ["-m", "experiments.strengthening.generate"],
+        "strengthen-audit": ["-m", "experiments.strengthening.audit_data"],
+        "strengthen-run": ["-m", "experiments.strengthening.backend"],
+        "strengthen-evaluate": ["-m", "experiments.strengthening.evaluate"],
+        "strengthen-analyze": ["-m", "experiments.strengthening.analyze"],
+        "strengthen-answers": ["-m", "experiments.strengthening.downstream"],
+        "strengthen-timing": ["-m", "experiments.strengthening.timing"],
+        "strengthen-verify": ["scripts/check_strengthening_files.py"],
     }
     return [plans[name] + extra]
 
