@@ -3,14 +3,15 @@
 ## 论文
 
 `paper/main.tex` 是当前稿件源文件，`paper/main.pdf` 是最近一次通过构建检查的PDF；
-扩展实验已经完成，论文输入与最终编译须对应同一组已核验结果。`authors.tex` 记录 Zheng Yu 为第一作者、
-Jingbang Chen 为通讯作者，第二页保留 Overview 图片位置。页数以最终构建报告为准，
-正文最多12页，参考文献与AI内容致谢不计入。
+2026-10-13重构以360世界研究作为主研究；本次没有重跑实验，也未改变计算代码、数据或统计结果，
+表格生成器仅调整表注文字。`authors.tex` 记录 Zheng Yu 为第一作者、Jingbang Chen 为通讯作者，
+第二页保留 Overview 图片位置。当前构建为10页正文、11页总计，精确身份与页数见构建报告；
+官方限制仍为正文最多12页，参考文献与AI内容致谢不计入。
 
 ## 扩展实验：360个世界、720任务 × 124配置
 
 完整流程与指标说明见 [STRENGTHENING_GUIDE.md](STRENGTHENING_GUIDE.md)，
-研究设计见 [模块说明](../experiments/strengthening/README.md)。2026-10-02当前状态：
+研究设计见 [模块说明](../experiments/strengthening/README.md)。2026-10-02实验完成状态：
 四阶段自动化部分已完成：89,280条主推断及独立评分记录、720个实际回答、576个正式计时请求。
 计时另有8次warm-up不计入结果；主推断、评分、回答和计时分别记录 `complete`。
 
@@ -35,9 +36,11 @@ Jingbang Chen 为通讯作者，第二页保留 Overview 图片位置。页数�
 - `timing/`：24测试世界、每世界一个变体、四配置的96个first-pass和480个steady测量；8次warm-up不计入。
 - `analysis.json`、`figures/manifest.json`：统计设置、输入身份和图文件来源。
 
-`paper/strengthening.tex` 引用 `paper/generated/strengthening_methods.tex` 与
-`paper/generated/strengthening_results.tex`。方法与预期规模不代替结果；正文结论应取自
-完整评估、世界级统计和经核验的图表。新增结果与旧E3、`pilot_v2` 使用不同目录。
+`paper/main.tex` 在 Benchmark and Experimental Design 中直接引用
+`paper/generated/strengthening_methods.tex`；`paper/strengthening.tex` 只包含主结果章节，
+引用 `paper/generated/strengthening_results.tex`。主结果之后依次是肿瘤语料与pilot的背景证据、
+讨论、相关工作和结论。正文结论对应完整评估、世界级统计和经核验的图表；
+主研究与旧E3、`pilot_v2` 使用不同目录。
 
 ```text
 # 新复现尚未结束时可使用的检查，不将PENDING当作完成
@@ -114,7 +117,7 @@ pixi run --locked strengthen-analyze --results build/reanalysis/strengthening --
 结果分包包含新结果、主轨迹、研究计划和扩展指南，完整包另含全部输入数据。
 
 基线和扩展核心版本已经推送并核验至 [私有GitHub仓库](https://github.com/YuZhengYYDS/rerankhuts)。
-[Release下载入口](https://github.com/YuZhengYYDS/rerankhuts/releases/tag/icde2027-strengthening-20261002)
-的发布状态以实际附件及上传校验回执为准，与已完成的实验状态分别核验。
+本次论文重构的交付包对应[icde2027-restructured-20261013下载入口](https://github.com/YuZhengYYDS/rerankhuts/releases/tag/icde2027-restructured-20261013)
+的发布状态以实际附件及上传校验回执为准，与2026-10-02已完成的实验状态分别核验。
 60世界人工审核与外部真实场景复现仍未完成；私有交付也不等于满足EAB开放artifact要求，
 提交准备仍需公开可访问的复现地址。

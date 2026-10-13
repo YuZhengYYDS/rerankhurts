@@ -63,7 +63,10 @@
     "experiments/strengthening/results/strengthening_v1/timing/status.json": "7c2fbc8ca5c77f057d896f7b56f6892872a2d13f2bef06c8e1ff997f06b8f877",
     "experiments/strengthening/results/strengthening_v1/analysis.json": "d3d45527aab55e51f1e07acf5eb26022d823c2f63f15d82c551de66b06857690",
     "experiments/strengthening/results/strengthening_v1/figures/manifest.json": "995937f87ae9578c62e1d1970228e8a91d253fea38495994ec880d9735c8850c",
-    "paper/build_manifest.json": "9e0accacc578971895661ec46f9cedca41b27997b6590aa3b3045158d1c4c1d0",
+    "paper/build_manifest.json": "8c805e95102c3d52881564320ddabbc8152444a5891bff20870bc684b944f1d1",
     "validation/strengthening_tests_20261002.xml": "4afc96e45d8d58112478a8edaeb88685f176f53f1409dcf761dce8ba49fe29fb"
-  }
+  },
+  "experiment_completion_date": "2026-10-02",
+  "manuscript_revision_date": "2026-10-13",
+  "manuscript_revision_scope": "Narrative and layout restructuring; no experiment or full test-suite rerun"
 }

@@ -3,6 +3,12 @@
 This project implements the user's ICDE/VLDB adaptation memorandum. The memorandum
 is a research design, not a record of completed experiments.
 
+The 2026-10-13 manuscript restructuring presents the 360-world study as the main
+experiment, followed by oncology and pilot evidence as context. It does not rerun
+experiments or change computational code, experimental data, or statistical
+results; the table-builder adjustment changes caption wording only. Automated
+experiment completion remains dated 2026-10-02.
+
 ## E0: frozen-output reproducibility
 
 Recompute historical ranking and final-page-retention metrics from the released
@@ -110,8 +116,9 @@ Input/run/result paths, exact commands and completion gates are documented in
 ## Delivery and submission preparation
 
 The baseline and strengthening core have been pushed to and verified in the
-designated private GitHub repository. The final delivery destination is
-[icde2027-strengthening-20261002](https://github.com/YuZhengYYDS/rerankhuts/releases/tag/icde2027-strengthening-20261002).
+designated private GitHub repository. The restructured manuscript delivery is
+being prepared at
+[icde2027-restructured-20261013](https://github.com/YuZhengYYDS/rerankhuts/releases/tag/icde2027-restructured-20261013).
 Publication status is established by the actual release assets and upload
 verification receipt. Visibility remains private. This delivery is separate
 from preparing the openly accessible reproducibility artifacts required for

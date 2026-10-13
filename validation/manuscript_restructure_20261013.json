@@ -1,0 +1,61 @@
+{
+  "status": "PASS",
+  "date": "2026-10-13",
+  "baseline_commit": "36863f5ce0396137f42ec60d7a303c04465282ac",
+  "baseline_payload_files_checked": 2139,
+  "frozen_non_manuscript_members_byte_identical": 2099,
+  "frozen_experiments_and_results_unchanged": true,
+  "model_experiments_rerun": false,
+  "full_test_suite_rerun": false,
+  "prior_full_test_suite_date": "2026-10-02",
+  "table_comparison": {
+    "generated/strengthening_table.tex": {
+      "rows_including_headers": 14,
+      "identical": true
+    },
+    "generated/e3_results.tex": {
+      "rows_including_headers": 21,
+      "identical": true
+    },
+    "generated/simulation_results.tex": {
+      "rows_including_headers": 5,
+      "identical": true
+    }
+  },
+  "preserved_paper_files": [
+    "authors.tex",
+    "references.bib",
+    "IEEEtran.cls",
+    "IEEEtran.bst",
+    "figures/answers_and_timing.pdf",
+    "figures/budget_and_mechanisms.pdf",
+    "figures/G_factorial.pdf",
+    "figures/selection_comparison.pdf",
+    "figures/support_and_source.pdf",
+    "figures/visibility_packing_policy.pdf"
+  ],
+  "paper_sha256": {
+    "main.tex": "88350d160be768eed5c0b5c65b44796e90ddbad1ee2de6856b56e8df520bec25",
+    "authors.tex": "1999042e282551f808209ab1ccc3937e64ce44904650ecaf62ada8272a62d027",
+    "references.bib": "5d7e845d2f9752fb2114f26188ebd7c15f6d098e05d046e4254a27705a07fbb4",
+    "main.pdf": "2e128c0adc652e629cd03b71322da44e0373d2ac0f5b45bfbccf107028425060",
+    "build_manifest.json": "8c805e95102c3d52881564320ddabbc8152444a5891bff20870bc684b944f1d1"
+  },
+  "page_check": {
+    "total_pages": 11,
+    "body_pages": 10,
+    "exempt_material_starts_page": 11,
+    "body_page_limit": 12,
+    "policy": "https://icde2027.github.io/submission-guidelines.html"
+  },
+  "overview_page": 2,
+  "all_final_pages_visually_reviewed": true,
+  "validation": [
+    "Independent numerical and narrative review",
+    "Frozen payload SHA-256 comparison",
+    "Unchanged numerical table rows",
+    "Fresh Pixi paper build with source/output identities",
+    "Poppler render of every final page and visual review"
+  ],
+  "publication_verification": "Recorded separately after archive creation and GitHub upload to avoid a self-referential payload hash"
+}

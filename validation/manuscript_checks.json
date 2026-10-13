@@ -1,9 +1,9 @@
 {
   "status": "passed",
-  "checked_date": "2026-10-02",
-  "page_count": 13,
-  "body_page_count": 12,
-  "exempt_material_starts_page": 13,
+  "checked_date": "2026-10-13",
+  "page_count": 11,
+  "body_page_count": 10,
+  "exempt_material_starts_page": 11,
   "page_limit_policy": "https://icde2027.github.io/submission-guidelines.html",
   "overview_page": 2,
   "overview_height_cm": 4.1,
@@ -18,21 +18,22 @@
   "unresolved_reference_markers": false,
   "undefined_references": false,
   "overfull_boxes": false,
-  "visual_review": "All 13 pages rendered with Poppler and reviewed in page contact sheets; pages 1, 2, 8, 12 and 13 inspected individually for authors, Overview space, tables, answer/latency plot and bibliography. All four scientific figure PNGs also reviewed.",
+  "visual_review": "All 11 final pages rendered with Poppler and reviewed in contact sheets; final pages 10 and 11 inspected individually for conclusion, AI disclosure and bibliography. Pages 1 and 2 were also checked for the unchanged title, authors and page-2 Overview space.",
   "source_matches_compiler_staging": true,
   "build_identity": "paper/build_manifest.json",
   "sha256": {
-    "main.tex": "508ed3970482fce27bfb7e89153dd40bb8b5f7753691bc958f05ca0aa26e4911",
+    "main.tex": "88350d160be768eed5c0b5c65b44796e90ddbad1ee2de6856b56e8df520bec25",
     "authors.tex": "1999042e282551f808209ab1ccc3937e64ce44904650ecaf62ada8272a62d027",
     "references.bib": "5d7e845d2f9752fb2114f26188ebd7c15f6d098e05d046e4254a27705a07fbb4",
-    "main.pdf": "a0720a54bbf0c64bde41cf2adce80d851b6a8e5ce84c58a2b3cbadb8e103dc33",
-    "build_manifest.json": "9e0accacc578971895661ec46f9cedca41b27997b6590aa3b3045158d1c4c1d0"
+    "main.pdf": "2e128c0adc652e629cd03b71322da44e0373d2ac0f5b45bfbccf107028425060",
+    "build_manifest.json": "8c805e95102c3d52881564320ddabbc8152444a5891bff20870bc684b944f1d1"
   },
   "compiler_warnings": [
     "Tectonic 0.15.0 bibliography change-detection consistency warning and six-pass stopping notice; all 18 references resolve in the PDF",
-    "Underfull text boxes in two paragraphs; no overfull boxes or visual clipping"
+    "Underfull text boxes at five paragraph locations; no overfull boxes or visual clipping"
   ],
   "remaining_intentional_placeholder": "Overview graphic, requested by user",
-  "github_upload_status": "Baseline and core pushed and byte-verified; this final paper is included in the release payload, whose external delivery receipt records publication separately",
-  "scientific_audit": "Core mechanism claims and downstream/timing statistics independently reviewed against saved outputs; human review is not represented as complete"
+  "github_upload_status": "This paper is included in the new release payload; publication and remote asset hashes are recorded separately in the external delivery receipt",
+  "scientific_audit": "Independent prose and numerical review plus byte comparison against the prior published payload; no experiment rerun or new human review is claimed",
+  "page_limit_policy_checked_date": "2026-10-13"
 }

@@ -1,8 +1,8 @@
 {
-  "release_date": "2026-10-02",
+  "release_date": "2026-10-13",
   "target_repository": "https://github.com/YuZhengYYDS/rerankhuts",
   "publication_status": "private_repository_delivery",
-  "paper_status": "revised_manuscript_with_completed_automated_strengthening_and_requested_overview_placeholder",
+  "paper_status": "restructured_manuscript_with_verified_frozen_results_and_requested_overview_placeholder",
   "E0": {
     "status": "completed",
     "logs": 47,
@@ -62,10 +62,12 @@
     "manuscript_checks": "validation/manuscript_checks.json",
     "simulation_endpoint_pairs": "validation/simulation_endpoint_pairs.json",
     "test_report": "validation/strengthening_tests_20261002.xml",
-    "strengthening_completion": "validation/strengthening_completion.json"
+    "strengthening_completion": "validation/strengthening_completion.json",
+    "automated_test_run_date": "2026-10-02",
+    "manuscript_restructure": "validation/manuscript_restructure_20261013.json"
   },
   "repository_visibility": "private",
-  "paper_pages_including_references": 13,
+  "paper_pages_including_references": 11,
   "controlled_simulation": {
     "status": "completed",
     "dataset_revision": 2,
@@ -130,9 +132,27 @@
       "Establish public artifact access",
       "Author review of final manuscript and AI disclosure"
     ],
-    "author_roles_confirmed": true
+    "author_roles_confirmed": true,
+    "date": "2026-10-13",
+    "writing_skill": "anti-defensive-writing",
+    "contribution": "Stage-resolved evidence measurements expose source retention that conceals incomplete delivered fact coverage",
+    "argument_order": [
+      "Problem and principal finding",
+      "Measurement framework",
+      "Benchmark and experimental design",
+      "Mechanism, transfer, answer and cost evidence",
+      "Related workloads",
+      "Implications and scope",
+      "Related work",
+      "Conclusion"
+    ],
+    "experiment_results_unchanged": true,
+    "model_experiments_rerun": false,
+    "numerical_table_rows_unchanged": true,
+    "body_pages_before": 12,
+    "body_pages_after": 10
   },
-  "paper_body_pages": 12,
+  "paper_body_pages": 10,
   "strengthening_study": {
     "status": "all_automated_experiment_stages_completed",
     "data_revision": "strengthening_v1",
@@ -159,8 +179,10 @@
   "github_delivery": {
     "baseline_commit": "74a63e2a586af8ee697ca800bd379fe4dd4c5064",
     "verified_core_commit": "d39a53b406cf1228fdb3ea1916c61feba091ba01",
-    "release_tag": "icde2027-strengthening-20261002",
-    "verification": "Final remote asset sizes and SHA-256 recorded separately in the delivery receipt",
-    "public_access_established": false
-  }
+    "release_tag": "icde2027-restructured-20261013",
+    "verification": "Remote commit, release asset sizes and SHA-256 will be recorded in github_delivery_verified_20261013.json outside the payload",
+    "public_access_established": false,
+    "previous_release_commit": "36863f5ce0396137f42ec60d7a303c04465282ac"
+  },
+  "experiment_completion_date": "2026-10-02"
 }

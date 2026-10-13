@@ -2,6 +2,8 @@
 
 本指南对应 `strengthening_v1`。实验研究虚构行政档案中的来源集中度、评分可见范围和证据打包机制；不是临床数据验证。数据先生成并独立审计，再按冻结配置执行模型。2026-10-02四阶段自动化部分已完成：89,280条主推断及独立评分记录、720个实际模型回答、576个在线请求测量，另有8次warm-up不计入结果。各步骤分别记录 `complete`；复核仍应检查相应 `status.json`、来源哈希与完整性。
 
+2026-10-13论文重构将该研究作为主研究，`main.tex` 在 Benchmark and Experimental Design 中直接载入方法，`strengthening.tex` 仅载入主结果。此次修改没有重跑实验，计算代码、数据和统计结果不变，表格生成器仅调整表注文字；下面的流程仍对应10月2日完成的冻结实验。
+
 所有命令从仓库根目录执行。先从 [Pixi 官方文档](https://pixi.sh/latest/installation/) 安装 Pixi 并使 `pixi` 可在终端调用；使用仓库中的 `pixi.toml`、`pixi.lock`，不要将本机 `.pixi/` 复制给其他机器。代码和模型缓存可放在带空格或中文的路径中。
 
 ## 先验证已有交付包
@@ -132,7 +134,7 @@ pixi run --locked strengthen-analyze --results build/reanalysis/strengthening --
 
 人工语义审计仍是 **pending**。`data/strengthening_v1/audit/` 下提供了 60 个世界的盲于模型配置/结果的审核包和两位独立 reviewer 的空表。自动 parser、单元测试、哈希校验和模型回答均不能冒充真人审核。真正完成时需保存独立填写、分歧及处理记录，而不是把空表状态改成通过。
 
-独立的外部真实场景复现尚未完成。基线和扩展核心已推送并核验至私有GitHub仓库，交付包下载入口为 [icde2027-strengthening-20261002 Release](https://github.com/YuZhengYYDS/rerankhuts/releases/tag/icde2027-strengthening-20261002)，发布状态以该页实际附件及上传校验回执为准。仓库保持private；为ICDE EAB提供公开可访问artifact仍属单独的提交准备。
+独立的外部真实场景复现尚未完成。基线和扩展核心已推送并核验至私有GitHub仓库，本次论文重构的交付包对应下载入口为 [icde2027-restructured-20261013 Release](https://github.com/YuZhengYYDS/rerankhuts/releases/tag/icde2027-restructured-20261013)，发布状态以该页实际附件及上传校验回执为准。仓库保持private；为ICDE EAB提供公开可访问artifact仍属单独的提交准备。
 
 旧 `experiments/runs/e3_m3/`、`experiments/simulation/data/pilot_v2/`、`experiments/runs/simulation_pilot_v2/` 和旧结果保持原版本。`legacy_null_audit.json` 只是从旧保存结果重算 pre/post 差异，不是重新运行旧模型，也不允许用新世界结果覆盖原有零效应、并列或反向选择结果。
 
