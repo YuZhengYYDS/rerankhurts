@@ -1,0 +1,117 @@
+{
+  "status": "PASS",
+  "paragraph_count": 58,
+  "all_openings_bold": true,
+  "approximate_english_word_count": 5359,
+  "numbered_sections": [
+    "Introduction",
+    "Evidence Delivery and Measurement",
+    "Benchmark and Experimental Protocol",
+    "Experimental Evaluation",
+    "Practical Implications and Limitations",
+    "Related Work",
+    "Conclusion"
+  ],
+  "figures": [
+    {
+      "label": "fig:motivation",
+      "number": 1,
+      "page": 1
+    },
+    {
+      "label": "fig:views",
+      "number": 2,
+      "page": 2
+    },
+    {
+      "label": "fig:design",
+      "number": 3,
+      "page": 3
+    },
+    {
+      "label": "fig:gap",
+      "number": 4,
+      "page": 4
+    },
+    {
+      "label": "fig:stages",
+      "number": 5,
+      "page": 5
+    },
+    {
+      "label": "fig:visibility",
+      "number": 6,
+      "page": 6
+    },
+    {
+      "label": "fig:budgets",
+      "number": 7,
+      "page": 7
+    },
+    {
+      "label": "fig:heterogeneity",
+      "number": 8,
+      "page": 8
+    },
+    {
+      "label": "fig:answers",
+      "number": 9,
+      "page": 9
+    },
+    {
+      "label": "fig:timing",
+      "number": 10,
+      "page": 10
+    },
+    {
+      "label": "fig:complementary",
+      "number": 11,
+      "page": 11
+    },
+    {
+      "label": "fig:diagnosis",
+      "number": 12,
+      "page": 12
+    }
+  ],
+  "table_count": 4,
+  "page_check": {
+    "total_pages": 12,
+    "body_pages": 12,
+    "exempt_material_starts_page": 12,
+    "body_page_limit": 12,
+    "body_count_method": "last body label; shared exempt/body pages count as body",
+    "policy": "https://icde2027.github.io/submission-guidelines.html"
+  },
+  "unmodified_IEEE_class": true,
+  "unmodified_IEEE_bibliography_style": true,
+  "intentional_placeholder_figures": [
+    1,
+    2,
+    3,
+    4,
+    10,
+    11,
+    12
+  ],
+  "submission_ready": false,
+  "remaining_items": [
+    "Replace seven intentional figure placeholders",
+    "Provide openly accessible EAB artifacts",
+    "Complete author ORCID/contact/COI submission metadata"
+  ],
+  "revision_date": "2026-10-16",
+  "baseline_commit": "eecf8d66e4bd0d5cc706d129c942b40890a1ef04",
+  "experiment_rerun": false,
+  "statistical_results_changed": false,
+  "visual_review": {
+    "all_12_pages_reviewed": true,
+    "clipped_or_overlapping_content_found": false
+  },
+  "packaging_regression_tests": {
+    "passed": 61,
+    "failed": 0
+  },
+  "paper_check_details": "paper/manuscript_checks.json",
+  "public_artifact_access": false
+}

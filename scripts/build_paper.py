@@ -35,17 +35,17 @@ def main():
     pdf = stage / "main.pdf"
     reader = PdfReader(pdf)
     pages = [page.extract_text() or "" for page in reader.pages]
-    # main.tex flushes every float and begins the exempt AI acknowledgment on a
-    # new page. ICDE excludes this acknowledgment and the following references.
-    source = (stage / "main.tex").read_text(encoding="utf-8")
-    boundary = "\\clearpage\n\\section*{Acknowledgment of AI-Generated Content}"
-    if boundary not in source:
-        raise RuntimeError("An explicit page break before the exempt material is required")
+    # The final body label permits ordinary text, AI disclosure and references
+    # to share a page. A shared page still counts toward the body limit.
+    aux = (stage / "main.aux").read_text(encoding="utf-8")
+    boundary = re.search(r"\\newlabel\{bodyend\}\{\{[^}]*\}\{(\d+)\}", aux)
+    if boundary is None:
+        raise RuntimeError("Cannot locate the final body-page label")
     exempt = [i for i, content in enumerate(pages)
               if "ACKNOWLEDGMENTOFAIGENERATEDCONTENT" in re.sub(r"[^A-Z]", "", content.upper())]
     if len(exempt) != 1:
         raise RuntimeError("Cannot locate the unique AI acknowledgment page")
-    body_pages = exempt[0]
+    body_pages = int(boundary.group(1))
     if body_pages > 12:
         raise RuntimeError(f"Manuscript body has {body_pages} pages; ICDE limit is 12")
     text = "\n".join(pages)
@@ -59,7 +59,8 @@ def main():
     if bbl.exists():
         shutil.copy2(bbl, ROOT / "paper" / "main.bbl")
     report = {"total_pages": len(reader.pages), "body_pages": body_pages,
-              "exempt_material_starts_page": body_pages + 1, "body_page_limit": 12,
+              "exempt_material_starts_page": exempt[0] + 1, "body_page_limit": 12,
+              "body_count_method": "last body label; shared exempt/body pages count as body",
               "policy": "https://icde2027.github.io/submission-guidelines.html"}
     (OUT / "page_check.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
     identity = {"status": "PASS", "inputs": inputs,

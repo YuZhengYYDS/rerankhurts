@@ -347,6 +347,57 @@ def test_successful_paper_build_is_bound_and_shipped(repository):
     assert {"build_manifest.json", "main.pdf", "main.bbl", "figures/main.pdf"} <= set(paper)
 
 
+@pytest.mark.parametrize("body,exempt,total", [
+    (12, 12, 12),  # Body and exempt material share the final physical page.
+    (11, 11, 12),  # Exempt material can continue beyond a shared page.
+    (12, 13, 13),  # Existing next-page layout remains valid at the body limit.
+    (11, 12, 13),  # Existing layouts can have multiple exempt pages.
+])
+def test_paper_build_accepts_shared_or_next_page_exempt_material(repository, body, exempt, total):
+    root, _, _ = repository
+    record = record_paper_build(root)
+    record["page_check"].update(body_pages=body, exempt_material_starts_page=exempt,
+                                total_pages=total)
+    (root / "paper/build_manifest.json").write_text(json.dumps(record), encoding="utf-8")
+    assert package.package(root)["status"] == "PASS"
+    shipped = archive_manifest(root / "dist/paper_icde2027_clean.zip")
+    assert "build_manifest.json" in shipped
+
+
+@pytest.mark.parametrize("exempt,total,message", [
+    (11, 12, "exempt_material_starts_page"),
+    (14, 14, "exempt_material_starts_page"),
+    (True, 12, "exempt_material_starts_page"),
+    (12.0, 12, "exempt_material_starts_page"),
+    (12, 11, "total_pages"),
+    (13, 12, "total_pages"),
+    (12, True, "total_pages"),
+    (12, 12.0, "total_pages"),
+])
+def test_paper_build_rejects_invalid_shared_page_boundaries(repository, exempt, total, message):
+    root, _, _ = repository
+    record = record_paper_build(root)
+    record["page_check"].update(body_pages=12, exempt_material_starts_page=exempt,
+                                total_pages=total)
+    (root / "paper/build_manifest.json").write_text(json.dumps(record), encoding="utf-8")
+    with pytest.raises(ValueError, match=message):
+        package.package(root)
+    assert not (root / "dist").exists()
+
+
+def test_paper_build_without_explicit_exempt_boundary_keeps_legacy_meaning(repository):
+    root, _, _ = repository
+    record = record_paper_build(root)
+    del record["page_check"]["exempt_material_starts_page"]
+    path = root / "paper/build_manifest.json"
+    path.write_text(json.dumps(record), encoding="utf-8")
+    assert package.package(root)["status"] == "PASS"
+    record["page_check"]["total_pages"] = record["page_check"]["body_pages"]
+    path.write_text(json.dumps(record), encoding="utf-8")
+    with pytest.raises(ValueError, match="total_pages"):
+        package.package(root)
+
+
 @pytest.mark.parametrize("name", ["main.tex", "main.pdf", "main.bbl", "figures/overview.pdf"])
 def test_stale_paper_input_or_output_blocks_packaging_before_copy(repository, name):
     root, _, _ = repository
@@ -388,7 +439,7 @@ def test_paper_build_manifest_rejects_escaping_input_names(repository, name):
     ("body_pages", 13, "1 to 12 pages"),
     ("body_pages", True, "1 to 12 pages"),
     ("total_pages", 10, "total_pages"),
-    ("exempt_material_starts_page", 11, "exempt_material_starts_page"),
+    ("exempt_material_starts_page", 10, "exempt_material_starts_page"),
 ])
 def test_paper_build_rejects_failed_or_inconsistent_page_check(repository, field, value, message):
     root, _, _ = repository

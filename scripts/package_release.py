@@ -178,12 +178,16 @@ def check_paper_build(root, paper):
     require(isinstance(pages, dict), "Paper build page_check must be an object")
     body = pages.get("body_pages")
     require(type(body) is int and 1 <= body <= 12, "Paper body must contain 1 to 12 pages")
-    for field, expected in (("body_page_limit", 12), ("exempt_material_starts_page", body + 1)):
-        if field in pages:
-            require(type(pages[field]) is int and pages[field] == expected,
-                    f"Inconsistent paper page check: {field}")
+    if "body_page_limit" in pages:
+        require(type(pages["body_page_limit"]) is int and pages["body_page_limit"] == 12,
+                "Inconsistent paper page check: body_page_limit")
+    # Exempt material may share the last body page or start on the next page.
+    # Older records without an explicit boundary retain their next-page meaning.
+    exempt = pages.get("exempt_material_starts_page", body + 1)
+    require(type(exempt) is int and exempt in (body, body + 1),
+            "Inconsistent paper page check: exempt_material_starts_page")
     if "total_pages" in pages:
-        require(type(pages["total_pages"]) is int and pages["total_pages"] >= body + 1,
+        require(type(pages["total_pages"]) is int and pages["total_pages"] >= exempt,
                 "Inconsistent paper page check: total_pages")
     expected_files = {**inputs, **outputs}
     require(set(expected_files) <= set(paper), "Compiled paper files are excluded from the release")
