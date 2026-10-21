@@ -55,6 +55,16 @@ def main():
         raise RuntimeError(f"Expected seven numbered sections, found {len(titles)}")
     main_tex = (PAPER / "main.tex").read_text()
     active = main_tex + (PAPER / "layout.tex").read_text() + source
+    if re.search(r"\\placeholder\b|figure placeholder|diagram placeholder", active, re.I):
+        raise RuntimeError("Unfilled figure placeholder in active manuscript")
+    assets = json.loads((PAPER / "figure_assets.json").read_text())
+    if assets["intentional_placeholder_figures"]:
+        raise RuntimeError("Unfilled figure asset")
+    for asset in assets["completed_assets"]:
+        path = PAPER / asset["output"]
+        expected_asset = asset["output_identity"]
+        if path.stat().st_size != expected_asset["bytes"] or hashlib.sha256(path.read_bytes()).hexdigest() != expected_asset["sha256"]:
+            raise RuntimeError(f"Stale figure asset: {path.name}")
     forbidden = [r"\\vspace\*?\{\s*-", r"\\hspace\*?\{\s*-", r"\\usepackage(?:\[[^]]*\])?\{geometry\}",
                  r"\\(?:addtolength|setlength)\{\\(?:textheight|textwidth|oddsidemargin|topmargin|baselineskip)\}"]
     if any(re.search(pattern, active) for pattern in forbidden):
@@ -91,9 +101,9 @@ def main():
               "approximate_english_word_count": words, "numbered_sections": titles,
               "figures": figures, "table_count": len(tables), "page_check": page_check,
               "unmodified_IEEE_class": True, "unmodified_IEEE_bibliography_style": True,
-              "intentional_placeholder_figures": [1, 2, 3, 4, 10, 11, 12],
+              "intentional_placeholder_figures": [],
               "submission_ready": False,
-              "remaining_items": ["Replace seven intentional figure placeholders", "Provide openly accessible EAB artifacts", "Complete author ORCID/contact/COI submission metadata"],
+              "remaining_items": ["Provide openly accessible EAB artifacts", "Complete author ORCID/contact/COI submission metadata"],
               "paragraphs": paragraphs}
     target = PAPER / "manuscript_checks.json"
     target.write_text(json.dumps(report, indent=2) + "\n")

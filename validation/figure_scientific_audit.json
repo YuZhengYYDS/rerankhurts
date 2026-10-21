@@ -1,0 +1,116 @@
+{
+  "audit_date": "2026-10-21",
+  "status": "PASS",
+  "audit_scope": "Scientific consistency of four conceptual assets and their current captions; asset-level print-risk review.",
+  "hard_scientific_errors": [],
+  "reviewed_assets": {
+    "f01_motivation.png": {
+      "path": "paper/figures/f01_motivation.png",
+      "pixels": [
+        1774,
+        887
+      ],
+      "sha256": "f238de44409d40f047cbed59c041cc5800f38b68f955b5ecf3a85e8c2f30043f",
+      "visually_inspected_with": "view_image"
+    },
+    "f02_evidence_views.png": {
+      "path": "paper/figures/f02_evidence_views.png",
+      "pixels": [
+        2169,
+        725
+      ],
+      "sha256": "57f79eddb4f6d77163339e5f6d43107506f14457243acb671c149f226cb659c7",
+      "visually_inspected_with": "view_image"
+    },
+    "f03_paired_design.png": {
+      "path": "paper/figures/f03_paired_design.png",
+      "pixels": [
+        2172,
+        724
+      ],
+      "sha256": "160a4cce92be840a652882fe1136e7844447ff4a459444f9a29020048e5a53f7",
+      "visually_inspected_with": "view_image"
+    },
+    "f12_diagnostic_checks.png": {
+      "path": "paper/figures/f12_diagnostic_checks.png",
+      "pixels": [
+        2172,
+        724
+      ],
+      "sha256": "e101881fb87470128e712bee6e43fae3d8f3e58c5b4de66529876e84e1fe20be",
+      "visually_inspected_with": "view_image"
+    }
+  },
+  "sources_checked": [
+    "source_data/experiments/strengthening/protocol.py",
+    "source_data/experiments/strengthening/analyze.py",
+    "paper/sections/02_measurement.tex",
+    "paper/sections/03_protocol.tex",
+    "paper/layout.tex"
+  ],
+  "F2": {
+    "status": "PASS",
+    "checks": [
+      "Pre-cap is cap then re-rank; post-cap is re-rank then cap.",
+      "The scoring view determines scores/order. Full candidate text continues to packing, so scorer truncation is not depicted as deletion of stored text.",
+      "Budgeted packing produces delivered original-text intervals before generation.",
+      "G and U_sim separately read delivered intervals; no implication or nesting is drawn between source retention and complete factual support.",
+      "Grounded correctness additionally receives answer/citations and cited delivered support, rather than being inferred from G or U_sim alone."
+    ],
+    "scope": "The compact scoring-view inset refers to cross-encoder scoring at the re-rank stage. Dense-document visibility is described separately in the text.",
+    "caption": "Current caption correctly describes scores/order, full-text continuation, separate G/U endpoints, and complete cited answer support.",
+    "print_risk": "Moderate: the smallest scoring-view annotations remain smaller than primary labels. Verify them in the final compiled PDF at actual print width."
+  },
+  "F3": {
+    "status": "PASS",
+    "revision_reviewed": "Current simplified large-label version, visually re-opened after replacement.",
+    "resolved_prior_issue": "The previous u7-to-a_shared highlighted-context correspondence is absent. Selected A URL examples map to the shared B URL; the other displayed URL is unchanged.",
+    "checks": [
+      "360 worlds, 60 development/300 test, and two isolated 80-chunk variants per world match the protocol.",
+      "Question, texts, facts and hosts remain fixed while twelve URL assignments are regrouped from twelve separate pages to one shared page.",
+      "Illustrated chunks stand for a larger collection; the caption does not claim that only the displayed examples are changed.",
+      "A-only and B-only delivered spans explicitly preserve collection isolation. The matched-operator container represents the same operators applied separately, not pooled retrieval.",
+      "World facts enter only the independent parser; no oracle arrow supplies facts to retrieval, scoring or packing.",
+      "Independent assertion reconstruction and delivered-support checking are consistent with the evaluator protocol.",
+      "Single, within-URL, across-URL, alternative, temporal and late support labels match the six scenario families."
+    ],
+    "caption": "Current caption states isolated collections, twelve regrouped assignments, matched operators, evaluator-only world facts and no cross-variant evidence access.",
+    "print_risk": "The simplified version materially improves readability and removes dense URL/coordinate rows. Final print-size checking is still required for the bottom scenario labels, but no comparable dense-small-type problem remains."
+  },
+  "F1": {
+    "status": "PASS",
+    "checks": [
+      "The asset and caption explicitly call this an illustrative example rather than a real experimental trace.",
+      "The two-fact question requires A and B. A source cap removes the third supporting chunk while preserving the designated page.",
+      "The packing branch retains part of the third chunk but truncates its complete assertion.",
+      "G=1 and U_sim=0 are consistent in both branches of this positive-budget single-page illustration."
+    ],
+    "print_risk": "Moderate at the current single-column placement: check fact/background labels and the U_sim subscript at actual print size."
+  },
+  "F12": {
+    "status": "PASS",
+    "checks": [
+      "The main sequence distinguishes support in the candidate pool, support after cap, delivered complete support, and correct grounded answers.",
+      "No branches suggest inspecting retrieval, removed chunks, views/order/packing, and generation/citations at their corresponding boundaries.",
+      "Source retention G and allowed-source policy are separate checks rather than prerequisites for fact-support diagnosis.",
+      "The diagram and caption promise diagnostic checks, not guaranteed configuration improvements, selector superiority or deployment gains."
+    ],
+    "scope": "A summary of the core evidence path; source filtering and refill retain their separately stated settings and conditions.",
+    "print_risk": "Low to moderate: the diagram is sparse; verify the smaller separate-check labels and that layout trimming preserves every label."
+  },
+  "caption_integration": {
+    "status": "PASS",
+    "notes": [
+      "Current layout inserts all four actual PNG assets.",
+      "Future-tense placeholder wording has been removed from the reviewed captions.",
+      "No caption claims empirical measurements for the conceptual examples."
+    ]
+  },
+  "limitations": [
+    "This report does not replace final compiled-page visual QA or a physical print proof.",
+    "Font legibility depends on final scale and crop settings; it is not established by pixel dimensions alone."
+  ],
+  "changes_made": [
+    "validation/figure_scientific_audit.json only for this audit; the separate authorized text-compression task changed sections 05 and 06."
+  ]
+}

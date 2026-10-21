@@ -1,0 +1,234 @@
+{
+  "status": "PASS",
+  "repository": "YuZhengYYDS/rerankhurts",
+  "commit": "6e519d35cafa91a4ebaa7213cc334b8d8797b7ea",
+  "all_15_raw_files_match_prior_release_sha256": true,
+  "F4": {
+    "summary_source": "experiments/strengthening/results/strengthening_v1/summary.csv",
+    "summary_selector": {
+      "split": "test",
+      "config_ids": {
+        "no_cap": "dense_p64_m3_off_b2048_prefix_prefix512_dprefix512_polnone",
+        "post_cap2": "dense_p64_m3_post2_b2048_prefix_prefix512_dprefix512_polnone"
+      }
+    },
+    "marginal_rows": {
+      "no_cap": {
+        "split": "test",
+        "config_id": "dense_p64_m3_off_b2048_prefix_prefix512_dprefix512_polnone",
+        "U_sim": "0.5866666666666667",
+        "G_final": "0.885",
+        "fact_coverage": "0.7847222222222222",
+        "admissible_U_sim": "0.58",
+        "C_sim": "0.6333333333333333",
+        "nonempty": "1.0",
+        "joint_compliant_U_sim": "0.37",
+        "contradiction_exposure": "0.6633333333333333",
+        "obsolete_exposure": "0.31666666666666665",
+        "context_tokens": "2048.0",
+        "rerank_pairs": "64.0",
+        "n_worlds": "300"
+      },
+      "post_cap2": {
+        "split": "test",
+        "config_id": "dense_p64_m3_post2_b2048_prefix_prefix512_dprefix512_polnone",
+        "U_sim": "0.51",
+        "G_final": "0.885",
+        "fact_coverage": "0.7519444444444445",
+        "admissible_U_sim": "0.505",
+        "C_sim": "0.5783333333333334",
+        "nonempty": "1.0",
+        "joint_compliant_U_sim": "0.305",
+        "contradiction_exposure": "0.78",
+        "obsolete_exposure": "0.535",
+        "context_tokens": "2048.0",
+        "rerank_pairs": "64.0",
+        "n_worlds": "300"
+      }
+    },
+    "n_task_pairs": 600,
+    "U_success_counts": {
+      "no_cap": 352,
+      "post_cap2": 306
+    },
+    "G_success_count_each": 531,
+    "contrast_source": "experiments/strengthening/results/strengthening_v1/exploratory_contrasts.csv",
+    "contrast_row": {
+      "name": "dense_p64_m3_post2_b2048_prefix_prefix512_dprefix512_polnone_minus_dense_p64_m3_off_b2048_prefix_prefix512_dprefix512_polnone",
+      "family": "cap_application",
+      "analysis": "exploratory",
+      "subgroup": "all_test",
+      "endpoint": "U_sim",
+      "left_config": "dense_p64_m3_post2_b2048_prefix_prefix512_dprefix512_polnone",
+      "right_config": "dense_p64_m3_off_b2048_prefix_prefix512_dprefix512_polnone",
+      "n_task_pairs": "600",
+      "left_world_mean": "0.51",
+      "right_world_mean": "0.5866666666666667",
+      "n_worlds": "300",
+      "difference": "-0.07666666666666666",
+      "ci95_low": "-0.11333333333333333",
+      "ci95_high": "-0.041666666666666664",
+      "p_sign_flip": "9.99950002499875e-05",
+      "positive_worlds": "17",
+      "negative_worlds": "35",
+      "zero_worlds": "248",
+      "all_world_differences_zero": "False",
+      "empirical_interval_degenerate": "False",
+      "interval_interpretation": "Seed-stratified paired-world percentile bootstrap 95%",
+      "p_assumption": "World-difference sign exchangeability under the null; not randomized policy assignment",
+      "q_bh_within_family": "0.0002947221059999632",
+      "family_size": "56",
+      "definition": ""
+    },
+    "per_task_G_equality_and_63_lost_17_gained_520_same": {
+      "status": "PASS",
+      "source": "experiments/strengthening/results/strengthening_v1/per_record.csv",
+      "source_bytes": 88749452,
+      "source_sha256": "c574c4b707d011be99b7bc39fa5dd765b0c44e0a759c68902eb4a0cb8368bbb0",
+      "task_pairs": 600,
+      "independent_worlds": 300,
+      "no_cap_U_success": 352,
+      "post_cap2_U_success": 306,
+      "no_cap_G_success": 531,
+      "post_cap2_G_success": 531,
+      "G_outcomes_identical_on_every_task": true,
+      "transitions": {
+        "unchanged": 520,
+        "lost": 63,
+        "gained": 17
+      },
+      "difference": -0.07666666666666666,
+      "pair_data": "F4_task_pairs.csv"
+    }
+  },
+  "F10": {
+    "summary_source": "experiments/strengthening/results/strengthening_v1/timing/summary.csv",
+    "selector": {
+      "phase": "steady"
+    },
+    "steady_rows": {
+      "dense_prefix": {
+        "phase": "steady",
+        "condition": "dense_prefix",
+        "requests": "120",
+        "worlds": "24",
+        "p50_ms": "8.247800054959953",
+        "p95_ms": "14.98024005559273",
+        "mean_ms": "10.000222497425662",
+        "different_delivery_requests": "0",
+        "mean_rerank_pairs": "0.0"
+      },
+      "m3_pre_prefix": {
+        "phase": "steady",
+        "condition": "m3_pre_prefix",
+        "requests": "120",
+        "worlds": "24",
+        "p50_ms": "679.1498500388116",
+        "p95_ms": "844.3584850116166",
+        "mean_ms": "667.6048583321972",
+        "different_delivery_requests": "0",
+        "mean_rerank_pairs": "58.083333333333336"
+      },
+      "m3_post_prefix": {
+        "phase": "steady",
+        "condition": "m3_post_prefix",
+        "requests": "120",
+        "worlds": "24",
+        "p50_ms": "740.5842499574646",
+        "p95_ms": "943.8087800343055",
+        "mean_ms": "753.8470174991138",
+        "different_delivery_requests": "0",
+        "mean_rerank_pairs": "64.0"
+      },
+      "m3_post_window": {
+        "phase": "steady",
+        "condition": "m3_post_window",
+        "requests": "120",
+        "worlds": "24",
+        "p50_ms": "745.149849972222",
+        "p95_ms": "924.6749800280667",
+        "mean_ms": "751.9431458388377",
+        "different_delivery_requests": "0",
+        "mean_rerank_pairs": "64.0"
+      }
+    },
+    "measured_requests_including_first_pass": 576,
+    "steady_requests": 480,
+    "contrast_source": "experiments/strengthening/results/strengthening_v1/timing_world_contrasts.csv",
+    "contrast_row": {
+      "name": "post_minus_pre_latency",
+      "family": "online_latency",
+      "analysis": "exploratory",
+      "subgroup": "all_test",
+      "endpoint": "latency_ms",
+      "left_config": "m3_post_prefix",
+      "right_config": "m3_pre_prefix",
+      "n_task_pairs": "24",
+      "left_world_mean": "753.8470174991138",
+      "right_world_mean": "667.6048583321972",
+      "n_worlds": "24",
+      "difference": "86.24215916691658",
+      "ci95_low": "49.76256077750198",
+      "ci95_high": "126.67124953659365",
+      "p_sign_flip": "9.99950002499875e-05",
+      "positive_worlds": "19",
+      "negative_worlds": "5",
+      "zero_worlds": "0",
+      "all_world_differences_zero": "False",
+      "empirical_interval_degenerate": "False",
+      "interval_interpretation": "Seed-stratified paired-world percentile bootstrap 95%",
+      "p_assumption": "World-difference sign exchangeability under the null; not randomized policy assignment",
+      "q_bh_within_family": "0.000199990000499975"
+    },
+    "plot_boundary": "mean_ms belongs to mean bars; p50_ms/p95_ms are distinct fields; the contrast CI is not an error bar for marginal means."
+  },
+  "F11_oncology": {
+    "source": "experiments/runs/e3_m3/first_page_loss.csv",
+    "aggregation": "Sum n_queries grouped by first_url_loss",
+    "counts": {
+      "budget": 171,
+      "candidate_not_covered": 20,
+      "retained": 2909
+    },
+    "n_configuration_records": 3100,
+    "n_questions": 155,
+    "n_configurations": 20,
+    "endpoint": "Designated-page loss stage; not factual-support coverage."
+  },
+  "F11_pilot": {
+    "source": "experiments/simulation/results/pilot_v2/selection.json",
+    "summary_cross_check": "experiments/simulation/results/pilot_v2/summary.csv",
+    "selector": {
+      "branch": "primary",
+      "policy": "open",
+      "budget": 512
+    },
+    "n_dev_worlds": 20,
+    "n_test_worlds": 40,
+    "dev_U_tie_configuration_count": 10,
+    "dev_U_each": 0.6,
+    "G_selected": "p16_off_m3_b512",
+    "U_selected": "p16_off_none_b512",
+    "test_U": {
+      "G_selected": 0.675,
+      "U_selected": 0.55
+    },
+    "test_U_success_counts": {
+      "G_selected": 27,
+      "U_selected": 22
+    },
+    "test_G_mean_each": 0.3,
+    "difference_U_selected_minus_G_selected": -0.125,
+    "ci95": [
+      -0.25,
+      0.0
+    ],
+    "interval_estimand": "Test-group sampling variation conditional on the fixed development-selected pair; development selection is not reoptimized inside this interval.",
+    "world_delta_counts_U_selected_minus_G_selected": {
+      "0": 33,
+      "-1": 6,
+      "1": 1
+    },
+    "per_world_G_note": "Equal G means are not equal task outcomes; see validation/simulation_endpoint_pairs.json."
+  }
+}

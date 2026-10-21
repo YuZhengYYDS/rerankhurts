@@ -398,6 +398,21 @@ def test_paper_build_without_explicit_exempt_boundary_keeps_legacy_meaning(repos
         package.package(root)
 
 
+def test_paper_build_counts_body_float_after_endmatter_begins(repository):
+    root, _, _ = repository
+    record = record_paper_build(root)
+    record["page_check"].update(body_pages=12, total_pages=12,
+                                exempt_material_starts_page=11,
+                                last_body_text_page=11, body_float_pages=[1, 12])
+    path = root / "paper/build_manifest.json"
+    path.write_text(json.dumps(record), encoding="utf-8")
+    assert package.package(root)["status"] == "PASS"
+    record["page_check"]["body_float_pages"] = [1, 13]
+    path.write_text(json.dumps(record), encoding="utf-8")
+    with pytest.raises(ValueError, match="body_float_pages"):
+        package.package(root)
+
+
 @pytest.mark.parametrize("name", ["main.tex", "main.pdf", "main.bbl", "figures/overview.pdf"])
 def test_stale_paper_input_or_output_blocks_packaging_before_copy(repository, name):
     root, _, _ = repository

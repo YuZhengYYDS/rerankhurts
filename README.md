@@ -1,14 +1,13 @@
 # RerankHuts：论文、代码与实验结果
 
 论文：**What Survives the Context Budget? Source Retention and Fact Coverage in RAG**  
-Zheng Yu（第一作者）；Jingbang Chen（通讯作者）。作者单位已写入论文；当前重构稿含12个图位，缺失目标图按要求占位。
+Zheng Yu（第一作者）；Jingbang Chen（通讯作者）。作者单位已写入论文；2026-10-21已完成全部12张图并插入正文。
 
 建议下载完整包 **rerankhuts_icde2027.zip**，解压后进入唯一的 **rerankhuts/** 目录。完整包包含论文、代码、输入数据、冻结结果、完整轨迹和逐文件校验清单。独立代码包和结果包便于单独查看；完整复现使用完整包。
 
 2026-10-02 扩展实验状态：四阶段的自动化部分已完成。`strengthening_v1` 包含 **720任务 × 124配置 = 89,280条主推断及独立评分记录**、**720个实际模型回答**、**576个在线请求测量**，另有8次warm-up不计入测量。各步骤均有独立的 `complete` 状态；60世界人工审核仍未进行，外部真实场景复现也未完成。操作与指标解释见 [扩展实验指南](docs/STRENGTHENING_GUIDE.md)。
 
-2026-10-16 按逐段方案重新构造论文：主线为“页面判定不变但事实支持丢失→阶段机制→实践边界”。当前PDF为 **12个物理页、7个编号章节、12张图、4张表**，**58段完整首句全部加粗**，编号图n位于第n页。5个图块重用已有矢量图，F1–F4/F10–F12共7个目标图明确占位。未新增模型实验或改动冻结数据/统计结果。已逐页检查编译稿并通过段落、图位、模板和打包校验；[论文PDF](paper/main.pdf)、[改稿说明](paper/revision_notes_20261016.md)、[构建与待补事项](paper/README.md)。当前仍为含占位图的草稿；开放artifact及作者ORCID等仍需在正式提交前完成。
-
+2026-10-21 配图与整合完成：F1–F3/F12为已核验的概念图，F4/F10/F11用真实冻结数据生成科研绘图，F5–F9保留原矢量图。58段完整首句加粗、7个编号章节、12张图、4张表均保留。三张数据图附PDF/SVG/600dpiPNG、源数据、SHA-256及可重绘脚本；已通过仅含论文和脚本的隔离重绘。未新增模型实验或改动冻结统计。见[论文PDF](paper/main.pdf)、[本次修改说明](paper/revision_notes_20261021.md)、[构建和图源说明](paper/README.md)。正式提交前仍需开放artifact与作者ORCID等元数据。\n
 ## 先运行这三步
 
 安装 [Pixi](https://pixi.prefix.dev/latest/installation/)，然后在仓库根目录执行：
@@ -150,9 +149,9 @@ E0 核验 417 个历史指标单元，405 个一致，12 个查询文本连接�
 
 仿真是虚构注册管理场景的完整事实覆盖，不是人工临床效用。`pilot_v2` 主选择实验开发集十个配置的覆盖率全部并列 0.60；冻结选择规则在测试集得到 0.550 与 0.675，差值 -0.125，保留该反向结果。新实验另提供60世界的人工审核包，人工尚未完成。完整解释见 [实验范围](docs/EXPERIMENT_SCOPE.md) 与论文。
 
-基线和扩展核心版本已推送并核验至指定的 [GitHub仓库](https://github.com/YuZhengYYDS/rerankhuts)，仓库为 **private**，需获授权后访问。本次论文重构的四个交付包对应下载入口为 [icde2027-restructured-20261013 Release](https://github.com/YuZhengYYDS/rerankhuts/releases/tag/icde2027-restructured-20261013)，发布状态以该页实际附件及上传校验回执为准。本次交付保持私有可见性，与ICDE EAB要求的开放artifact准备是两件事。
+基线和扩展核心版本已推送并核验至指定的 [GitHub仓库](https://github.com/YuZhengYYDS/rerankhuts)，仓库为 **private**，需获授权后访问。2026-10-13历史四个交付包对应下载入口为 [icde2027-restructured-20261013 Release](https://github.com/YuZhengYYDS/rerankhuts/releases/tag/icde2027-restructured-20261013)，发布状态以该页实际附件及上传校验回执为准。后续正文配图更新以main分支为准。当前交付保持私有可见性，与ICDE EAB要求的开放artifact准备是两件事。
 
-作者角色已确认，第二页 Overview 图片位置继续按用户要求保留。正式提交前还需确认最终配图、提供提交系统要求的 ORCID/联系信息，并准备公开可访问的复现artifact。2026-10-13重新核对投稿指南：正文须不超过12页，参考文献与AI内容致谢不计入，且不允许附录；其他CFP与日期保留2026-10-02核验记录，官方依据见 [论文说明](paper/README.md)。
+作者角色及全部正文配图已完成整合。正式提交前还需提供提交系统要求的 ORCID/联系信息，并准备公开可访问的复现artifact。2026-10-21重新核对投稿指南：正文须不超过12页，参考文献与AI内容致谢不计入，且不允许附录；其他CFP与日期保留2026-10-02核验记录，官方依据见 [论文说明](paper/README.md)。
 
 代码许可见 LICENSE；第三方语料保留来源和相应条款，代码许可不替代原内容许可。
 

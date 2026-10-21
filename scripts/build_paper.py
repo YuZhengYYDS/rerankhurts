@@ -45,7 +45,12 @@ def main():
               if "ACKNOWLEDGMENTOFAIGENERATEDCONTENT" in re.sub(r"[^A-Z]", "", content.upper())]
     if len(exempt) != 1:
         raise RuntimeError("Cannot locate the unique AI acknowledgment page")
-    body_pages = int(boundary.group(1))
+    last_body_text_page = int(boundary.group(1))
+    # A body figure can float past the final prose and into a page shared with
+    # acknowledgments/references. That page still counts toward the body limit.
+    body_float_pages = [int(m.group(1)) for m in re.finditer(
+        r"\\newlabel\{(?:fig|tab):[^}]+\}\{\{[^}]*\}\{(\d+)\}", aux)]
+    body_pages = max([last_body_text_page, *body_float_pages])
     if body_pages > 12:
         raise RuntimeError(f"Manuscript body has {body_pages} pages; ICDE limit is 12")
     text = "\n".join(pages)
@@ -60,7 +65,9 @@ def main():
         shutil.copy2(bbl, ROOT / "paper" / "main.bbl")
     report = {"total_pages": len(reader.pages), "body_pages": body_pages,
               "exempt_material_starts_page": exempt[0] + 1, "body_page_limit": 12,
-              "body_count_method": "last body label; shared exempt/body pages count as body",
+              "body_count_method": "last body label plus numbered body floats; shared exempt/body pages count as body",
+              "last_body_text_page": last_body_text_page,
+              "body_float_pages": sorted(set(body_float_pages)),
               "policy": "https://icde2027.github.io/submission-guidelines.html"}
     (OUT / "page_check.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
     identity = {"status": "PASS", "inputs": inputs,

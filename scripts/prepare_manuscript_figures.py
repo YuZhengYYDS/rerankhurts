@@ -1,4 +1,4 @@
-"""Crop existing vector panels for the argument-led draft; do not redraw data."""
+"""Prepare reused vector panels and inventory completed manuscript assets."""
 from pathlib import Path
 import hashlib
 import json
@@ -36,12 +36,24 @@ def main():
         records.append({"source": f"figures/{source}", "source_identity": record(FIGURES / source),
                         "output": f"figures/{target}", "output_identity": record(FIGURES / target),
                         "page": 1, "crop_box_points": bounds})
-    manifest = {"scope": "Vector cropping of existing plots; no data were redrawn or inferred from pixels",
+    concept_names = ["f01_motivation.png", "f02_evidence_views.png", "f03_paired_design.png", "f12_diagnostic_checks.png"]
+    plot_names = ["f04_measurement_gap", "f10_request_cost", "f11_complementary_checks"]
+    completed = [{"output": f"figures/{name}", "output_identity": record(FIGURES / name),
+                  "type": "AI-generated conceptual schematic; no empirical coordinates"} for name in concept_names]
+    completed += [{"output": f"figures/{name}.{ext}", "output_identity": record(FIGURES / f"{name}.{ext}"),
+                   "type": "Python plot from hash-verified frozen source tables"}
+                  for name in plot_names for ext in ("pdf", "svg", "png")]
+    manifest = {"scope": "Completed conceptual schematics, source-driven quantitative plots, and reused vector panels; no results inferred from pixels",
                 "reused_figure_blocks": [5, 6, 7, 8, 9],
-                "intentional_placeholder_figures": [1, 2, 3, 4, 10, 11, 12],
-                "placeholder_location": "layout.tex", "crops": records}
+                "intentional_placeholder_figures": [], "completed_assets": completed,
+                "concept_provenance": "figures/concept_provenance.json",
+                "quantitative_provenance": "figures/quantitative_provenance.json",
+                "concept_display_trim_points": {"f02_evidence_views.png": [0, 65, 0, 40],
+                                                "f12_diagnostic_checks.png": [0, 80, 0, 140]},
+                "trim_scope": "Document display removes outer whitespace only; source PNG bytes unchanged",
+                "crops": records}
     (ROOT / "paper/figure_assets.json").write_text(json.dumps(manifest, indent=2) + "\n")
-    print(f"Prepared {len(records)} vector crops; seven figure placeholders remain")
+    print(f"Prepared {len(records)} vector crops; all twelve figure blocks complete")
 
 
 if __name__ == "__main__":

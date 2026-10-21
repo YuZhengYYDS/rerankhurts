@@ -1,0 +1,33 @@
+{
+  "status": "PASS",
+  "date": "2026-10-21",
+  "pdf": "paper/main.pdf",
+  "pdf_sha256": "5ea55495e20c318ae09d38a27357b23907b2084d5057f881038c0f5f484db4c5",
+  "pages_reviewed": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+  ],
+  "rendering": "Python pypdfium2, scale 1.5; visual inspection of every page",
+  "findings": {
+    "figures_numbered_1_to_12_on_pages_1_to_12": true,
+    "no_overlapping_figures_or_captions": true,
+    "no_content_outside_IEEE_text_area": true,
+    "F1_single_column_and_F2_scoring_notes_checked": true,
+    "F3_simplified_large_labels_checked": true,
+    "F4_F10_F11_data_labels_and_contrast_intervals_checked": true,
+    "all_placeholders_replaced": true
+  },
+  "automated_checks": "paper/manuscript_checks.json",
+  "scientific_audit": "validation/figure_scientific_audit.json",
+  "release_packaging_tests": "62 passed"
+}

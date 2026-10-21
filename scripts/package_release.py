@@ -184,10 +184,19 @@ def check_paper_build(root, paper):
     # Exempt material may share the last body page or start on the next page.
     # Older records without an explicit boundary retain their next-page meaning.
     exempt = pages.get("exempt_material_starts_page", body + 1)
-    require(type(exempt) is int and exempt in (body, body + 1),
+    first_shared = body
+    if "body_float_pages" in pages:
+        float_pages = pages["body_float_pages"]
+        first_shared = pages.get("last_body_text_page")
+        require(type(first_shared) is int and 1 <= first_shared <= body,
+                "Inconsistent paper page check: last_body_text_page")
+        require(isinstance(float_pages, list) and all(type(p) is int and 1 <= p <= body for p in float_pages)
+                and max([first_shared, *float_pages]) == body,
+                "Inconsistent paper page check: body_float_pages")
+    require(type(exempt) is int and first_shared <= exempt <= body + 1,
             "Inconsistent paper page check: exempt_material_starts_page")
     if "total_pages" in pages:
-        require(type(pages["total_pages"]) is int and pages["total_pages"] >= exempt,
+        require(type(pages["total_pages"]) is int and pages["total_pages"] >= max(body, exempt),
                 "Inconsistent paper page check: total_pages")
     expected_files = {**inputs, **outputs}
     require(set(expected_files) <= set(paper), "Compiled paper files are excluded from the release")
