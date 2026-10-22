@@ -1,7 +1,7 @@
 # RerankHuts：论文、代码与实验结果
 
 论文：**What Survives the Context Budget? Source Retention and Fact Coverage in RAG**  
-Zheng Yu（第一作者）；Jingbang Chen（通讯作者）。作者单位已写入论文；2026-10-21已完成全部12张图并插入正文。
+作者顺序：Zheng Yu、Jie Li、Boyang Wang、Jingbang Chen。Zheng Yu与Jie Li为共同第一作者；Jie Li与第三作者Boyang Wang均署名香港中文大学（深圳）；Jingbang Chen为通讯作者。作者单位及共同贡献标注已写入论文；全部12张图已插入正文。
 
 建议下载完整包 **rerankhuts_icde2027.zip**，解压后进入唯一的 **rerankhuts/** 目录。完整包包含论文、代码、输入数据、冻结结果、完整轨迹和逐文件校验清单。独立代码包和结果包便于单独查看；完整复现使用完整包。
 

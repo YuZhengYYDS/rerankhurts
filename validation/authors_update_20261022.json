@@ -1,0 +1,47 @@
+{
+  "status": "PASS",
+  "date": "2026-10-22",
+  "author_order": [
+    "Zheng Yu",
+    "Jie Li",
+    "Boyang Wang",
+    "Jingbang Chen"
+  ],
+  "co_first_authors": [
+    "Zheng Yu",
+    "Jie Li"
+  ],
+  "third_author": "Boyang Wang",
+  "new_authors_affiliation": "The Chinese University of Hong Kong, Shenzhen",
+  "corresponding_author": "Jingbang Chen",
+  "metadata_author": "Zheng Yu, Jie Li, Boyang Wang, and Jingbang Chen",
+  "equal_contribution_statement_verified": true,
+  "source_author_block": "paper/authors.tex",
+  "pdf_sha256": "286ee41ec5057ef31eb11fc95ab53be53ff1ea9b167ee49a4c8ce6cc1b147ee4",
+  "total_pages": 12,
+  "paragraph_check": "paper/manuscript_checks.json",
+  "overleaf_zip": "ICDE_Overleaf_Clean_20261022.zip",
+  "overleaf_zip_sha256": "e9a44e89cfac21617d4832644f58d5f99fed3b00fe75f6b84ad0de08f30308cd",
+  "overleaf_source_files": 30,
+  "zip_crc_and_file_sha256_verified": true,
+  "compiled_source_bytes_match_overleaf_sources": true,
+  "visual_review": {
+    "status": "PASS",
+    "pages_reviewed": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "first_page_authors_and_marks_verified": true,
+    "no_overflow_or_missing_figures": true
+  }
+}
