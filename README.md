@@ -8,6 +8,10 @@
 2026-10-02 扩展实验状态：四阶段的自动化部分已完成。`strengthening_v1` 包含 **720任务 × 124配置 = 89,280条主推断及独立评分记录**、**720个实际模型回答**、**576个在线请求测量**，另有8次warm-up不计入测量。各步骤均有独立的 `complete` 状态；60世界人工审核仍未进行，外部真实场景复现也未完成。操作与指标解释见 [扩展实验指南](docs/STRENGTHENING_GUIDE.md)。
 
 2026-10-21 配图与整合完成：F1–F3/F12为已核验的概念图，F4/F10/F11用真实冻结数据生成科研绘图，F5–F9保留原矢量图。58段完整首句加粗、7个编号章节、12张图、4张表均保留。三张数据图附PDF/SVG/600dpiPNG、源数据、SHA-256及可重绘脚本；已通过仅含论文和脚本的隔离重绘。未新增模型实验或改动冻结统计。见[论文PDF](paper/main.pdf)、[本次修改说明](paper/revision_notes_20261021.md)、[构建和图源说明](paper/README.md)。正式提交前仍需开放artifact与作者ORCID等元数据。\n
+2026-10-22 draw.io草图更新：F1–F3已按用户参考重建，框线、文字和箭头为原生可编辑草图，图标使用用户提供的SVG；正文使用单页PDF，另附SVG与PNG。F12保留原AI生成示意图和裁剪设置。引言同步为F1的“Gate opens at 09:00”示意，AI披露区分参考图、draw.io重建与用户图标。作者与Equal Contribution保留。本次F1–F3绘图工作没有重跑模型、改写冻结数据或重算统计；并发科学更新以正文及对应结果记录为准。见[本次说明](paper/revision_notes_20261022_drawio.md)、[图源记录](paper/figures/drawio/recreation_20261022.json)及[验证报告](validation/drawio_recreation_20261022.json)。
+
+2026-10-22 SVG图标更新：用户提供的RAG_Figures_Icons_HD.zip含32个原始SVG，已按ZIP原字节保存并记录SHA-256；F1/F2/F3分别放置11/11/14个清晰SVG图标，旧草图图标已隐藏，框线与正文标签保留草图风格。SVG图标可在draw.io中独立移缩，内部路径由随附SVG编辑；并非draw.io原生primitive。最终PDF的位图对象数与SVG矢量检查据实记于[图源记录](paper/figures/drawio/recreation_20261022.json)，全部素材见[图标清单](paper/figures/drawio/icons/icons_manifest.json)。
+
 ## 先运行这三步
 
 安装 [Pixi](https://pixi.prefix.dev/latest/installation/)，然后在仓库根目录执行：

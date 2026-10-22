@@ -1,0 +1,491 @@
+{
+  "date": "2026-10-22",
+  "status": "PASS",
+  "scope": "Final drawing-work validation: native draw.io sketch frames/text/arrows with independently movable user-supplied vector SVG icons, integrated with separately preserved concurrent scientific results.",
+  "requested_style": "Sketch frames/text/arrows; clear supplied SVG icons",
+  "source_provenance": "paper/figures/drawio/recreation_20261022.json",
+  "native_source_and_export_checks": {
+    "status": "PASS",
+    "current_source_and_export_identities_match_provenance": true,
+    "visible_native_sketch_style_check_excludes_svg_and_hidden_cells": true,
+    "pdf_each_single_page": true,
+    "pdf_bitmap_image_counts": [
+      0,
+      0,
+      0
+    ],
+    "svg_nested_vector_image_element_counts": [
+      6,
+      10,
+      11
+    ],
+    "svg_bitmap_image_counts": [
+      0,
+      0,
+      0
+    ],
+    "svg_native_text_retained": true,
+    "per_figure_exports": {
+      "F1": {
+        "pdf": {
+          "path": "paper/figures/f01_motivation.pdf",
+          "bytes": 127318,
+          "sha256": "083b6a4f03697219f185148eb9772c7ae4635c168893e4bacc4d953e26f5a476",
+          "page_count": 1,
+          "embedded_image_count": 0,
+          "representation": "Vector PDF with no bitmap image XObjects",
+          "page_points": [
+            0.0,
+            0.0,
+            958.07996,
+            603.12
+          ]
+        },
+        "png": {
+          "path": "paper/figures/f01_motivation.png",
+          "bytes": 682530,
+          "sha256": "711b76ae60812c3ad2cd70b3437a6247c6d7a71a34c98ea4202033fad9c0bb3f",
+          "pixel_width": 2400,
+          "pixel_height": 1515
+        },
+        "svg": {
+          "path": "paper/figures/f01_motivation.svg",
+          "bytes": 117702,
+          "sha256": "0a34ef21065d8895f2e4f66a8724d9ebe33e47b5747a63c77d6f2becedccc310",
+          "nested_vector_image_elements": 6,
+          "raster_image_elements": 0,
+          "text_elements": 22,
+          "font_embedding": false
+        }
+      },
+      "F2": {
+        "pdf": {
+          "path": "paper/figures/f02_evidence_views.pdf",
+          "bytes": 146350,
+          "sha256": "a81e0d2c340f226a3189a33fd3e792c17f24640e638d69d1ed2bd3223517124f",
+          "page_count": 1,
+          "embedded_image_count": 0,
+          "representation": "Vector PDF with no bitmap image XObjects",
+          "page_points": [
+            0.0,
+            0.0,
+            1416.95996,
+            457.91998
+          ]
+        },
+        "png": {
+          "path": "paper/figures/f02_evidence_views.png",
+          "bytes": 780503,
+          "sha256": "4cdba395f3269091e71bfb8e2c8940779ec0e8593de4387496115fe52a44b3ce",
+          "pixel_width": 3000,
+          "pixel_height": 983
+        },
+        "svg": {
+          "path": "paper/figures/f02_evidence_views.svg",
+          "bytes": 358213,
+          "sha256": "24aa524b1e67465a29a8ccfb1e7ca4dbeceaf2f38bcde5cf3aab2f4419b19a00",
+          "nested_vector_image_elements": 10,
+          "raster_image_elements": 0,
+          "text_elements": 29,
+          "font_embedding": false
+        }
+      },
+      "F3": {
+        "pdf": {
+          "path": "paper/figures/f03_paired_design.pdf",
+          "bytes": 140943,
+          "sha256": "72332c10d11a5386f24f35529df7ae533201090faa3285c1f33b8582f3c4e543",
+          "page_count": 1,
+          "embedded_image_count": 0,
+          "representation": "Vector PDF with no bitmap image XObjects",
+          "page_points": [
+            0.0,
+            0.0,
+            1447.91992,
+            526.08002
+          ]
+        },
+        "png": {
+          "path": "paper/figures/f03_paired_design.png",
+          "bytes": 883066,
+          "sha256": "6aa6d78213e9ded46086bc8b2a937e6f47331be892e581ffceaeeb8ed1278b22",
+          "pixel_width": 3000,
+          "pixel_height": 1099
+        },
+        "svg": {
+          "path": "paper/figures/f03_paired_design.svg",
+          "bytes": 332228,
+          "sha256": "23cdcc0831edf86fab63276e4e02f79b6d5c66f107af527bb105c20bdadb3138",
+          "nested_vector_image_elements": 11,
+          "raster_image_elements": 0,
+          "text_elements": 52,
+          "font_embedding": false
+        }
+      }
+    }
+  },
+  "scientific_review": {
+    "status": "PASS",
+    "chunk_removal_versus_assertion_truncation": true,
+    "scoring_only_views_and_full_text_packing": true,
+    "separate_evidence_and_answer_checks": true,
+    "isolated_collections_with_twelve_regrouped_assignments": true,
+    "world_facts_enter_evaluator_only": true
+  },
+  "visual_review": {
+    "status": "PASS",
+    "paper_pages_reviewed": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "basis": "Root and delegated full-page QA: final pages 1–11 passed; page 12 inspected after final compile and passed. Root reviewed post-icon standalone previews for all three diagrams.",
+    "post_icon_standalone_previews": [
+      1,
+      2,
+      3
+    ],
+    "no_missing_figures_overlap_or_clipping": true
+  },
+  "manuscript_checks": {
+    "report": "paper/manuscript_checks.json",
+    "body_pages": 12,
+    "physical_pages": 12,
+    "bold_paragraph_openings": 58,
+    "numbered_sections": 7,
+    "numbered_figures": 12,
+    "tables": 4,
+    "report_identity": {
+      "bytes": 14314,
+      "sha256": "705f6954268b4c761a63fbe7486a06bc7fdd7f2489808bcd0941dccd7074cbf9"
+    },
+    "status": "PASS",
+    "all_openings_bold": true,
+    "submission_ready": false,
+    "remaining_submission_items": [
+      "Provide openly accessible EAB artifacts",
+      "Complete author ORCID/contact/COI submission metadata"
+    ]
+  },
+  "authors": {
+    "metadata": "Zheng Yu, Jie Li, Boyang Wang, and Jingbang Chen",
+    "note": "Equal Contribution",
+    "unchanged_from_author_update": true
+  },
+  "pdf_identity": {
+    "bytes": 1580943,
+    "sha256": "11932a08e37bb5e802e0d7b8e0fc0ecea334e6352b2153a9be287d4e4ab77a7d"
+  },
+  "overleaf": {
+    "name": "ICDE_Overleaf_Clean_20261022_Drawio_Sketch.zip",
+    "file_count": 30,
+    "members": 30,
+    "bytes": 1676794,
+    "sha256": "6639632af5443a1b09b81c8cbf5a5ec1a944bbe7f0297cd0c674b9deae8415cb",
+    "crc_verified": true,
+    "all_member_bytes_match_manifest_and_current_sources": true,
+    "directory": "ICDE_Overleaf_Clean_20261022_Drawio_Sketch",
+    "compiler_inputs": 29,
+    "closure_breakdown": {
+      "tex": 12,
+      "graphics": 14,
+      "bibliography_database": 1,
+      "class": 1,
+      "bibliography_style": 1
+    },
+    "all_compiler_input_identities_match_build_manifest_and_current_paper": true,
+    "build_manifest_staged_inputs_verified": 51,
+    "build_outputs_verified": 2,
+    "builder_identity_verified": true,
+    "package_manifest": "build/drawio_recreate_20261022/overleaf_manifest.json"
+  },
+  "editable_figure_archive": {
+    "name": "RAG_Drawio_Sketch_Figures_20261022.zip",
+    "file_count": 46,
+    "members": 46,
+    "bytes": 2856541,
+    "sha256": "e49d93931f1376700627be329aeaf42bd28a64f509d4f6b981b4417c603c113f",
+    "crc_verified": true,
+    "all_member_bytes_match_manifest_and_current_sources": true,
+    "original_svg_assets_included": 32,
+    "svg_catalog_included": true,
+    "drawio_sources_included": 3
+  },
+  "updated_at_utc": "2026-10-22T10:50:53.642691+00:00",
+  "source_editing_scope": "Frames, labels and arrows are native draw.io objects. SVG icons can be independently moved/resized; their internal paths are SVG geometry rather than native draw.io primitives. Hidden legacy icon cells remain in source.",
+  "native_geometry_and_svg_icons": {
+    "F1": {
+      "native_vertices_including_hidden": 45,
+      "native_edges_including_hidden": 2,
+      "visible_native_cells": 36,
+      "svg_image_vertices": 11,
+      "visible_svg_icons": 11,
+      "catalog_only": true,
+      "visible_native_sketch_style": "PASS",
+      "sketch_check_excludes_svg_and_hidden_cells": true
+    },
+    "F2": {
+      "native_vertices_including_hidden": 227,
+      "native_edges_including_hidden": 39,
+      "visible_native_cells": 50,
+      "svg_image_vertices": 11,
+      "visible_svg_icons": 11,
+      "catalog_only": true,
+      "visible_native_sketch_style": "PASS",
+      "sketch_check_excludes_svg_and_hidden_cells": true
+    },
+    "F3": {
+      "native_vertices_including_hidden": 181,
+      "native_edges_including_hidden": 7,
+      "visible_native_cells": 81,
+      "svg_image_vertices": 14,
+      "visible_svg_icons": 14,
+      "catalog_only": true,
+      "visible_native_sketch_style": "PASS",
+      "sketch_check_excludes_svg_and_hidden_cells": true
+    }
+  },
+  "icon_catalog": {
+    "manifest": "paper/figures/drawio/icons/icons_manifest.json",
+    "original_svg_assets": 32,
+    "placed_svg_icons": 36,
+    "placements_by_figure": [
+      11,
+      11,
+      14
+    ],
+    "original_bytes_match_supplied_zip": true,
+    "source_archive": {
+      "path": "Downloads/RAG_Figures_Icons_HD.zip",
+      "bytes": 1405240,
+      "sha256": "a46d7ed8f5566e71a3f35c8af48632d1e11c85376edcc1282e9b8f3f11baacc0"
+    },
+    "all_placed_svg_bytes_match_catalog": true,
+    "raster_content_in_icon_svgs": 0
+  },
+  "concurrent_scientific_updates": {
+    "scope": "Scientific result additions are preserved separately from drawing work; no claim that the integrated paper contains no new results.",
+    "integrated_commit": "21f7e10237c5ee8b92900ce0b3f8c0abfc103cf4",
+    "download_manifest": "build/drawio_recreate_20261022/remote21f7/download_manifest.json",
+    "downloaded_paths": 15,
+    "byte_exact_preserved_paths": [
+      "paper/figures/f09_answers.pdf",
+      "paper/sections/03_protocol.tex",
+      "paper/figures/f09_answers.json",
+      "paper/figures/f09_answers.png",
+      "paper/figures/f09_answers.svg",
+      "paper/figures/source_data/fig09_answers/contrasts_512.csv",
+      "paper/figures/source_data/fig09_answers/followup_verification.json",
+      "paper/figures/source_data/fig09_answers/rates.csv",
+      "paper/figures/source_data/fig09_answers/summary_2048.csv",
+      "paper/tools/plot_fig09_answers.py",
+      "paper/sections/04_evaluation.tex",
+      "paper/figures/source_data/fig09_answers/contrasts_2048.csv",
+      "paper/figures/source_data/fig09_answers/followup_manifest.json"
+    ],
+    "merged_paths": [
+      "paper/figure_assets.json",
+      "paper/layout.tex"
+    ],
+    "remote_f9_asset_records_preserved_exactly": true,
+    "scientific_layout_from_figure4_onward_preserved_exactly": true,
+    "path_identities": {
+      "paper/figure_assets.json": {
+        "remote_git_blob_sha": "e0e8ad439e0987c1549b2d4ddb3b7fe9bfb19a01",
+        "remote_identity": {
+          "bytes": 8761,
+          "sha256": "e6cfcd10a59d45b8d229b2b59a0f48d17f2fcefcb755e30f91dfbe8f23ceb9ab"
+        },
+        "current_identity": {
+          "bytes": 11306,
+          "sha256": "84dec572acb5f424f4912889e98d95d24e18ee65d982e7770f544952427fc017"
+        }
+      },
+      "paper/figures/f09_answers.pdf": {
+        "remote_git_blob_sha": "453c2161574980bff3d67c47d52ba9f71e78af14",
+        "remote_identity": {
+          "bytes": 24316,
+          "sha256": "846941f9ebd7018e7ac8d1ce43692d5df2fa1f4ea45d241685c9b2cab2ba5cc1"
+        },
+        "current_identity": {
+          "bytes": 24316,
+          "sha256": "846941f9ebd7018e7ac8d1ce43692d5df2fa1f4ea45d241685c9b2cab2ba5cc1"
+        }
+      },
+      "paper/layout.tex": {
+        "remote_git_blob_sha": "217567fcefe73296ba19d70249d1550739dd73e9",
+        "remote_identity": {
+          "bytes": 10709,
+          "sha256": "740ecefdf1165284bf615f6db9534246b378e34bdebe984026a27d46cb60625a"
+        },
+        "current_identity": {
+          "bytes": 10685,
+          "sha256": "54537bc29224377e7fe2d563173a978afa9cc929ba0bda5f3425005c454e4405"
+        }
+      },
+      "paper/sections/03_protocol.tex": {
+        "remote_git_blob_sha": "2d5a05e32ef54bee19400375b56ed3351c1d401a",
+        "remote_identity": {
+          "bytes": 5839,
+          "sha256": "804df673ee9b211b1974b90188aca31562064a290bebb6686982438d4379f1b4"
+        },
+        "current_identity": {
+          "bytes": 5839,
+          "sha256": "804df673ee9b211b1974b90188aca31562064a290bebb6686982438d4379f1b4"
+        }
+      },
+      "paper/figures/f09_answers.json": {
+        "remote_git_blob_sha": "6be273fdea2988d9ebae161c5c14ae2a07ee3c35",
+        "remote_identity": {
+          "bytes": 1563,
+          "sha256": "7c69dd18f22316bc45def757c620770d5f5cb0dfadd89b1af1ffe7c0029679c2"
+        },
+        "current_identity": {
+          "bytes": 1563,
+          "sha256": "7c69dd18f22316bc45def757c620770d5f5cb0dfadd89b1af1ffe7c0029679c2"
+        }
+      },
+      "paper/figures/f09_answers.png": {
+        "remote_git_blob_sha": "4124106b1cd55640871b992d99a2f8428cae4a19",
+        "remote_identity": {
+          "bytes": 1227400,
+          "sha256": "ea6d52c5c7d3bce9864031f46f4501e9808647c2913f2a904ac36ed1ed22ad87"
+        },
+        "current_identity": {
+          "bytes": 1227400,
+          "sha256": "ea6d52c5c7d3bce9864031f46f4501e9808647c2913f2a904ac36ed1ed22ad87"
+        }
+      },
+      "paper/figures/f09_answers.svg": {
+        "remote_git_blob_sha": "98dc11379b59f698119a97b58f66111f8e5e6114",
+        "remote_identity": {
+          "bytes": 26140,
+          "sha256": "d6fc8f60ab4a3d6b8aa301bf9861a9c37d46ff964ec074eaacd580b74e31b6d9"
+        },
+        "current_identity": {
+          "bytes": 26140,
+          "sha256": "d6fc8f60ab4a3d6b8aa301bf9861a9c37d46ff964ec074eaacd580b74e31b6d9"
+        }
+      },
+      "paper/figures/source_data/fig09_answers/contrasts_512.csv": {
+        "remote_git_blob_sha": "e80e3a8e63902b4941c044f379a7f6f2058c26f9",
+        "remote_identity": {
+          "bytes": 3223,
+          "sha256": "ebcf9cd04ab440444e6800f3bb3a76d6269909f9d0082ebd45a823bae07f2e7b"
+        },
+        "current_identity": {
+          "bytes": 3223,
+          "sha256": "ebcf9cd04ab440444e6800f3bb3a76d6269909f9d0082ebd45a823bae07f2e7b"
+        }
+      },
+      "paper/figures/source_data/fig09_answers/followup_verification.json": {
+        "remote_git_blob_sha": "71ebbf627531c14d43bca5e96a4d50e3e70ebcc7",
+        "remote_identity": {
+          "bytes": 901,
+          "sha256": "4f09fc72eccda6c12e7ed8137a9d4e13a571871b555556c677da3b9fd9426fe0"
+        },
+        "current_identity": {
+          "bytes": 901,
+          "sha256": "4f09fc72eccda6c12e7ed8137a9d4e13a571871b555556c677da3b9fd9426fe0"
+        }
+      },
+      "paper/figures/source_data/fig09_answers/rates.csv": {
+        "remote_git_blob_sha": "1b99576857a2d3a6f44d642e96c75d6fedcd42b2",
+        "remote_identity": {
+          "bytes": 1032,
+          "sha256": "0d3a77b5447c25510587249035bb68244d31ba8273f512be5b569c8dd2e956f4"
+        },
+        "current_identity": {
+          "bytes": 1032,
+          "sha256": "0d3a77b5447c25510587249035bb68244d31ba8273f512be5b569c8dd2e956f4"
+        }
+      },
+      "paper/figures/source_data/fig09_answers/summary_2048.csv": {
+        "remote_git_blob_sha": "711d48863312f8f45acaa2750671de12d40bfacf",
+        "remote_identity": {
+          "bytes": 1319,
+          "sha256": "050b9eb1b1c786eb75f8329cfe7197f08e3f7c0f7b85b179da669b2a9120eb86"
+        },
+        "current_identity": {
+          "bytes": 1319,
+          "sha256": "050b9eb1b1c786eb75f8329cfe7197f08e3f7c0f7b85b179da669b2a9120eb86"
+        }
+      },
+      "paper/tools/plot_fig09_answers.py": {
+        "remote_git_blob_sha": "1b89a8ad5851e6fa565cf70169708c91107e16aa",
+        "remote_identity": {
+          "bytes": 7483,
+          "sha256": "b5ab68d9978018b9982f42de256235f5aeac6ed96e196865cadc798a60727fc2"
+        },
+        "current_identity": {
+          "bytes": 7483,
+          "sha256": "b5ab68d9978018b9982f42de256235f5aeac6ed96e196865cadc798a60727fc2"
+        }
+      },
+      "paper/sections/04_evaluation.tex": {
+        "remote_git_blob_sha": "9efe52bdac9ad5aad9c04d88b685dac8168e1b60",
+        "remote_identity": {
+          "bytes": 22026,
+          "sha256": "0a0a6eafb5dd23ac00ae1e7c4f90990205872ec0f69fe8f6393c009eb109c748"
+        },
+        "current_identity": {
+          "bytes": 22026,
+          "sha256": "0a0a6eafb5dd23ac00ae1e7c4f90990205872ec0f69fe8f6393c009eb109c748"
+        }
+      },
+      "paper/figures/source_data/fig09_answers/contrasts_2048.csv": {
+        "remote_git_blob_sha": "18dcb1df84c25acbbf4ca87cc66bcd1bf35b7246",
+        "remote_identity": {
+          "bytes": 2029,
+          "sha256": "22a1f3b26788a8795105391acbf25f711b9f22648c8c37a0b787d8aece5db16f"
+        },
+        "current_identity": {
+          "bytes": 2029,
+          "sha256": "22a1f3b26788a8795105391acbf25f711b9f22648c8c37a0b787d8aece5db16f"
+        }
+      },
+      "paper/figures/source_data/fig09_answers/followup_manifest.json": {
+        "remote_git_blob_sha": "088792ea7606493dd20994d99c61f34d1a2aa8b6",
+        "remote_identity": {
+          "bytes": 161240,
+          "sha256": "8b06c534e85773cc52f4bce8521dca5bd828c05568fd76cc5c4293bbd522de57"
+        },
+        "current_identity": {
+          "bytes": 161240,
+          "sha256": "8b06c534e85773cc52f4bce8521dca5bd828c05568fd76cc5c4293bbd522de57"
+        }
+      }
+    },
+    "later_remote_commit": "3c2e4bc6a9be63297c12ee77f86e163016a218ce",
+    "later_remote_change": "main.pdf only; superseded by the final local PDF integrating both scientific results and SVG-icon drawing changes."
+  },
+  "drawing_work_scope": {
+    "new_model_experiments": false,
+    "frozen_result_data_modified_by_drawing_work": false,
+    "statistical_contrasts_recomputed_by_drawing_work": false,
+    "no_empirical_coordinates_in_schematic_changes": true
+  },
+  "manifest_refresh": {
+    "path": "MANIFEST.json",
+    "requested_upload_paths_excluding_self": 58,
+    "remote_import_paths": 15,
+    "overlap_paths": [
+      "paper/figure_assets.json",
+      "paper/layout.tex"
+    ],
+    "total_paths_refreshed": 71,
+    "original_svg_paths_covered": 32,
+    "svg_catalog_path_covered": true,
+    "self_entry_excluded": true,
+    "all_existing_entries_outside_requested_paths_preserved": true
+  }
+}
