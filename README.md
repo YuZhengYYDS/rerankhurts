@@ -2,6 +2,8 @@
 
 **What Survives the Context Budget? Source Retention and Fact Coverage in RAG**
 
+Start with [guide.md](guide.md) for the directory map, data locations and common commands.
+
 The current manuscript is in [paper/](paper/README.md), with [main.tex](paper/main.tex) and the [compiled PDF](paper/main.pdf). The source project imported on 2026-10-26 contains the revised `-v2.pdf` figures for Figures 4–12. Figures 1–3 retain the draw.io sketch diagrams with supplied SVG icons. The paper directory is a self-contained Overleaf project; compiler scratch and validation reports live outside it.
 
 Authors: Zheng Yu, Jie Li, Boyang Wang and Jingbang Chen. Zheng Yu and Jie Li share **Equal Contribution**; Jie Li and Boyang Wang are affiliated with The Chinese University of Hong Kong, Shenzhen. Jingbang Chen is the corresponding author. The authoritative author block is [authors.tex](paper/authors.tex).
@@ -11,6 +13,8 @@ Authors: Zheng Yu, Jie Li, Boyang Wang and Jingbang Chen. Zheng Yu and Jie Li sh
 | Directory | Purpose |
 | --- | --- |
 | [paper/](paper/README.md) | Current manuscript, bibliography, IEEE template and supplied figure PDFs. |
+| [data/](data/README.md) | Oncology corpora, question sets, source configuration and data reports. |
+| [metadata/](metadata/README.md) | Repository file manifest, release status and data-layout provenance. |
 | [rerankhuts/](rerankhuts/) | Unified command dispatcher: `python -m rerankhuts`. |
 | [experiments/](experiments/README.md) | Experimental implementations, frozen inputs, runs and independent evaluations. |
 | [scripts/](scripts/) | Build, verification, release packaging and analysis commands. Historical table helpers are grouped under `scripts/paper/`. |

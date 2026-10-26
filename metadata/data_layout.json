@@ -1,0 +1,147 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-26",
+  "repository": "YuZhengYYDS/rerankhurts",
+  "base_commit": "e3b9cb379ff753a4e47a68c7c113fb1335575f71",
+  "scope": "Relocate root data and repository metadata; update maintained path resolution and root guide.",
+  "relocations": [
+    {
+      "original_path": "corpus_chunks_v1.jsonl",
+      "current_path": "data/oncology/corpus/corpus_chunks_v1.jsonl",
+      "original_git_blob": "0e33cfe9e53144c8634e396a1c54282f8de2b552",
+      "original_bytes": 8995329,
+      "kind": "raw_data",
+      "bytes_preserved": true,
+      "sha256": "5bc34bcfa523c5505b0fa00c6c0d2abec242dd2f3a712bf9d82f67fbaa941efb"
+    },
+    {
+      "original_path": "corpus_chunks_v2.jsonl",
+      "current_path": "data/oncology/corpus/corpus_chunks_v2.jsonl",
+      "original_git_blob": "0d2a48f451f1d87804ae8afb972631ec6accff28",
+      "original_bytes": 9771572,
+      "kind": "raw_data",
+      "bytes_preserved": true,
+      "sha256": "7ddcfdff6f942be4f7fcf703bbba420e5cb093ba6fa29e7879e919632c94ee78"
+    },
+    {
+      "original_path": "questions.jsonl",
+      "current_path": "data/oncology/questions/questions.jsonl",
+      "original_git_blob": "05dfda60c5b36b25f3076c22eb778fa230d416c2",
+      "original_bytes": 20418,
+      "kind": "raw_data",
+      "bytes_preserved": true,
+      "sha256": "7d60f5bf4282782bec88f1fd0220f4fc9dc8033b1213c9ea82c498cb2ef1e7d7"
+    },
+    {
+      "original_path": "questions_expanded_full_prepurge.jsonl",
+      "current_path": "data/oncology/questions/questions_expanded_full_prepurge.jsonl",
+      "original_git_blob": "2810c6bb4dc2b742ceeadbb0c0cb7eafcb9b252c",
+      "original_bytes": 91084,
+      "kind": "raw_data",
+      "bytes_preserved": true,
+      "sha256": "68046866b4b2957513d7369cb3acc3bf0aaa39bff16e168abfa5143e47e73bbf"
+    },
+    {
+      "original_path": "questions_expanded_full_validated.jsonl",
+      "current_path": "data/oncology/questions/questions_expanded_full_validated.jsonl",
+      "original_git_blob": "b3b6a7a06197a161fcce4ee777b6278dcc76e8af",
+      "original_bytes": 70088,
+      "kind": "raw_data",
+      "bytes_preserved": true,
+      "sha256": "dd957a44b532261bdf0d0f6134d50035315b8f444d224a38aa4455328e37699c"
+    },
+    {
+      "original_path": "questions_judge_sample_validated.jsonl",
+      "current_path": "data/oncology/questions/questions_judge_sample_validated.jsonl",
+      "original_git_blob": "0f49ffd474736bff593d429daefcd1faa8b03f7f",
+      "original_bytes": 17356,
+      "kind": "raw_data",
+      "bytes_preserved": true,
+      "sha256": "881c95acc1cec3e1cae7ab79cc41828b5094b6676c8ec5e76f265b6fc5ca5221"
+    },
+    {
+      "original_path": "corpus_expansion_report.csv",
+      "current_path": "data/oncology/reports/corpus_expansion_report.csv",
+      "original_git_blob": "04c6407d1e8214bfda6480b272d3eaf5b3aa7511",
+      "original_bytes": 2085,
+      "kind": "raw_data",
+      "bytes_preserved": true,
+      "sha256": "d6e9f0b98d714c7d77f933b730df3c821954556fe6a898ca0c5e30e349e17a1c"
+    },
+    {
+      "original_path": "questions_expanded_leakfree_report.csv",
+      "current_path": "data/oncology/reports/questions_expanded_leakfree_report.csv",
+      "original_git_blob": "226a8172c219e51398a736996101c40f1b41db61",
+      "original_bytes": 8255,
+      "kind": "raw_data",
+      "bytes_preserved": true,
+      "sha256": "42d7de69feae687bdaffb0e6367caca99e06f03a89c1296bd089d88cb8a017d8"
+    },
+    {
+      "original_path": "data_sources.json",
+      "current_path": "data/oncology/sources/data_sources.json",
+      "original_git_blob": "e126806e4c5765e6c0a85fa542322920910e0b5b",
+      "original_bytes": 4039,
+      "kind": "raw_data",
+      "bytes_preserved": true,
+      "sha256": "8a702ac1a8f20aea21442eac1ebb5b8e01b154527b86ff1208bc1a882967db5b"
+    },
+    {
+      "original_path": "urls.txt",
+      "current_path": "data/oncology/sources/urls.txt",
+      "original_git_blob": "2ffa17f1b9bd9e1ec8fd0ddd6bfb5ad3a131d97b",
+      "original_bytes": 456,
+      "kind": "raw_data",
+      "bytes_preserved": true,
+      "sha256": "44b339c641aee7e8ffed8f513b281fff55f40998ba51e5d17f8a8bda1f1931bd"
+    },
+    {
+      "original_path": "MANIFEST.json",
+      "current_path": "metadata/MANIFEST.json",
+      "original_git_blob": "d6e65221fe9a426e2cde8e3701c6bf607e336879",
+      "original_bytes": 448398,
+      "kind": "repository_metadata"
+    },
+    {
+      "original_path": "release_status.json",
+      "current_path": "metadata/release_status.json",
+      "original_git_blob": "0fbbcdb8860131333f1c819db3398719a22a2514",
+      "original_bytes": 8551,
+      "kind": "repository_metadata"
+    }
+  ],
+  "raw_data_file_count": 10,
+  "raw_data_bytes_preserved": true,
+  "historical_manifests_rewritten": false,
+  "frozen_experiment_implementations_changed": false,
+  "shared_path_resolver": "rerankhuts/paths.py",
+  "guide": "guide.md",
+  "new_e3_output": "build/runs/e3",
+  "published_e3_run": "experiments/runs/e3_m3",
+  "e3_path_identity_note": "Relocated input path strings create a new run identity. New E3 execution uses its own output directory; frozen manifests and recorded data/code hashes remain unchanged.",
+  "validation": {
+    "real_e3_original_identity_and_input_hashes": "PASS",
+    "path_safety_and_tamper_checks": "Covered by targeted tests",
+    "full_model_inference_rerun": false,
+    "full_frozen_trace_archive_downloaded": false,
+    "remote_tree_verification": "Recorded separately after publication; unchanged and relocated blob identities are verified against the base tree.",
+    "targeted_tests": {
+      "passed": 201,
+      "failed": 0,
+      "modules": [
+        "tests/test_cli.py",
+        "tests/test_frozen_files.py",
+        "tests/test_metrics_audit.py",
+        "tests/test_legacy_data_paths.py",
+        "tests/test_query_normalization_join.py",
+        "tests/test_release_packaging.py",
+        "tests/test_audit_figure_pairs.py"
+      ],
+      "junit_sha256": "c0f11b799afe4c40a0693abc28a604e6d0932ca9855c07182c6eb687eefc7a8a"
+    },
+    "real_original_e3_file_references_checked": 4,
+    "paper_build_identities": "PASS, existing manuscript sources and compiled PDF unchanged",
+    "guide_local_links": "PASS",
+    "root_data_files_remaining": 0
+  }
+}

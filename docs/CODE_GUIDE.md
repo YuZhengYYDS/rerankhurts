@@ -69,7 +69,8 @@ Python 入口按用途归入目录，根目录不再保留 `.py` 兼容包装：
 | `legacy/summarize_supplement_results.py` | `python -m rerankhuts legacy-summarize` |
 
 同名 Pixi task 也可使用。这五项沿用各工具原有的环境变量配置，不转发命令行参数；
-数据、`.env`、缓存与输出的默认路径仍相对仓库根目录解析。其他历史工具使用
+`.env`、缓存与输出的路径相对仓库根目录解析，肿瘤数据默认读取 `data/oncology/`。
+其他历史工具使用
 `python -m legacy.<模块名>`，驱动程序也通过显式包路径调用它们。
 
 `archive/code_20261022/` 保留这五个文件迁移前的原始字节，只供来源追踪。
@@ -78,7 +79,20 @@ Python 入口按用途归入目录，根目录不再保留 `.py` 兼容包装：
 不会退回维护版本。E0 重算加载 `legacy/` 中的正常化函数，在新输出清单中同时记录
 原始归档与所用函数的来源。
 
-根目录 corpus/question JSONL 仍保留数据清单和 run identity 引用的路径。
+原根目录数据按用途迁入 `data/oncology/corpus/`、`questions/`、`reports/` 和
+`sources/`；发布清单与状态位于 `metadata/MANIFEST.json` 和
+`metadata/release_status.json`。统一路径表在 `rerankhuts/paths.py`。
+E0 清单和 E3 run identity 中的旧文件名保持原样；核验器仅将已知旧根文件名映射到
+新位置，仍检查原始 SHA-256、大小和身份摘要。新文件缺失或字节不符会失败，即使根目录
+另有同名文件也不会回退。子目录内的同名文件不受这些映射影响。
+
+`pixi run --locked -e gpu e3` 显式传入迁移后的 corpus/question 路径，默认输出改为
+`build/runs/e3/`。输入路径字符串属于实验身份，不能用新路径继续写入冻结的
+`experiments/runs/e3_m3/`。新运行可用完全相同的命令恢复；`verify`、`analyze-e3` 和
+`interactions-e3` 继续读取已交付的冻结运行，重算结果写入 `build/`。
+实验后端 `experiments/run_factorial.py` 的原始字节未修改，直接调用它时需显式指定
+新的 `--corpus`、`--questions` 和输出目录。
+
 历史 scratch/过时输入工具位于 `legacy/archive/`，不属于当前入口。
 
 ## 修改后的验证顺序

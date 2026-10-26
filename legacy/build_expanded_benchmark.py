@@ -27,14 +27,17 @@ from tqdm import tqdm
 
 from legacy import build_corpus  # reuse fetch_html / extract_paragraphs / make_chunk_records
 
+from rerankhuts.paths import oncology_path
+
+
 BASE_DIR = Path(__file__).resolve().parents[1]
 load_dotenv(BASE_DIR / ".env")
 
-ORIGINAL_CORPUS = BASE_DIR / "corpus_chunks_v1.jsonl"
-EXPANDED_CORPUS = BASE_DIR / "corpus_chunks_v2.jsonl"
-ORIGINAL_QUESTIONS = BASE_DIR / "questions.jsonl"
-EXPANDED_QUESTIONS = BASE_DIR / "questions_expanded.jsonl"
-REVIEW_CHECKLIST = BASE_DIR / "questions_expanded_review.csv"
+ORIGINAL_CORPUS = oncology_path("corpus_chunks_v1.jsonl", root=BASE_DIR)
+EXPANDED_CORPUS = oncology_path("corpus_chunks_v2.jsonl", root=BASE_DIR)
+ORIGINAL_QUESTIONS = oncology_path("questions.jsonl", root=BASE_DIR)
+EXPANDED_QUESTIONS = oncology_path("questions_expanded.jsonl", root=BASE_DIR)
+REVIEW_CHECKLIST = oncology_path("questions_expanded_review.csv", root=BASE_DIR)
 
 # (topic_label, url_slug, pdq_url, question keyword hints)
 NEW_CANCERS: List[Tuple[str, str, str]] = [
@@ -89,6 +92,7 @@ def load_jsonl(path: Path) -> List[Dict]:
 
 
 def save_jsonl(path: Path, rows: List[Dict]) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
     with open(path, "w", encoding="utf-8") as f:
         for row in rows:
             f.write(json.dumps(row, ensure_ascii=False) + "\n")
@@ -120,7 +124,9 @@ def cmd_fetch(args) -> None:
 
     combined = original + new_records
     save_jsonl(EXPANDED_CORPUS, combined)
-    pd.DataFrame(report).to_csv(BASE_DIR / "corpus_expansion_report.csv", index=False, encoding="utf-8-sig")
+    report_path = oncology_path("corpus_expansion_report.csv", root=BASE_DIR)
+    report_path.parent.mkdir(parents=True, exist_ok=True)
+    pd.DataFrame(report).to_csv(report_path, index=False, encoding="utf-8-sig")
     print(f"\nTotal original chunks: {len(original)}")
     print(f"Total new chunks: {len(new_records)}")
     print(f"Expanded corpus: {len(combined)} -> {EXPANDED_CORPUS.name}")
@@ -175,6 +181,7 @@ def cmd_questions(args) -> None:
         time.sleep(0.3)
 
     save_jsonl(EXPANDED_QUESTIONS, new_rows)
+    REVIEW_CHECKLIST.parent.mkdir(parents=True, exist_ok=True)
     pd.DataFrame(review_rows).to_csv(REVIEW_CHECKLIST, index=False, encoding="utf-8-sig")
     print(f"\nGenerated {len(new_rows)} questions -> {EXPANDED_QUESTIONS.name}")
     print(f"Review checklist -> {REVIEW_CHECKLIST.name}")

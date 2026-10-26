@@ -10,6 +10,9 @@ import matplotlib.pyplot as plt
 import pandas as pd
 
 
+from rerankhuts.paths import oncology_path
+
+
 BASE_DIR = Path(__file__).resolve().parents[1]
 RESULT_DIR = Path(os.getenv("RESULT_DIR", str(BASE_DIR / "result")))
 RESULT_DIR.mkdir(parents=True, exist_ok=True)
@@ -18,7 +21,7 @@ RETRIEVAL_OVERALL = RESULT_DIR / "retrieval_metrics_overall.csv"
 RETRIEVAL_BY_TOPIC = RESULT_DIR / "retrieval_metrics_by_topic.csv"
 ANSWER_OVERALL = RESULT_DIR / "analysis_overall.csv"
 ANSWER_BY_TOPIC = RESULT_DIR / "analysis_by_topic.csv"
-CORPUS_FILE = BASE_DIR / "corpus_chunks_v1.jsonl"
+CORPUS_FILE = oncology_path("corpus_chunks_v1.jsonl", root=BASE_DIR)
 
 FIG_DPI = 300
 FONT_SIZE = 11

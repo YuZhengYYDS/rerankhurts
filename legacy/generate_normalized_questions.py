@@ -5,6 +5,9 @@ from pathlib import Path
 from typing import Dict, List, Tuple
 
 
+from legacy.paths import resolve_legacy_path
+
+
 BASE_DIR = Path(__file__).resolve().parents[1]
 RESULT_DIR = BASE_DIR / "result"
 
@@ -13,7 +16,7 @@ def resolve_path(raw_value: str, default: Path) -> Path:
     if not raw_value:
         return default
     candidate = Path(raw_value)
-    return candidate if candidate.is_absolute() else BASE_DIR / candidate
+    return resolve_legacy_path(BASE_DIR, candidate)
 
 
 INPUT_FILE = resolve_path(

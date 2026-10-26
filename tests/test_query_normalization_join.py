@@ -57,6 +57,7 @@ def test_audit_loads_relocated_normalizer_without_writing_beside_source(tmp_path
     assert normalize("What is the treatment for NSCLC?") == rewrite_question("What is the treatment for NSCLC?")
     assert not (tmp_path / "result").exists()
     assert not (tmp_path / "legacy/result").exists()
+    assert not (tmp_path / "data").exists()
 
 
 def test_normalization_dispatcher_writes_requested_outputs(tmp_path):

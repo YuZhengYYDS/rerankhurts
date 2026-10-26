@@ -30,12 +30,15 @@ from dotenv import load_dotenv
 from openai import OpenAI
 from tqdm import tqdm
 
+from rerankhuts.paths import oncology_path
+
+
 BASE_DIR = Path(__file__).resolve().parents[1]
 load_dotenv(BASE_DIR / ".env")
 
-CORPUS = BASE_DIR / "corpus_chunks_v2.jsonl"
-EXISTING = BASE_DIR / "questions_expanded.jsonl"
-OUT_QUESTIONS = BASE_DIR / "questions_expanded_v2.jsonl"
+CORPUS = oncology_path("corpus_chunks_v2.jsonl", root=BASE_DIR)
+EXISTING = oncology_path("questions_expanded.jsonl", root=BASE_DIR)
+OUT_QUESTIONS = oncology_path("questions_expanded_v2.jsonl", root=BASE_DIR)
 
 MODEL = os.getenv("DEEPSEEK_MODEL", "deepseek-chat")
 MAX_PAGE_CHARS = int(os.getenv("GROUNDED_MAX_PAGE_CHARS", "60000"))
@@ -181,6 +184,7 @@ def main() -> None:
               f"({len(page_text(chunks))} chars)")
         time.sleep(0.3)
 
+    OUT_QUESTIONS.parent.mkdir(parents=True, exist_ok=True)
     with open(OUT_QUESTIONS, "w", encoding="utf-8") as f:
         for row in rows:
             f.write(json.dumps(row, ensure_ascii=False) + "\n")
@@ -188,9 +192,9 @@ def main() -> None:
     print(f"\nDrafted {len(rows)} grounded questions -> {OUT_QUESTIONS.name}")
     print(f"qids q{start_num}..q{next_num - 1}")
     print("\nNext: screen them with")
-    print(f"  python -m legacy.verify_expanded_questions --questions {OUT_QUESTIONS.name} "
-          f"--corpus corpus_chunks_v2.jsonl --excerpt-mode full --prompt-variant strict "
-          f"--out questions_expanded_v2_screening.csv")
+    print(f"  python -m legacy.verify_expanded_questions --questions {OUT_QUESTIONS.relative_to(BASE_DIR).as_posix()} "
+          f"--corpus data/oncology/corpus/corpus_chunks_v2.jsonl --excerpt-mode full --prompt-variant strict "
+          f"--out data/oncology/reports/questions_expanded_v2_screening.csv")
     print("(No --rank-source here: these are new qids, so the gold-page rank "
           "cross-check has to be computed by embedding.)")
 

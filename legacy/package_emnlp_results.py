@@ -12,6 +12,10 @@ import numpy as np
 import pandas as pd
 
 
+from legacy.paths import resolve_legacy_path
+from rerankhuts.paths import ROOT_FILE_RELOCATIONS
+
+
 BASE_DIR = Path(__file__).resolve().parents[1]
 RESULT_DIR = BASE_DIR / "result"
 
@@ -20,7 +24,7 @@ def resolve_path(raw_value: str, default: Path) -> Path:
     if not raw_value:
         return default
     candidate = Path(raw_value)
-    return candidate if candidate.is_absolute() else BASE_DIR / candidate
+    return resolve_legacy_path(BASE_DIR, candidate)
 
 
 BUNDLE_NAME = os.getenv("BUNDLE_NAME", "emnlp_full_results_20260427_gpu").strip() or "emnlp_full_results_20260427_gpu"
@@ -88,8 +92,14 @@ COPY_PATHS = [
     BASE_DIR / "legacy" / "prepare_human_eval_packets.py",
     BASE_DIR / "legacy" / "package_emnlp_results.py",
     BASE_DIR / "legacy" / "__init__.py",
+    BASE_DIR / "legacy" / "paths.py",
+    BASE_DIR / "rerankhuts" / "__init__.py",
+    BASE_DIR / "rerankhuts" / "paths.py",
+    BASE_DIR / ".env.example",
     BASE_DIR / "legacy" / "requirements.txt",
     RESULT_DIR / "human_eval_packets",
+    *(BASE_DIR / relative for relative in ROOT_FILE_RELOCATIONS.values()
+      if relative.startswith("data/oncology/")),
 ]
 
 
@@ -147,7 +157,9 @@ def copy_result_assets() -> None:
     for path in COPY_PATHS:
         if not path.exists():
             continue
-        relative = path.relative_to(BASE_DIR) if path.is_relative_to(BASE_DIR / "legacy") else Path(path.name)
+        # Keep code and data at their importable/default relative locations.
+        # Historical derived result assets remain at the bundle root.
+        relative = Path(path.name) if path.is_relative_to(RESULT_DIR) else path.relative_to(BASE_DIR)
         target = BUNDLE_DIR / relative
         target.parent.mkdir(parents=True, exist_ok=True)
         if path.is_dir():

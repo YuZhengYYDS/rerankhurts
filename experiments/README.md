@@ -12,13 +12,24 @@ From the repository root, after installing the locked Pixi GPU environment:
 
 ```powershell
 pixi run --locked -e gpu python -m pytest -q tests/test_protocol.py
-pixi run --locked -e gpu python -m experiments.run_factorial --device cuda --limit 2 --output experiments/runs/smoke
+pixi run --locked -e gpu e3 --limit 2 --output build/runs/e3_smoke
 pixi run --locked -e gpu e3
 ```
 
 The `e3` task supplies the three immutable model/tokenizer revisions recorded
-by the shipped full run. Do not omit these revisions when resuming through the
-lower-level module: its legacy default is `main`, which has a different run identity.
+by the shipped full run, passes the relocated corpus and question paths, and
+defaults to `build/runs/e3/`. The frozen run stays in `experiments/runs/e3_m3/`.
+Input path strings are part of run identity, so a new run using the relocated
+paths requires its own output directory. Verification resolves the frozen run's
+original root filenames through the exact mapping in `rerankhuts/paths.py` and
+still requires the recorded hashes; it does not rewrite the frozen identity.
+
+The lower-level `experiments.run_factorial` implementation retains its original
+source bytes and defaults. When invoking it directly, specify
+`--corpus data/oncology/corpus/corpus_chunks_v2.jsonl`,
+`--questions data/oncology/questions/questions_expanded_full_validated.jsonl`,
+the three pinned revisions and a fresh output directory. Do not omit these
+revisions when resuming: the module's legacy default is `main`, which has a different run identity.
 The first invocation downloads public model snapshots; no paid API is used.
 On an 8 GB CUDA GPU the default reranker uses FP16, eager attention and batches
 of 8, after unloading the dense model. Reduce `--rerank-batch-size 4` **before
@@ -56,8 +67,9 @@ and must not be treated as independent replications.
 
 ## Frozen operator and metric definitions
 
-* **Input:** frozen `corpus_chunks_v2.jsonl` (all supplied rows) and
-  `questions_expanded_full_validated.jsonl`. Data and code SHA-256 values are
+* **Input:** frozen `data/oncology/corpus/corpus_chunks_v2.jsonl` (all supplied rows) and
+  `data/oncology/questions/questions_expanded_full_validated.jsonl`. The frozen
+  manifest retains their original root filenames. Data and code SHA-256 values are
   recorded. Every corpus row is retained, including legacy ID collisions;
   collided IDs receive `::row` plus a stable zero-based corpus row number.
   Traces also retain `original_chunk_id` and `corpus_row`. The manifest gives

@@ -124,6 +124,12 @@ pixi run --locked strengthen-analyze --results build/reanalysis/strengthening --
 
 结果专用 ZIP 保留上述冻结文件的原相对路径和来源清单。它便于查看结果，
 但不等于完整复现包；需要代码与输入语料时请使用 `rerankhuts_icde2027.zip`。
+原根目录的肿瘤学语料、问题集、报告和来源信息已迁至 `data/oncology/`，
+具体路径及使用说明见根目录 `guide.md`。仓库来源清单位于
+`metadata/MANIFEST.json`，发布状态位于 `metadata/release_status.json`；
+三者同时进入完整包、代码分包和结果分包，原始输入数据只进入完整包。
+每个 ZIP 另在顶层生成 `MANIFEST.json`，记录该包所有文件的字节数与 SHA-256，
+其中也包括仓库的 `metadata/MANIFEST.json`；两份清单分别用于来源追溯与包内容校验。
 代码分包显式包含 `experiments/strengthening/study_plan.json` 与 `.gitattributes`；
 结果分包包含新结果、主轨迹、研究计划和扩展指南，完整包另含全部输入数据。
 

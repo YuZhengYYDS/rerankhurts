@@ -4,9 +4,12 @@ from collections import Counter, defaultdict
 from pathlib import Path
 
 
+from rerankhuts.paths import oncology_path
+
+
 BASE_DIR = Path(__file__).resolve().parents[1]
-INPUT_FILE = BASE_DIR / "questions.jsonl"
-OUTPUT_FILE = BASE_DIR / "questions_annotated.jsonl"
+INPUT_FILE = oncology_path("questions.jsonl", root=BASE_DIR)
+OUTPUT_FILE = oncology_path("questions_annotated.jsonl", root=BASE_DIR)
 
 URLS = {
     "NSCLC": "https://www.cancer.gov/types/lung/hp/non-small-cell-lung-treatment-pdq",
@@ -91,6 +94,7 @@ def main():
             duplicates[normalize_question(item.get("question", ""))].append(item.get("qid", ""))
             annotated.append(item)
 
+    OUTPUT_FILE.parent.mkdir(parents=True, exist_ok=True)
     with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
         for item in annotated:
             f.write(json.dumps(item, ensure_ascii=False) + "\n")

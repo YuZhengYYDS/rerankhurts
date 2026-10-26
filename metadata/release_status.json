@@ -241,5 +241,18 @@
     "numerical_table_rows_unchanged": true,
     "body_pages_before": 12,
     "body_pages_after": 10
+  },
+  "data_organization": {
+    "date": "2026-10-26",
+    "oncology_data": "data/oncology",
+    "repository_manifest": "metadata/MANIFEST.json",
+    "release_status": "metadata/release_status.json",
+    "guide": "guide.md",
+    "provenance": "metadata/data_layout.json",
+    "raw_data_bytes_preserved": true,
+    "frozen_run_identities_preserved": true,
+    "new_e3_output": "build/runs/e3",
+    "tests_passed": 201,
+    "validation": "metadata/data_layout.json"
   }
 }

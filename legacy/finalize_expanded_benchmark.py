@@ -38,6 +38,9 @@ import pandas as pd
 # standalone audit tool, so the benchmark and its checker cannot drift apart.
 from legacy.purge_leaky_questions import LEAK_PATTERN
 
+from rerankhuts.paths import oncology_path
+
+
 BASE_DIR = Path(__file__).resolve().parents[1]
 
 AUDITED78 = BASE_DIR / "result/emnlp_full_results_20260427_gpu_final/paper_questions_validated.jsonl"
@@ -50,15 +53,15 @@ AUDITED78 = BASE_DIR / "result/emnlp_full_results_20260427_gpu_final/paper_quest
 #         which is the fix for v1's root cause.
 # Both are screened with the same full-page protocol before entering the pool.
 SOURCES = [
-    (BASE_DIR / "questions_expanded.jsonl", {
-        "strict": BASE_DIR / "questions_expanded_review_filled_full.csv",
-        "lenient": BASE_DIR / "questions_expanded_review_filled_full_lenient.csv",
-        "topk": BASE_DIR / "questions_expanded_review_filled.csv",
+    (oncology_path("questions_expanded.jsonl", root=BASE_DIR), {
+        "strict": oncology_path("questions_expanded_review_filled_full.csv", root=BASE_DIR),
+        "lenient": oncology_path("questions_expanded_review_filled_full_lenient.csv", root=BASE_DIR),
+        "topk": oncology_path("questions_expanded_review_filled.csv", root=BASE_DIR),
     }),
-    (BASE_DIR / "questions_expanded_v2.jsonl", {
-        "strict": BASE_DIR / "questions_expanded_v2_screening.csv",
-        "lenient": BASE_DIR / "questions_expanded_v2_screening.csv",
-        "topk": BASE_DIR / "questions_expanded_v2_screening.csv",
+    (oncology_path("questions_expanded_v2.jsonl", root=BASE_DIR), {
+        "strict": oncology_path("questions_expanded_v2_screening.csv", root=BASE_DIR),
+        "lenient": oncology_path("questions_expanded_v2_screening.csv", root=BASE_DIR),
+        "topk": oncology_path("questions_expanded_v2_screening.csv", root=BASE_DIR),
     }),
 ]
 ACCEPT_COLUMN = "answerable_from_page"
@@ -74,6 +77,7 @@ def load_jsonl(path: Path) -> List[Dict]:
 
 
 def save_jsonl(path: Path, rows: List[Dict]) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
     with open(path, "w", encoding="utf-8") as f:
         for row in rows:
             f.write(json.dumps(row, ensure_ascii=False) + "\n")
@@ -118,6 +122,7 @@ def main() -> None:
     ap.add_argument("--judge-sample", type=int, default=40)
     ap.add_argument("--seed", type=int, default=42)
     args = ap.parse_args()
+    oncology_path("questions_expanded_review_final.csv", root=BASE_DIR).parent.mkdir(parents=True, exist_ok=True)
 
     expanded: Dict[str, Dict] = {}
     accepted: set = set()
@@ -177,7 +182,7 @@ def main() -> None:
             "construction_source": r.get("construction_source", ""),
             "question": r.get("question", ""),
         } for r in leaky]).to_csv(
-            BASE_DIR / "questions_expanded_leakfree_report.csv",
+            oncology_path("questions_expanded_leakfree_report.csv", root=BASE_DIR),
             index=False, encoding="utf-8-sig")
         print(f"  source-naming items dropped: {len(leaky)} "
               f"-> report in questions_expanded_leakfree_report.csv")
@@ -188,13 +193,13 @@ def main() -> None:
     pool = audited + kept
     sample = build_judge_sample(pool, args.judge_sample, args.seed)
 
-    save_jsonl(BASE_DIR / "questions_expanded_validated.jsonl", kept)
-    save_jsonl(BASE_DIR / "questions_expanded_full_validated.jsonl", pool)
-    save_jsonl(BASE_DIR / "questions_judge_sample_validated.jsonl", sample)
+    save_jsonl(oncology_path("questions_expanded_validated.jsonl", root=BASE_DIR), kept)
+    save_jsonl(oncology_path("questions_expanded_full_validated.jsonl", root=BASE_DIR), pool)
+    save_jsonl(oncology_path("questions_judge_sample_validated.jsonl", root=BASE_DIR), sample)
 
     review = screen.copy()
     review["included_in_benchmark"] = review["qid"].astype(str).isin(accepted)
-    review.to_csv(BASE_DIR / "questions_expanded_review_final.csv",
+    review.to_csv(oncology_path("questions_expanded_review_final.csv", root=BASE_DIR),
                   index=False, encoding="utf-8-sig")
 
     print(f"  accepted new questions : {len(kept)}")

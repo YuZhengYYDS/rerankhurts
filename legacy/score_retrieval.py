@@ -6,6 +6,10 @@ from typing import List
 
 import pandas as pd
 
+from rerankhuts.paths import oncology_path
+from legacy.paths import resolve_legacy_path
+
+
 BASE_DIR = Path(__file__).resolve().parents[1]
 RESULT_DIR = Path(os.getenv("RESULT_DIR", str(BASE_DIR / "result")))
 if not RESULT_DIR.is_absolute():
@@ -22,9 +26,9 @@ LEGACY_RESULT_FILES = {
     "baseline": RESULT_DIR / "rag_results_baseline.csv",
     "rerank": RESULT_DIR / "rag_results_rerank.csv",
 }
-QUESTIONS_FILE = Path(os.getenv("QUESTIONS_FILE", str(BASE_DIR / "questions.jsonl")))
+QUESTIONS_FILE = Path(os.getenv("QUESTIONS_FILE", str(oncology_path("questions.jsonl", root=BASE_DIR))))
 if not QUESTIONS_FILE.is_absolute():
-    QUESTIONS_FILE = BASE_DIR / QUESTIONS_FILE
+    QUESTIONS_FILE = resolve_legacy_path(BASE_DIR, QUESTIONS_FILE)
 
 OUTPUT_OVERALL = RESULT_DIR / "retrieval_metrics_overall.csv"
 OUTPUT_BY_TOPIC = RESULT_DIR / "retrieval_metrics_by_topic.csv"

@@ -21,7 +21,7 @@ def main():
     if not source.exists():
         source = ROOT / 'source_data' / REL
     digest = hashlib.sha256(source.read_bytes()).hexdigest()
-    recorded = json.loads((ROOT / 'MANIFEST.json').read_text())[REL.as_posix()]['sha256']
+    recorded = json.loads((ROOT / 'metadata' / 'MANIFEST.json').read_text())[REL.as_posix()]['sha256']
     if digest != recorded:
         raise ValueError('Frozen per-record bytes differ from the shipped manifest')
     rows = defaultdict(dict)

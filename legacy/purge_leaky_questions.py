@@ -33,6 +33,10 @@ import re
 import sys
 from pathlib import Path
 
+from rerankhuts.paths import oncology_path
+from legacy.paths import resolve_legacy_path
+
+
 BASE = Path(__file__).resolve().parents[1]
 
 # Input and output are different files on purpose. They were briefly the same
@@ -41,9 +45,9 @@ BASE = Path(__file__).resolve().parents[1]
 # re-run read its own output, reported "Leaky: none", and left no way to tell
 # that 32 items had ever been dropped. The pre-purge set is kept under its own
 # name so the 187 -> 155 step is visible and re-checkable.
-SOURCE = BASE / "questions_expanded_full_prepurge.jsonl"
-OUT = BASE / "questions_expanded_full_validated.jsonl"
-REPORT = BASE / "questions_expanded_leakfree_report.csv"
+SOURCE = oncology_path("questions_expanded_full_prepurge.jsonl", root=BASE)
+OUT = oncology_path("questions_expanded_full_validated.jsonl", root=BASE)
+REPORT = oncology_path("questions_expanded_leakfree_report.csv", root=BASE)
 
 # Every way an item can name its own source document. Word boundaries matter:
 # unanchored, "nci" matches "sequencing" and reports a false leak.
@@ -68,7 +72,7 @@ def main() -> None:
     ap.add_argument("--dry-run", action="store_true")
     args = ap.parse_args()
 
-    src = Path(args.source)
+    src = resolve_legacy_path(BASE, args.source)
     if not src.exists():
         raise SystemExit(f"Question set not found: {src}")
 
@@ -100,12 +104,15 @@ def main() -> None:
         print("Leaky       : none")
 
     if not args.dry_run:
-        out = Path(args.out)
+        out = resolve_legacy_path(BASE, args.out)
+        out.parent.mkdir(parents=True, exist_ok=True)
+        report = resolve_legacy_path(BASE, args.report)
+        report.parent.mkdir(parents=True, exist_ok=True)
         with out.open("w", encoding="utf-8") as fh:
             for q in kept:
                 fh.write(json.dumps(q, ensure_ascii=False) + "\n")
 
-        with Path(args.report).open("w", encoding="utf-8", newline="") as fh:
+        with report.open("w", encoding="utf-8", newline="") as fh:
             writer = csv.writer(fh)
             writer.writerow(["qid", "topic", "construction_source", "matched_span", "question"])
             for q, span in dropped:
@@ -113,7 +120,7 @@ def main() -> None:
                                  q.get("construction_source", ""), span,
                                  q.get("question", "")])
         print(f"\nWrote {out}")
-        print(f"Wrote {Path(args.report)}")
+        print(f"Wrote {report}")
 
     if not kept:
         sys.exit("Refusing to write an empty question set.")

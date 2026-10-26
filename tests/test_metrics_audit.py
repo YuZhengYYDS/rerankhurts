@@ -1,8 +1,39 @@
 """Metric contract regression cases, including missing gold and repeated pages."""
 import math
+import json
 import unittest
 
+import pytest
+
 from validation.audit_metrics import measure, split_urls, transition
+from validation import audit_metrics
+from rerankhuts.paths import resolve_repo_path
+
+
+def test_e0_reads_relocated_question_pools_before_analysis(monkeypatch, tmp_path):
+    names = ("questions.jsonl", "questions_expanded_full_validated.jsonl",
+             "result/emnlp_full_results_20260427_gpu_final/paper_questions_validated.jsonl")
+    for name in names:
+        path = resolve_repo_path(tmp_path, name)
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(json.dumps({"qid": "one", "question": "Question", "gold_url": "https://example/gold"}) + "\n")
+    seen = []
+    read_questions = audit_metrics.read_questions
+
+    def record(path):
+        seen.append(path)
+        return read_questions(path)
+
+    def stop_before_analysis(root):
+        raise RuntimeError("input pools loaded")
+
+    monkeypatch.setattr(audit_metrics, "read_questions", record)
+    monkeypatch.setattr(audit_metrics, "load_normalizer", stop_before_analysis)
+    with pytest.raises(RuntimeError, match="input pools loaded"):
+        audit_metrics.audit(tmp_path, tmp_path / "build/e0")
+    assert set(seen) == {resolve_repo_path(tmp_path, name) for name in names}
+    assert not (tmp_path / "questions.jsonl").exists()
+    assert not (tmp_path / "questions_expanded_full_validated.jsonl").exists()
 
 
 class MetricAuditTests(unittest.TestCase):

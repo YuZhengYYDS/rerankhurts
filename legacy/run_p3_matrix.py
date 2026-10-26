@@ -16,13 +16,16 @@ import sys
 import time
 from pathlib import Path
 
+from rerankhuts.paths import oncology_path
+
+
 BASE = Path(__file__).resolve().parents[1]
 OUT = BASE / "result_revision"
 OUT.mkdir(exist_ok=True)
 
 VALIDATED78 = "result/emnlp_full_results_20260427_gpu_final/paper_questions_validated.jsonl"
 NORMALIZED78 = "result/emnlp_full_results_20260427_gpu_final/paper_questions_validated_normalized.jsonl"
-FULL100 = "questions.jsonl"
+FULL100 = str(oncology_path("questions.jsonl", root=BASE))
 
 NINE_MODES = ",".join([
     "control_dense_only", "control_hybrid", "bm25_only", "bm25_base",

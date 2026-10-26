@@ -34,6 +34,9 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
+from rerankhuts.paths import oncology_path
+
+
 BASE = Path(__file__).resolve().parents[1]
 REV = Path(os.environ.get("RESULT_DIR", BASE / "result_revision")).resolve()
 BUNDLE = Path(os.environ.get("BUNDLE_DIR", REV / "bundle")).resolve()
@@ -42,7 +45,7 @@ PAPER_RESULT = Path(os.environ.get(
 
 ORIG_QUESTIONS = (BASE / "result" / "emnlp_full_results_20260427_gpu_final"
                   / "paper_questions_validated.jsonl")
-EXPANDED_QUESTIONS = BASE / "questions_expanded_full_validated.jsonl"
+EXPANDED_QUESTIONS = oncology_path("questions_expanded_full_validated.jsonl", root=BASE)
 
 # Order and display names follow the paper's narrative: the non-re-ranked
 # reference first, then the re-rankers grouped by family.

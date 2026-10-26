@@ -53,31 +53,26 @@ TABLE_SUFFIXES = ("_summary.csv",)
 # archive for reproducibility, but as reference copies, not as "raw results".
 CORPUS_MARKERS = ("corpus_chunks", "corpus_manifest", "corpus_stats")
 
-# The corpora and the question sets are inputs the pipeline reads but never
-# writes, so they sit next to the scripts rather than in `result_revision/`.
-# Scanning only `result_revision/` therefore froze every round without the two
-# things a reader needs to reproduce it: which corpus and which question file
-# its numbers came from. (The per-run settings CSVs record the file *names*, but
-# the files themselves were nowhere in the archive.) Picked up by pattern, since
-# they are regenerated under versioned names.
-ROOT_INPUT_GLOBS = (
-    "corpus_chunks_v*.jsonl",
-    "corpus_manifest*.json",
-    "corpus_stats*.json",
-    "questions*.jsonl",
-    "questions_*screening*.csv",
-    "questions_expanded_review*.csv",
-    "questions_expanded_leakfree_report.csv",
+# Dataset inputs and their construction reports live under data/oncology/.
+# Include versioned builder outputs and source configuration as well as the
+# released datasets so a round carries the inputs needed to reproduce it.
+DATA_INPUT_GLOBS = (
+    "data/oncology/corpus/*.jsonl",
+    "data/oncology/corpus/*.json",
+    "data/oncology/questions/*.jsonl",
+    "data/oncology/reports/*.csv",
+    "data/oncology/sources/*.json",
+    "data/oncology/sources/*.txt",
 )
 
 
 def collect_root_inputs() -> List[Path]:
-    """The repo-root corpora and question sets that back a round."""
+    """Collect current oncology inputs (the historical function name is retained)."""
     found: Dict[str, Path] = {}
-    for pattern in ROOT_INPUT_GLOBS:
+    for pattern in DATA_INPUT_GLOBS:
         for path in sorted(BASE_DIR.glob(pattern)):
             if path.is_file():
-                found[path.name] = path
+                found[path.relative_to(BASE_DIR).as_posix()] = path
     return [found[name] for name in sorted(found)]
 
 
@@ -90,13 +85,14 @@ CODE_SUFFIXES = (".py",)
 # `README.md` is written for exactly this audience -- how to install, which data
 # files are which, and which caveats bind how the numbers may be described -- so
 # it travels with the scripts rather than staying behind in the repository.
-CODE_FILES = ("legacy/requirements.txt", "legacy/README.md", ".env.example", "README.md")
+CODE_FILES = ("legacy/requirements.txt", "legacy/README.md", ".env.example", "README.md",
+              "rerankhuts/__init__.py", "rerankhuts/paths.py")
 
 
 def collect_code() -> List[Path]:
     """The pipeline's own scripts, frozen with the results they produced."""
     found: Dict[str, Path] = {}
-    for path in sorted([*BASE_DIR.glob("*.py"), *(BASE_DIR / "legacy").rglob("*.py")]):
+    for path in sorted((BASE_DIR / "legacy").glob("*.py")):
         if path.is_file() and path.suffix in CODE_SUFFIXES:
             found[path.relative_to(BASE_DIR).as_posix()] = path
     for name in CODE_FILES:
@@ -152,7 +148,8 @@ def copy_group(paths: List[Path], dest: Path, preserve_code_paths: bool = False)
     dest.mkdir(parents=True, exist_ok=True)
     written = []
     for p in paths:
-        relative = p.relative_to(BASE_DIR) if preserve_code_paths else Path(p.name)
+        preserve = preserve_code_paths or p.is_relative_to(BASE_DIR / "data" / "oncology")
+        relative = p.relative_to(BASE_DIR) if preserve else Path(p.name)
         target = dest / relative
         target.parent.mkdir(parents=True, exist_ok=True)
         # The archive is the released copy, so this machine's directory layout is
@@ -287,9 +284,9 @@ def write_manifest(arch: Path, src: Path, label: str, note: str,
             continue
         lines += [f"### {group}/", ""]
         if group == "benchmark":
-            lines += ["The corpora and question sets listed here are copied from the "
-                      "repository root: they are inputs the pipeline reads but never "
-                      "writes, so they are not products of this round. Without them a "
+            lines += ["The data and source files listed here are copied from "
+                      "`data/oncology/` with their relative paths: they are inputs and "
+                      "construction reports, rather than products of this result round. Without them a "
                       "reader cannot tell which corpus or question file the numbers "
                       "below came from, nor re-run anything.", ""]
         lines += [f"- `{name}`" for name, _ in sorted(copied[group])]
@@ -501,7 +498,7 @@ def main() -> None:
     for name, paths in groups.items():
         print(f"  {name:10s} {len(paths):4d} files")
     print(f"  {'TOTAL':10s} {total_files:4d} files")
-    print(f"  (of which {len(root_inputs)} are repo-root corpora/question sets)")
+    print(f"  (of which {len(root_inputs)} are oncology data/source files)")
 
     if args.dry_run:
         print("\n(dry run -- nothing written)")

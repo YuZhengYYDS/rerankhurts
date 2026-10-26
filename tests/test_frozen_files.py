@@ -6,6 +6,8 @@ from pathlib import Path
 import pytest
 
 from scripts.check_frozen_files import E0_ARCHIVED_CODE, check, main, relative_path
+from rerankhuts.paths import ROOT_FILE_RELOCATIONS, oncology_path, resolve_repo_path
+from validation.check_e3 import frozen_input_bytes
 
 
 def digest(value):
@@ -15,22 +17,24 @@ def digest(value):
 @pytest.fixture
 def frozen_tree(tmp_path):
     def write(name, value):
-        path = tmp_path / name
+        path = resolve_repo_path(tmp_path, name)
         path.parent.mkdir(parents=True, exist_ok=True)
         raw = json.dumps(value, sort_keys=True, separators=(",", ":")).encode() if not isinstance(value, bytes) else value
         path.write_bytes(raw)
         return digest(raw)
 
     def hash_file(name):
-        return digest((tmp_path / name).read_bytes())
+        return digest(resolve_repo_path(tmp_path, name).read_bytes())
 
-    for name in ("legacy_input.csv", "corpus.jsonl", "questions.jsonl", "experiments/protocol.py",
+    for name in ("legacy_input.csv", "corpus_chunks_v2.jsonl", "questions.jsonl", "experiments/protocol.py",
                  "experiments/run_factorial.py", "experiments/simulation/generate.py",
                  "experiments/simulation/backend.py", "experiments/simulation/evaluate.py"):
         write(name, (name + "\n").encode())
     write("validation/results/input_manifest.json", [
         {"path": "legacy_input.csv", "bytes": (tmp_path / "legacy_input.csv").stat().st_size,
          "sha256": hash_file("legacy_input.csv")},
+        *({"path": name, "bytes": resolve_repo_path(tmp_path, name).stat().st_size,
+           "sha256": hash_file(name)} for name in ("corpus_chunks_v2.jsonl", "questions.jsonl")),
     ])
     data = "experiments/simulation/data/pilot_v2"
     run = "experiments/runs/simulation_pilot_v2"
@@ -43,7 +47,7 @@ def frozen_tree(tmp_path):
     models = {"tokenizer": {"model": "example/tokenizer", "sha": "a" * 40}}
     for folder, synthetic in (("experiments/runs/e3_m3", False), (run, True)):
         identity = {
-            "settings": {"corpus": data + "/corpus.jsonl" if synthetic else "corpus.jsonl",
+            "settings": {"corpus": data + "/corpus.jsonl" if synthetic else "corpus_chunks_v2.jsonl",
                          "questions": data + "/questions.jsonl" if synthetic else "questions.jsonl"},
             "code_sha256": ({"experiments\\protocol.py": hash_file("experiments/protocol.py"),
                              "experiments\\simulation\\backend.py": hash_file("experiments/simulation/backend.py")}
@@ -92,6 +96,8 @@ def test_complete_artifact_is_read_only_and_does_not_require_models(frozen_tree,
     assert json.loads(capsys.readouterr().out)["status"] == "pass"
     assert snapshot(frozen_tree) == before
     assert not (frozen_tree / ".cache").exists()
+    assert not (frozen_tree / "corpus_chunks_v2.jsonl").exists()
+    assert not (frozen_tree / "questions.jsonl").exists()
 
 
 @pytest.mark.parametrize("name", [
@@ -186,3 +192,82 @@ def test_malformed_manifest_returns_failure_json(frozen_tree, capsys):
     (frozen_tree / "validation/results/input_manifest.json").write_text("{")
     assert main(["--root", str(frozen_tree)]) == 1
     assert json.loads(capsys.readouterr().out)["status"] == "fail"
+
+
+@pytest.mark.parametrize("name", ["corpus_chunks_v2.jsonl", "questions.jsonl"])
+@pytest.mark.parametrize("change", ["tamper", "remove"])
+def test_relocated_frozen_inputs_require_original_bytes_without_root_fallback(frozen_tree, name, change):
+    moved = resolve_repo_path(frozen_tree, name)
+    original = moved.read_bytes()
+    if change == "tamper":
+        moved.write_bytes(original + b"tampered")
+    else:
+        moved.unlink()
+    # An old root alias with correct bytes must never conceal missing/bad data.
+    (frozen_tree / name).write_bytes(original)
+    before = snapshot(frozen_tree)
+    report = check(frozen_tree)
+    assert report["status"] == "fail"
+    assert any(row["kind"] == ("hash_mismatch" if change == "tamper" else "missing_file")
+               and row["path"] == name for row in report["errors"])
+    assert snapshot(frozen_tree) == before
+
+
+def test_relocated_inputs_do_not_allow_rewriting_a_frozen_identity(frozen_tree):
+    path = frozen_tree / "experiments/runs/e3_m3/manifest.json"
+    manifest = json.loads(path.read_bytes())
+    manifest["identity"]["settings"]["corpus"] = ROOT_FILE_RELOCATIONS["corpus_chunks_v2.jsonl"]
+    path.write_text(json.dumps(manifest))
+    report = check(frozen_tree)
+    assert report["status"] == "fail"
+    assert any("identity digest mismatch" in row["detail"] for row in report["errors"])
+
+
+@pytest.mark.parametrize("key", ["corpus", "questions"])
+def test_independent_e3_checker_reads_and_hashes_relocated_inputs(frozen_tree, key):
+    manifest = json.loads((frozen_tree / "experiments/runs/e3_m3/manifest.json").read_bytes())
+    identity = manifest["identity"]
+    path = resolve_repo_path(frozen_tree, identity["settings"][key])
+    original = path.read_bytes()
+    assert frozen_input_bytes(identity, key, root=frozen_tree) == original
+    path.write_bytes(original + b"tampered")
+    with pytest.raises(ValueError, match="hash does not match"):
+        frozen_input_bytes(identity, key, root=frozen_tree)
+    path.unlink()
+    (frozen_tree / identity["settings"][key]).write_bytes(original)
+    with pytest.raises(FileNotFoundError):
+        frozen_input_bytes(identity, key, root=frozen_tree)
+
+
+@pytest.mark.parametrize("name", ["../questions.jsonl", "a/../questions.jsonl", "./questions.jsonl",
+                                  "C:questions.jsonl", "C:\\questions.jsonl", "file:stream",
+                                  "/questions.jsonl", "a//b", "", "a\x00b"])
+def test_repository_resolver_rejects_unsafe_names(tmp_path, name):
+    with pytest.raises(ValueError):
+        resolve_repo_path(tmp_path, name)
+
+
+def test_repository_resolver_translates_only_exact_root_names(tmp_path):
+    for original, moved in ROOT_FILE_RELOCATIONS.items():
+        assert resolve_repo_path(tmp_path, original) == tmp_path / moved
+        assert resolve_repo_path(tmp_path, moved.replace("/", "\\")) == tmp_path / moved
+        assert resolve_repo_path(tmp_path, "nested/" + original) == tmp_path / "nested" / original
+    assert oncology_path("corpus_new.jsonl", root=tmp_path) == tmp_path / "data/oncology/corpus/corpus_new.jsonl"
+    assert oncology_path("questions_new.jsonl", root=tmp_path) == tmp_path / "data/oncology/questions/questions_new.jsonl"
+    assert oncology_path("audit.csv", root=tmp_path) == tmp_path / "data/oncology/reports/audit.csv"
+    assert oncology_path("corpus_manifest.json", root=tmp_path, group="corpus") == tmp_path / "data/oncology/corpus/corpus_manifest.json"
+    with pytest.raises(ValueError, match="Unknown oncology"):
+        oncology_path("unknown.json", root=tmp_path)
+
+
+def test_repository_resolver_rejects_an_escaping_relocated_directory(tmp_path):
+    outside = tmp_path / "outside"
+    outside.mkdir()
+    root = tmp_path / "repository"
+    root.mkdir()
+    try:
+        (root / "data").symlink_to(outside, target_is_directory=True)
+    except (OSError, NotImplementedError):
+        pytest.skip("Directory symlinks are unavailable")
+    with pytest.raises(ValueError, match="escapes"):
+        resolve_repo_path(root, "questions.jsonl")

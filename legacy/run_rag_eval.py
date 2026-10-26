@@ -21,6 +21,10 @@ except Exception:  # pragma: no cover - best effort runtime import
     torch = None
 
 
+from rerankhuts.paths import oncology_path
+from legacy.paths import resolve_legacy_path
+
+
 BASE_DIR = Path(__file__).resolve().parents[1]
 load_dotenv(BASE_DIR / ".env")
 RESULT_DIR = BASE_DIR / "result"
@@ -33,7 +37,7 @@ def resolve_path(raw_value: Optional[str], default: Path) -> Path:
     if not raw_value:
         return default
     candidate = Path(raw_value)
-    return candidate if candidate.is_absolute() else BASE_DIR / candidate
+    return resolve_legacy_path(BASE_DIR, candidate)
 
 
 def portable_path(path: Path) -> str:
@@ -63,8 +67,8 @@ def env_optional_int(name: str) -> Optional[int]:
 
 
 DEFAULT_OUTPUT_RESULTS_FILE = RESULT_DIR / "rag_results_experiments.csv"
-CORPUS_FILE = resolve_path(os.getenv("CORPUS_FILE"), BASE_DIR / "corpus_chunks_v1.jsonl")
-QUESTIONS_FILE = resolve_path(os.getenv("QUESTIONS_FILE"), BASE_DIR / "questions.jsonl")
+CORPUS_FILE = resolve_path(os.getenv("CORPUS_FILE"), oncology_path("corpus_chunks_v1.jsonl", root=BASE_DIR))
+QUESTIONS_FILE = resolve_path(os.getenv("QUESTIONS_FILE"), oncology_path("questions.jsonl", root=BASE_DIR))
 OUTPUT_RESULTS_FILE = resolve_path(os.getenv("OUTPUT_RESULTS_FILE"), DEFAULT_OUTPUT_RESULTS_FILE)
 EXPERIMENT_SETTINGS_FILE = resolve_path(os.getenv("EXPERIMENT_SETTINGS_FILE"), RESULT_DIR / "experiment_settings.csv")
 EXPERIMENT_OUTPUT_DIR = resolve_path(os.getenv("EXPERIMENT_OUTPUT_DIR"), OUTPUT_RESULTS_FILE.parent)

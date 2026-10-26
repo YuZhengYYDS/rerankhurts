@@ -43,6 +43,7 @@ from datetime import datetime
 from pathlib import Path
 
 from legacy.sanitize_release import sanitize_file
+from rerankhuts.paths import oncology_path
 
 BASE = Path(__file__).resolve().parents[1]
 REV = BASE / "result_revision"
@@ -54,7 +55,7 @@ PAPER_RESULT = Path(os.environ.get(
 PAPER_LATEX = PAPER_DIR
 TEX_FILE = PAPER_DIR / "acl_latex.tex"
 
-FULL100 = "questions.jsonl"
+FULL100 = str(oncology_path("questions.jsonl", root=BASE))
 
 # SHA-256 of the two figures `make_modified_images.py` produced from hard-coded
 # arrays, kept because deleting the script does not delete its output: the PNGs

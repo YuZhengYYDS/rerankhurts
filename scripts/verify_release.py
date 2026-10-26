@@ -80,6 +80,7 @@ def file_sha256(path):
 
 
 def validate_manifest(manifest):
+    """Validate a generated inventory; metadata/MANIFEST.json is a regular file."""
     require(isinstance(manifest, dict), "Manifest must be a per-file object")
     unique_paths(manifest)
     for name, metadata in manifest.items():
@@ -189,6 +190,8 @@ def verify_archive(path, expected_root=None):
             require(not entry.is_dir() and file_type in {0, stat.S_IFREG},
                     f"Non-regular archive member: {entry.filename!r}")
             require(not entry.flag_bits & 1, "Encrypted archive members are unsupported")
+        # This generated archive inventory is distinct from the repository's
+        # metadata/MANIFEST.json, which may be an ordinary checksummed member.
         manifest_name = f"{root}/MANIFEST.json"
         require(manifest_name in names, "Missing embedded MANIFEST.json")
         require(archive.getinfo(manifest_name).file_size <= 16 * 1024 * 1024, "Oversized manifest")

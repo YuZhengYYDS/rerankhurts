@@ -14,11 +14,16 @@ import json
 import math
 import random
 import statistics
+import sys
 from collections import Counter, defaultdict
 from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
+if __package__ in (None, ""):
+    sys.path.insert(0, str(ROOT))
+from rerankhuts.paths import resolve_repo_path
+
 CONFIG_FIELDS = (
     "retrieve_pool_size", "final_top_k", "max_chunks_per_url", "hybrid_alpha",
     "rerank_depth", "sparse_backend", "fusion_method", "rerank_model",
@@ -185,13 +190,13 @@ def paired_bootstrap(rows, source, modes, repeats=5000):
 def audit(root, out, bootstrap_repeats=5000):
     out.mkdir(parents=True, exist_ok=True)
     qpaths = {
-        "original100": root / "questions.jsonl",
+        "original100": resolve_repo_path(root, "questions.jsonl"),
         "audited78": root / "result/emnlp_full_results_20260427_gpu_final/paper_questions_validated.jsonl",
-        "expanded155": root / "questions_expanded_full_validated.jsonl",
+        "expanded155": resolve_repo_path(root, "questions_expanded_full_validated.jsonl"),
     }
     questions = {key: read_questions(path) for key, path in qpaths.items()}
     all_rows, summaries, inventory, issues, configs, input_paths = [], [], [], [], [], list(qpaths.values())
-    input_paths.extend(root / filename for filename in (
+    input_paths.extend(resolve_repo_path(root, filename) for filename in (
         "corpus_chunks_v1.jsonl", "corpus_chunks_v2.jsonl",
         "archive/code_20261022/run_rag_eval.py", "archive/code_20261022/score_retrieval.py",
         "archive/code_20261022/paper_support_analysis.py",

@@ -34,8 +34,8 @@ Usage:
     # Full-page screen. Reuses the gold ranks from an earlier top-k run, so no
     # embedding pass (and no GPU) is required.
     python -m legacy.verify_expanded_questions --excerpt-mode full \
-        --rank-source questions_expanded_review_filled.csv \
-        --out questions_expanded_review_filled_full.csv
+        --rank-source data/oncology/reports/questions_expanded_review_filled.csv \
+        --out data/oncology/reports/questions_expanded_review_filled_full.csv
 """
 import argparse
 import json
@@ -49,6 +49,10 @@ import pandas as pd
 from dotenv import load_dotenv
 from openai import OpenAI
 from tqdm import tqdm
+
+from rerankhuts.paths import oncology_path
+from legacy.paths import resolve_legacy_path
+
 
 BASE_DIR = Path(__file__).resolve().parents[1]
 load_dotenv(BASE_DIR / ".env")
@@ -155,9 +159,9 @@ def judge(client: OpenAI, question: str, excerpts: str, mode: str, variant: str)
 
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--corpus", default="corpus_chunks_v2.jsonl")
-    ap.add_argument("--questions", default="questions_expanded.jsonl")
-    ap.add_argument("--out", default="questions_expanded_review_filled.csv")
+    ap.add_argument("--corpus", default=str(oncology_path("corpus_chunks_v2.jsonl", root=BASE_DIR)))
+    ap.add_argument("--questions", default=str(oncology_path("questions_expanded.jsonl", root=BASE_DIR)))
+    ap.add_argument("--out", default=str(oncology_path("questions_expanded_review_filled.csv", root=BASE_DIR)))
     ap.add_argument("--excerpt-mode", choices=["full", "topk"], default="full",
                     help="'full' shows the gold page's entire excerpt set (default; "
                          "correct for a page-level gold standard). 'topk' shows only "
@@ -171,8 +175,8 @@ def main() -> None:
                          "'lenient' reproduces the original wording for comparison.")
     args = ap.parse_args()
 
-    corpus = load_jsonl(BASE_DIR / args.corpus)
-    questions = load_jsonl(BASE_DIR / args.questions)
+    corpus = load_jsonl(resolve_legacy_path(BASE_DIR, args.corpus))
+    questions = load_jsonl(resolve_legacy_path(BASE_DIR, args.questions))
     print(f"Corpus chunks: {len(corpus)} | questions: {len(questions)} | "
           f"excerpt_mode: {args.excerpt_mode}")
 
@@ -182,7 +186,7 @@ def main() -> None:
 
     cached: Dict[str, pd.Series] = {}
     if args.rank_source:
-        src = BASE_DIR / args.rank_source
+        src = resolve_legacy_path(BASE_DIR, args.rank_source)
         if src.exists():
             prev = pd.read_csv(src)
             cached = {str(r["qid"]): r for _, r in prev.iterrows()}
@@ -258,7 +262,8 @@ def main() -> None:
             time.sleep(SLEEP_BETWEEN)
 
     out_df = pd.DataFrame(rows)
-    out_path = BASE_DIR / args.out
+    out_path = resolve_legacy_path(BASE_DIR, args.out)
+    out_path.parent.mkdir(parents=True, exist_ok=True)
     out_df.to_csv(out_path, index=False, encoding="utf-8-sig")
 
     n_ans = int((out_df["answerable_from_page"] == True).sum())  # noqa: E712

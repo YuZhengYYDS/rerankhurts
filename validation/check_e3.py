@@ -1,6 +1,6 @@
 """Independently check complete E3 traces and frozen-score numerical sensitivity.
 
-Uses the Python standard library, saved traces and the original corpus only.
+Uses the Python standard library, saved traces and the original input files.
 No model, scorer implementation, cache or network is required. It does not
 modify a run, and it does not turn designated-page retention into utility.
 """
@@ -12,11 +12,24 @@ import gzip
 import hashlib
 import json
 import math
+import sys
 from collections import Counter
 from pathlib import Path
 from urllib.parse import urlsplit, urlunsplit
 
 ROOT = Path(__file__).resolve().parents[1]
+if __package__ in (None, ""):
+    sys.path.insert(0, str(ROOT))
+from rerankhuts.paths import resolve_repo_path
+
+
+def frozen_input_bytes(identity, key, *, root=None):
+    """Read the relocated input and require its original recorded SHA-256."""
+    path = resolve_repo_path(ROOT if root is None else root, identity["settings"][key])
+    payload = path.read_bytes()
+    if hashlib.sha256(payload).hexdigest() != identity[key + "_sha256"]:
+        raise ValueError(f"Original {key} hash does not match the run manifest")
+    return payload
 
 
 def read_json(path):
@@ -72,12 +85,12 @@ def check(run, output):
     status = read_json(run / "status.json")
     if status["status"] != "complete":
         raise ValueError("Only complete runs may produce the final E3 integrity report")
-    corpus_path = Path(manifest["identity"]["settings"]["corpus"])
-    if not corpus_path.is_absolute():
-        corpus_path = ROOT / corpus_path
-    corpus_bytes = corpus_path.read_bytes()
-    if hashlib.sha256(corpus_bytes).hexdigest() != manifest["identity"]["corpus_sha256"]:
-        raise ValueError("Original corpus hash does not match the run manifest")
+    identity_bytes = json.dumps(manifest["identity"], sort_keys=True, ensure_ascii=False,
+                                separators=(",", ":")).encode("utf-8")
+    if hashlib.sha256(identity_bytes).hexdigest() != manifest["identity_hash"]:
+        raise ValueError("Run identity digest mismatch")
+    corpus_bytes = frozen_input_bytes(manifest["identity"], "corpus")
+    frozen_input_bytes(manifest["identity"], "questions")
     corpus = [json.loads(line) for line in corpus_bytes.decode("utf-8-sig").splitlines() if line.strip()]
     legacy_counts = Counter(row["chunk_id"] for row in corpus)
     canonical_ids = [f"{row['chunk_id']}::row{i:06d}" if legacy_counts[row["chunk_id"]] > 1 else row["chunk_id"] for i, row in enumerate(corpus)]

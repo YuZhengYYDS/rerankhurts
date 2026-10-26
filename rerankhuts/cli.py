@@ -12,6 +12,8 @@ import subprocess
 import sys
 from pathlib import Path
 
+from .paths import ROOT_FILE_RELOCATIONS, resolve_repo_path
+
 ROOT = Path(__file__).resolve().parents[1]
 E3_RUN = "experiments/runs/e3_m3"
 SIM_RUN = "experiments/runs/simulation_pilot_v2"
@@ -33,7 +35,7 @@ COMMANDS = {
     "status": "Show manuscript, authors and completed experiment counts (offline).",
     "verify": "Verify frozen hashes, E3 traces and simulation paired counts (offline).",
     "e0": "Recompute the historical audit into build/reanalysis/e0 (offline).",
-    "e3": "Run/resume the pinned oncology experiment (GPU environment).",
+    "e3": "Run/resume the pinned oncology experiment under build/runs/e3 (GPU environment).",
     "sim-generate": "Recreate the frozen synthetic data; refuses conflicting data.",
     "sim-run": "Run/resume the pinned simulation inference (GPU environment).",
     "sim-evaluate": "Re-score simulation traces into build/reanalysis/simulation (GPU environment).",
@@ -90,7 +92,10 @@ def commands_for(name: str, extra: list[str]) -> list[list[str]]:
     plans = {
         "e0": ["validation/audit_metrics.py", "--output", "build/reanalysis/e0"],
         "e3": ["-m", "experiments.run_factorial", "--device", "cuda",
-               "--rerank-batch-size", "8", "--output", E3_RUN, *E3_REVISIONS],
+               "--rerank-batch-size", "8", "--output", "build/runs/e3",
+               "--corpus", ROOT_FILE_RELOCATIONS["corpus_chunks_v2.jsonl"],
+               "--questions", ROOT_FILE_RELOCATIONS["questions_expanded_full_validated.jsonl"],
+               *E3_REVISIONS],
         "sim-generate": ["-m", "experiments.simulation.generate"],
         "sim-run": ["-m", "experiments.simulation.backend", "--device", "cuda",
                     "--rerank-batch-size", "8"],
@@ -145,7 +150,7 @@ def main(argv: list[str] | None = None) -> int:
     if args.command == "status":
         if extra:
             parser.error("status accepts no extra arguments")
-        print((ROOT / "release_status.json").read_text(encoding="utf-8"))
+        print(resolve_repo_path(ROOT, "release_status.json").read_text(encoding="utf-8"))
         return 0
     try:
         steps = commands_for(args.command, extra)

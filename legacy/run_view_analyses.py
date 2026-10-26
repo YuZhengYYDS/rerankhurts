@@ -34,6 +34,9 @@ import subprocess
 import sys
 from pathlib import Path
 
+from rerankhuts.paths import oncology_path
+
+
 BASE = Path(__file__).resolve().parents[1]
 REV = BASE / "result_revision"
 
@@ -91,7 +94,7 @@ VIEWS = [
         {
             "RESULT_DIR": str(REV / "newrr_eval"),
             "RESULTS_FILE": str(REV / "supp_new_rerankers_combined.csv"),
-            "QUESTIONS_FILE": "questions.jsonl",
+            "QUESTIONS_FILE": str(oncology_path("questions.jsonl", root=BASE)),
             "ANALYSIS_PREFIX": "newrr",
         },
         "re-ranker family on the audited 78-question set",
@@ -101,7 +104,7 @@ VIEWS = [
         {
             "RESULT_DIR": str(REV / "p4_eval"),
             "RESULTS_FILE": str(REV / "p4_expanded_retrieval_combined.csv"),
-            "QUESTIONS_FILE": "questions_expanded_full_validated.jsonl",
+            "QUESTIONS_FILE": str(oncology_path("questions_expanded_full_validated.jsonl", root=BASE)),
             "ASSUME_VALIDATED": "1",
             "ANALYSIS_PREFIX": "p4",
         },

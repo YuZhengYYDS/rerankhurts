@@ -9,8 +9,17 @@ manuscript is in `paper/`. See the root README for those supported workflows.
 
 Invoke a selected maintained historical tool as a module **from the repository
 root**, for example `python -m legacy.run_p3_matrix --dry-run`. Module imports use
-the explicit `legacy` package. Data, `.env`, and historical output paths continue
-to resolve against the repository root; moving a tool has not moved its inputs.
+the explicit `legacy` package. Oncology data now lives under `data/oncology/`:
+`corpus/` holds corpora, `questions/` holds question sets, `reports/` holds
+construction and screening CSVs, and `sources/` holds `data_sources.json` and
+`urls.txt`. Builders write new datasets and reports into those same groups.
+`.env` and historical result folders still resolve against the repository root.
+`metadata/` holds the release manifest and status. The shared location policy is
+in `rerankhuts/paths.py`; historical input overrides use `legacy/paths.py`.
+Exact former root filenames remain usable as relative input overrides, including
+`QUESTIONS_FILE=questions.jsonl`. Explicit custom absolute and relative paths
+remain usable. Source configuration retains its original `"path": "urls.txt"`
+bytes; the corpus builder resolves that alias to `data/oncology/sources/urls.txt`.
 The drivers launch all historical tools with `-m legacy.<name>`. The five former
 root scripts also have dispatcher/Pixi tasks: `legacy-normalize`, `legacy-eval`,
 `legacy-score`, `legacy-analysis`, and `legacy-summarize`. These commands use the
@@ -45,14 +54,14 @@ and `pixi.lock` for the current workflows. The original corpus builder also uses
   `prepare_human_eval_packets.py`. Preparing a packet does not create human labels.
 - Historical packaging: `archive_results.py`, `build_revision_assets.py`,
   `package_emnlp_results.py`, `sanitize_release.py`. These retain their historical
-  output conventions; use the current packaging command in the root README for
-  the ICDE deliverable. Code copies preserve the `legacy/` package structure.
+  result-folder conventions and include data plus the path helpers; use the
+  current packaging command in the root README for the ICDE deliverable. Code copies preserve the `legacy/` package structure.
 
 ## Original source snapshots
 
 All maintained historical Python tools now live in this package; the repository
-root contains no Python compatibility shims. Their input defaults still resolve
-against the repository root.
+root contains no Python compatibility shims. Their data defaults resolve under
+`data/oncology/`, and their result outputs remain in the historical result folders.
 
 The five former root scripts are retained byte for byte under
 `archive/code_20261022/`. They are provenance snapshots, not runnable entry
@@ -63,8 +72,9 @@ have the necessary package imports and repository-root path calculations.
 
 The E0 audit loads `legacy/generate_normalized_questions.py` for the wording
 transformation and records both that source and the historical snapshots when
-writing a fresh reanalysis manifest. Frozen datasets, experiment code, run
-identities and evaluation results retain their recorded paths and bytes.
+writing a fresh reanalysis manifest. Frozen datasets retain their bytes at the new data locations. Historical
+manifest strings, experiment code, run identities and evaluation results remain
+unchanged; integrity readers translate only the exact recorded root aliases.
 Existing inference resume requires the original command and settings.
 
 ## Archival files

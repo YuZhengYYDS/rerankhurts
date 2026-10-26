@@ -14,11 +14,26 @@ from scripts import package_release as package
 from scripts import verify_release as verify
 
 
+ONCOLOGY_FILES = {
+    "data/oncology/corpus/corpus_chunks_v1.jsonl": '{"text":"original evidence"}\n',
+    "data/oncology/corpus/corpus_chunks_v2.jsonl": '{"text":"expanded evidence"}\n',
+    "data/oncology/questions/questions.jsonl": '{"qid":"original"}\n',
+    "data/oncology/questions/questions_expanded_full_prepurge.jsonl": '{"qid":"prepurge"}\n',
+    "data/oncology/questions/questions_expanded_full_validated.jsonl": '{"qid":"validated"}\n',
+    "data/oncology/questions/questions_judge_sample_validated.jsonl": '{"qid":"judge"}\n',
+    "data/oncology/reports/corpus_expansion_report.csv": "url,chunks\nexample,1\n",
+    "data/oncology/reports/questions_expanded_leakfree_report.csv": "qid,leakfree\none,true\n",
+    "data/oncology/sources/data_sources.json": '{"source":"example"}\n',
+    "data/oncology/sources/urls.txt": "https://example.org/evidence\n",
+}
+
+
 @pytest.fixture
 def repository(tmp_path):
     root = tmp_path / "repository"
     files = {
         "README.md": "Reproduction instructions\n",
+        "guide.md": "Data layout and reproduction guide\n",
         "LICENSE": "Example license\n",
         "pixi.toml": "[workspace]\n",
         "pixi.lock": "version: 6\n",
@@ -27,14 +42,15 @@ def repository(tmp_path):
         "rerankhuts/__main__.py": "print('entrypoint')\n",
         "legacy/old.py": "print('archived source')\n",
         "legacy/migration_manifest.json": '{"old.py":"legacy/old.py"}\n',
-        "release_status.json": '{"ready":false}\n',
+        "metadata/release_status.json": '{"ready":false}\n',
+        "metadata/data_layout.json": '{"schema_version":1,"path_map":{"questions.jsonl":"data/oncology/questions/questions.jsonl"}}\n',
         "docs/RESULTS_GUIDE.md": "Result directory guide\n",
         "docs/CODE_GUIDE.md": "Code directory guide\n",
         "docs/STRENGTHENING_GUIDE.md": "Strengthening result interpretation guide\n",
         "scripts/tool.py": "print('tool')\n",
         "tests/test_tool.py": "def test_example(): pass\n",
         "data/input.jsonl": '{"input":1}\n',
-        "questions_v2.jsonl": '{"qid":"one"}\n',
+        **ONCOLOGY_FILES,
         "experiments/simulation/data/pilot_v2/oracle.jsonl": '{"private_to_scoring":true}\n',
         "experiments/README.md": "Experiment directory guide\n",
         "experiments/simulation/README.md": "Pilot experiment guide\n",
@@ -65,6 +81,11 @@ def repository(tmp_path):
         "validation/audit.py": "print('audit')\n",
         "config/defaults.json": '{"seed":2027}\n',
     }
+    files["metadata/MANIFEST.json"] = json.dumps({
+        name: {"bytes": len(content.encode("utf-8")),
+               "sha256": hashlib.sha256(content.encode("utf-8")).hexdigest()}
+        for name, content in files.items()
+    }, sort_keys=True) + "\n"
     excluded = [
         ".pixi/envs/default/python.exe", ".cache/model.bin", "environments/python.exe",
         "src/__pycache__/tool.pyc", "node_modules/dependency.js", ".pytest_cache/nodeids",
@@ -86,8 +107,8 @@ def repository(tmp_path):
 
 def archive_manifest(path):
     with zipfile.ZipFile(path) as archive:
-        name = next(name for name in archive.namelist() if name.endswith("/MANIFEST.json"))
-        return json.loads(archive.read(name))
+        root = archive.namelist()[0].split("/", 1)[0]
+        return json.loads(archive.read(f"{root}/MANIFEST.json"))
 
 
 def test_release_membership_manifests_and_split_packages(repository):
@@ -105,13 +126,14 @@ def test_release_membership_manifests_and_split_packages(repository):
     assert set(paper) == {"main.tex", "main.pdf", "references.bib", "main.bbl"}
     code = archive_manifest(output / "rerankhuts_icde2027_code.zip")
     assert {"rerankhuts/__main__.py", "legacy/old.py", "validation/audit.py", "pixi.lock", "config/defaults.json"} <= set(code)
-    assert {"release_status.json", "legacy/migration_manifest.json"} <= set(code)
+    assert {"metadata/release_status.json", "metadata/MANIFEST.json", "metadata/data_layout.json", "guide.md",
+            "legacy/migration_manifest.json"} <= set(code)
     assert not any(name.startswith(("data/", "paper/", "results/")) for name in code)
-    assert "questions_v2.jsonl" not in code
     assert "experiments/simulation/data/pilot_v2/oracle.jsonl" not in code
     results = archive_manifest(output / "rerankhuts_icde2027_results.zip")
     assert {"results/final.csv", "validation/report.json", "experiments/runs/frozen/traces/one.json.gz"} <= set(results)
-    assert {"release_status.json", "docs/RESULTS_GUIDE.md", "docs/CODE_GUIDE.md"} <= set(results)
+    assert {"metadata/release_status.json", "metadata/MANIFEST.json", "metadata/data_layout.json", "guide.md",
+            "docs/RESULTS_GUIDE.md", "docs/CODE_GUIDE.md"} <= set(results)
     assert "data/input.jsonl" not in results and "validation/audit.py" not in results
     for filename, expected_root in verify.ARCHIVE_ROOTS.items():
         with zipfile.ZipFile(output / filename) as archive:
@@ -119,6 +141,45 @@ def test_release_membership_manifests_and_split_packages(repository):
             assert archive.namelist() == sorted(archive.namelist())
             assert {entry.date_time for entry in archive.infolist()} == {package.ZIP_TIMESTAMP}
     assert verify.verify_release(output) == report
+
+
+def test_migrated_data_and_source_manifest_are_preserved_without_entering_split_packages(repository):
+    root, files, _ = repository
+    package.package(root, split=True)
+    output = root / "dist"
+    full = archive_manifest(output / "rerankhuts_icde2027.zip")
+    code = archive_manifest(output / "rerankhuts_icde2027_code.zip")
+    results = archive_manifest(output / "rerankhuts_icde2027_results.zip")
+    assert set(ONCOLOGY_FILES) <= set(full)
+    assert not set(ONCOLOGY_FILES) & (set(code) | set(results))
+    assert not ({Path(name).name for name in ONCOLOGY_FILES} | {"release_status.json"}) & set(full)
+    manifest_name = "metadata/MANIFEST.json"
+    payload = files[manifest_name].encode("utf-8")
+    identity = {"bytes": len(payload), "sha256": hashlib.sha256(payload).hexdigest()}
+    for filename in ("rerankhuts_icde2027.zip", "rerankhuts_icde2027_code.zip",
+                     "rerankhuts_icde2027_results.zip"):
+        generated_manifest = archive_manifest(output / filename)
+        assert generated_manifest[manifest_name] == identity
+        assert "guide.md" in generated_manifest
+        with zipfile.ZipFile(output / filename) as archive:
+            assert archive.read(f"rerankhuts/{manifest_name}") == payload
+            source_manifest = json.loads(archive.read(f"rerankhuts/{manifest_name}"))
+            assert source_manifest["data/oncology/questions/questions.jsonl"] == full[
+                "data/oncology/questions/questions.jsonl"]
+            layout_name = "metadata/data_layout.json"
+            layout_payload = files[layout_name].encode("utf-8")
+            assert generated_manifest[layout_name] == {
+                "bytes": len(layout_payload), "sha256": hashlib.sha256(layout_payload).hexdigest()}
+            assert archive.read(f"rerankhuts/{layout_name}") == layout_payload
+    assert full[manifest_name] == code[manifest_name] == results[manifest_name]
+
+
+@pytest.mark.parametrize("name", ["MANIFEST.json", "manifest.json"])
+def test_repository_root_manifest_remains_reserved(repository, name):
+    root, _, _ = repository
+    (root / name).write_text("{}\n", encoding="utf-8")
+    with pytest.raises(ValueError, match="Root MANIFEST.json is reserved"):
+        package.collect_files(root)
 
 
 def test_strengthening_split_preserves_protocol_and_all_result_layers(repository):
@@ -557,7 +618,8 @@ def rewrite_archive_with_updated_manifest(path, member, payload):
     """Simulate a fully rehashed archive whose recorded TeX build is stale."""
     with zipfile.ZipFile(path) as source:
         members = {name: source.read(name) for name in source.namelist()}
-    manifest_name = next(name for name in members if name.endswith("/MANIFEST.json"))
+    manifest_name = next(name for name in members
+                         if name.count("/") == 1 and name.endswith("/MANIFEST.json"))
     prefix = manifest_name.removesuffix("MANIFEST.json")
     manifest = json.loads(members[manifest_name])
     members[prefix + member] = payload

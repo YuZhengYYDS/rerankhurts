@@ -38,7 +38,8 @@ EXCLUDED_SUFFIXES = {
 SECRET_NAMES = {".netrc", "_netrc", ".npmrc", ".pypirc", ".git-credentials", "id_rsa",
                 "id_ed25519", "token.json", "tokens.json", "access_token", "refresh_token"}
 RESULT_SUPPORT_FILES = {
-    "README.md", "LICENSE", "NOTICE", "release_status.json",
+    "README.md", "guide.md", "LICENSE", "NOTICE", "metadata/release_status.json",
+    "metadata/MANIFEST.json", "metadata/data_layout.json",
     "docs/RESULTS_GUIDE.md", "docs/CODE_GUIDE.md", "docs/STRENGTHENING_GUIDE.md", "experiments/README.md",
     "experiments/simulation/README.md", "experiments/strengthening/README.md",
     "experiments/strengthening/study_plan.json", "validation/README.md",
@@ -100,6 +101,8 @@ def collect_files(root, output=None):
             checked_file(path, root)
             relative = path.relative_to(root).as_posix()
             safe_name(relative)
+            # The repository inventory lives in metadata/MANIFEST.json. The
+            # archive root is reserved for the inventory generated below.
             require(relative.casefold() != "manifest.json", "Root MANIFEST.json is reserved for the release")
             paths[relative] = path
     unique_paths(paths)
@@ -119,7 +122,8 @@ def is_code(relative):
     if parts[0] == "paper" or is_result(relative) or any(p in {"data", "datasets", "inputs", "annotations"} for p in parts[:-1]):
         return False
     return (path.suffix.casefold() in {".py", ".sh", ".ps1", ".bat", ".cmd", ".toml", ".lock", ".yaml", ".yml", ".md", ".rst", ".ini", ".cfg"}
-            or relative in {"release_status.json", "legacy/migration_manifest.json", ".gitattributes",
+            or relative in {"metadata/release_status.json", "metadata/MANIFEST.json", "metadata/data_layout.json",
+                            "legacy/migration_manifest.json", ".gitattributes",
                             "experiments/strengthening/study_plan.json"}
             or path.name.casefold() in {"license", "licence", "notice", ".gitignore", ".env.example", "data_sources.json"}
             or (path.name.startswith("requirements") and path.suffix == ".txt")

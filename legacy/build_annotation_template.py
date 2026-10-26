@@ -5,6 +5,10 @@ from pathlib import Path
 import pandas as pd
 
 
+from rerankhuts.paths import oncology_path
+from legacy.paths import resolve_legacy_path
+
+
 BASE_DIR = Path(__file__).resolve().parents[1]
 RESULT_DIR = BASE_DIR / "result"
 
@@ -13,17 +17,17 @@ def resolve_path(raw_value: str, default: Path) -> Path:
     if not raw_value:
         return default
     candidate = Path(raw_value)
-    return candidate if candidate.is_absolute() else BASE_DIR / candidate
+    return resolve_legacy_path(BASE_DIR, candidate)
 
 
 default_questions_file = RESULT_DIR / "paper_questions_validated.jsonl"
 if not default_questions_file.exists():
-    default_questions_file = BASE_DIR / "questions.jsonl"
+    default_questions_file = oncology_path("questions.jsonl", root=BASE_DIR)
 
 QUESTIONS_FILE = resolve_path(os.getenv("QUESTIONS_FILE", ""), default_questions_file)
 BASELINE_FILE = resolve_path(os.getenv("BASELINE_FILE", ""), RESULT_DIR / "rag_results_baseline.csv")
 RERANK_FILE = resolve_path(os.getenv("RERANK_FILE", ""), RESULT_DIR / "rag_results_rerank.csv")
-OUTPUT_FILE = resolve_path(os.getenv("OUTPUT_FILE", ""), BASE_DIR / "annotation_template_30.csv")
+OUTPUT_FILE = resolve_path(os.getenv("OUTPUT_FILE", ""), oncology_path("annotation_template_30.csv", root=BASE_DIR))
 
 # 每个 topic 先抽这些数量，凑成约 30 条
 TOPIC_QUOTA = {
@@ -155,6 +159,7 @@ def main():
         "review_comment",
     ]
 
+    OUTPUT_FILE.parent.mkdir(parents=True, exist_ok=True)
     subset[out_cols].to_csv(OUTPUT_FILE, index=False, encoding="utf-8-sig")
     print(f"Saved: {OUTPUT_FILE}")
     print(subset[out_cols][['qid','topic','question']].to_string(index=False))

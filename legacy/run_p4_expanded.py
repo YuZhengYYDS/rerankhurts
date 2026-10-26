@@ -21,6 +21,9 @@ import sys
 import time
 from pathlib import Path
 
+from rerankhuts.paths import oncology_path
+
+
 BASE = Path(__file__).resolve().parents[1]
 OUT = BASE / "result_revision"
 OUT.mkdir(exist_ok=True)
@@ -35,10 +38,10 @@ OUT.mkdir(exist_ok=True)
 # restated so a tuning change moves both drivers at once.
 from legacy.run_p3_matrix import TUNED_BM25
 
-EXPANDED_CORPUS = "corpus_chunks_v2.jsonl"
+EXPANDED_CORPUS = str(oncology_path("corpus_chunks_v2.jsonl", root=BASE))
 # Written by finalize_expanded_benchmark.py: the 78 audited questions plus the
 # expanded questions whose gold page passed the automatic answerability screen.
-EXPANDED_QUESTIONS = "questions_expanded_full_validated.jsonl"
+EXPANDED_QUESTIONS = str(oncology_path("questions_expanded_full_validated.jsonl", root=BASE))
 # The judge now runs on ALL 155 validated questions, not the 40-question sample
 # the first pass used. R1 asked for end-to-end answer quality with and without
 # the re-ranker; a 40-question sample put the answer-quality noise floor at the

@@ -13,6 +13,10 @@ import numpy as np
 import pandas as pd
 
 
+from rerankhuts.paths import oncology_path
+from legacy.paths import resolve_legacy_path
+
+
 BASE_DIR = Path(__file__).resolve().parents[1]
 RESULT_DIR = Path(os.getenv("RESULT_DIR", str(BASE_DIR / "result")))
 if not RESULT_DIR.is_absolute():
@@ -24,10 +28,10 @@ def resolve_path(raw_value: Optional[str], default: Path) -> Path:
     if not raw_value:
         return default
     candidate = Path(raw_value)
-    return candidate if candidate.is_absolute() else BASE_DIR / candidate
+    return resolve_legacy_path(BASE_DIR, candidate)
 
 
-QUESTIONS_FILE = resolve_path(os.getenv("QUESTIONS_FILE"), BASE_DIR / "questions.jsonl")
+QUESTIONS_FILE = resolve_path(os.getenv("QUESTIONS_FILE"), oncology_path("questions.jsonl", root=BASE_DIR))
 # Set when QUESTIONS_FILE is already the validated set (see audit_questions).
 ASSUME_VALIDATED = os.getenv("ASSUME_VALIDATED", "0").strip().lower() in {"1", "true", "yes"}
 RESULTS_FILE = resolve_path(os.getenv("RESULTS_FILE"), RESULT_DIR / "rag_results_experiments.csv")

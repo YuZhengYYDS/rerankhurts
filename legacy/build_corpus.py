@@ -11,9 +11,13 @@ from bs4 import BeautifulSoup
 from tqdm import tqdm
 
 
+from rerankhuts.paths import oncology_path
+from legacy.paths import resolve_legacy_path
+
+
 BASE_DIR = Path(__file__).resolve().parents[1]
-SOURCES_FILE = BASE_DIR / "data_sources.json"
-OUTPUT_FILE = BASE_DIR / "corpus_chunks_v1.jsonl"
+SOURCES_FILE = oncology_path("data_sources.json", root=BASE_DIR)
+OUTPUT_FILE = oncology_path("corpus_chunks_v1.jsonl", root=BASE_DIR)
 
 TARGET_CHUNK_CHARS = int(os.getenv("TARGET_CHUNK_CHARS", "2200"))
 CHUNK_OVERLAP_PARAGRAPHS = int(os.getenv("CHUNK_OVERLAP_PARAGRAPHS", "1"))
@@ -510,7 +514,7 @@ def build_records_from_hf_source(source: Dict) -> List[Dict]:
 
 def iter_web_urls(source: Dict) -> List[str]:
     if source["type"] == "web_urls_file":
-        path = BASE_DIR / source["path"]
+        path = resolve_legacy_path(BASE_DIR, source["path"])
         if not path.exists():
             raise FileNotFoundError(f"{path} not found")
         return [
@@ -566,6 +570,7 @@ def main():
         print(f"Collected {len(records)} chunks from {source['name']}")
         all_records.extend(records)
 
+    OUTPUT_FILE.parent.mkdir(parents=True, exist_ok=True)
     with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
         for record in all_records:
             f.write(json.dumps(record, ensure_ascii=False) + "\n")

@@ -51,14 +51,14 @@ calling those models again.
 
 | File | What it is |
 |---|---|
-| `data_sources.json` | the corpus sources, read by `build_corpus.py` |
-| `corpus_chunks_v1.jsonl` | the original corpus (6,785 chunks) |
-| `corpus_chunks_v2.jsonl` | the expanded corpus (7,124 chunks), v1 plus new NCI/PDQ pages |
-| `questions.jsonl` | the original 100-question pool |
+| `data/oncology/sources/data_sources.json` | the corpus sources, read by `build_corpus.py` |
+| `data/oncology/corpus/corpus_chunks_v1.jsonl` | the original corpus (6,785 chunks) |
+| `data/oncology/corpus/corpus_chunks_v2.jsonl` | the expanded corpus (7,124 chunks), v1 plus new NCI/PDQ pages |
+| `data/oncology/questions/questions.jsonl` | the original 100-question pool |
 | `result/emnlp_full_results_20260427_gpu_final/paper_questions_validated.jsonl` | the 78 audited questions the original submission used |
-| `questions_expanded_full_prepurge.jsonl` | the expanded benchmark before the leak purge (187 items) |
-| `questions_expanded_full_validated.jsonl` | **the expanded benchmark used in the paper** (155 items) |
-| `questions_judge_sample_validated.jsonl` | the 40-question stratified sample used only for the repeated judge-stability check |
+| `data/oncology/questions/questions_expanded_full_prepurge.jsonl` | the expanded benchmark before the leak purge (187 items) |
+| `data/oncology/questions/questions_expanded_full_validated.jsonl` | **the expanded benchmark used in the paper** (155 items) |
+| `data/oncology/questions/questions_judge_sample_validated.jsonl` | the 40-question stratified sample used only for the repeated judge-stability check |
 
 The expanded benchmark is 155, not the 187 the drafting round produced:
 `purge_leaky_questions.py` removes 32 items whose text names its own gold
@@ -66,8 +66,8 @@ document ("...in the NCI PDQ melanoma treatment summary?"), which a keyword
 system can win without retrieving. The script reads the pre-purge file and
 writes the validated one, so the 187 → 155 step is a re-runnable step rather
 than an unexplained difference; the removal is recorded item by item in
-`questions_expanded_leakfree_report.csv`. None of the original 78 audited
-questions leak this way.
+`data/oncology/reports/questions_expanded_leakfree_report.csv`. None of the
+original 78 audited questions leak this way.
 
 ### The three result views
 
@@ -166,7 +166,13 @@ longer present). They are kept for provenance and are not on any path above.
 ## What ships in this release
 
 The maintained historical scripts are grouped under `legacy/` and resolve
-default data, configuration and output paths against the repository root. Use
+default data paths under `data/oncology/`. New corpus/question files and
+construction reports use its `corpus/`, `questions/` and `reports/` subfolders;
+source configuration and URL lists use `sources/`. `.env` and historical result
+folders still resolve against the repository root. Exact former root filenames
+are accepted as relative input aliases, and custom path overrides remain usable.
+Release metadata is under `metadata/`. Historical package/archive copies include
+the shared path helpers and preserve the relative data layout. Use
 `python -m rerankhuts legacy-eval` or `python -m legacy.<module>` from that root.
 The original five root-script bytes are preserved under `archive/code_20261022/`
 for integrity checks; use the maintained package modules to run tools.

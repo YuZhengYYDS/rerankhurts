@@ -4,6 +4,25 @@ from types import SimpleNamespace
 import pytest
 
 from rerankhuts import cli
+from rerankhuts.paths import ROOT_FILE_RELOCATIONS
+
+
+def test_e3_defaults_to_relocated_inputs_and_a_new_output_directory():
+    args = cli.commands_for("e3", [])[0]
+    assert args[args.index("--corpus") + 1] == ROOT_FILE_RELOCATIONS["corpus_chunks_v2.jsonl"]
+    assert args[args.index("--questions") + 1] == ROOT_FILE_RELOCATIONS["questions_expanded_full_validated.jsonl"]
+    assert args[args.index("--output") + 1] == "build/runs/e3"
+    assert cli.E3_RUN not in args
+
+
+def test_status_reads_relocated_metadata_without_a_root_alias(monkeypatch, tmp_path, capsys):
+    metadata = tmp_path / "metadata"
+    metadata.mkdir()
+    (metadata / "release_status.json").write_text('{"status":"frozen"}\n')
+    monkeypatch.setattr(cli, "ROOT", tmp_path)
+    assert cli.main(["status"]) == 0
+    assert '"frozen"' in capsys.readouterr().out
+    assert not (tmp_path / "release_status.json").exists()
 
 
 def test_e3_revisions_are_explicit_and_user_output_can_be_overridden():

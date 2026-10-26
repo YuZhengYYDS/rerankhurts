@@ -12,8 +12,13 @@ import hashlib
 import json
 from pathlib import Path, PurePosixPath, PureWindowsPath
 import re
+import sys
 
 ROOT = Path(__file__).resolve().parents[1]
+if __package__ in (None, ""):
+    sys.path.insert(0, str(ROOT))
+from rerankhuts.paths import resolve_repo_path
+
 SIM_DATA = "experiments/simulation/data/pilot_v2"
 SIM_RUN = "experiments/runs/simulation_pilot_v2"
 SIM_RESULTS = "experiments/simulation/results/pilot_v2"
@@ -76,6 +81,8 @@ class Checker:
             raise ValueError(detail)
 
     def path(self, base, name):
+        if Path(base).resolve() == self.root:
+            return resolve_repo_path(self.root, name)
         return relative_path(self.root, base, name)
 
     def read(self, name):
