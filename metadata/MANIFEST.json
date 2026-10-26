@@ -16,8 +16,8 @@
     "sha256": "1b1cbc087d7a0e81d683a4c3537b487d7799ab5d9e771afa5986b7f6b03c1047"
   },
   "README.md": {
-    "bytes": 6689,
-    "sha256": "e016046ab499528eab064ec480d04c6ff3a8f94ec01dc7d24c4b5833c83a9cb5"
+    "bytes": 6841,
+    "sha256": "5974c26282117f2856a1e158ce6ca6b1b579b11cff38fc2ebfb3f22dbea3d699"
   },
   "archive/README.md": {
     "bytes": 1016,
@@ -8024,8 +8024,8 @@
     "sha256": "810a82f55ae3f9ed1e73b9edd765c041bbb0ecd7895e15d0acda589241295f79"
   },
   "guide.md": {
-    "bytes": 5934,
-    "sha256": "432910155cd3d92999aa4678ea5c19a7002214a4931b4244b913b838057c7266"
+    "bytes": 6082,
+    "sha256": "49fa47a4a2922b1fc53a6f89c6557b91d11f10e317d9130b47013b98bf0779b3"
   },
   "legacy/README.md": {
     "bytes": 5787,
@@ -8196,8 +8196,8 @@
     "sha256": "0cb32fd8c04a6e8e9af3686c857cc23b958657188668c47a2e32ff2b1633802e"
   },
   "metadata/release_status.json": {
-    "bytes": 9016,
-    "sha256": "764d2d2531193993324a6402a0a73e849d229efe1c5a59ed60054f733ec86620"
+    "bytes": 9460,
+    "sha256": "8817f6c0a1e77c486a2d8e1a3a163c444f753c5c2d6cf61f37221f21604de090"
   },
   "paper/IEEEtran.bst": {
     "bytes": 57748,
@@ -8208,24 +8208,36 @@
     "sha256": "da751920a317ed318b7b5cd7fa585a6cc7d28502d457856382e9be24b10a3bd7"
   },
   "paper/README.md": {
-    "bytes": 1634,
-    "sha256": "c1b6ef3739d12c53da139f8df1cb6e6bd3b29b8c3cbaf1974f0b6f9a387d5f58"
+    "bytes": 1796,
+    "sha256": "221666edb3e12d90ef980c24d5fc99955515da48f8c3196641fcdc35ffa7777a"
   },
   "paper/authors.tex": {
     "bytes": 720,
     "sha256": "a6ebe1bc9ed1bcb7a0e6fb62c50331222ed84cc1ebfacff8c7df6b7299f4931a"
   },
+  "paper/figures/drawio/f01_motivation.drawio": {
+    "bytes": 44672,
+    "sha256": "7ef3b6cca4b08f548ae427d5fb2f1103c37a768d3c581d65943e7b61e7734794"
+  },
+  "paper/figures/drawio/f02_evidence_views.drawio": {
+    "bytes": 171015,
+    "sha256": "e8a5fd3244eba9a2ecfbff6032681ae594e69c2900a3450f72a53596224daf9e"
+  },
+  "paper/figures/drawio/f03_paired_design.drawio": {
+    "bytes": 100970,
+    "sha256": "8873f78b8d24b029c86bbfb3954cf7c0fb1dc261c5961ab434f8597d8e1aa0b3"
+  },
   "paper/figures/f01_motivation.pdf": {
-    "bytes": 127318,
-    "sha256": "083b6a4f03697219f185148eb9772c7ae4635c168893e4bacc4d953e26f5a476"
+    "bytes": 112442,
+    "sha256": "520e81e200c3ddd757cc8d3a03660dfb9479b254309b2b7559a335ccad340b40"
   },
   "paper/figures/f02_evidence_views.pdf": {
-    "bytes": 146350,
-    "sha256": "a81e0d2c340f226a3189a33fd3e792c17f24640e638d69d1ed2bd3223517124f"
+    "bytes": 148190,
+    "sha256": "8fbba58e393b09f419450242d099fef18b386990ecc8a866ffb26c7e5b748c05"
   },
   "paper/figures/f03_paired_design.pdf": {
-    "bytes": 140943,
-    "sha256": "72332c10d11a5386f24f35529df7ae533201090faa3285c1f33b8582f3c4e543"
+    "bytes": 117027,
+    "sha256": "cab2b0d16d4f835168dd579d307d5bd5ec0adb4ed5e85f40ff6cc641d8d51415"
   },
   "paper/figures/f04_measurement_gap-v1.pdf": {
     "bytes": 37745,
@@ -8312,8 +8324,8 @@
     "sha256": "7404c4bf2b22c5b66ef1b41f1e951b07812675c68ad3c6348edda33913ba1af4"
   },
   "paper/main.pdf": {
-    "bytes": 981939,
-    "sha256": "02b09de1e5e3b9180921aaf4470814f9aca078d988625c99420d3560b92f7dc0"
+    "bytes": 944624,
+    "sha256": "770b05c0af7ef21253c06a01a891773b9f726c75ac8de387db765378ecc2adfa"
   },
   "paper/main.tex": {
     "bytes": 1390,
@@ -9219,9 +9231,13 @@
     "bytes": 8428,
     "sha256": "e4aa320012212ccbc5f31fa15debc5e7388a8060113b4fc9514b6d8ce29e613e"
   },
+  "validation/figure_update_20261027.json": {
+    "bytes": 3494,
+    "sha256": "bc967a29bbc265a4138ff8861ded06731f0951511f997f36500e28fe6c543c71"
+  },
   "validation/manuscript_checks.json": {
     "bytes": 14794,
-    "sha256": "7c233547fe12619297e20ed44b61f090ecc5bcba571c212482fd6382a7069f19"
+    "sha256": "417e1fc10a980a3142803a2a53d6246a0eeb13b4cce505f36b20adb6318d3175"
   },
   "validation/manuscript_restructure_20261013.json": {
     "bytes": 2274,
@@ -9233,7 +9249,7 @@
   },
   "validation/paper_build.json": {
     "bytes": 6608,
-    "sha256": "34f3425cae23b56c4847a44761383b8e94ef2f28cc4cee1168669e794614a58c"
+    "sha256": "e30557158cba1a51763b433e700571b19bead9c47e68f9eede32a8405ac0deda"
   },
   "validation/repository_update_20261026.json": {
     "bytes": 9233,

@@ -26,16 +26,16 @@
       "sha256": "a6ebe1bc9ed1bcb7a0e6fb62c50331222ed84cc1ebfacff8c7df6b7299f4931a"
     },
     "figures/f01_motivation.pdf": {
-      "bytes": 127318,
-      "sha256": "083b6a4f03697219f185148eb9772c7ae4635c168893e4bacc4d953e26f5a476"
+      "bytes": 112442,
+      "sha256": "520e81e200c3ddd757cc8d3a03660dfb9479b254309b2b7559a335ccad340b40"
     },
     "figures/f02_evidence_views.pdf": {
-      "bytes": 146350,
-      "sha256": "a81e0d2c340f226a3189a33fd3e792c17f24640e638d69d1ed2bd3223517124f"
+      "bytes": 148190,
+      "sha256": "8fbba58e393b09f419450242d099fef18b386990ecc8a866ffb26c7e5b748c05"
     },
     "figures/f03_paired_design.pdf": {
-      "bytes": 140943,
-      "sha256": "72332c10d11a5386f24f35529df7ae533201090faa3285c1f33b8582f3c4e543"
+      "bytes": 117027,
+      "sha256": "cab2b0d16d4f835168dd579d307d5bd5ec0adb4ed5e85f40ff6cc641d8d51415"
     },
     "figures/f04_measurement_gap-v1.pdf": {
       "bytes": 37745,
@@ -168,8 +168,8 @@
   },
   "outputs": {
     "main.pdf": {
-      "bytes": 981939,
-      "sha256": "02b09de1e5e3b9180921aaf4470814f9aca078d988625c99420d3560b92f7dc0"
+      "bytes": 944624,
+      "sha256": "770b05c0af7ef21253c06a01a891773b9f726c75ac8de387db765378ecc2adfa"
     }
   },
   "page_check": {
@@ -188,9 +188,9 @@
       11
     ],
     "body_page_limit": 12,
-    "body_pages": 12,
+    "body_pages": 11,
     "exempt_material_starts_page": 12,
-    "last_body_text_page": 12,
+    "last_body_text_page": 11,
     "policy": "https://icde2027.github.io/submission-guidelines.html",
     "total_pages": 12
   },

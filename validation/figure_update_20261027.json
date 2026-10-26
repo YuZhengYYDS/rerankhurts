@@ -1,0 +1,110 @@
+{
+  "date": "2026-10-27",
+  "baseline_commit": "04f4aa5546c324dc4eca92a9efe1a7176a063c38",
+  "status": "PASS",
+  "scope": "Replace Figures 1–3 from author-edited draw.io sources and recompile the current manuscript",
+  "figures": [
+    {
+      "source": "paper/figures/drawio/f01_motivation.drawio",
+      "source_identity": {
+        "bytes": 44672,
+        "sha256": "7ef3b6cca4b08f548ae427d5fb2f1103c37a768d3c581d65943e7b61e7734794"
+      },
+      "pdf": "paper/figures/f01_motivation.pdf",
+      "pdf_identity": {
+        "bytes": 112442,
+        "sha256": "520e81e200c3ddd757cc8d3a03660dfb9479b254309b2b7559a335ccad340b40"
+      },
+      "pages": 1,
+      "raster_image_count": 0,
+      "cells": 58,
+      "embedded_svg_icons": 11
+    },
+    {
+      "source": "paper/figures/drawio/f02_evidence_views.drawio",
+      "source_identity": {
+        "bytes": 171015,
+        "sha256": "e8a5fd3244eba9a2ecfbff6032681ae594e69c2900a3450f72a53596224daf9e"
+      },
+      "pdf": "paper/figures/f02_evidence_views.pdf",
+      "pdf_identity": {
+        "bytes": 148190,
+        "sha256": "8fbba58e393b09f419450242d099fef18b386990ecc8a866ffb26c7e5b748c05"
+      },
+      "pages": 1,
+      "raster_image_count": 0,
+      "cells": 279,
+      "embedded_svg_icons": 11
+    },
+    {
+      "source": "paper/figures/drawio/f03_paired_design.drawio",
+      "source_identity": {
+        "bytes": 100970,
+        "sha256": "8873f78b8d24b029c86bbfb3954cf7c0fb1dc261c5961ab434f8597d8e1aa0b3"
+      },
+      "pdf": "paper/figures/f03_paired_design.pdf",
+      "pdf_identity": {
+        "bytes": 117027,
+        "sha256": "cab2b0d16d4f835168dd579d307d5bd5ec0adb4ed5e85f40ff6cc641d8d51415"
+      },
+      "pages": 1,
+      "raster_image_count": 0,
+      "cells": 164,
+      "embedded_svg_icons": 12
+    }
+  ],
+  "export": {
+    "application": "draw.io 32.6.1",
+    "arguments": [
+      "-x",
+      "-f",
+      "pdf",
+      "--crop",
+      "-e",
+      "-b",
+      "10",
+      "--disable-features=FontationsFontBackend"
+    ],
+    "single_page_vector_pdf": true,
+    "source_files_preserved_byte_for_byte": true
+  },
+  "validation": {
+    "build": "validation/paper_build.json",
+    "manuscript": "validation/manuscript_checks.json",
+    "visual_review": "PASS: all twelve rendered pages inspected; no overlap or clipping",
+    "bold_paragraph_openings": 58,
+    "numbered_figures": 12,
+    "tables": 4,
+    "body_pages": 11,
+    "total_pages": 12
+  },
+  "unchanged_manuscript_inputs": [
+    "paper/IEEEtran.bst",
+    "paper/references.bib",
+    "paper/main.tex",
+    "paper/IEEEtran.cls",
+    "paper/layout.tex",
+    "paper/authors.tex",
+    "paper/sections/07_conclusion.tex",
+    "paper/sections/08_endmatter.tex",
+    "paper/sections/01_introduction.tex",
+    "paper/sections/06_related.tex",
+    "paper/sections/02_measurement.tex",
+    "paper/sections/04_evaluation.tex",
+    "paper/sections/03_protocol.tex",
+    "paper/sections/00_abstract.tex",
+    "paper/sections/05_implications.tex",
+    "paper/figures/f09_answers-v2.pdf",
+    "paper/figures/f04_measurement_gap-v2.pdf",
+    "paper/figures/f05_stages-v2.pdf",
+    "paper/figures/f06_visibility-v2.pdf",
+    "paper/figures/f11_complementary_checks-v2.pdf",
+    "paper/figures/f08_heterogeneity-v2.pdf",
+    "paper/figures/f07_budgets-v2.pdf",
+    "paper/figures/f10_request_cost-v2.pdf",
+    "paper/figures/f12_diagnostic_checks-v2.pdf"
+  ],
+  "scientific_results_changed": false,
+  "model_experiments_rerun": false,
+  "archived_sources_changed": false
+}

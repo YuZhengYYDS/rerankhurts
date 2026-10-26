@@ -91,11 +91,11 @@
   "table_count": 4,
   "page_check": {
     "total_pages": 12,
-    "body_pages": 12,
+    "body_pages": 11,
     "exempt_material_starts_page": 12,
     "body_page_limit": 12,
     "body_count_method": "last body label plus numbered body floats; shared exempt/body pages count as body",
-    "last_body_text_page": 12,
+    "last_body_text_page": 11,
     "body_float_pages": [
       1,
       2,

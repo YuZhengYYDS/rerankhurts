@@ -94,3 +94,5 @@ pixi run --locked workflow --dry-run e3
 打包产生的每个 ZIP 仍有独立的根目录 `MANIFEST.json`，用于核对该压缩包的成员；它与源码仓库内的 `metadata/MANIFEST.json` 分开管理。
 
 编译、重新分析和新实验输出使用 `build/` 或明确指定的新目录。当前论文的新版图在 `paper/figures/`；历史重绘工具的输出位于 `build/reanalysis/`。
+
+图 1–3 的当前可编辑源文件位于 [paper/figures/drawio/](paper/figures/drawio/)，正文使用同目录上层的矢量 PDF 导出图。

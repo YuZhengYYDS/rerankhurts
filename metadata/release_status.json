@@ -66,7 +66,8 @@
     "automated_test_run_date": "2026-10-02",
     "manuscript_restructure": "validation/manuscript_restructure_20261013.json",
     "repository_update": "validation/repository_update_20261026.json",
-    "paper_build": "validation/paper_build.json"
+    "paper_build": "validation/paper_build.json",
+    "figure_update": "validation/figure_update_20261027.json"
   },
   "repository_visibility": "private",
   "paper_pages_including_references": 12,
@@ -178,7 +179,7 @@
     "model_experiments_rerun": false,
     "validation": "validation/manuscript_checks.json"
   },
-  "paper_body_pages": 12,
+  "paper_body_pages": 11,
   "strengthening_study": {
     "status": "all_automated_experiment_stages_completed",
     "data_revision": "strengthening_v1",
@@ -254,5 +255,20 @@
     "new_e3_output": "build/runs/e3",
     "tests_passed": 201,
     "validation": "metadata/data_layout.json"
+  },
+  "figures_revision_20261027": {
+    "date": "2026-10-27",
+    "figures": [
+      1,
+      2,
+      3
+    ],
+    "editable_sources": "paper/figures/drawio/",
+    "body_pages": 11,
+    "total_pages": 12,
+    "validation": "validation/figure_update_20261027.json",
+    "tex_sources_preserved": true,
+    "scientific_results_changed": false,
+    "model_experiments_rerun": false
   }
 }
