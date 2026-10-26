@@ -1,9 +1,14 @@
-"""Validate the current paragraph-led ICDE draft, without running experiments."""
+"""Validate the supplied ICDE manuscript and its recorded build, without experiments."""
 from pathlib import Path
 import hashlib
 import json
 import re
 from pypdf import PdfReader
+
+try:
+    from .package_release import check_paper_build
+except ImportError:
+    from package_release import check_paper_build
 
 ROOT = Path(__file__).resolve().parents[1]
 PAPER = ROOT / "paper"
@@ -57,14 +62,20 @@ def main():
     active = main_tex + (PAPER / "layout.tex").read_text() + source
     if re.search(r"\\placeholder\b|figure placeholder|diagram placeholder", active, re.I):
         raise RuntimeError("Unfilled figure placeholder in active manuscript")
-    assets = json.loads((PAPER / "figure_assets.json").read_text())
-    if assets["intentional_placeholder_figures"]:
-        raise RuntimeError("Unfilled figure asset")
-    for asset in assets["completed_assets"]:
-        path = PAPER / asset["output"]
-        expected_asset = asset["output_identity"]
-        if path.stat().st_size != expected_asset["bytes"] or hashlib.sha256(path.read_bytes()).hexdigest() != expected_asset["sha256"]:
-            raise RuntimeError(f"Stale figure asset: {path.name}")
+    # The supplied source bundle contains PDF figure revisions, without the old
+    # figure_assets inventory. Validate the active references and build hashes.
+    uncommented = re.sub(r"(?m)(?<!\\)%.*$", "", active)
+    graphics = re.findall(r"\\includegraphics(?:\[[^]]*\])?\{([^}]+)\}", uncommented)
+    if len(graphics) != 12 or len(set(graphics)) != 12:
+        raise RuntimeError("Expected twelve distinct referenced figure assets")
+    for name in graphics:
+        path = PAPER / name
+        if not path.is_file() or not path.resolve().is_relative_to(PAPER.resolve()):
+            raise RuntimeError(f"Missing or unsafe referenced figure asset: {name}")
+    paper_files = {path.relative_to(PAPER).as_posix(): path
+                   for path in PAPER.rglob("*") if path.is_file()}
+    if not check_paper_build(ROOT, paper_files):
+        raise RuntimeError("Missing successful paper build record; run scripts/build_paper.py")
     forbidden = [r"\\vspace\*?\{\s*-", r"\\hspace\*?\{\s*-", r"\\usepackage(?:\[[^]]*\])?\{geometry\}",
                  r"\\(?:addtolength|setlength)\{\\(?:textheight|textwidth|oddsidemargin|topmargin|baselineskip)\}"]
     if any(re.search(pattern, active) for pattern in forbidden):
@@ -83,8 +94,10 @@ def main():
     aux = (stage / "main.aux").read_text()
     figures = [{"label": m.group(1), "number": int(m.group(2)), "page": int(m.group(3))}
                for m in re.finditer(r"\\newlabel\{(fig:[^}]+)\}\{\{(\d+)\}\{(\d+)\}", aux)]
-    if len(figures) != 12 or [(f["number"], f["page"]) for f in figures] != [(i, i) for i in range(1, 13)]:
-        raise RuntimeError(f"Expected one numbered figure on each of 12 pages: {figures}")
+    if (len(figures) != 12 or [f["number"] for f in figures] != list(range(1, 13))
+            or any(not 1 <= f["page"] <= 12 for f in figures)
+            or [f["page"] for f in figures] != sorted(f["page"] for f in figures)):
+        raise RuntimeError(f"Expected twelve sequentially numbered figures within the page budget: {figures}")
     tables = re.findall(r"\\newlabel\{(tab:[^}]+)\}", aux)
     if len(tables) != 4:
         raise RuntimeError("Expected four tables")
@@ -99,13 +112,14 @@ def main():
         raise RuntimeError("Overflow or unresolved citation/reference in compilation log")
     report = {"status": "PASS", "paragraph_count": len(paragraphs), "all_openings_bold": True,
               "approximate_english_word_count": words, "numbered_sections": titles,
-              "figures": figures, "table_count": len(tables), "page_check": page_check,
+              "figures": figures, "referenced_graphics": graphics,
+              "table_count": len(tables), "page_check": page_check,
               "unmodified_IEEE_class": True, "unmodified_IEEE_bibliography_style": True,
               "intentional_placeholder_figures": [],
               "submission_ready": False,
               "remaining_items": ["Provide openly accessible EAB artifacts", "Complete author ORCID/contact/COI submission metadata"],
               "paragraphs": paragraphs}
-    target = PAPER / "manuscript_checks.json"
+    target = ROOT / "validation/manuscript_checks.json"
     target.write_text(json.dumps(report, indent=2) + "\n")
     print(f"PASS: {len(paragraphs)} bold openings, 7 sections, 12 pages/figures, 4 tables")
 

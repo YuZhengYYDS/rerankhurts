@@ -123,7 +123,7 @@ def run_batch(stem, corpus, questions, modes, generation, extra):
     print(f"\n{'=' * 70}\n=== {stem} ===\n  corpus={corpus}\n  questions={questions}\n"
           f"  modes={modes}\n  generation={generation}\n  extra={extra}", flush=True)
     t0 = time.time()
-    r = subprocess.run([sys.executable, str(BASE / "run_rag_eval.py")], env=env, cwd=BASE)
+    r = subprocess.run([sys.executable, "-m", "legacy.run_rag_eval"], env=env, cwd=BASE)
     dt = time.time() - t0
     ok = r.returncode == 0
     print(f"  -> {'OK' if ok else f'FAILED(exit {r.returncode})'} in {dt:.0f}s", flush=True)

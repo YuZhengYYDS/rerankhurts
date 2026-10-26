@@ -5,7 +5,7 @@ from pathlib import Path
 
 import pytest
 
-from scripts.check_frozen_files import check, main, relative_path
+from scripts.check_frozen_files import E0_ARCHIVED_CODE, check, main, relative_path
 
 
 def digest(value):
@@ -135,6 +135,44 @@ def test_bad_manifest_path_is_reported(frozen_tree):
     result = check(frozen_tree)
     assert result["status"] == "fail"
     assert any(e["kind"] == "invalid_path_or_digest" for e in result["errors"])
+
+
+def test_e0_relocated_code_checks_archived_bytes_and_original_manifest(frozen_tree):
+    manifest_path = frozen_tree / "validation/results/input_manifest.json"
+    entries = json.loads(manifest_path.read_bytes())
+    for original, relocated in E0_ARCHIVED_CODE.items():
+        historical = ("original " + original).encode()
+        archive = frozen_tree / relocated
+        archive.parent.mkdir(parents=True, exist_ok=True)
+        archive.write_bytes(historical)
+        active = frozen_tree / "legacy" / original
+        active.parent.mkdir(parents=True, exist_ok=True)
+        active.write_bytes(b"maintained version with adapted imports and paths")
+        entries.append({"path": original, "bytes": len(historical), "sha256": digest(historical)})
+    manifest_path.write_text(json.dumps(entries))
+    before = snapshot(frozen_tree)
+    assert check(frozen_tree)["status"] == "pass"
+    assert snapshot(frozen_tree) == before
+    assert all(not (frozen_tree / name).exists() for name in E0_ARCHIVED_CODE)
+    (frozen_tree / E0_ARCHIVED_CODE["run_rag_eval.py"]).write_bytes(b"tampered archive")
+    report = check(frozen_tree)
+    assert report["status"] == "fail"
+    assert any(error["kind"] == "hash_mismatch" and "archive/code_20261022/run_rag_eval.py" in error["path"]
+               for error in report["errors"])
+
+
+def test_e0_missing_archive_does_not_fall_back_to_active_code(frozen_tree):
+    name = "score_retrieval.py"
+    historical = b"historical scorer"
+    (frozen_tree / name).write_bytes(historical)
+    manifest_path = frozen_tree / "validation/results/input_manifest.json"
+    entries = json.loads(manifest_path.read_bytes())
+    entries.append({"path": name, "bytes": len(historical), "sha256": digest(historical)})
+    manifest_path.write_text(json.dumps(entries))
+    report = check(frozen_tree)
+    assert report["status"] == "fail"
+    assert any(error["kind"] == "missing_file" and E0_ARCHIVED_CODE[name] in error["path"]
+               for error in report["errors"])
 
 
 def test_unrecorded_trace_fails(frozen_tree):

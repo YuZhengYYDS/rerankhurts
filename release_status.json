@@ -1,8 +1,8 @@
 {
   "release_date": "2026-10-13",
-  "target_repository": "https://github.com/YuZhengYYDS/rerankhuts",
+  "target_repository": "https://github.com/YuZhengYYDS/rerankhurts",
   "publication_status": "private_repository_delivery",
-  "paper_status": "restructured_manuscript_with_verified_frozen_results_and_requested_overview_placeholder",
+  "paper_status": "author_supplied_manuscript_with_revised_v2_figures",
   "E0": {
     "status": "completed",
     "logs": 47,
@@ -64,10 +64,12 @@
     "test_report": "validation/strengthening_tests_20261002.xml",
     "strengthening_completion": "validation/strengthening_completion.json",
     "automated_test_run_date": "2026-10-02",
-    "manuscript_restructure": "validation/manuscript_restructure_20261013.json"
+    "manuscript_restructure": "validation/manuscript_restructure_20261013.json",
+    "repository_update": "validation/repository_update_20261026.json",
+    "paper_build": "validation/paper_build.json"
   },
   "repository_visibility": "private",
-  "paper_pages_including_references": 11,
+  "paper_pages_including_references": 12,
   "controlled_simulation": {
     "status": "completed",
     "dataset_revision": 2,
@@ -98,6 +100,27 @@
       ],
       "author_order": 1,
       "first_author": true,
+      "equal_contribution": true,
+      "corresponding_author": false
+    },
+    {
+      "name": "Jie Li",
+      "affiliations": [
+        "The Chinese University of Hong Kong, Shenzhen"
+      ],
+      "author_order": 2,
+      "first_author": true,
+      "equal_contribution": true,
+      "corresponding_author": false
+    },
+    {
+      "name": "Boyang Wang",
+      "affiliations": [
+        "The Chinese University of Hong Kong, Shenzhen"
+      ],
+      "author_order": 3,
+      "first_author": false,
+      "equal_contribution": false,
       "corresponding_author": false
     },
     {
@@ -106,53 +129,56 @@
         "The Chinese University of Hong Kong, Shenzhen",
         "Shenzhen Loop Area Institute"
       ],
-      "author_order": 2,
+      "author_order": 4,
       "first_author": false,
+      "equal_contribution": false,
       "corresponding_author": true
     }
   ],
   "code_organization": {
     "entry_point": "python -m rerankhuts",
     "pixi_entry_point": "pixi run --locked workflow",
-    "maintained_legacy_tools_moved": 24,
-    "archived_historical_tools": 6,
+    "maintained_legacy_tools_moved": 29,
+    "archived_historical_tools": 11,
     "migration_manifest": "legacy/migration_manifest.json",
     "frozen_file_references_verified": 218,
     "scientific_results_changed": false,
-    "model_experiments_rerun_for_cleanup": false
+    "model_experiments_rerun_for_cleanup": false,
+    "root_python_script_count": 0,
+    "former_root_tools": "legacy/",
+    "original_root_source_snapshots": "archive/code_20261022/",
+    "prior_manuscript_snapshot": "archive/paper_20261022/",
+    "cleanup_date": "2026-10-26",
+    "current_cleanup_tests_passed": 153,
+    "current_cleanup_verification": "validation/repository_update_20261026.json"
   },
   "manuscript_revision": {
-    "full_rewrite": true,
-    "author_information_supplied": true,
-    "overview_placeholder_page": 2,
-    "overview_placeholder_height_cm": 4.1,
-    "remaining_submission_preparation": [
-      "Replace requested Overview figure space",
-      "Provide ORCIDs and submission-system contact metadata",
-      "Establish public artifact access",
-      "Author review of final manuscript and AI disclosure"
+    "date": "2026-10-26",
+    "origin": "Author-supplied source project",
+    "directory": "paper",
+    "replaced_entire_paper_folder": true,
+    "active_v2_figures": [
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
     ],
-    "author_roles_confirmed": true,
-    "date": "2026-10-13",
-    "writing_skill": "anti-defensive-writing",
-    "contribution": "Stage-resolved evidence measurements expose source retention that conceals incomplete delivered fact coverage",
-    "argument_order": [
-      "Problem and principal finding",
-      "Measurement framework",
-      "Benchmark and experimental design",
-      "Mechanism, transfer, answer and cost evidence",
-      "Related workloads",
-      "Implications and scope",
-      "Related work",
-      "Conclusion"
-    ],
-    "experiment_results_unchanged": true,
+    "body_pages": 12,
+    "total_pages": 12,
+    "paragraph_openings_bold": 58,
+    "numbered_figures": 12,
+    "tables": 4,
+    "author_information_preserved": true,
+    "equal_contribution_note": "Equal Contribution",
     "model_experiments_rerun": false,
-    "numerical_table_rows_unchanged": true,
-    "body_pages_before": 12,
-    "body_pages_after": 10
+    "validation": "validation/manuscript_checks.json"
   },
-  "paper_body_pages": 10,
+  "paper_body_pages": 12,
   "strengthening_study": {
     "status": "all_automated_experiment_stages_completed",
     "data_revision": "strengthening_v1",
@@ -184,5 +210,36 @@
     "public_access_established": false,
     "previous_release_commit": "36863f5ce0396137f42ec60d7a303c04465282ac"
   },
-  "experiment_completion_date": "2026-10-02"
+  "experiment_completion_date": "2026-10-02",
+  "manuscript_revision_20261013": {
+    "full_rewrite": true,
+    "author_information_supplied": true,
+    "overview_placeholder_page": 2,
+    "overview_placeholder_height_cm": 4.1,
+    "remaining_submission_preparation": [
+      "Replace requested Overview figure space",
+      "Provide ORCIDs and submission-system contact metadata",
+      "Establish public artifact access",
+      "Author review of final manuscript and AI disclosure"
+    ],
+    "author_roles_confirmed": true,
+    "date": "2026-10-13",
+    "writing_skill": "anti-defensive-writing",
+    "contribution": "Stage-resolved evidence measurements expose source retention that conceals incomplete delivered fact coverage",
+    "argument_order": [
+      "Problem and principal finding",
+      "Measurement framework",
+      "Benchmark and experimental design",
+      "Mechanism, transfer, answer and cost evidence",
+      "Related workloads",
+      "Implications and scope",
+      "Related work",
+      "Conclusion"
+    ],
+    "experiment_results_unchanged": true,
+    "model_experiments_rerun": false,
+    "numerical_table_rows_unchanged": true,
+    "body_pages_before": 12,
+    "body_pages_after": 10
+  }
 }

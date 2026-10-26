@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Render three compact quantitative manuscript figures from verified source tables."""
+"""Recreate historical quantitative figures under build/, using frozen archived inputs."""
 from __future__ import annotations
 
 import argparse
@@ -19,9 +19,10 @@ import matplotlib.pyplot as plt
 from matplotlib import font_manager
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / 'paper' / 'figures'
+ARCHIVED_FIGURES = ROOT / 'archive/paper_20261022/figures'
+OUT = ROOT / 'build/reanalysis/paper_20261022/figures'
 CLEAN = OUT / 'source_data'
-INPUTS = CLEAN / 'inputs'
+INPUTS = ARCHIVED_FIGURES / 'source_data/inputs'
 INPUT_MANIFEST = INPUTS / 'MANIFEST.json'
 VERIFIED_INPUTS = {}
 STRENGTH = 'experiments/strengthening/results/strengthening_v1/'
@@ -425,6 +426,8 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--figures', nargs='+', choices=['F4', 'F10', 'F11'], default=['F4', 'F10', 'F11'])
     args = parser.parse_args()
+    if not INPUT_MANIFEST.is_file():
+        raise FileNotFoundError(f'Missing frozen archived figure inputs: {INPUT_MANIFEST}')
     OUT.mkdir(parents=True, exist_ok=True)
     CLEAN.mkdir(parents=True, exist_ok=True)
     style()

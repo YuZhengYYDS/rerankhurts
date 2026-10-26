@@ -258,5 +258,52 @@
       "frozen E0 input hash preservation",
       "archival and original requirements byte preservation"
     ]
-  }
+  },
+  "revisions": [
+    {
+      "date": "2026-10-26",
+      "scope": "Move the five remaining root Python tools into legacy; keep their original E0 source bytes in archive.",
+      "new_migrations": [
+        {
+          "original_path": "generate_normalized_questions.py",
+          "maintained_path": "legacy/generate_normalized_questions.py",
+          "original_snapshot": "archive/code_20261022/generate_normalized_questions.py",
+          "original_sha256": "5671a4ebc8307faaf8b75750666971c5fac4afddcdd49058dc0e7692379feff3",
+          "maintained_sha256": "a2b894d4947b5824e7e3bafee11d5e0b9cd1c97c931b77396c96589e38c5055c"
+        },
+        {
+          "original_path": "paper_support_analysis.py",
+          "maintained_path": "legacy/paper_support_analysis.py",
+          "original_snapshot": "archive/code_20261022/paper_support_analysis.py",
+          "original_sha256": "dac773c9e9edb8c199de87cb865048e28d531beeabbf37b2628e1cbf93f3e39a",
+          "maintained_sha256": "0af26f5668d8cd8aa5940f21afcd866b6cd0e80f2a237c3367764d27493b4e70"
+        },
+        {
+          "original_path": "run_rag_eval.py",
+          "maintained_path": "legacy/run_rag_eval.py",
+          "original_snapshot": "archive/code_20261022/run_rag_eval.py",
+          "original_sha256": "b5a40a5bdc472234b8fb3bc7452aa9d59c96258f24616de5ab26b99879e8b54e",
+          "maintained_sha256": "e63146c4a81ea91854a7ee16fc19dec9ed1a9806d330b8b6a5c057fac57cbac5"
+        },
+        {
+          "original_path": "score_retrieval.py",
+          "maintained_path": "legacy/score_retrieval.py",
+          "original_snapshot": "archive/code_20261022/score_retrieval.py",
+          "original_sha256": "ac00663b9a63b0b9132de5aa9ad3dc713da79b5f574acefc22391c3f4a08c32d",
+          "maintained_sha256": "d816f2d9b96bf65b5c63979ef7fdba3ba2c3a1418c869505b7a52af9e5cbe283"
+        },
+        {
+          "original_path": "summarize_supplement_results.py",
+          "maintained_path": "legacy/summarize_supplement_results.py",
+          "original_snapshot": "archive/code_20261022/summarize_supplement_results.py",
+          "original_sha256": "52077bc15d366d0512541161ebfa190d9f1416e2c247fb155eb4ae290256f84a",
+          "maintained_sha256": "a93abcf1c6a54ac3be5ac8069f4c1bea88360c2142d505edc7e92e157cde4ee1"
+        }
+      ],
+      "root_python_scripts_remaining": 0,
+      "historical_input_manifest": "validation/results/input_manifest.json",
+      "historical_input_manifest_modified": false,
+      "verification": "validation/repository_update_20261026.json"
+    }
+  ]
 }

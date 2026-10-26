@@ -498,3 +498,110 @@ def test_paper_change_between_build_check_and_archive_snapshot_is_rejected(repos
     with pytest.raises(ValueError, match="Paper build changed while preparing"):
         package.package(root)
     assert not (root / "dist").exists()
+
+
+def record_current_paper_build(root):
+    """Current source-only paper uses an external record and a PDF-only output."""
+    record = record_paper_build(root)
+    (root / "paper/build_manifest.json").unlink()
+    (root / "paper/main.bbl").unlink()
+    record.update(schema_version=2, paper_root="paper")
+    del record["outputs"]["main.bbl"]
+    (root / "validation/paper_build.json").write_text(json.dumps(record), encoding="utf-8")
+    return record
+
+
+def test_current_build_record_is_external_and_binds_clean_and_split_archives(repository):
+    root, _, _ = repository
+    record_current_paper_build(root)
+    assert package.package(root, split=True)["status"] == "PASS"
+    output = root / "dist"
+    full = archive_manifest(output / "rerankhuts_icde2027.zip")
+    paper = archive_manifest(output / "paper_icde2027_clean.zip")
+    results = archive_manifest(output / "rerankhuts_icde2027_results.zip")
+    assert "validation/paper_build.json" in full and "validation/paper_build.json" in results
+    assert {"main.pdf", "figures/main.pdf"} <= set(paper)
+    assert not {"main.bbl", "build_manifest.json", "paper_build.json"} & set(paper)
+    assert verify.verify_release(output)["status"] == "PASS"
+
+
+@pytest.mark.parametrize("name", ["main.tex", "main.pdf", "figures/overview.pdf"])
+def test_current_external_build_rejects_stale_source_or_pdf(repository, name):
+    root, _, _ = repository
+    record_current_paper_build(root)
+    path = root / "paper" / name
+    payload = path.read_bytes()
+    path.write_bytes(bytes([payload[0] ^ 1]) + payload[1:])
+    with pytest.raises(ValueError, match="Paper build SHA-256 mismatch"):
+        package.package(root)
+    assert not (root / "dist").exists()
+
+
+def test_current_external_build_rejects_stale_bibliography_scratch(repository):
+    root, _, _ = repository
+    record_current_paper_build(root)
+    (root / "paper/main.bbl").write_text("stale scratch", encoding="utf-8")
+    with pytest.raises(ValueError, match="scratch only"):
+        package.package(root)
+
+
+def test_competing_paper_build_records_fail_closed(repository):
+    root, _, _ = repository
+    record = record_current_paper_build(root)
+    (root / "paper/build_manifest.json").write_text(json.dumps(record), encoding="utf-8")
+    with pytest.raises(ValueError, match="Multiple paper build manifests"):
+        package.package(root)
+
+
+def rewrite_archive_with_updated_manifest(path, member, payload):
+    """Simulate a fully rehashed archive whose recorded TeX build is stale."""
+    with zipfile.ZipFile(path) as source:
+        members = {name: source.read(name) for name in source.namelist()}
+    manifest_name = next(name for name in members if name.endswith("/MANIFEST.json"))
+    prefix = manifest_name.removesuffix("MANIFEST.json")
+    manifest = json.loads(members[manifest_name])
+    members[prefix + member] = payload
+    manifest[member] = {"bytes": len(payload), "sha256": hashlib.sha256(payload).hexdigest()}
+    members[manifest_name] = json.dumps(manifest).encode()
+    with zipfile.ZipFile(path, "w") as target:
+        for name, data in members.items():
+            target.writestr(name, data)
+
+
+def test_standalone_archive_verifier_enforces_external_build_identity(repository):
+    root, _, _ = repository
+    record_current_paper_build(root)
+    package.package(root)
+    path = root / "dist/rerankhuts_icde2027.zip"
+    rewrite_archive_with_updated_manifest(path, "paper/main.tex", b"changed TeX")
+    with pytest.raises(ValueError, match="Paper build byte count mismatch"):
+        verify.verify_archive(path)
+
+
+def test_rehashed_clean_archive_must_match_full_release(repository):
+    root, _, _ = repository
+    package.package(root)
+    output = root / "dist"
+    path = output / "paper_icde2027_clean.zip"
+    rewrite_archive_with_updated_manifest(path, "main.tex", b"different clean paper")
+    sums = json.loads((output / "sha256sums.json").read_text())
+    sums[path.name] = verify.file_sha256(path)
+    (output / "sha256sums.json").write_text(json.dumps(sums))
+    with pytest.raises(ValueError, match="Clean paper archive differs"):
+        verify.verify_release(output)
+
+
+def test_paper_builder_prefers_pdflatex_and_bibtex(monkeypatch):
+    from scripts import build_paper
+    monkeypatch.setattr(build_paper.shutil, "which", lambda name: "/tools/" + name)
+    engine, commands = build_paper.compiler_commands()
+    assert engine == "pdflatex"
+    assert [Path(command[0]).name for command in commands] == ["pdflatex", "bibtex", "pdflatex", "pdflatex"]
+
+
+def test_paper_builder_uses_explicit_tectonic_fallback(monkeypatch):
+    from scripts import build_paper
+    monkeypatch.setattr(build_paper.shutil, "which", lambda name: None)
+    engine, commands = build_paper.compiler_commands(tectonic=Path("/tools/tectonic"))
+    assert engine == "tectonic"
+    assert commands == [["/tools/tectonic", "--keep-logs", "--keep-intermediates", "main.tex"]]

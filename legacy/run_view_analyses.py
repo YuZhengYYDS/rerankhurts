@@ -115,8 +115,7 @@ def run(script: str, env_overrides: dict, label: str, dry: bool,
     env = os.environ.copy()
     env["PYTHONIOENCODING"] = "utf-8"
     env.update({k: str(v) for k, v in env_overrides.items()})
-    command = ([sys.executable, str(BASE / script)] if script == "paper_support_analysis.py"
-               else [sys.executable, "-m", "legacy." + Path(script).stem])
+    command = [sys.executable, "-m", "legacy." + Path(script).stem]
     cmd = command + [str(a) for a in (argv or [])]
     print(f"\n{'=' * 70}\n>>> {label}\n    {' '.join(cmd[1:])}", flush=True)
     for k, v in env_overrides.items():

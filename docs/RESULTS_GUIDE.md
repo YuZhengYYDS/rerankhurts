@@ -2,11 +2,20 @@
 
 ## 论文
 
-`paper/main.tex` 是当前稿件源文件，`paper/main.pdf` 是最近一次通过构建检查的PDF；
-2026-10-13重构以360世界研究作为主研究；本次没有重跑实验，也未改变计算代码、数据或统计结果，
-表格生成器仅调整表注文字。`authors.tex` 记录 Zheng Yu 为第一作者、Jingbang Chen 为通讯作者，
-第二页保留 Overview 图片位置。当前构建为10页正文、11页总计，精确身份与页数见构建报告；
-官方限制仍为正文最多12页，参考文献与AI内容致谢不计入。
+`paper/main.tex` 是 2026-10-26 从用户提供的 ZIP 替换的当前稿件源文件。
+正文位于 `paper/sections/`，图表布局在 `paper/layout.tex`；F1–F3 使用 PDF，
+F4–F12 使用布局文件直接引用的 `*-v2.pdf`。当前稿件包含 58 个粗体开头段落、
+7 个编号章节、12 幅图和 4 张表。作者信息以 `paper/authors.tex` 为准。
+
+`python scripts/build_paper.py` 优先使用 PDFLaTeX/BibTeX，否则使用 Tectonic，
+只将最终 PDF 写入 `paper/main.pdf`，编译中间文件保存在 `build/paper/`。
+构建身份与页数见 `validation/paper_build.json`，结构检查见
+`validation/manuscript_checks.json`。当前构建为 12 页；编号图允许共享页面，
+F12 位于第 11 页。正文上限检查把与致谢或参考文献共享的正文浮动图页计入正文。
+
+替换前的完整论文及绘图输入保存在 `archive/paper_20261022/`，包括旧版
+`generated/`、draw.io 文件、来源数据和历史审计记录。这些归档文件保持原字节；
+下文冻结实验的目录和统计结果保持不变，本次替换没有重新运行模型。
 
 ## 扩展实验：360个世界、720任务 × 124配置
 
@@ -36,11 +45,11 @@
 - `timing/`：24测试世界、每世界一个变体、四配置的96个first-pass和480个steady测量；8次warm-up不计入。
 - `analysis.json`、`figures/manifest.json`：统计设置、输入身份和图文件来源。
 
-`paper/main.tex` 在 Benchmark and Experimental Design 中直接引用
-`paper/generated/strengthening_methods.tex`；`paper/strengthening.tex` 只包含主结果章节，
-引用 `paper/generated/strengthening_results.tex`。主结果之后依次是肿瘤语料与pilot的背景证据、
-讨论、相关工作和结论。正文结论对应完整评估、世界级统计和经核验的图表；
-主研究与旧E3、`pilot_v2` 使用不同目录。
+当前稿件直接包含正文中的表格，不依赖历史 `paper/generated/` 文件。
+历史扩展实验表及来源记录保存在 `archive/paper_20261022/generated/`。
+`python -m rerankhuts tables` 使用 `scripts/paper/` 下的生成器，
+将 E3、pilot 和扩展实验表重算到 `build/reanalysis/tables/`，不写入当前论文或归档。
+主研究与旧 E3、`pilot_v2` 使用不同目录。
 
 ```text
 # 新复现尚未结束时可使用的检查，不将PENDING当作完成
@@ -62,7 +71,8 @@ pixi run --locked strengthen-verify --require-complete
 - `factorial_diagnostics.json`：另八个 cap/re-ranker 交互。
 - `G_factorial.pdf`：论文页面保留率热图。
 
-`paper/build_e3_table.py` 从上述冻结文件生成论文E3表和来源记录。
+`scripts/paper/build_e3_table.py` 从上述冻结文件重算历史 E3 表和来源记录，
+输出位于 `build/reanalysis/tables/e3/`。
 `validation/results/e3_integrity.json` 保存独立轨迹核验；执行 `verify` 的新报告
 写在 `build/verification/e3/`。
 
@@ -81,7 +91,8 @@ pixi run --locked strengthen-verify --require-complete
 - `status.json`：完整性、输入与输出哈希，明确标记 synthetic_oracle。
 - `selection_comparison.pdf`：论文测试集配置对比图。
 
-`paper/build_simulation_table.py` 生成论文pilot选择比较表。
+`scripts/paper/build_simulation_table.py` 重算历史 pilot 选择比较表，
+输出位于 `build/reanalysis/tables/simulation/`。
 `validation/simulation_audit.json` 为独立结果复核；
 `validation/simulation_endpoint_pairs.json` 为论文 G/U 配对频数的独立复算。
 

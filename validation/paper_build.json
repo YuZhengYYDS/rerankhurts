@@ -1,0 +1,200 @@
+{
+  "builder_sha256": "aa3d70bfb379ebcab01e9e5e7dc19fa5593e67511d1ecb8a24390608b03a0b2a",
+  "compiler": {
+    "commands": [
+      [
+        "tectonic",
+        "--keep-logs",
+        "--keep-intermediates",
+        "main.tex"
+      ]
+    ],
+    "engine": "tectonic",
+    "version": "Tectonic 0.17.0"
+  },
+  "inputs": {
+    "IEEEtran.bst": {
+      "bytes": 57748,
+      "sha256": "314f0ece704568faf827011bac498650691b2b5ee06320720830e782416d5a5f"
+    },
+    "IEEEtran.cls": {
+      "bytes": 281957,
+      "sha256": "da751920a317ed318b7b5cd7fa585a6cc7d28502d457856382e9be24b10a3bd7"
+    },
+    "authors.tex": {
+      "bytes": 720,
+      "sha256": "a6ebe1bc9ed1bcb7a0e6fb62c50331222ed84cc1ebfacff8c7df6b7299f4931a"
+    },
+    "figures/f01_motivation.pdf": {
+      "bytes": 127318,
+      "sha256": "083b6a4f03697219f185148eb9772c7ae4635c168893e4bacc4d953e26f5a476"
+    },
+    "figures/f02_evidence_views.pdf": {
+      "bytes": 146350,
+      "sha256": "a81e0d2c340f226a3189a33fd3e792c17f24640e638d69d1ed2bd3223517124f"
+    },
+    "figures/f03_paired_design.pdf": {
+      "bytes": 140943,
+      "sha256": "72332c10d11a5386f24f35529df7ae533201090faa3285c1f33b8582f3c4e543"
+    },
+    "figures/f04_measurement_gap-v1.pdf": {
+      "bytes": 37745,
+      "sha256": "6001d6638726e541649032aa09c1790ba77f7b7bab9944aad8e47065399c694e"
+    },
+    "figures/f04_measurement_gap-v2.pdf": {
+      "bytes": 106241,
+      "sha256": "054e05d2373bc9fcab114448c2580c8ab612f275b7372cb0edfc2520fb3b930c"
+    },
+    "figures/f05_stages-v2.pdf": {
+      "bytes": 111929,
+      "sha256": "015f221d9ba71c08cc1ace3b2e7419cfd34fbc484c5ae84ff6225e4f45d51c1b"
+    },
+    "figures/f05_stages.pdf": {
+      "bytes": 26145,
+      "sha256": "eb5afa442ed43b55d8edc7cb892f1c66d862e4927294b850aff54e71d5ad3924"
+    },
+    "figures/f06_ce.pdf": {
+      "bytes": 24813,
+      "sha256": "81149dca87e7432888bc38a406afd74bdbeff7327eac3c471ea7d406f85cf85a"
+    },
+    "figures/f06_dense.pdf": {
+      "bytes": 24821,
+      "sha256": "c439162f8929cb768498b7f20ca9c1e67203a56e53541c7107805e8197de038d"
+    },
+    "figures/f06_packing.pdf": {
+      "bytes": 24817,
+      "sha256": "5c46c4286f6e574448f94a67f2e32ca41b62410fc957633c4336844b3f3b6dbe"
+    },
+    "figures/f06_visibility-v2.pdf": {
+      "bytes": 111428,
+      "sha256": "143bab387cd2d1a11d96ade822fc55178c7d93b8503de925a36a09ba257032df"
+    },
+    "figures/f07_budgets-v2.pdf": {
+      "bytes": 119731,
+      "sha256": "61c56e2f90ca5b8eef7375b8282984a50434d64eb293018ef9f01f403d6468a3"
+    },
+    "figures/f07_budgets.pdf": {
+      "bytes": 32270,
+      "sha256": "d2d1c328931e3f6cff0aa79d29e532b3ec05934b029afa336dea2cd5196a8be4"
+    },
+    "figures/f08_heterogeneity-v2.pdf": {
+      "bytes": 155696,
+      "sha256": "31a8f1f14e09ab4d8cad41076f1214fb5c3b7d674afce637e5bbf2db3cec917e"
+    },
+    "figures/f08_heterogeneity.pdf": {
+      "bytes": 32270,
+      "sha256": "b138a0ea9edf0762d77b838b39438eb8d7979d41c1569c553f40ec12af996a31"
+    },
+    "figures/f09_answers-v2.pdf": {
+      "bytes": 110931,
+      "sha256": "baf1c5ef4f88fcfbc439538a82e56ef5cc7efd6eddf0de5f239d8868e8b95f2d"
+    },
+    "figures/f09_answers.pdf": {
+      "bytes": 24316,
+      "sha256": "846941f9ebd7018e7ac8d1ce43692d5df2fa1f4ea45d241685c9b2cab2ba5cc1"
+    },
+    "figures/f10_request_cost-v2.pdf": {
+      "bytes": 102916,
+      "sha256": "0c0c9d49b1eaba8ff7fade8d7c8e9a54085905759313cca885210bfa198372a3"
+    },
+    "figures/f10_request_cost.pdf": {
+      "bytes": 37973,
+      "sha256": "2ea90ce728d0e4a2f51c875bbd7eccd16f7957bc017376c3d34ae2468f1ef0a4"
+    },
+    "figures/f11_complementary_checks-v2.pdf": {
+      "bytes": 102218,
+      "sha256": "8cfe48d18b5730e1a47a2ebb728f680be382c61b06e1d8e4da86666d785eb7dd"
+    },
+    "figures/f11_complementary_checks.pdf": {
+      "bytes": 36290,
+      "sha256": "564546c4b714c0062ab3bbf914aa64a7ca9b42a08c9b91c297c0bdc9ec5fcf31"
+    },
+    "figures/f12_diagnostic_checks-v2.pdf": {
+      "bytes": 55360,
+      "sha256": "899217d6718aaef0b9b4633f49a04747e034275bb1436d1a1517b82823c8ed8c"
+    },
+    "figures/f12_diagnostic_checks.png": {
+      "bytes": 1120843,
+      "sha256": "e101881fb87470128e712bee6e43fae3d8f3e58c5b4de66529876e84e1fe20be"
+    },
+    "layout.tex": {
+      "bytes": 18061,
+      "sha256": "7404c4bf2b22c5b66ef1b41f1e951b07812675c68ad3c6348edda33913ba1af4"
+    },
+    "main.tex": {
+      "bytes": 1390,
+      "sha256": "74d89861bfc3d7171fd218aa957f67806501d57abf7cf48eafe124cbd6d96cab"
+    },
+    "references.bib": {
+      "bytes": 8199,
+      "sha256": "c95e35e16b8162a05f5dac902e214dc8ca9cd2cab4ebd4220bf7427860f41951"
+    },
+    "sections/00_abstract.tex": {
+      "bytes": 1371,
+      "sha256": "95262f2cd573a4b12849564ba4d03ffc82e3d1d5b41f9620dcd43f9561c18e0c"
+    },
+    "sections/01_introduction.tex": {
+      "bytes": 3772,
+      "sha256": "1e22b400da1d90f7ca3158b7b983bb192aaaca6d5f6883edaa1020fed7031fbc"
+    },
+    "sections/02_measurement.tex": {
+      "bytes": 4341,
+      "sha256": "c7bf05546743f79d78b5b16af69c6df717245a0fa11dc2af1415bc660e80bf8b"
+    },
+    "sections/03_protocol.tex": {
+      "bytes": 5839,
+      "sha256": "804df673ee9b211b1974b90188aca31562064a290bebb6686982438d4379f1b4"
+    },
+    "sections/04_evaluation.tex": {
+      "bytes": 22026,
+      "sha256": "0a0a6eafb5dd23ac00ae1e7c4f90990205872ec0f69fe8f6393c009eb109c748"
+    },
+    "sections/05_implications.tex": {
+      "bytes": 2347,
+      "sha256": "b1e7abdaf73e488ed179d4aabb7c10768410d7dcc7f12e566ad9484ef6555350"
+    },
+    "sections/06_related.tex": {
+      "bytes": 1243,
+      "sha256": "6fb6244aa63e2b7f7305522cdc7077958d5fa2db4d028ef860966ee9f582a726"
+    },
+    "sections/07_conclusion.tex": {
+      "bytes": 795,
+      "sha256": "06675fb849233ebdce164c10b5c3ab653e273582494eff97d9e07e17c14b2a75"
+    },
+    "sections/08_endmatter.tex": {
+      "bytes": 1621,
+      "sha256": "983ea897f944b09c1af1e7cbb4f866caf51716c62f65fe3c72a172d2c1b4c8d0"
+    }
+  },
+  "outputs": {
+    "main.pdf": {
+      "bytes": 981939,
+      "sha256": "02b09de1e5e3b9180921aaf4470814f9aca078d988625c99420d3560b92f7dc0"
+    }
+  },
+  "page_check": {
+    "body_count_method": "last body label plus numbered body floats; shared exempt/body pages count as body",
+    "body_float_pages": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "body_page_limit": 12,
+    "body_pages": 12,
+    "exempt_material_starts_page": 12,
+    "last_body_text_page": 12,
+    "policy": "https://icde2027.github.io/submission-guidelines.html",
+    "total_pages": 12
+  },
+  "paper_root": "paper",
+  "schema_version": 2,
+  "status": "PASS"
+}

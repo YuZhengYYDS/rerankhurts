@@ -93,6 +93,80 @@ def validate_manifest(manifest):
                 f"Invalid SHA-256 for {name!r}")
 
 
+PAPER_INPUT_SUFFIXES = {".tex", ".bib", ".cls", ".bst", ".pdf", ".png", ".jpg", ".sty"}
+PAPER_OUTPUT_NAMES = {"main.pdf", "main.bbl"}
+PAPER_BUILD_RECORD = "validation/paper_build.json"
+
+
+def paper_input(name):
+    return (Path(name).suffix.casefold() in PAPER_INPUT_SUFFIXES
+            and name.casefold() not in PAPER_OUTPUT_NAMES | {"build_manifest.json"})
+
+
+def validate_paper_build(record, paper, *, legacy=False):
+    """Check build identities against a paper file snapshot (also inside ZIPs)."""
+    require(isinstance(record, dict) and record.get("status") == "PASS",
+            "Paper build manifest must record status PASS")
+    if not legacy:
+        require(record.get("schema_version") == 2 and record.get("paper_root") == "paper",
+                "Unsupported external paper build manifest")
+        require("main.bbl" not in paper, "Current paper must keep main.bbl in build scratch only")
+    inputs, outputs = record.get("inputs"), record.get("outputs")
+    for mapping in (inputs, outputs):
+        validate_manifest(mapping)
+    require("main.tex" in inputs and all(paper_input(name) for name in inputs),
+            "Paper build contains an invalid compiled input")
+    require(set(outputs) == (PAPER_OUTPUT_NAMES if legacy else {"main.pdf"}),
+            "Paper build output membership differs")
+    actual_inputs = {name for name in paper if paper_input(name)}
+    require(set(inputs) == actual_inputs, "Paper build input membership differs; rebuild the paper")
+    pages = record.get("page_check")
+    require(isinstance(pages, dict), "Paper build page_check must be an object")
+    body = pages.get("body_pages")
+    require(type(body) is int and 1 <= body <= 12, "Paper body must contain 1 to 12 pages")
+    if "body_page_limit" in pages:
+        require(type(pages["body_page_limit"]) is int and pages["body_page_limit"] == 12,
+                "Inconsistent paper page check: body_page_limit")
+    exempt = pages.get("exempt_material_starts_page", body + 1)
+    first_shared = body
+    if "body_float_pages" in pages:
+        float_pages = pages["body_float_pages"]
+        first_shared = pages.get("last_body_text_page")
+        require(type(first_shared) is int and 1 <= first_shared <= body,
+                "Inconsistent paper page check: last_body_text_page")
+        require(isinstance(float_pages, list) and all(type(p) is int and 1 <= p <= body for p in float_pages)
+                and max([first_shared, *float_pages]) == body,
+                "Inconsistent paper page check: body_float_pages")
+    require(type(exempt) is int and first_shared <= exempt <= body + 1,
+            "Inconsistent paper page check: exempt_material_starts_page")
+    if "total_pages" in pages:
+        require(type(pages["total_pages"]) is int and pages["total_pages"] >= max(body, exempt),
+                "Inconsistent paper page check: total_pages")
+    expected_files = {**inputs, **outputs}
+    require(set(expected_files) <= set(paper), "Compiled paper files are excluded from the release")
+    for name, expected in expected_files.items():
+        require(paper[name]["bytes"] == expected["bytes"], f"Paper build byte count mismatch: {name}")
+        require(paper[name]["sha256"] == expected["sha256"], f"Paper build SHA-256 mismatch: {name}")
+    return expected_files
+
+
+def verify_archived_paper_build(archive, root, manifest):
+    """Validate a legacy in-paper record or the current external audit record."""
+    prefix = "paper/" if root == "rerankhuts" else ""
+    paper = {name.removeprefix(prefix): record for name, record in manifest.items()
+             if not prefix or name.startswith(prefix)}
+    if not paper:
+        return  # A results-only convenience archive may carry the external report.
+    legacy_name = f"{prefix}build_manifest.json"
+    external_name = PAPER_BUILD_RECORD if root == "rerankhuts" else None
+    records = [name for name in (legacy_name, external_name) if name and name in manifest]
+    require(len(records) <= 1, "Multiple paper build manifests; remove the obsolete record")
+    if records:
+        name = records[0]
+        record = read_json(archive.read(f"{root}/{name}"))
+        validate_paper_build(record, paper, legacy=name == legacy_name)
+
+
 def verify_archive(path, expected_root=None):
     path = Path(path)
     require(path.is_file() and not path.is_symlink(), f"Not a regular archive: {path}")
@@ -134,6 +208,7 @@ def verify_archive(path, expected_root=None):
             require(size == metadata["bytes"], f"Byte count mismatch: {name}")
             require(digest.hexdigest() == metadata["sha256"], f"Content hash mismatch: {name}")
             total += size
+        verify_archived_paper_build(archive, root, manifest)
     return {"root": root, "files": len(manifest), "uncompressed_bytes": total,
             "sha256": file_sha256(path), "manifest": manifest}
 
@@ -160,6 +235,14 @@ def verify_release(directory):
     validate_manifest(external)
     require(external == reports["rerankhuts_icde2027.zip"]["manifest"],
             "External manifest differs from full archive manifest")
+    full = reports["rerankhuts_icde2027.zip"]["manifest"]
+    paper = {name.removeprefix("paper/"): metadata for name, metadata in full.items()
+             if name.startswith("paper/")}
+    require(paper == reports["paper_icde2027_clean.zip"]["manifest"],
+            "Clean paper archive differs from full release paper")
+    for name in optional & set(reports):
+        require(all(full.get(path) == metadata for path, metadata in reports[name]["manifest"].items()),
+                f"Split archive differs from full release: {name}")
     return {"status": "PASS", "archives": {
         name: {key: value for key, value in report.items() if key != "manifest"}
         for name, report in reports.items()}, "checksummed_files": len(sums)}

@@ -1,161 +1,79 @@
-# RerankHuts：论文、代码与实验结果
+# RerankHuts: manuscript, code and experimental artifacts
 
-论文：**What Survives the Context Budget? Source Retention and Fact Coverage in RAG**  
-作者顺序：Zheng Yu、Jie Li、Boyang Wang、Jingbang Chen。Zheng Yu与Jie Li为共同第一作者；Jie Li与第三作者Boyang Wang均署名香港中文大学（深圳）；Jingbang Chen为通讯作者。作者单位及共同贡献标注已写入论文；全部12张图已插入正文。
+**What Survives the Context Budget? Source Retention and Fact Coverage in RAG**
 
-建议下载完整包 **rerankhuts_icde2027.zip**，解压后进入唯一的 **rerankhuts/** 目录。完整包包含论文、代码、输入数据、冻结结果、完整轨迹和逐文件校验清单。独立代码包和结果包便于单独查看；完整复现使用完整包。
+The current manuscript is in [paper/](paper/README.md), with [main.tex](paper/main.tex) and the [compiled PDF](paper/main.pdf). The source project imported on 2026-10-26 contains the revised `-v2.pdf` figures for Figures 4–12. Figures 1–3 retain the draw.io sketch diagrams with supplied SVG icons. The paper directory is a self-contained Overleaf project; compiler scratch and validation reports live outside it.
 
-2026-10-02 扩展实验状态：四阶段的自动化部分已完成。`strengthening_v1` 包含 **720任务 × 124配置 = 89,280条主推断及独立评分记录**、**720个实际模型回答**、**576个在线请求测量**，另有8次warm-up不计入测量。各步骤均有独立的 `complete` 状态；60世界人工审核仍未进行，外部真实场景复现也未完成。操作与指标解释见 [扩展实验指南](docs/STRENGTHENING_GUIDE.md)。
+Authors: Zheng Yu, Jie Li, Boyang Wang and Jingbang Chen. Zheng Yu and Jie Li share **Equal Contribution**; Jie Li and Boyang Wang are affiliated with The Chinese University of Hong Kong, Shenzhen. Jingbang Chen is the corresponding author. The authoritative author block is [authors.tex](paper/authors.tex).
 
-2026-10-21 配图与整合完成：F1–F3/F12为已核验的概念图，F4/F10/F11用真实冻结数据生成科研绘图，F5–F9保留原矢量图。58段完整首句加粗、7个编号章节、12张图、4张表均保留。三张数据图附PDF/SVG/600dpiPNG、源数据、SHA-256及可重绘脚本；已通过仅含论文和脚本的隔离重绘。未新增模型实验或改动冻结统计。见[论文PDF](paper/main.pdf)、[本次修改说明](paper/revision_notes_20261021.md)、[构建和图源说明](paper/README.md)。正式提交前仍需开放artifact与作者ORCID等元数据。\n
-2026-10-22 draw.io草图更新：F1–F3已按用户参考重建，框线、文字和箭头为原生可编辑草图，图标使用用户提供的SVG；正文使用单页PDF，另附SVG与PNG。F12保留原AI生成示意图和裁剪设置。引言同步为F1的“Gate opens at 09:00”示意，AI披露区分参考图、draw.io重建与用户图标。作者与Equal Contribution保留。本次F1–F3绘图工作没有重跑模型、改写冻结数据或重算统计；并发科学更新以正文及对应结果记录为准。见[本次说明](paper/revision_notes_20261022_drawio.md)、[图源记录](paper/figures/drawio/recreation_20261022.json)及[验证报告](validation/drawio_recreation_20261022.json)。
+## Repository layout
 
-2026-10-22 SVG图标更新：用户提供的RAG_Figures_Icons_HD.zip含32个原始SVG，已按ZIP原字节保存并记录SHA-256；F1/F2/F3分别放置11/11/14个清晰SVG图标，旧草图图标已隐藏，框线与正文标签保留草图风格。SVG图标可在draw.io中独立移缩，内部路径由随附SVG编辑；并非draw.io原生primitive。最终PDF的位图对象数与SVG矢量检查据实记于[图源记录](paper/figures/drawio/recreation_20261022.json)，全部素材见[图标清单](paper/figures/drawio/icons/icons_manifest.json)。
+| Directory | Purpose |
+| --- | --- |
+| [paper/](paper/README.md) | Current manuscript, bibliography, IEEE template and supplied figure PDFs. |
+| [rerankhuts/](rerankhuts/) | Unified command dispatcher: `python -m rerankhuts`. |
+| [experiments/](experiments/README.md) | Experimental implementations, frozen inputs, runs and independent evaluations. |
+| [scripts/](scripts/) | Build, verification, release packaging and analysis commands. Historical table helpers are grouped under `scripts/paper/`. |
+| [validation/](validation/README.md) | Independent evaluators and verification records. Current paper checks are in `validation/manuscript_checks.json`. |
+| [legacy/](legacy/README.md) | Historical data preparation, evaluation and result utilities, including all five former root Python scripts. |
+| [archive/](archive/README.md) | Byte-preserved historical paper and source snapshots used by provenance checks. |
+| [tests/](tests/) | Protocol, oracle, CLI, integrity and packaging tests. |
+| [docs/](docs/) | [Code guide](docs/CODE_GUIDE.md), [result guide](docs/RESULTS_GUIDE.md), [experiment scope](docs/EXPERIMENT_SCOPE.md) and [strengthening guide](docs/STRENGTHENING_GUIDE.md). |
+| `build/`, `dist/` | Local compiler/reanalysis scratch and generated release packages; excluded from Git. |
 
-## 先运行这三步
+The repository root has no Python script shims. The maintained versions of `generate_normalized_questions.py`, `run_rag_eval.py`, `score_retrieval.py`, `paper_support_analysis.py` and `summarize_supplement_results.py` are in `legacy/`. Their original source bytes remain in `archive/code_20261022/`, so historical input manifests can still verify the exact implementations they recorded.
 
-安装 [Pixi](https://pixi.prefix.dev/latest/installation/)，然后在仓库根目录执行：
+## Environment and entry points
+
+Install [Pixi](https://pixi.prefix.dev/) and run from the repository root:
 
 ```bash
 pixi install --locked
 pixi run --locked workflow --help
-pixi run --locked verify
-```
-
-verify 使用现有文件校验哈希、E3 的 3,100 条轨迹和仿真配对统计，不调用模型或付费 API。首次安装环境需要网络；环境装好后该校验不需要网络。新校验报告写入 build/verification/，冻结实验目录保持不变。
-
-## 代码在哪里
-
-- [rerankhuts/](rerankhuts/)：维护中的统一命令入口；python -m rerankhuts 与 Pixi 的 workflow task 等价。
-- [experiments/](experiments/README.md)：冻结的检索、重排、预算打包、指标定义与 E3 实验。
-- [experiments/simulation/](experiments/simulation/README.md)：受控世界生成器、实际模型执行后端、独立事实跨度评分。
-- [experiments/strengthening/](experiments/strengthening/README.md)：360世界扩展设计、独立语义审计、124配置推断、实际答案与在线测时。
-- [validation/](validation/README.md)：独立审计、轨迹检查、配对频数复算及已发布核验报告。
-- [scripts/](scripts/)：结果分析、论文构建、打包、包校验和冻结文件检查。
-- [legacy/](legacy/README.md)：从根目录迁出的旧版语料构建、LLM 评估、结果整理工具。legacy/archive/ 保存依赖过时路径或输入的历史脚本。
-- [tests/](tests/)：原实验协议、仿真 oracle、命令入口、文件完整性和打包测试。
-- [paper/](paper/README.md)：干净、可独立编译的 IEEE 论文目录。
-- [docs/CODE_GUIDE.md](docs/CODE_GUIDE.md)：模块职责、入口及维护约束。
-- [docs/RESULTS_GUIDE.md](docs/RESULTS_GUIDE.md)：论文图表对应哪些数据、如何重新分析。
-- [docs/STRENGTHENING_GUIDE.md](docs/STRENGTHENING_GUIDE.md)：新实验的固定输入、运行顺序、独立单位和分步完成检查。
-
-根目录仍保留五个历史脚本和原始输入文件：它们的路径和字节哈希已被审计或实验身份固定。具体原因见代码指南；不要为了目录美观修改这些冻结文件。
-
-## 环境选择
-
-Pixi 锁定 default、gpu 和 paper 三个环境，均隔离在 .pixi/，不会打包。锁文件覆盖 Windows/Linux；本次实际验证平台为 Windows，GPU 为 RTX 5060 8 GB。
-
-```bash
-# 默认：离线结果核验、统计、打包
-pixi install --locked
-
-# GPU：实际检索/重排；仿真评分需要其 tokenizer 依赖
-pixi install --locked -e gpu
-
-# 论文：Tectonic 编译
-pixi install --locked -e paper
-```
-
-当前实验不需要付费 API。legacy/ 中部分历史 LLM 脚本需要用户自己的 .env；它们不是默认复现流程。其历史依赖记录在 legacy/requirements.txt，未经当前三个环境完整验证。
-
-## 常用入口
-
-```bash
 pixi run --locked status
 pixi run --locked verify
 pixi run --locked test
-pixi run --locked e0
-pixi run --locked analyze-e3
-pixi run --locked interactions-e3
 ```
 
-- e0：重新核对 47 个历史日志，输出 build/reanalysis/e0/。
-- analyze-e3：重新生成 16 个配对对比及页面保留率图，输出 build/reanalysis/e3/。
-- interactions-e3：另外八个 cap/re-ranker 交互，输出同一分析目录；它与上一个命令不是重复实现。
-- 所有历史已发布结果仍保留原路径；重新分析不覆盖论文所引用的冻结结果。
-
-查看真实执行命令而不运行：
+The lockfile covers Windows and Linux. Use the `gpu` environment for model inference and the `paper` environment for compilation. Model execution and historical API-based workflows are explicit commands; repository organization and manuscript import do not rerun them.
 
 ```bash
+# Inspect an execution plan without running it.
 pixi run --locked workflow --dry-run e3
-```
 
-## 执行或继续模型实验
+# Compile the current manuscript; scratch stays under build/paper/.
+pixi run --locked -e paper paper
+python scripts/check_manuscript.py
 
-```bash
-pixi run --locked -e gpu e3
-pixi run --locked -e gpu sim-run
-pixi run --locked -e gpu sim-evaluate
-```
-
-e3 入口显式固定原实验的三个模型/tokenizer commit SHA；原底层模块的 main 默认值不用于这条入口。sim-run 同样使用其已固定版本。完整包已经包含已完成的逐题轨迹，重复同一命令会按原协议验证并继续；改变模型、数据、设备、批大小等条件必须使用新的输出目录，不能接续为原实验。
-
-小规模试运行请明确使用新目录：
-
-```bash
-pixi run --locked -e gpu workflow e3 --limit 2 --output experiments/runs/smoke_new
-```
-
-sim-evaluate 将复算结果写到 build/reanalysis/simulation/。它校验实际交付 token 与完整事实跨度；缺少固定 tokenizer 文件时会下载这些文件，不必下载完整模型权重。已有 120 个任务轨迹对应 60 个独立世界，不能把重复配置当成独立样本。
-
-## 扩展实验流程
-
-新数据在 `experiments/strengthening/data/strengthening_v1/`，主轨迹在 `experiments/runs/strengthening_v1/`，评估、答案和测时产物在 `experiments/strengthening/results/strengthening_v1/`。三个种子各含20个开发世界与100个测试世界；两种来源集中度任务属于同一个世界，统计时不能算作两个独立样本。
-
-```bash
-# 核验已完成的各步骤与固定来源
-pixi run --locked strengthen-verify --require-complete
-
-# 模型准备和执行入口；完整的新目录复现命令见扩展实验指南
-pixi run --locked -e gpu strengthen-models --include-answer-model
-pixi run --locked -e gpu strengthen-run
-pixi run --locked -e gpu strengthen-evaluate
-pixi run --locked -e gpu strengthen-answers
-pixi run --locked -e gpu strengthen-timing
-pixi run --locked strengthen-analyze
-
-# 在新的复现完成后，同样要求严格通过
-pixi run --locked strengthen-verify --require-complete
-```
-
-主推断与回答可按固定身份续跑；独立测时不能拼接中断前后的session，已有请求文件时需另选输出目录。重算已发布结果时请按指南使用 `build/reanalysis/`，避免覆盖冻结产物。该流程保持本机运行，系统休眠时计算会暂停；持续运行需保持电脑唤醒。
-
-## 论文与 ZIP
-
-```bash
-# 从已核验的旧E3与pilot_v2结果刷新相应表格
+# Recompute historical table outputs under build/, without editing paper/.
 pixi run --locked paper-tables
 
-# 编译，临时文件只写入 build/paper/
-pixi run --locked -e paper paper
-
-# 生成完整、论文、代码、结果四个包，并验证
+# Create and verify full, manuscript, code and result packages.
 pixi run --locked package --split --verify
 pixi run --locked verify-package
 ```
 
-dist/ 输出：
+The five relocated tools have explicit dispatcher/Pixi commands: `legacy-normalize`, `legacy-eval`, `legacy-score`, `legacy-analysis` and `legacy-summarize`. They retain their historical environment-variable configuration. See [legacy/README.md](legacy/README.md) before executing a historical pipeline.
 
-- rerankhuts_icde2027.zip：完整复现包，单一 rerankhuts/ 根目录。
-- paper_icde2027_clean.zip：论文专用包，单一 paper/ 根目录。
-- rerankhuts_icde2027_code.zip：代码、配置、文档和测试；不含完整语料/结果。
-- rerankhuts_icde2027_results.zip：冻结结果、轨迹、审计及来源信息；不单独提供模型复现所需的全部代码和语料。
-- manifest.json：完整包中源文件的逐文件大小和 SHA-256。
-- sha256sums.json：压缩包及外部 manifest 的 SHA-256。
+## Experimental evidence and reanalysis
 
-每个 ZIP 内也有 MANIFEST.json。打包按固定顺序、固定时间戳生成，排除环境、缓存、模型权重、凭据、编译临时文件和旧压缩包；verify-package 检查路径、条目集合、大小和哈希。结果包保留原相对路径，便于按来源核对。
+The original E3 workload contains 155 questions across 20 configurations (3,100 records). The controlled `pilot_v2` workload contains 120 tasks across 20 configurations (2,400 records). The separate `strengthening_v1` workload contains 360 worlds, 720 tasks and 124 configurations (89,280 main inference records), with separately recorded answer and request-timing studies. The matched 2048-token answer follow-up is documented with the historical Figure 9 source records in [the archived paper](archive/paper_20261022/figures/source_data/fig09_answers/).
 
-扩展实验的独立评分、下游和测时均已完成；打包使用它们对应的统计、图和论文输入。其结果包包含新结果、完整轨迹、研究计划和阅读指南；代码包显式带上冻结 `study_plan.json` 与 `.gitattributes`。数据仍在完整包中，代码包与结果包的组合不替代完整复现包。
+```bash
+pixi run --locked e0
+pixi run --locked analyze-e3
+pixi run --locked interactions-e3
+pixi run --locked strengthen-verify --require-complete
+```
 
-## 证据范围
+Reanalysis outputs go under `build/`. Frozen experiment data, traces and statistical results retain their recorded identities. The current `-v2.pdf` figures are supplied manuscript assets; historical redraw tools preserve the earlier figure provenance and do not regenerate or overwrite those revised PDFs. The archived editable draw.io sources and original SVG icon catalog remain available under [archive/paper_20261022/figures/drawio/](archive/paper_20261022/figures/drawio/).
 
-E0 核验 417 个历史指标单元，405 个一致，12 个查询文本连接错误已解释并修正；原表仍作为历史记录保存。旧 E3 为 155 题 × 20 配置，共 3,100 条；`pilot_v2` 受控仿真为 120 任务 × 20 配置，共 2,400 条。新增89,280条主推断属于独立版本，不能覆盖或改写这些旧证据。
+Human semantic annotation and independent external-workload replication retain the statuses recorded in the experiment documentation; synthetic or model-generated assessments are not human annotations. See [docs/EXPERIMENT_SCOPE.md](docs/EXPERIMENT_SCOPE.md) for the limits of the evidence.
 
-仿真是虚构注册管理场景的完整事实覆盖，不是人工临床效用。`pilot_v2` 主选择实验开发集十个配置的覆盖率全部并列 0.60；冻结选择规则在测试集得到 0.550 与 0.675，差值 -0.125，保留该反向结果。新实验另提供60世界的人工审核包，人工尚未完成。完整解释见 [实验范围](docs/EXPERIMENT_SCOPE.md) 与论文。
+## Releases and provenance
 
-基线和扩展核心版本已推送并核验至指定的 [GitHub仓库](https://github.com/YuZhengYYDS/rerankhuts)，仓库为 **private**，需获授权后访问。2026-10-13历史四个交付包对应下载入口为 [icde2027-restructured-20261013 Release](https://github.com/YuZhengYYDS/rerankhuts/releases/tag/icde2027-restructured-20261013)，发布状态以该页实际附件及上传校验回执为准。后续正文配图更新以main分支为准。当前交付保持私有可见性，与ICDE EAB要求的开放artifact准备是两件事。
+`package --split --verify` writes `rerankhuts_icde2027.zip`, `paper_icde2027_clean.zip`, the separate code/results archives, manifests and checksums to `dist/`. Archives use deterministic member ordering and exclude environments, model caches, credentials and compiler scratch. Package verification binds manuscript inputs to the current build record as well as checking archive paths, sizes and hashes.
 
-作者角色及全部正文配图已完成整合。正式提交前还需提供提交系统要求的 ORCID/联系信息，并准备公开可访问的复现artifact。2026-10-21重新核对投稿指南：正文须不超过12页，参考文献与AI内容致谢不计入，且不允许附录；其他CFP与日期保留2026-10-02核验记录，官方依据见 [论文说明](paper/README.md)。
+The active repository is [YuZhengYYDS/rerankhurts](https://github.com/YuZhengYYDS/rerankhurts). Earlier released packages and historical verification reports retain their original dates and scope. Current manuscript checks and the 2026-10-26 import/organization record are in [validation/manuscript_checks.json](validation/manuscript_checks.json) and [validation/repository_update_20261026.json](validation/repository_update_20261026.json).
 
-代码许可见 LICENSE；第三方语料保留来源和相应条款，代码许可不替代原内容许可。
-
+Code licensing is in [LICENSE](LICENSE); third-party corpus material retains its own source terms.

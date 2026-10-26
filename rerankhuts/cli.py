@@ -22,6 +22,13 @@ E3_REVISIONS = (
     "--reranker-revision", "953dc6f6f85a1b2dbfca4c34a2796e7dde08d41e",
     "--tokenizer-revision", "86b5e0934494bd15c9632b12f734a8a67f723594",
 )
+LEGACY_MODULES = {
+    "legacy-normalize": "legacy.generate_normalized_questions",
+    "legacy-eval": "legacy.run_rag_eval",
+    "legacy-score": "legacy.score_retrieval",
+    "legacy-analysis": "legacy.paper_support_analysis",
+    "legacy-summarize": "legacy.summarize_supplement_results",
+}
 COMMANDS = {
     "status": "Show manuscript, authors and completed experiment counts (offline).",
     "verify": "Verify frozen hashes, E3 traces and simulation paired counts (offline).",
@@ -32,7 +39,7 @@ COMMANDS = {
     "sim-evaluate": "Re-score simulation traces into build/reanalysis/simulation (GPU environment).",
     "analyze-e3": "Recompute E3 contrasts/figure in build/reanalysis/e3 (offline).",
     "interactions-e3": "Recompute the separate eight E3 interactions in build/reanalysis/e3.",
-    "tables": "Refresh the manuscript tables from verified frozen outputs.",
+    "tables": "Recompute historical tables under build/reanalysis/tables.",
     "paper": "Compile the clean paper (paper environment).",
     "package": "Build full/paper archives; --split adds code/results archives.",
     "verify-package": "Validate archive paths, hashes and payload membership (offline).",
@@ -46,14 +53,23 @@ COMMANDS = {
     "strengthen-answers": "Run the actual local answer model and evidence controls (GPU).",
     "strengthen-timing": "Measure complete online requests without reused query/pair scores (GPU).",
     "strengthen-verify": "Verify strengthening data, traces, answers and timing without models (offline).",
+    "legacy-normalize": "Normalize historical questions (configured by environment variables).",
+    "legacy-eval": "Run the historical retrieval/answer pipeline (environment variables; GPU/API as configured).",
+    "legacy-score": "Score historical retrieval outputs (configured by environment variables).",
+    "legacy-analysis": "Analyze historical outputs (configured by environment variables).",
+    "legacy-summarize": "Summarize historical supplementary runs (environment variables).",
 }
 COMPOSITE = {"verify", "tables", "analyze-e3", "interactions-e3"}
+NO_EXTRA = COMPOSITE | set(LEGACY_MODULES)
 
 
 def commands_for(name: str, extra: list[str]) -> list[list[str]]:
     """Return argument vectors, never shell strings or dynamically loaded code."""
-    if name in COMPOSITE and extra:
-        raise ValueError(f"{name} uses the frozen workload and accepts no extra arguments")
+    if name in NO_EXTRA and extra:
+        reason = "uses environment variables" if name in LEGACY_MODULES else "uses the frozen workload"
+        raise ValueError(f"{name} {reason} and accepts no extra arguments")
+    if name in LEGACY_MODULES:
+        return [["-m", LEGACY_MODULES[name]]]
     if name == "verify":
         return [
             ["scripts/check_frozen_files.py"],
@@ -64,9 +80,9 @@ def commands_for(name: str, extra: list[str]) -> list[list[str]]:
         ]
     if name == "tables":
         return [["scripts/check_frozen_files.py"],
-                ["paper/build_e3_table.py", E3_RUN],
-                ["paper/build_simulation_table.py", SIM_RESULTS],
-                ["paper/build_strengthening_table.py"]]
+                ["scripts/paper/build_e3_table.py", E3_RUN],
+                ["scripts/paper/build_simulation_table.py", SIM_RESULTS],
+                ["scripts/paper/build_strengthening_table.py"]]
     if name in {"analyze-e3", "interactions-e3"}:
         script = (["scripts/analyze_factorial.py"] if name == "analyze-e3" else
                   ["-m", "experiments.analyze_factorial"])
@@ -123,7 +139,7 @@ def main(argv: list[str] | None = None) -> int:
     for name, help_text in COMMANDS.items():
         sub.add_parser(name, help=help_text, add_help=False)
     args, extra = parser.parse_known_args(argv)
-    if args.command in COMPOSITE | {"status"} and extra == ["--help"]:
+    if args.command in NO_EXTRA | {"status"} and extra == ["--help"]:
         print(f"{args.command}: {COMMANDS[args.command]}\nNo additional options.")
         return 0
     if args.command == "status":

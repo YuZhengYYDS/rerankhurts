@@ -81,10 +81,10 @@ COPY_PATTERNS = [
 ]
 
 COPY_PATHS = [
-    BASE_DIR / "run_rag_eval.py",
-    BASE_DIR / "paper_support_analysis.py",
-    BASE_DIR / "summarize_supplement_results.py",
-    BASE_DIR / "generate_normalized_questions.py",
+    BASE_DIR / "legacy" / "run_rag_eval.py",
+    BASE_DIR / "legacy" / "paper_support_analysis.py",
+    BASE_DIR / "legacy" / "summarize_supplement_results.py",
+    BASE_DIR / "legacy" / "generate_normalized_questions.py",
     BASE_DIR / "legacy" / "prepare_human_eval_packets.py",
     BASE_DIR / "legacy" / "package_emnlp_results.py",
     BASE_DIR / "legacy" / "__init__.py",
@@ -367,12 +367,13 @@ def write_index_note() -> None:
     lines.append("- `fig_topic_heatmap_ndcg.png`: topic x method heatmap")
     lines.append("")
     lines.append("## Repro scripts")
-    lines.append("- `run_rag_eval.py`")
-    lines.append("- `paper_support_analysis.py`")
-    lines.append("- `summarize_supplement_results.py`")
-    lines.append("- `generate_normalized_questions.py`")
-    lines.append("- `prepare_human_eval_packets.py`")
-    lines.append("- `package_emnlp_results.py`")
+    lines.append("Run these modules from the bundle root with `python -m legacy.<name>`.")
+    lines.append("- `legacy/run_rag_eval.py`")
+    lines.append("- `legacy/paper_support_analysis.py`")
+    lines.append("- `legacy/summarize_supplement_results.py`")
+    lines.append("- `legacy/generate_normalized_questions.py`")
+    lines.append("- `legacy/prepare_human_eval_packets.py`")
+    lines.append("- `legacy/package_emnlp_results.py`")
     lines.append("")
 
     (BUNDLE_DIR / "README.md").write_text("\n".join(lines), encoding="utf-8")

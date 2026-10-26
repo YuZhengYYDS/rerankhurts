@@ -13,16 +13,16 @@ import zipfile
 try:
     from .verify_release import (ARCHIVE_ROOTS, file_sha256, read_json, require,
                                  safe_name, unique_paths, validate_manifest,
-                                 verify_archive, verify_release)
+                                 verify_archive, verify_release, validate_paper_build,
+                                 PAPER_BUILD_RECORD, PAPER_INPUT_SUFFIXES, PAPER_OUTPUT_NAMES, paper_input)
 except ImportError:  # Direct invocation: python scripts/package_release.py
     from verify_release import (ARCHIVE_ROOTS, file_sha256, read_json, require,
                                 safe_name, unique_paths, validate_manifest,
-                                verify_archive, verify_release)
+                                verify_archive, verify_release, validate_paper_build,
+                                PAPER_BUILD_RECORD, PAPER_INPUT_SUFFIXES, PAPER_OUTPUT_NAMES, paper_input)
 
 ROOT = Path(__file__).resolve().parents[1]
 ZIP_TIMESTAMP = (1980, 1, 1, 0, 0, 0)
-PAPER_INPUT_SUFFIXES = {".tex", ".bib", ".cls", ".bst", ".pdf", ".png", ".jpg", ".sty"}
-PAPER_OUTPUT_NAMES = {"main.pdf", "main.bbl"}
 EXCLUDED_DIRS = {
     ".git", ".pixi", ".cache", ".venv", "venv", "env", "environment", "environments",
     "__pycache__", ".pytest_cache", ".ruff_cache", ".mypy_cache", ".tox", ".nox",
@@ -138,76 +138,29 @@ def manifest_for(members, root):
     return manifest
 
 
-def paper_input(name):
-    return (Path(name).suffix.casefold() in PAPER_INPUT_SUFFIXES
-            and name.casefold() not in PAPER_OUTPUT_NAMES | {"build_manifest.json"})
-
-
 def check_paper_build(root, paper):
-    """Bind a recorded successful build to the exact sources and delivery files.
-
-    Legacy paper folders without a build record remain packageable. Once a
-    record exists, omissions, additions and stale compiled outputs fail closed.
-    Return identities to bind this check to the subsequent archive snapshot.
-    """
+    """Bind either build-record layout to the exact packaged source snapshot."""
     paper_root = root / "paper"
-    path = paper_root / "build_manifest.json"
-    if not path.exists():
+    candidates = [path for path in (root / PAPER_BUILD_RECORD, paper_root / "build_manifest.json")
+                  if path.exists()]
+    require(len(candidates) <= 1, "Multiple paper build manifests; remove the obsolete record")
+    if not candidates:
         return {}
-    checked_file(path, paper_root)
-    require("build_manifest.json" in paper, "Paper build manifest is excluded from the release")
+    path = candidates[0]
+    checked_file(path, root)
+    relative = path.relative_to(root).as_posix()
+    legacy = path.parent == paper_root
+    if legacy:
+        require("build_manifest.json" in paper, "Paper build manifest is excluded from the release")
+    else:
+        require(included(path, root), "Paper build manifest is excluded from the release")
     payload = path.read_bytes()
-    record = read_json(payload)
-    require(isinstance(record, dict) and record.get("status") == "PASS",
-            "Paper build manifest must record status PASS")
-    inputs, outputs = record.get("inputs"), record.get("outputs")
-    for mapping in (inputs, outputs):
-        validate_manifest(mapping)
-    require("main.tex" in inputs and all(paper_input(name) for name in inputs),
-            "Paper build contains an invalid compiled input")
-    require(set(outputs) == PAPER_OUTPUT_NAMES, "Paper build output membership differs")
-    actual_inputs = set()
-    for source in paper_root.rglob("*"):
-        name = source.relative_to(paper_root).as_posix()
-        if source.is_file() and paper_input(name):
-            safe_name(name)
-            checked_file(source, paper_root)
-            actual_inputs.add(name)
-    require(set(inputs) == actual_inputs, "Paper build input membership differs; rebuild the paper")
-    pages = record.get("page_check")
-    require(isinstance(pages, dict), "Paper build page_check must be an object")
-    body = pages.get("body_pages")
-    require(type(body) is int and 1 <= body <= 12, "Paper body must contain 1 to 12 pages")
-    if "body_page_limit" in pages:
-        require(type(pages["body_page_limit"]) is int and pages["body_page_limit"] == 12,
-                "Inconsistent paper page check: body_page_limit")
-    # Exempt material may share the last body page or start on the next page.
-    # Older records without an explicit boundary retain their next-page meaning.
-    exempt = pages.get("exempt_material_starts_page", body + 1)
-    first_shared = body
-    if "body_float_pages" in pages:
-        float_pages = pages["body_float_pages"]
-        first_shared = pages.get("last_body_text_page")
-        require(type(first_shared) is int and 1 <= first_shared <= body,
-                "Inconsistent paper page check: last_body_text_page")
-        require(isinstance(float_pages, list) and all(type(p) is int and 1 <= p <= body for p in float_pages)
-                and max([first_shared, *float_pages]) == body,
-                "Inconsistent paper page check: body_float_pages")
-    require(type(exempt) is int and first_shared <= exempt <= body + 1,
-            "Inconsistent paper page check: exempt_material_starts_page")
-    if "total_pages" in pages:
-        require(type(pages["total_pages"]) is int and pages["total_pages"] >= max(body, exempt),
-                "Inconsistent paper page check: total_pages")
-    expected_files = {**inputs, **outputs}
-    require(set(expected_files) <= set(paper), "Compiled paper files are excluded from the release")
-    for name, expected in expected_files.items():
-        source = paper_root / safe_name(name)
-        checked_file(source, paper_root)
-        require(source.stat().st_size == expected["bytes"], f"Paper build byte count mismatch: {name}")
-        require(file_sha256(source) == expected["sha256"], f"Paper build SHA-256 mismatch: {name}")
-    expected_files["build_manifest.json"] = {
-        "bytes": len(payload), "sha256": hashlib.sha256(payload).hexdigest()}
-    return {f"paper/{name}": metadata for name, metadata in expected_files.items()}
+    snapshot = {name: {"bytes": source.stat().st_size, "sha256": file_sha256(source)}
+                for name, source in paper.items()}
+    expected = validate_paper_build(read_json(payload), snapshot, legacy=legacy)
+    identities = {f"paper/{name}": metadata for name, metadata in expected.items()}
+    identities[relative] = {"bytes": len(payload), "sha256": hashlib.sha256(payload).hexdigest()}
+    return identities
 
 
 def zip_info(name, size):

@@ -21,6 +21,13 @@ GENERATOR_CODE = {"generate.py": "experiments/simulation/generate.py",
                   "protocol.py": "experiments/protocol.py"}
 E3_CODE = {"run_factorial.py": "experiments/run_factorial.py",
            "protocol.py": "experiments/protocol.py"}
+# The original E0 manifest is a historical record. Only these relocated source
+# inputs are resolved to their byte-for-byte archive copies, never active code.
+E0_ARCHIVED_CODE = {
+    name: "archive/code_20261022/" + name
+    for name in ("generate_normalized_questions.py", "paper_support_analysis.py",
+                 "run_rag_eval.py", "score_retrieval.py", "summarize_supplement_results.py")
+}
 
 
 def file_sha256(path):
@@ -129,7 +136,7 @@ class Checker:
             canonical = str(name).replace("\\", "/")
             self.require(canonical not in seen, "Duplicate E0 manifest path")
             seen.add(canonical)
-            self.verify(self.root, name, row["sha256"], row["bytes"])
+            self.verify(self.root, E0_ARCHIVED_CODE.get(canonical, name), row["sha256"], row["bytes"])
 
     def simulation_spec(self):
         spec = self.read(SIM_DATA + "/specification.json")

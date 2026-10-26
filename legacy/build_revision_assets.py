@@ -105,9 +105,7 @@ def run(script: str, env_overrides: dict, label: str, dry: bool) -> bool:
         print(f"      {k}={v}", flush=True)
     if dry:
         return True
-    frozen_scripts = {"score_retrieval.py", "paper_support_analysis.py", "summarize_supplement_results.py"}
-    command = ([sys.executable, str(BASE / script)] if script in frozen_scripts
-               else [sys.executable, "-m", "legacy." + Path(script).stem])
+    command = [sys.executable, "-m", "legacy." + Path(script).stem]
     r = subprocess.run(command, env=env, cwd=BASE)
     ok = r.returncode == 0
     print(f"    -> {'OK' if ok else f'FAILED(exit {r.returncode})'}", flush=True)

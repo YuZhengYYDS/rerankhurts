@@ -1,5 +1,9 @@
 # Re-ranking for oncology treatment QA — code and results
 
+This guide describes the historical COLING workflow. Its tools are now under
+`legacy/`; run module commands from the repository root. Current artifact and
+manuscript instructions are in the root README.
+
 Code, corpora, question sets and results for *Auditing Re-ranking for
 Source-Aligned Evidence Retrieval in Oncology Treatment QA*. Quantitative tables
 and plots are produced from stored run outputs; the two pipeline diagrams are
@@ -25,7 +29,7 @@ The reference results were produced with:
 | sentence-transformers | 5.4.0 |
 | pandas | 3.0.2 |
 
-`pip install -r requirements.txt` covers the dependencies. GPU is used for the
+`pip install -r legacy/requirements.txt` covers the dependencies. GPU is used for the
 dense encoder and every cross-encoder; the pipeline also runs on CPU, slowly.
 Model weights are downloaded from Hugging Face on first use
 (`BAAI/bge-small-en-v1.5`, `cross-encoder/ms-marco-MiniLM-L-6-v2`,
@@ -84,21 +88,21 @@ One experiment, configured by environment variables:
 QUESTIONS_FILE=result/emnlp_full_results_20260427_gpu_final/paper_questions_validated.jsonl \
 RUN_EXPERIMENTS=baseline,rerank RUN_GENERATION=0 \
 OUTPUT_RESULTS_FILE=result_revision/my_run.csv \
-python run_rag_eval.py
+python -m rerankhuts legacy-eval
 ```
 
 The batch drivers wrap that for the full matrices:
 
 ```bash
-python run_p3_matrix.py --dry-run     # 78-question matrix and every sweep
-python run_p4_expanded.py --dry-run   # expanded-benchmark and isolation batches
+python -m legacy.run_p3_matrix --dry-run     # 78-question matrix and every sweep
+python -m legacy.run_p4_expanded --dry-run   # expanded-benchmark and isolation batches
 ```
 
 ## Complete rebuild in the full working tree
 
 ```bash
-python run_view_analyses.py           # per-view tables (orig78 / iso78 / exp155)
-python build_revision_assets.py --publish --archive-note "<what changed>"
+python -m legacy.run_view_analyses           # per-view tables (orig78 / iso78 / exp155)
+python -m legacy.build_revision_assets --publish --archive-note "<what changed>"
 ```
 
 `build_revision_assets.py` chains the rest: `combine_revision_results.py` →
@@ -146,14 +150,14 @@ These are binding on how the numbers may be described.
 
 | Path | |
 |---|---|
-| `run_rag_eval.py` | the pipeline: retrieval, fusion, re-ranking, generation |
-| `build_corpus.py`, `build_expanded_benchmark.py` | corpus and question construction |
-| `purge_leaky_questions.py` | the 187 → 155 leak removal |
-| `score_retrieval.py`, `analyze_results.py` | retrieval and answer-level metrics |
-| `llm_judge.py` | the automatic judge (`answer`, `relevance`, `stability`) |
-| `paper_support_analysis.py`, `curate_paper_assets.py`, `make_*.py` | tables and figures |
-| `build_revision_assets.py`, `run_view_analyses.py` | the rebuild drivers |
-| `archive_results.py`, `sanitize_release.py` | freezing a round and stripping local paths |
+| `legacy/run_rag_eval.py` | the pipeline: retrieval, fusion, re-ranking, generation |
+| `legacy/build_corpus.py`, `build_expanded_benchmark.py` | corpus and question construction |
+| `legacy/purge_leaky_questions.py` | the 187 → 155 leak removal |
+| `legacy/score_retrieval.py`, `analyze_results.py` | retrieval and answer-level metrics |
+| `legacy/llm_judge.py` | the automatic judge (`answer`, `relevance`, `stability`) |
+| `legacy/paper_support_analysis.py`, `curate_paper_assets.py`, `make_*.py` | tables and figures |
+| `legacy/build_revision_assets.py`, `run_view_analyses.py` | the rebuild drivers |
+| `legacy/archive_results.py`, `sanitize_release.py` | freezing a round and stripping local paths |
 
 The repository also contains scratch scripts from earlier rounds that are not
 part of any pipeline (for example `report_figures.py`, whose input CSVs are no
@@ -161,10 +165,11 @@ longer present). They are kept for provenance and are not on any path above.
 
 ## What ships in this release
 
-The tree is flat, as the working tree is: every script resolves its defaults
-from its own directory, so `python run_rag_eval.py` works from the root of this
-release with no configuration. The additions are the `results/` subtree and the
-release paperwork.
+The maintained historical scripts are grouped under `legacy/` and resolve
+default data, configuration and output paths against the repository root. Use
+`python -m rerankhuts legacy-eval` or `python -m legacy.<module>` from that root.
+The original five root-script bytes are preserved under `archive/code_20261022/`
+for integrity checks; use the maintained package modules to run tools.
 
 | Path | |
 |---|---|

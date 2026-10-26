@@ -128,7 +128,7 @@ def run_batch(stem, questions, modes, generation, extra):
     env.update(base)
     print(f"\n{'=' * 70}\n=== {stem} ===\n  questions={questions}\n  modes={modes}\n  generation={generation}\n  extra={extra}", flush=True)
     t0 = time.time()
-    r = subprocess.run([sys.executable, str(BASE / "run_rag_eval.py")], env=env, cwd=BASE)
+    r = subprocess.run([sys.executable, "-m", "legacy.run_rag_eval"], env=env, cwd=BASE)
     dt = time.time() - t0
     status = "OK" if r.returncode == 0 else f"FAILED(exit {r.returncode})"
     print(f"  -> {status} in {dt:.0f}s", flush=True)

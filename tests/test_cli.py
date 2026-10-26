@@ -22,6 +22,16 @@ def test_verify_writes_only_to_build_and_never_runs_a_model():
             assert args[args.index("--output") + 1].startswith("build/")
 
 
+def test_tables_uses_maintained_build_helpers():
+    commands = cli.commands_for("tables", [])
+    assert commands == [
+        ["scripts/check_frozen_files.py"],
+        ["scripts/paper/build_e3_table.py", cli.E3_RUN],
+        ["scripts/paper/build_simulation_table.py", cli.SIM_RESULTS],
+        ["scripts/paper/build_strengthening_table.py"],
+    ]
+
+
 def test_subprocess_uses_current_interpreter_and_repo_cwd(monkeypatch, tmp_path):
     seen = []
     def run(args, **kwargs):
@@ -54,6 +64,21 @@ def test_dry_run_has_no_execution_or_staging(monkeypatch):
 def test_composite_rejects_ambiguous_forwarded_options():
     with pytest.raises(ValueError, match="no extra arguments"):
         cli.commands_for("verify", ["--output", "elsewhere"])
+
+
+@pytest.mark.parametrize("command,module", cli.LEGACY_MODULES.items())
+def test_historical_commands_dispatch_to_package_modules(command, module):
+    assert cli.commands_for(command, []) == [["-m", module]]
+    with pytest.raises(ValueError, match="environment variables"):
+        cli.commands_for(command, ["--output", "elsewhere"])
+
+
+def test_historical_help_does_not_load_a_model(monkeypatch, capsys):
+    def forbidden(*args, **kwargs):
+        raise AssertionError("help must not execute a historical tool")
+    monkeypatch.setattr(cli.subprocess, "run", forbidden)
+    assert cli.main(["legacy-eval", "--help"]) == 0
+    assert "environment variables" in capsys.readouterr().out
 
 
 def test_staging_copies_inputs_without_touching_source(tmp_path):

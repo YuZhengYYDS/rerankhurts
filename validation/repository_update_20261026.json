@@ -1,0 +1,262 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-26",
+  "status": "PASS",
+  "scope": "Local validation of the manuscript import, repository organization, and targeted tooling tests. Remote preservation verification is separate.",
+  "repository": "YuZhengYYDS/rerankhurts",
+  "target_branch": "main",
+  "base": {
+    "commit": "c67d4dfe89e338c2ba93f6e3001580beaa8044f5",
+    "git_tree": "b10e53c74c02e6ea12315dfb727553942a127eff",
+    "blob_count": 2275
+  },
+  "paper_import": {
+    "source": "author-supplied source ZIP",
+    "source_archive_sha256": "0bfa17cd703009fdda5017d2c868c53c4faff908452f4ab72f3685c3e81f3cef",
+    "destination": "paper",
+    "source_file_count": 39,
+    "current_file_count": 40,
+    "byte_exact_source_file_count": 38,
+    "byte_exact_source_paths": [
+      "paper/IEEEtran.bst",
+      "paper/IEEEtran.cls",
+      "paper/authors.tex",
+      "paper/figures/f01_motivation.pdf",
+      "paper/figures/f02_evidence_views.pdf",
+      "paper/figures/f03_paired_design.pdf",
+      "paper/figures/f04_measurement_gap-v1.pdf",
+      "paper/figures/f04_measurement_gap-v2.pdf",
+      "paper/figures/f05_stages-v2.pdf",
+      "paper/figures/f05_stages.pdf",
+      "paper/figures/f06_ce.pdf",
+      "paper/figures/f06_dense.pdf",
+      "paper/figures/f06_packing.pdf",
+      "paper/figures/f06_visibility-v2.pdf",
+      "paper/figures/f07_budgets-v2.pdf",
+      "paper/figures/f07_budgets.pdf",
+      "paper/figures/f08_heterogeneity-v2.pdf",
+      "paper/figures/f08_heterogeneity.pdf",
+      "paper/figures/f09_answers-v2.pdf",
+      "paper/figures/f09_answers.pdf",
+      "paper/figures/f10_request_cost-v2.pdf",
+      "paper/figures/f10_request_cost.pdf",
+      "paper/figures/f11_complementary_checks-v2.pdf",
+      "paper/figures/f11_complementary_checks.pdf",
+      "paper/figures/f12_diagnostic_checks-v2.pdf",
+      "paper/figures/f12_diagnostic_checks.png",
+      "paper/layout.tex",
+      "paper/main.tex",
+      "paper/references.bib",
+      "paper/sections/00_abstract.tex",
+      "paper/sections/01_introduction.tex",
+      "paper/sections/02_measurement.tex",
+      "paper/sections/03_protocol.tex",
+      "paper/sections/04_evaluation.tex",
+      "paper/sections/05_implications.tex",
+      "paper/sections/06_related.tex",
+      "paper/sections/07_conclusion.tex",
+      "paper/sections/08_endmatter.tex"
+    ],
+    "source_exception": {
+      "path": "paper/README.md",
+      "source": {
+        "bytes": 1445,
+        "sha256": "2c4d8787e18ffc35d0b17c9f414dcc8edeb3ed8a9508feb5c93366a5d714e3e1"
+      },
+      "current": {
+        "bytes": 1634,
+        "sha256": "c1b6ef3739d12c53da139f8df1cb6e6bd3b29b8c3cbaf1974f0b6f9a387d5f58"
+      },
+      "reason": "Correct the compiler instructions, active PDF figure references, archive provenance links, and current build/output paths; manuscript TeX and figure assets are unchanged."
+    },
+    "added_file": {
+      "path": "paper/main.pdf",
+      "bytes": 981939,
+      "sha256": "02b09de1e5e3b9180921aaf4470814f9aca078d988625c99420d3560b92f7dc0"
+    },
+    "active_graphics": [
+      "figures/f01_motivation.pdf",
+      "figures/f02_evidence_views.pdf",
+      "figures/f03_paired_design.pdf",
+      "figures/f04_measurement_gap-v2.pdf",
+      "figures/f05_stages-v2.pdf",
+      "figures/f06_visibility-v2.pdf",
+      "figures/f07_budgets-v2.pdf",
+      "figures/f08_heterogeneity-v2.pdf",
+      "figures/f09_answers-v2.pdf",
+      "figures/f10_request_cost-v2.pdf",
+      "figures/f11_complementary_checks-v2.pdf",
+      "figures/f12_diagnostic_checks-v2.pdf"
+    ],
+    "tex_sources_unchanged_from_source": true,
+    "figure_assets_unchanged_from_source": true,
+    "source_archive_folder_name_in_repository_paths": false
+  },
+  "archive_preservation": {
+    "status": "PASS_LOCAL_GIT_BLOB_IDENTITY_CHECK",
+    "base_commit": "c67d4dfe89e338c2ba93f6e3001580beaa8044f5",
+    "alias_count": 152,
+    "archives": [
+      {
+        "path": "archive/paper_20261022",
+        "file_count": 147
+      },
+      {
+        "path": "archive/code_20261022",
+        "file_count": 5
+      }
+    ],
+    "verification": "All 152 local archive aliases were checked against their original base Git blob IDs.",
+    "remote_git_tree_verification": "Pending final publication verification by the parent workflow."
+  },
+  "code_organization": {
+    "root_python_file_count": 0,
+    "moved_entrypoints": [
+      {
+        "previous_path": "generate_normalized_questions.py",
+        "current_path": "legacy/generate_normalized_questions.py",
+        "original_bytes_path": "archive/code_20261022/generate_normalized_questions.py"
+      },
+      {
+        "previous_path": "paper_support_analysis.py",
+        "current_path": "legacy/paper_support_analysis.py",
+        "original_bytes_path": "archive/code_20261022/paper_support_analysis.py"
+      },
+      {
+        "previous_path": "run_rag_eval.py",
+        "current_path": "legacy/run_rag_eval.py",
+        "original_bytes_path": "archive/code_20261022/run_rag_eval.py"
+      },
+      {
+        "previous_path": "score_retrieval.py",
+        "current_path": "legacy/score_retrieval.py",
+        "original_bytes_path": "archive/code_20261022/score_retrieval.py"
+      },
+      {
+        "previous_path": "summarize_supplement_results.py",
+        "current_path": "legacy/summarize_supplement_results.py",
+        "original_bytes_path": "archive/code_20261022/summarize_supplement_results.py"
+      }
+    ],
+    "updated_interfaces": [
+      "rerankhuts/cli.py",
+      "pixi.toml",
+      "docs/CODE_GUIDE.md"
+    ],
+    "historical_reanalysis_output_root": "build/reanalysis",
+    "paper_build_metadata": "validation/paper_build.json",
+    "paper_manuscript_checks": "validation/manuscript_checks.json"
+  },
+  "validation": {
+    "paper_build": {
+      "status": "PASS",
+      "compiler": {
+        "commands": [
+          [
+            "tectonic",
+            "--keep-logs",
+            "--keep-intermediates",
+            "main.tex"
+          ]
+        ],
+        "engine": "tectonic",
+        "version": "Tectonic 0.17.0"
+      },
+      "total_pages": 12,
+      "body_pages": 12,
+      "output": {
+        "path": "paper/main.pdf",
+        "bytes": 981939,
+        "sha256": "02b09de1e5e3b9180921aaf4470814f9aca078d988625c99420d3560b92f7dc0"
+      }
+    },
+    "manuscript_structure": {
+      "status": "PASS",
+      "paragraph_count": 58,
+      "all_openings_bold": true,
+      "numbered_section_count": 7,
+      "figure_count": 12,
+      "table_count": 4,
+      "figure_11_page": 11,
+      "figure_12_page": 11,
+      "unmodified_IEEE_class": true,
+      "unmodified_IEEE_bibliography_style": true
+    },
+    "visual_review": {
+      "status": "PASS",
+      "reviewed_pages": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "reference": "rag.pdf supplied by the author",
+      "review_partition": {
+        "parent_workflow": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "independent_subagent": [
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ]
+      },
+      "findings": "All twelve figures use the supplied updated style and expected placement; Figures 11 and 12 share page 11. No missing figures, overlap, clipping, or column overflow. The acknowledgment and references through [17] are complete.",
+      "compiler_difference": "Minor text reflow and glyph rendering differences arise from Tectonic versus the reference PDFTeX build; figure content and layout match."
+    },
+    "targeted_tests": {
+      "status": "PASS",
+      "distinct_passed": 153,
+      "python": "3.12 (bundled runtime)",
+      "pytest": "8.4.2",
+      "groups": [
+        {
+          "scope": "Code CLI, frozen-file checks, normalization and protocol; five modules",
+          "passed": 77
+        },
+        {
+          "scope": "Release packaging",
+          "passed": 72
+        },
+        {
+          "scope": "Table-helper fixtures",
+          "passed": 4
+        }
+      ],
+      "source": "Completed test runs reported by the parent workflow; no additional model execution."
+    }
+  },
+  "experimental_data_preservation": {
+    "basis": "The publication workflow is planned to retain the base Git tree entries for frozen data, model-run artifacts, and experiment results; only the authorized manuscript, archives, code organization, tooling, and documentation changes are applied.",
+    "remote_git_tree_verification": "Pending final publication verification by the parent workflow.",
+    "full_frozen_artifact_downloaded_locally": false,
+    "full_frozen_artifact_size_approximate_gb": 1.2,
+    "full_frozen_artifact_audit_performed": false,
+    "new_model_runs_performed": false,
+    "scientific_results_recomputed_for_this_update": false,
+    "limitation": "The targeted local tests and manuscript checks do not constitute a full frozen-artifact audit, a fresh scientific replication, or model validation."
+  },
+  "submission_readiness": {
+    "claimed": false,
+    "remaining_metadata_from_manuscript_check": [
+      "Provide openly accessible EAB artifacts",
+      "Complete author ORCID/contact/COI submission metadata"
+    ]
+  }
+}

@@ -54,25 +54,38 @@ E3、`simulation`和`strengthening`三个 inference backend 保留独立版本�
 完整oracle重算分别使用 `sim-evaluate` 和 `strengthen-evaluate`，其tokenizer依赖在gpu环境；
 哈希完整性检查与重新计分是不同动作。
 
-## 为什么根目录仍有五个旧脚本
+## 历史工具与根目录整理
 
-这些文件被 E0 输入清单固定记录，保持原路径、原字节：
+Python 入口按用途归入目录，根目录不再保留 `.py` 兼容包装：当前统一入口在
+`rerankhuts/`，实验在 `experiments/`，离线分析与构建在 `scripts/`，历史研究工具在
+`legacy/`。五个原根目录脚本也已迁入 `legacy/`：
 
-- `generate_normalized_questions.py`
-- `paper_support_analysis.py`
-- `run_rag_eval.py`
-- `score_retrieval.py`
-- `summarize_supplement_results.py`
+| 文件 | 统一入口（仓库根目录） |
+|---|---|
+| `legacy/generate_normalized_questions.py` | `python -m rerankhuts legacy-normalize` |
+| `legacy/run_rag_eval.py` | `python -m rerankhuts legacy-eval` |
+| `legacy/score_retrieval.py` | `python -m rerankhuts legacy-score` |
+| `legacy/paper_support_analysis.py` | `python -m rerankhuts legacy-analysis` |
+| `legacy/summarize_supplement_results.py` | `python -m rerankhuts legacy-summarize` |
 
-根目录 corpus/question JSONL 也被数据清单和 run identity 引用。移动它们后即使内容
-相同，也可能改变恢复使用的路径身份。其余可维护旧工具归入 `legacy/`，只用于
-原研究流程；历史 scratch/过时输入工具位于 `legacy/archive/`。
+同名 Pixi task 也可使用。这五项沿用各工具原有的环境变量配置，不转发命令行参数；
+数据、`.env`、缓存与输出的默认路径仍相对仓库根目录解析。其他历史工具使用
+`python -m legacy.<模块名>`，驱动程序也通过显式包路径调用它们。
+
+`archive/code_20261022/` 保留这五个文件迁移前的原始字节，只供来源追踪。
+`validation/results/input_manifest.json` 保持原始路径、大小和 SHA-256；冻结核验仅对
+这五个已知旧根路径读取对应归档副本，仍逐个检查大小和哈希。归档缺失或损坏会失败，
+不会退回维护版本。E0 重算加载 `legacy/` 中的正常化函数，在新输出清单中同时记录
+原始归档与所用函数的来源。
+
+根目录 corpus/question JSONL 仍保留数据清单和 run identity 引用的路径。
+历史 scratch/过时输入工具位于 `legacy/archive/`，不属于当前入口。
 
 ## 修改后的验证顺序
 
 1. 运行 `pixi run --locked test`；若新测试需要模型/tokenizer 扩展依赖，使用 gpu 环境。
 2. 运行 `pixi run --locked verify` 和 `pixi run --locked strengthen-verify --require-complete`，确认新旧冻结实验身份与结果未被意外修改。
-3. 修改论文表格时，先重算并核对结果，再执行 `paper-tables` 和 paper 环境中的 `paper`。
+3. 使用 `paper-tables` 将历史表格重算到 `build/reanalysis/tables/`；核对结果后，使用 paper 环境中的 `paper` 编译当前论文。
 4. 执行 `package --split --verify`。环境、缓存、模型权重和编译文件只留本地。
 
 如果科学协议确实需要更改，应创建新版本/新输出目录，重新执行受影响实验，

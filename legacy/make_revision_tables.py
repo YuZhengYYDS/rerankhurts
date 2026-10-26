@@ -88,7 +88,7 @@ def read_results(path, usecols):
 
 
 def retrieval_table(path, questions_path):
-    import score_retrieval as sr
+    from legacy import score_retrieval as sr
     from legacy import analyze_results as ar
     questions = sr.load_questions_jsonl(str(questions_path))
 
@@ -169,7 +169,7 @@ def build_benchmark_table():
     for key, label, results, questions, _p in VIEWS:
         if not Path(results).exists():
             continue
-        import score_retrieval as sr
+        from legacy import score_retrieval as sr
         df = read_results(results, sr.RESULT_USECOLS | {"corpus_chunk_count"})
         qs = sr.load_questions_jsonl(str(questions))
         rows.append({
@@ -208,7 +208,7 @@ def build_subset_table():
         print(f"  !! missing {results.name}; skipping subset split")
         return None
 
-    import score_retrieval as sr
+    from legacy import score_retrieval as sr
     questions = sr.load_questions_jsonl(str(EXPANDED_QUESTIONS))
     prepared = sr.prepare_result_df(read_results(results, sr.RESULT_USECOLS), questions)
 
@@ -317,7 +317,7 @@ def build_judge_ci_table():
             regrades[label] = frame.pivot_table(
                 index="qid", columns="mode", values="_c", aggfunc="mean")
 
-    import paper_support_analysis as psa
+    from legacy import paper_support_analysis as psa
     rounds = getattr(psa, "BOOTSTRAP_ROUNDS", 2000)
     seed = getattr(psa, "RNG_SEED", 42)
     base_mode = "baseline"
@@ -609,8 +609,8 @@ def build_source_ablation_ci_table():
     an interval invites the saturation reading to be mistaken for a measured
     ceiling. The CI is bootstrapped over the 78 questions per preset per mode.
     """
-    import score_retrieval as sr
-    import paper_support_analysis as psa
+    from legacy import score_retrieval as sr
+    from legacy import paper_support_analysis as psa
     rounds = getattr(psa, "BOOTSTRAP_ROUNDS", 2000)
     seed = getattr(psa, "RNG_SEED", 42)
     qs = sr.load_questions_jsonl(str(ORIG_QUESTIONS))

@@ -69,7 +69,7 @@ def read_questions(path):
 
 def load_normalizer(root):
     """Use the released wording transformation, never its metric scorer."""
-    spec = importlib.util.spec_from_file_location("audit_question_normalizer", root / "generate_normalized_questions.py")
+    spec = importlib.util.spec_from_file_location("audit_question_normalizer", root / "legacy/generate_normalized_questions.py")
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
     return module.rewrite_question
@@ -192,9 +192,12 @@ def audit(root, out, bootstrap_repeats=5000):
     questions = {key: read_questions(path) for key, path in qpaths.items()}
     all_rows, summaries, inventory, issues, configs, input_paths = [], [], [], [], [], list(qpaths.values())
     input_paths.extend(root / filename for filename in (
-        "corpus_chunks_v1.jsonl", "corpus_chunks_v2.jsonl", "run_rag_eval.py",
-        "score_retrieval.py", "paper_support_analysis.py", "summarize_supplement_results.py",
-        "generate_normalized_questions.py",
+        "corpus_chunks_v1.jsonl", "corpus_chunks_v2.jsonl",
+        "archive/code_20261022/run_rag_eval.py", "archive/code_20261022/score_retrieval.py",
+        "archive/code_20261022/paper_support_analysis.py",
+        "archive/code_20261022/summarize_supplement_results.py",
+        "archive/code_20261022/generate_normalized_questions.py",
+        "legacy/generate_normalized_questions.py",
     ))
     rewrite_question = load_normalizer(root)
     normalization_rows, normalization_zeroed = [], []

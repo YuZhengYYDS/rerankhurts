@@ -11,8 +11,10 @@ Invoke a selected maintained historical tool as a module **from the repository
 root**, for example `python -m legacy.run_p3_matrix --dry-run`. Module imports use
 the explicit `legacy` package. Data, `.env`, and historical output paths continue
 to resolve against the repository root; moving a tool has not moved its inputs.
-The drivers launch other historical modules with `-m legacy.<name>` and launch
-the frozen retrieval/scoring scripts at their original root paths.
+The drivers launch all historical tools with `-m legacy.<name>`. The five former
+root scripts also have dispatcher/Pixi tasks: `legacy-normalize`, `legacy-eval`,
+`legacy-score`, `legacy-analysis`, and `legacy-summarize`. These commands use the
+original environment variables and accept no extra command-line options.
 
 The migration received static Python compilation, import/path checks and frozen
 file hash verification. Historical pipelines were not executed. Some workflows
@@ -33,10 +35,12 @@ and `pixi.lock` for the current workflows. The original corpus builder also uses
   `finalize_expanded_benchmark.py`, `purge_leaky_questions.py`,
   `verify_expanded_questions.py`.
 - Historical experiment drivers: `run_p3_matrix.py`, `run_p4_expanded.py`,
-  `run_view_analyses.py`, `llm_judge.py`.
+  `run_view_analyses.py`, `run_rag_eval.py`, `llm_judge.py`.
+- Question normalization: `generate_normalized_questions.py`.
 - Analysis and figures: `analyze_results.py`, `combine_revision_results.py`,
   `make_figures.py`, `make_heatmaps.py`, `make_main_table.py`,
-  `make_revision_tables.py`, `curate_paper_assets.py`.
+  `make_revision_tables.py`, `curate_paper_assets.py`, `score_retrieval.py`,
+  `paper_support_analysis.py`, `summarize_supplement_results.py`.
 - Annotation packet preparation: `build_annotation_template.py`,
   `prepare_human_eval_packets.py`. Preparing a packet does not create human labels.
 - Historical packaging: `archive_results.py`, `build_revision_assets.py`,
@@ -44,22 +48,24 @@ and `pixi.lock` for the current workflows. The original corpus builder also uses
   output conventions; use the current packaging command in the root README for
   the ICDE deliverable. Code copies preserve the `legacy/` package structure.
 
-## Frozen root compatibility files
+## Original source snapshots
 
-Five scripts remain at their original root paths with unchanged bytes because
-`validation/results/input_manifest.json` identifies them as audit inputs:
+All maintained historical Python tools now live in this package; the repository
+root contains no Python compatibility shims. Their input defaults still resolve
+against the repository root.
 
-- `generate_normalized_questions.py`
-- `paper_support_analysis.py`
-- `run_rag_eval.py`
-- `score_retrieval.py`
-- `summarize_supplement_results.py`
+The five former root scripts are retained byte for byte under
+`archive/code_20261022/`. They are provenance snapshots, not runnable entry
+points. The original `validation/results/input_manifest.json` remains intact:
+the frozen checker resolves only those five historical root paths to the
+snapshots and checks their original hashes and sizes. Maintained versions here
+have the necessary package imports and repository-root path calculations.
 
-The E0 audit dynamically loads the normalizer at its root path, and the query
-normalization tests import two of these modules directly. Replacing them with
-wrappers would change the recorded hashes. Frozen datasets, experiment code,
-run identities, evaluation results and table inputs also retain their paths and
-bytes. Existing inference resume requires the original command and settings.
+The E0 audit loads `legacy/generate_normalized_questions.py` for the wording
+transformation and records both that source and the historical snapshots when
+writing a fresh reanalysis manifest. Frozen datasets, experiment code, run
+identities and evaluation results retain their recorded paths and bytes.
+Existing inference resume requires the original command and settings.
 
 ## Archival files
 
@@ -74,5 +80,7 @@ without adaptation or execution:
   absent from the current artifact.
 
 They are not current command entry points. `migration_manifest.json` records
-every moved file's original path/hash, destination/hash, and whether its original
-bytes were preserved. Path adaptations apply only to the maintained tools above.
+the earlier migration's original path/hash, destination/hash, and whether its
+original bytes were preserved. The additional five root-script snapshots are
+documented in `../archive/code_20261022/README.md`. Path adaptations apply only
+to maintained tools.
