@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-07",
+  "scope": "English maintained documentation, current figure/interval verification and two supplied source-labeled review records",
+  "parent_commit": "ae236663f87c95b9037eac9de60178b03c159c89",
+  "tests": {
+    "passed": 115,
+    "skipped": 1,
+    "failed": 0,
+    "errors": 0,
+    "modules": [
+      "tests/test_v25_documentation_followup.py",
+      "tests/test_v25_supplements.py",
+      "tests/test_cli.py",
+      "tests/test_release_packaging.py"
+    ]
+  },
+  "saved_reviews": {
+    "status": "PASS",
+    "record_source": "model-based review",
+    "worlds": 60,
+    "paired_questions": 120,
+    "required_facts": 183,
+    "reviews": [
+      {
+        "review": "A",
+        "worlds": 60,
+        "dimension_judgments": 240,
+        "evidence_citations": 361,
+        "whitespace_display_normalizations": 107,
+        "sha256": "970806b3d49af76ea015c5170bbe60635007979f33d2ddd125a390b5e6288970"
+      },
+      {
+        "review": "B",
+        "worlds": 60,
+        "dimension_judgments": 240,
+        "evidence_citations": 501,
+        "whitespace_display_normalizations": 151,
+        "sha256": "6a0f0a8b93774f161d75123f80015d05be4b5f6f03ec694fa65ed84641ee701f"
+      }
+    ],
+    "checks": "World/sample membership, identical required facts, all four dimension entries, source claim bindings, exact offsets/URLs and whitespace-normalized displayed quotes"
+  },
+  "tokenizer_intervals": {
+    "status": "PASS",
+    "tokenizer_sha256": "ce64fce797c24f68df90b40a3f74f579b336a493db14bd583fd520ea0d8c9a98",
+    "corpus_rows": 7124,
+    "question_configuration_records": 3100,
+    "delivered_chunks": 13276,
+    "character_intervals_reconstructed": true,
+    "token_streams_reconstructed": true,
+    "model_inference": false,
+    "network_access": false
+  },
+  "figure11_reproduction": {
+    "figure": 11,
+    "version": "v25",
+    "oncology_counts": {
+      "Retained": 2913,
+      "Raw-pool miss": 20,
+      "Packing loss": 167
+    },
+    "pilot": [
+      {
+        "criterion": "U_sim",
+        "config_id": "p16_off_none_b512",
+        "coverage": 0.55,
+        "test_worlds": 40
+      },
+      {
+        "criterion": "G",
+        "config_id": "p16_off_m3_b512",
+        "coverage": 0.675,
+        "test_worlds": 40
+      }
+    ],
+    "source_sha256": {
+      "experiments/supplements/oncology_coverage_v1/results/per_question_coverage.csv": "5ba83f7084be1d50d97b9e7826bc533827b4ae1f38d6f27147319453a6a1be25",
+      "experiments/simulation/results/pilot_v2/summary.csv": "1d8534cbe5109ab5be20da4c55b83fddcce29eb1d8b8575737b24756bfbd682f",
+      "experiments/simulation/results/pilot_v2/selection.json": "50b89c966045285ebe33d85e2cc913422fd3d7b0209975fdde4c99e94fedee7e"
+    },
+    "development_reference_percent": 60,
+    "uncertainty": "No marginal error bars; dashed line is the development tie, not a confidence interval",
+    "paper_assets_overwritten": false,
+    "model_inference": false
+  },
+  "maintained_guides_english": [
+    "guide.md",
+    "docs/CODE_GUIDE.md",
+    "docs/RESULTS_GUIDE.md",
+    "docs/STRENGTHENING_GUIDE.md"
+  ],
+  "historical_source_languages_preserved": true,
+  "original_frozen_file_hashes_rechecked": 2105,
+  "original_data_results_and_traces_changed": false,
+  "paper_and_page_layout_changed": false,
+  "new_neural_inference": false,
+  "review_record_provenance": "Both supplied MD files retain the model-based review source label; author-confirmed human completion is documented separately.",
+  "source_scripts": "experiments/supplements/oncology_coverage_v1/source_snapshot/SHA256SUMS.json"
+}

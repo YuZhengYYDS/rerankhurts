@@ -1,5 +1,7 @@
 # Matched 2048-token answer follow-up
 
+[English result report](REPORT_EN.md) summarizes the preserved output tables.
+
 `raw/` contains the recovered original 240 response JSON files, frozen manifest,
 completed status, prepared evidence and source-run verification records. `results/`
 contains the published per-answer scores, summaries and world-paired contrasts.

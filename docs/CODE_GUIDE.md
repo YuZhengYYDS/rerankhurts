@@ -1,106 +1,117 @@
-# 代码导览与维护约束
+# Code guide and maintenance rules
 
-## 从哪个入口开始
+## Entry point
 
-在仓库根目录使用 `pixi run --locked workflow --help`。入口位于
-`rerankhuts/cli.py`，通过当前 Pixi Python 的子进程调用既有程序，明确设置
-仓库工作目录并传递参数，不使用 shell 拼接命令。
+Use `pixi run --locked workflow --help` from the repository root. The dispatcher
+in `rerankhuts/cli.py` invokes existing programs as argument vectors, sets the
+repository working directory and forwards options without shell concatenation.
+Model inference, verification, reanalysis, compilation and packaging are separate
+actions. Put `--dry-run` before the action, for example
+`pixi run --locked workflow --dry-run e3`.
 
-入口将模型执行、既有结果核验、重新分析、论文构建和打包分为独立动作。
-`--dry-run` 放在动作前可查看命令；例如
-`pixi run --locked workflow --dry-run e3`。实际模型执行选 gpu 环境，编译选 paper。
+## Experiment implementations
 
-## 当前实验代码
+| Module | Responsibility |
+| --- | --- |
+| `experiments/protocol.py` | E3 configurations, stable ranking, URL caps, token-prefix packing, URL metrics and run identities |
+| `experiments/run_factorial.py` | E3 model loading, shared candidates/scores, traces, timing diagnostics and resume checks |
+| `experiments/simulation/generate.py` | Pilot facts-first world generation, frozen split, oracle and specification |
+| `experiments/simulation/backend.py` | Pilot model inference without oracle labels |
+| `experiments/simulation/evaluate.py` | Independent delivered-span/source-policy evaluation and pilot selection statistics |
+| `experiments/annotation.py`, `analyze_selection.py` | Human evidence-utility protocol tools with label-provenance guards; separate from dataset-semantic review |
 
-- `experiments/protocol.py`：配置枚举、稳定排序、每 URL cap、token-prefix 打包、URL 指标、实验身份与检查。
-- `experiments/run_factorial.py`：E3 的模型加载、共享候选与分数缓存、计时、轨迹和恢复。
-- `experiments/simulation/generate.py`：事实先于文本的虚构世界生成；固定 split、oracle 和 specification。
-- `experiments/simulation/backend.py`：受控仿真实际模型运行；不读取 oracle 标签。
-- `experiments/simulation/evaluate.py`：独立检查已交付文本、事实跨度、源约束、选择规则和 bootstrap。
-- `experiments/annotation.py`、`analyze_selection.py`：尚未开展的人工标注/效用研究工具，有标签来源守卫。
+The [strengthening module](../experiments/strengthening/README.md) contains:
 
-新扩展模块位于 `experiments/strengthening/`，详细接口见其
-[README](../experiments/strengthening/README.md) 和 [扩展指南](STRENGTHENING_GUIDE.md)：
+- `generate.py`, `study_plan.json`: 360 worlds, paired URL intervention and splits.
+- `audit_data.py`: independent assertion parsing and world-fact checks; preparation
+  of the original 60-world review packet and blank templates.
+- `protocol.py`, `backend.py`: 124 targeted configurations, model inference,
+  scoring views, packing, source policy and resume identities, without oracle input.
+- `evaluate.py`: verification of delivered tokens/original intervals; fact support,
+  admissibility, conflicts, stage transitions and feasibility bounds.
+- `analyze.py`: world-paired comparisons, Holm/BH adjustment and downstream analysis.
+- `downstream.py`: pinned Qwen answers, evidence controls and grounding evaluation.
+- `downstream_2048.py`, `analyze_answers_2048.py`: recovered historical follow-up
+  execution/analysis code, retained with its recorded identity and Linux locking.
+- `timing.py`: independent online requests that recompute query/pair scores.
+- `figures.py`: original benchmark figures from completed, provenance-bound results.
 
-- `generate.py`、`study_plan.json`：冻结360世界、配对URL干预、split与研究计划。
-- `audit_data.py`：独立解析原文断言并核对世界真值；生成60世界的空白人工审核包。
-- `protocol.py`、`backend.py`：124个定向配置、真实模型推断、评分视野、打包、来源策略与恢复；推断不读取oracle。
-- `evaluate.py`：核对实际交付token与原文区间，独立计事实覆盖、合规、冲突、阶段支持及预算界。
-- `analyze.py`：配对世界统计、主比较Holm校正、探索族BH校正及下游结果分析。
-- `downstream.py`：实际Qwen回答、无支持控制与独立证据忠实评分。
-- `timing.py`：重新计算query/pair分数的在线请求测时，不拼接中断的测量session。
-- `figures.py`：从完成且来源一致的分析产物生成论文图和图清单。
+The three original inference backends remain separate to preserve run identities.
+Do not merge their implementations and continue writing to an old run. Two
+factorial analysis programs also have distinct scopes: `scripts/analyze_factorial.py`
+produces 16 E3 contrasts; `experiments/analyze_factorial.py` produces eight cap-order
+interactions. The dispatcher verifies original inputs and copies only the four
+analysis input files to `build/reanalysis/e3/`. Reanalysis is not independent inference.
 
-E3、`simulation`和`strengthening`三个 inference backend 保留独立版本，以保持各自
-已完成实验的代码身份；不要简单合并后继续写入旧 run。两个同名 factorial 分析也有不同用途：
+## Current supplementary tools
 
-- `scripts/analyze_factorial.py` 输出 16 个配对对比、分组统计和论文热图。
-- `experiments/analyze_factorial.py` 输出 8 个 pre/post cap 交互。
+See [V25_ARTIFACT_GUIDE.md](V25_ARTIFACT_GUIDE.md) for input/output mappings.
+The stage and packing scripts read original evaluated records. Oncology
+`rescore.py` uses the saved character-boundary map; `verify_tokenizer_intervals.py`
+can independently reconstruct those boundaries using the pinned tokenizer JSON.
+The source snapshot retains the original preparation, inference and full-scoring
+scripts. `scripts/plot_v25_complementary.py` uses the final Oncology results;
+`scripts/plot_completed_results.py` remains a historical redraw tool.
 
-统一入口先核验固定输入，再将四个分析输入复制到 `build/reanalysis/e3/`。
-重算产物与已发布结果分开，二者不是独立重复实验。
+`scripts/check_world_review_records.py` checks the supplied review A/B records,
+their source labels and evidence indexes against the frozen 60-world sample.
+It verifies record consistency, not the authorship of a human assessment.
 
-## 校验代码
+## Verification tools
 
-- `scripts/check_frozen_files.py`：标准库离线检查记录的源代码、输入数据、结果和轨迹哈希。
-- `scripts/check_strengthening_files.py`：标准库离线核验新数据、89,280条轨迹记录、独立评估、720个回答和576个计时请求的来源与完整性。
-- `validation/check_e3.py`：不导入原 scorer，复核 3,100 条轨迹的结构、稳定排序、预算、指标与 FP16 敏感性。
-- `validation/audit_metrics.py`：47 个历史日志的 E0 重算，保留 12 个已解释的原始错误。
-- `validation/audit_simulation_endpoint_pairs.py`：独立复算论文中的 G/U 四格配对频数。
-- `scripts/verify_release.py`：验证 ZIP 的成员路径、大小、SHA-256 和包内清单。
+- `scripts/check_frozen_files.py`: standard-library hashes and identities for
+  recorded E0/E3/pilot code, data, results and traces.
+- `scripts/check_strengthening_files.py`: the main 89,280-record study, independent
+  evaluation, 720 answers and 576 timing requests; no model cache required.
+- `validation/check_e3.py`: 3,100 trace records, ranking stability, budgets, metrics
+  and FP16 sensitivity, without importing the original scorer.
+- `validation/audit_metrics.py`: E0 replay of 47 historical logs, retaining the
+  12 documented original errors.
+- `validation/audit_simulation_endpoint_pairs.py`: independent pilot G/U cell counts.
+- `scripts/verify_release.py`: archive members, safe paths, sizes and hashes.
 
-`verify` 不需要模型权重或网络；它检查旧E0/E3和`pilot_v2`的已保存文件与token轨迹。
-新研究使用 `pixi run --locked strengthen-verify --require-complete` 单独核验，也不需要模型缓存。
-完整oracle重算分别使用 `sim-evaluate` 和 `strengthen-evaluate`，其tokenizer依赖在gpu环境；
-哈希完整性检查与重新计分是不同动作。
+Integrity verification and scientific rescoring are different operations. Full
+oracle rescoring uses the tokenizer dependencies in the `gpu` environment;
+offline integrity checks do not download models or load weights.
 
-## 历史工具与根目录整理
+## Historical paths and source preservation
 
-Python 入口按用途归入目录，根目录不再保留 `.py` 兼容包装：当前统一入口在
-`rerankhuts/`，实验在 `experiments/`，离线分析与构建在 `scripts/`，历史研究工具在
-`legacy/`。五个原根目录脚本也已迁入 `legacy/`：
+Maintained tools live in `rerankhuts/`, `experiments/` and `scripts/`. Historical
+root tools moved to `legacy/`, with these compatibility commands:
 
-| 文件 | 统一入口（仓库根目录） |
-|---|---|
-| `legacy/generate_normalized_questions.py` | `python -m rerankhuts legacy-normalize` |
-| `legacy/run_rag_eval.py` | `python -m rerankhuts legacy-eval` |
-| `legacy/score_retrieval.py` | `python -m rerankhuts legacy-score` |
-| `legacy/paper_support_analysis.py` | `python -m rerankhuts legacy-analysis` |
-| `legacy/summarize_supplement_results.py` | `python -m rerankhuts legacy-summarize` |
+| Original tool, now in `legacy/` | Dispatcher command |
+| --- | --- |
+| `generate_normalized_questions.py` | `legacy-normalize` |
+| `run_rag_eval.py` | `legacy-eval` |
+| `score_retrieval.py` | `legacy-score` |
+| `paper_support_analysis.py` | `legacy-analysis` |
+| `summarize_supplement_results.py` | `legacy-summarize` |
 
-同名 Pixi task 也可使用。这五项沿用各工具原有的环境变量配置，不转发命令行参数；
-`.env`、缓存与输出的路径相对仓库根目录解析，肿瘤数据默认读取 `data/oncology/`。
-其他历史工具使用
-`python -m legacy.<模块名>`，驱动程序也通过显式包路径调用它们。
+These commands keep their original environment-variable configuration and do not
+forward command-line arguments. `.env`, cache and output paths resolve from the
+root; Oncology inputs default to `data/oncology/`. Other legacy tools use explicit
+package names, for example `python -m legacy.<module>`.
 
-`archive/code_20261022/` 保留这五个文件迁移前的原始字节，只供来源追踪。
-`validation/results/input_manifest.json` 保持原始路径、大小和 SHA-256；冻结核验仅对
-这五个已知旧根路径读取对应归档副本，仍逐个检查大小和哈希。归档缺失或损坏会失败，
-不会退回维护版本。E0 重算加载 `legacy/` 中的正常化函数，在新输出清单中同时记录
-原始归档与所用函数的来源。
+The byte-preserved pre-migration sources remain in `archive/code_20261022/`.
+Historical E0 manifests retain their original paths and digests; verification
+resolves only the five known archived root tools and fails if an archive is
+missing or changed. It never falls back to the maintained implementation.
+E0 reanalysis records both the archived source and maintained function identities.
 
-原根目录数据按用途迁入 `data/oncology/corpus/`、`questions/`、`reports/` 和
-`sources/`；发布清单与状态位于 `metadata/MANIFEST.json` 和
-`metadata/release_status.json`。统一路径表在 `rerankhuts/paths.py`。
-E0 清单和 E3 run identity 中的旧文件名保持原样；核验器仅将已知旧根文件名映射到
-新位置，仍检查原始 SHA-256、大小和身份摘要。新文件缺失或字节不符会失败，即使根目录
-另有同名文件也不会回退。子目录内的同名文件不受这些映射影响。
+`rerankhuts/paths.py` resolves the known original Oncology root filenames to
+`data/oncology/` and the metadata relocations. It preserves original hashes and
+does not reinterpret same-named files in unrelated directories. New E3 execution
+passes the relocated corpus/question paths and a fresh `build/runs/e3/` destination.
+The frozen backend bytes are unchanged; direct invocation requires explicit input
+and output paths. Obsolete scratch tools in `legacy/archive/` are not current entry points.
 
-`pixi run --locked -e gpu e3` 显式传入迁移后的 corpus/question 路径，默认输出改为
-`build/runs/e3/`。输入路径字符串属于实验身份，不能用新路径继续写入冻结的
-`experiments/runs/e3_m3/`。新运行可用完全相同的命令恢复；`verify`、`analyze-e3` 和
-`interactions-e3` 继续读取已交付的冻结运行，重算结果写入 `build/`。
-实验后端 `experiments/run_factorial.py` 的原始字节未修改，直接调用它时需显式指定
-新的 `--corpus`、`--questions` 和输出目录。
+## Validation after changes
 
-历史 scratch/过时输入工具位于 `legacy/archive/`，不属于当前入口。
+1. Run relevant tests; select the `gpu` environment for tokenizer/model-library tests.
+2. Verify the original frozen identities and main strengthening artifacts.
+3. Recompute affected analyses into new `build/` directories, then compile/check
+   the manuscript if its inputs changed.
+4. Verify packaging selection and generated releases as appropriate.
 
-## 修改后的验证顺序
-
-1. 运行 `pixi run --locked test`；若新测试需要模型/tokenizer 扩展依赖，使用 gpu 环境。
-2. 运行 `pixi run --locked verify` 和 `pixi run --locked strengthen-verify --require-complete`，确认新旧冻结实验身份与结果未被意外修改。
-3. 使用 `paper-tables` 将历史表格重算到 `build/reanalysis/tables/`；核对结果后，使用 paper 环境中的 `paper` 编译当前论文。
-4. 执行 `package --split --verify`。环境、缓存、模型权重和编译文件只留本地。
-
-如果科学协议确实需要更改，应创建新版本/新输出目录，重新执行受影响实验，
-并明确区分新旧结果；不能更新旧 manifest 来伪装为原来的运行。
+Protocol changes require a new version and separate outputs. Do not rewrite old
+manifests to make changed experiments appear to be the original run.

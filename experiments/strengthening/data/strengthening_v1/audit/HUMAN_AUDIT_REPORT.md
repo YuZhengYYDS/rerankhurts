@@ -40,6 +40,13 @@ The reported reviewer outcomes agree on acceptance of the reviewed annotations. 
 
 The machine-readable completion event is recorded in [human_audit_completion.json](human_audit_completion.json). File identities for the frozen data and original review materials are recorded in [source_manifest.json](source_manifest.json).
 
+## Saved detailed checks
+
+The supplied dimension-level [review A/B records](reviews/README.md) are retained
+separately with their original model-based source labels. Their world IDs, required
+facts and source citations are checked against the frozen sample; they are not
+identified as the original human reviewer forms.
+
 ## Source materials
 
 - [Original audit packet](human_audit_packet.jsonl): the 60 sampled worlds, fact tables and paired question identifiers.

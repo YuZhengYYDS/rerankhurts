@@ -78,6 +78,6 @@ The 60-world semantic audit is completed as confirmed by the author; its [report
 
 `package --split --verify` writes `rerankhuts_icde2027.zip`, `paper_icde2027_clean.zip`, the separate code/results archives, manifests and checksums to `dist/`. Archives use deterministic member ordering and exclude environments, model caches, credentials and compiler scratch. Package verification binds manuscript inputs to the current build record as well as checking archive paths, sizes and hashes.
 
-The active repository is [YuZhengYYDS/rerankhurts](https://github.com/YuZhengYYDS/rerankhurts). Earlier released packages and historical verification reports retain their original dates and scope. Current checks are in [validation/manuscript_checks.json](validation/manuscript_checks.json) and [validation/repository_update_20261107.json](validation/repository_update_20261107.json). Earlier import, build and verification records retain their dated scope.
+The active repository is [YuZhengYYDS/rerankhurts](https://github.com/YuZhengYYDS/rerankhurts). Earlier released packages and historical verification reports retain their original dates and scope. Current checks are in [validation/manuscript_checks.json](validation/manuscript_checks.json), the [initial v25 verification](validation/repository_update_20261107.json) and the [documentation/review follow-up](validation/repository_followup_20261107.json). Earlier import, build and verification records retain their dated scope.
 
 Code licensing is in [LICENSE](LICENSE); third-party corpus material retains its own source terms.

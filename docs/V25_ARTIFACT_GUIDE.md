@@ -21,6 +21,7 @@ subsequent analyses. Historical run manifests retain their execution-time state.
 | Request timing in Fig. 10 | `experiments/strengthening/timing.py`; resident-model requests | `experiments/strengthening/results/strengthening_v1/timing/` |
 | Oncology page outcomes, Fig. 11(a), and annotated coverage, Table V | `experiments/supplements/oncology_coverage_v1/rescore.py`; frozen Oncology corpus, final question/annotation snapshot and indexed traces | `experiments/supplements/oncology_coverage_v1/results/` |
 | Pilot selection, Fig. 11(b) | `experiments/simulation/` | `experiments/simulation/results/pilot_v2/` |
+| Saved dimension-level reviews A/B | Original 60-world sample; `scripts/check_world_review_records.py` | `experiments/strengthening/data/strengthening_v1/audit/reviews/` (model-based source labels retained) |
 | 60-world semantic audit | Original corpus, paired questions, world facts, packet and four-criterion template | `experiments/strengthening/data/strengthening_v1/audit/HUMAN_AUDIT_REPORT.md` and completion records |
 
 ## Offline reanalysis
@@ -42,9 +43,10 @@ the original primary inferential unit remains the world.
 
 Oncology rescoring uses the saved original-character boundary map. Its 1,241
 quoted annotation occurrences are checked against original corpus text, and all
-155 trace hashes and 3,100 saved coverage outcomes are reconciled. It does not
-regenerate tokenizer offsets. The original scoring run's tokenizer/stream checks
-are preserved in the saved validation records. Coverage means coverage of the
+155 trace hashes and 3,100 saved coverage outcomes are reconciled. `rescore.py` does not regenerate tokenizer offsets. The separate
+`verify_tokenizer_intervals.py --tokenizer <local-snapshot>` command reconstructs
+and checks them from the pinned tokenizer JSON, without a neural model. The source run checks remain in the saved records; the original full scoring
+scripts are preserved in `oncology_coverage_v1/source_snapshot/`. Coverage means coverage of the
 annotated support sets: OR over alternative support sets and AND over the parts
 required within each set.
 
@@ -64,11 +66,23 @@ They measure annotated original-span support, not clinical correctness or
 exhaustive semantic absence. The 60-world human semantic audit is a separate
 dataset check: its report records the author's confirmation that two reviewers
 completed the sample and approved it. The completion register is not a substitute
-for unavailable original per-criterion reviewer forms. Automated/model reviews
-are not relabeled as human reviews.
+for unavailable original per-criterion reviewer forms. The two supplied detailed model-based review files are linked separately under
+`audit/reviews/`, with their original source labels.
 
 RAGChecker and RAGAS provide related evaluation context. This revision adds no
 comparison experiment and makes no claim of a new fact-coverage metric.
+
+## Current Fig. 11 and language companions
+
+`python scripts/plot_v25_complementary.py` redraws both panels from the final
+Oncology snapshot and frozen pilot results into a new `build/` directory. Its
+Oncology counts are 20 / 167 / 2,913; the historical redraw script retains the
+original 20 / 171 / 2,909 snapshot. The command leaves supplied paper assets intact.
+
+Maintained guides, new review indexes and explanatory reports are English.
+Archived Chinese guides, original report/code strings, source quotations and frozen
+metadata retain their original bytes. English companions cover the follow-up
+result report and the Oncology question-version notes.
 
 ## Compilation and packaging
 
@@ -83,5 +97,6 @@ compares compiled table labels with the supplied source. The results archive
 includes the versioned supplements and their inputs, code and provenance. The
 code-only archive omits data, as before; use the full archive for complete
 reproduction. Current verification is recorded in
-`validation/repository_update_20261107.json`. Older validation files describe
+`validation/repository_update_20261107.json` and the subsequent
+`validation/repository_followup_20261107.json`. Older validation files describe
 their dated snapshots.
