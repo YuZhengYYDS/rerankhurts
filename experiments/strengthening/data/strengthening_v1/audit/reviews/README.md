@@ -11,9 +11,7 @@ claim bindings, character spans, URLs and quoted text against the frozen dataset
 QA quotations may display a source newline as a space; verification allows only
 whitespace normalization for this display change.
 
-The separate author-confirmed human completion report is
-[HUMAN_AUDIT_REPORT.md](../HUMAN_AUDIT_REPORT.md). These saved model-based records
-are not identified as the original human reviewer forms.
+
 
 ```bash
 python scripts/check_world_review_records.py --output build/verification/world_reviews.json
