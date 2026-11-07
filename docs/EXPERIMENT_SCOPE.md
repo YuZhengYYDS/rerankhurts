@@ -1,5 +1,9 @@
 # ICDE adaptation: evidence and execution boundaries
 
+The current v25 supplements, input versions and execution scope are indexed in
+[V25_ARTIFACT_GUIDE.md](V25_ARTIFACT_GUIDE.md). Dated sections below describe the
+original studies; subsequent semantic-audit completion is recorded separately.
+
 This project implements the user's ICDE/VLDB adaptation memorandum. The memorandum
 is a research design, not a record of completed experiments.
 
@@ -18,7 +22,7 @@ they cannot validate early-stage evidence retention or reproduce neural inferenc
 
 ## E1 and E2: human evidence utility
 
-The supplied release explicitly contains no completed human evaluation. Existing
+The original E1/E2 release contains no completed human-utility evaluation. Existing
 LLM-judge scores are automatic evaluations. Independent information needs,
 domain-qualified support annotations, set-level sufficiency, adjudication and
 group-disjoint development/test evaluation are required for the memorandum's
@@ -107,9 +111,11 @@ with BH adjustments within exploratory families. Null, reverse and structurally
 infeasible cases remain in the analysis. Degenerate intervals do not establish
 equivalence.
 
-The data audit includes a 60-world packet with two empty reviewer slots per
-world. Human review is pending. Parser agreement, tests, model outputs and hash
-verification do not complete human E1/E2 or establish clinical sufficiency.
+The 60-world data-semantic audit has been completed by two human reviewers,
+as confirmed by the author. Its report and completion register document that
+confirmation; the original packet and blank template retain their preparation
+state. This dataset check remains distinct from human E1/E2 evidence utility.
+See `experiments/strengthening/data/strengthening_v1/audit/README.md`.
 Input/run/result paths, exact commands and completion gates are documented in
 [STRENGTHENING_GUIDE.md](STRENGTHENING_GUIDE.md).
 

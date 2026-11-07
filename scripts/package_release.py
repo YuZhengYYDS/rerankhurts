@@ -43,6 +43,7 @@ RESULT_SUPPORT_FILES = {
     "docs/RESULTS_GUIDE.md", "docs/CODE_GUIDE.md", "docs/STRENGTHENING_GUIDE.md", "experiments/README.md",
     "experiments/simulation/README.md", "experiments/strengthening/README.md",
     "experiments/strengthening/study_plan.json", "validation/README.md",
+    "docs/V25_ARTIFACT_GUIDE.md",
 }
 
 
@@ -111,7 +112,8 @@ def collect_files(root, output=None):
 
 def is_result(relative):
     parts = relative.split("/")
-    return (parts[0] in {"result", "results"} or parts[:2] == ["experiments", "runs"]
+    return (parts[:2] == ["experiments", "supplements"]
+            or parts[0] in {"result", "results"} or parts[:2] == ["experiments", "runs"]
             or parts[:3] == ["experiments", "simulation", "results"]
             or parts[:3] == ["experiments", "strengthening", "results"]
             or (parts[0] == "validation" and Path(relative).suffix not in {".py", ".md", ".rst"}))
@@ -119,7 +121,9 @@ def is_result(relative):
 
 def is_code(relative):
     parts, path = relative.split("/"), Path(relative)
-    if parts[0] == "paper" or is_result(relative) or any(p in {"data", "datasets", "inputs", "annotations"} for p in parts[:-1]):
+    if (parts[0] == "paper"
+            or (is_result(relative) and parts[:2] != ["experiments", "supplements"])
+            or any(p in {"data", "datasets", "inputs", "annotations"} for p in parts[:-1])):
         return False
     return (path.suffix.casefold() in {".py", ".sh", ".ps1", ".bat", ".cmd", ".toml", ".lock", ".yaml", ".yml", ".md", ".rst", ".ini", ".cfg"}
             or relative in {"metadata/release_status.json", "metadata/MANIFEST.json", "metadata/data_layout.json",

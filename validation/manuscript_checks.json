@@ -1,8 +1,8 @@
 {
   "status": "PASS",
-  "paragraph_count": 58,
+  "paragraph_count": 56,
   "all_openings_bold": true,
-  "approximate_english_word_count": 5063,
+  "approximate_english_word_count": 5919,
   "numbered_sections": [
     "Introduction",
     "Evidence Delivery and Measurement",
@@ -31,12 +31,12 @@
     {
       "label": "fig:gap",
       "number": 4,
-      "page": 4
+      "page": 5
     },
     {
       "label": "fig:stages",
       "number": 5,
-      "page": 5
+      "page": 6
     },
     {
       "label": "fig:visibility",
@@ -71,31 +71,31 @@
     {
       "label": "fig:diagnosis",
       "number": 12,
-      "page": 11
+      "page": 12
     }
   ],
   "referenced_graphics": [
     "figures/f01_motivation.pdf",
     "figures/f02_evidence_views.pdf",
     "figures/f03_paired_design.pdf",
-    "figures/f04_measurement_gap-v2.pdf",
+    "figures/f04_measurement_gap-v3.pdf",
     "figures/f05_stages-v2.pdf",
     "figures/f06_visibility-v2.pdf",
     "figures/f07_budgets-v2.pdf",
     "figures/f08_heterogeneity-v2.pdf",
     "figures/f09_answers-v2.pdf",
     "figures/f10_request_cost-v2.pdf",
-    "figures/f11_complementary_checks-v2.pdf",
+    "figures/f11_complementary_checks-v3.pdf",
     "figures/f12_diagnostic_checks-v2.pdf"
   ],
-  "table_count": 4,
+  "table_count": 5,
   "page_check": {
-    "total_pages": 12,
-    "body_pages": 11,
-    "exempt_material_starts_page": 12,
+    "total_pages": 13,
+    "body_pages": 12,
+    "exempt_material_starts_page": 13,
     "body_page_limit": 12,
     "body_count_method": "last body label plus numbered body floats; shared exempt/body pages count as body",
-    "last_body_text_page": 11,
+    "last_body_text_page": 12,
     "body_float_pages": [
       1,
       2,
@@ -107,7 +107,8 @@
       8,
       9,
       10,
-      11
+      11,
+      12
     ],
     "policy": "https://icde2027.github.io/submission-guidelines.html"
   },
@@ -122,292 +123,282 @@
   "paragraphs": [
     {
       "id": "A-1",
-      "file": "paper/sections/00_abstract.tex",
+      "file": "paper\\sections\\00_abstract.tex",
       "opening": "A retained source does not guarantee that the factual support needed from it reaches a retrieval-augmented generator."
     },
     {
       "id": "I-1",
-      "file": "paper/sections/01_introduction.tex",
+      "file": "paper\\sections\\01_introduction.tex",
       "opening": "Context construction determines which retrieved evidence becomes available to a RAG generator."
     },
     {
       "id": "I-2",
-      "file": "paper/sections/01_introduction.tex",
+      "file": "paper\\sections\\01_introduction.tex",
       "opening": "A page can remain in the context even when a required assertion from that page has been removed or truncated."
     },
     {
       "id": "I-3",
-      "file": "paper/sections/01_introduction.tex",
+      "file": "paper\\sections\\01_introduction.tex",
       "opening": "This distinction raises a measurement question that source-level outcomes alone cannot answer."
     },
     {
       "id": "I-4",
-      "file": "paper/sections/01_introduction.tex",
+      "file": "paper\\sections\\01_introduction.tex",
       "opening": "We investigate this question using paired source groupings and exact traces of delivered support."
     },
     {
       "id": "I-5",
-      "file": "paper/sections/01_introduction.tex",
+      "file": "paper\\sections\\01_introduction.tex",
       "opening": "The study contributes a measured evaluation blind spot, a stage-level explanation, and an account of the finding's practical limits."
     },
     {
       "id": "II-1",
-      "file": "paper/sections/02_measurement.tex",
+      "file": "paper\\sections\\02_measurement.tex",
       "opening": "We model evidence delivery as retrieval followed by source capping, re-ranking, and budgeted packing."
     },
     {
       "id": "II-2",
-      "file": "paper/sections/02_measurement.tex",
+      "file": "paper\\sections\\02_measurement.tex",
       "opening": "Candidate membership, scoring visibility, and delivered text are three distinct views of the same evidence."
     },
     {
       "id": "II-3",
-      "file": "paper/sections/02_measurement.tex",
+      "file": "paper\\sections\\02_measurement.tex",
       "opening": "Designated-page retention and complete fact coverage test different properties of the final context."
     },
     {
       "id": "II-4",
-      "file": "paper/sections/02_measurement.tex",
+      "file": "paper\\sections\\02_measurement.tex",
       "opening": "The two endpoints are not interchangeable, and complete support can coexist with conflicting evidence."
     },
     {
       "id": "II-5",
-      "file": "paper/sections/02_measurement.tex",
+      "file": "paper\\sections\\02_measurement.tex",
       "opening": "We reconstruct support from original text intervals and keep source policy, ranking, and answer grounding as separate endpoints."
     },
     {
       "id": "III-1",
-      "file": "paper/sections/03_protocol.tex",
+      "file": "paper\\sections\\03_protocol.tex",
       "opening": "The benchmark supplies known facts and support spans in independently generated fictional collections."
     },
     {
       "id": "III-2",
-      "file": "paper/sections/03_protocol.tex",
+      "file": "paper\\sections\\03_protocol.tex",
       "opening": "Paired variants alter URL grouping while preserving the question and ordered document texts."
     },
     {
       "id": "III-3",
-      "file": "paper/sections/03_protocol.tex",
+      "file": "paper\\sections\\03_protocol.tex",
       "opening": "The designed workload varies support structure, document rendering, and the number of required facts."
     },
     {
       "id": "III-4",
-      "file": "paper/sections/03_protocol.tex",
+      "file": "paper\\sections\\03_protocol.tex",
       "opening": "The configuration matrix varies retrieval, cap placement, scoring views, and packing under explicitly matched conditions."
     },
     {
       "id": "III-5",
-      "file": "paper/sections/03_protocol.tex",
+      "file": "paper\\sections\\03_protocol.tex",
       "opening": "The uncapped comparison diagnoses the measurement gap, whereas the cap-order comparisons test operator placement."
     },
     {
       "id": "III-6",
-      "file": "paper/sections/03_protocol.tex",
+      "file": "paper\\sections\\03_protocol.tex",
       "opening": "Structural controls test whether the measurement and pipeline operations preserve support in cases where they should."
     },
     {
       "id": "III-7",
-      "file": "paper/sections/03_protocol.tex",
+      "file": "paper\\sections\\03_protocol.tex",
       "opening": "Statistical inference treats worlds, rather than their paired variants, as independent units."
     },
     {
       "id": "III-8",
-      "file": "paper/sections/03_protocol.tex",
+      "file": "paper\\sections\\03_protocol.tex",
       "opening": "Answer generation, request timing, and complementary workloads use separate samples and evaluation protocols."
     },
     {
       "id": "IV-0",
-      "file": "paper/sections/04_evaluation.tex",
+      "file": "paper\\sections\\04_evaluation.tex",
       "opening": "We first establish the measurement gap, then trace evidence loss across pipeline stages and workload conditions before assessing answers and request cost."
     },
     {
       "id": "IV-A1",
-      "file": "paper/sections/04_evaluation.tex",
+      "file": "paper\\sections\\04_evaluation.tex",
       "opening": "At 2048 tokens, post-capping preserves every designated-page retention outcome while reducing complete fact coverage."
     },
     {
       "id": "IV-A2",
-      "file": "paper/sections/04_evaluation.tex",
+      "file": "paper\\sections\\04_evaluation.tex",
       "opening": "Agreement in page retention conceals task-level losses and gains in complete support."
     },
     {
       "id": "IV-A3",
-      "file": "paper/sections/04_evaluation.tex",
+      "file": "paper\\sections\\04_evaluation.tex",
       "opening": "The comparison reveals a limitation of source-level evaluation, not an advantage of imposing a source cap."
     },
     {
       "id": "IV-B1",
-      "file": "paper/sections/04_evaluation.tex",
+      "file": "paper\\sections\\04_evaluation.tex",
       "opening": "With identical retrieved candidates, cap placement changes the complete support available before packing."
     },
     {
       "id": "IV-B2",
-      "file": "paper/sections/04_evaluation.tex",
+      "file": "paper\\sections\\04_evaluation.tex",
       "opening": "The 512-token budget removes the observed cap-order difference at the delivery boundary."
     },
     {
       "id": "IV-B3",
-      "file": "paper/sections/04_evaluation.tex",
+      "file": "paper\\sections\\04_evaluation.tex",
       "opening": "A larger budget exposes a small post-cap advantage in the prespecified placement comparison."
     },
     {
       "id": "IV-B4",
-      "file": "paper/sections/04_evaluation.tex",
+      "file": "paper\\sections\\04_evaluation.tex",
       "opening": "The structural controls distinguish deletion of supporting content from changes in its order."
     },
     {
       "id": "IV-C1",
-      "file": "paper/sections/04_evaluation.tex",
+      "file": "paper\\sections\\04_evaluation.tex",
       "opening": "A surviving chunk can still lose its contribution when the scorer cannot see the relevant assertion."
     },
     {
       "id": "IV-C2",
-      "file": "paper/sections/04_evaluation.tex",
+      "file": "paper\\sections\\04_evaluation.tex",
       "opening": "Short cross-encoder views substantially reduce delivered coverage in the tested pipeline."
     },
     {
-      "id": "IV-C3",
-      "file": "paper/sections/04_evaluation.tex",
-      "opening": "Packing policies redistribute the context budget without identifying a uniformly best policy."
-    },
-    {
       "id": "IV-C4",
-      "file": "paper/sections/04_evaluation.tex",
+      "file": "paper\\sections\\04_evaluation.tex",
       "opening": "Additional scoring work does not change complete coverage in the tested refill comparisons."
     },
     {
       "id": "IV-D1",
-      "file": "paper/sections/04_evaluation.tex",
+      "file": "paper\\sections\\04_evaluation.tex",
       "opening": "We test generality by varying retrieval and workload conditions rather than assuming one cap order is universally preferable."
     },
     {
       "id": "IV-D2",
-      "file": "paper/sections/04_evaluation.tex",
+      "file": "paper\\sections\\04_evaluation.tex",
       "opening": "The 2048-token post-cap gain recurs with a second cross-encoder but is not established for every retriever."
     },
     {
       "id": "IV-D3",
-      "file": "paper/sections/04_evaluation.tex",
+      "file": "paper\\sections\\04_evaluation.tex",
       "opening": "Budget curves show how the available context changes coverage across document renderings."
     },
     {
       "id": "IV-D4",
-      "file": "paper/sections/04_evaluation.tex",
+      "file": "paper\\sections\\04_evaluation.tex",
       "opening": "The baseline comparison separates absolute coverage from the effect of moving an active cap."
     },
     {
       "id": "IV-D5",
-      "file": "paper/sections/04_evaluation.tex",
+      "file": "paper\\sections\\04_evaluation.tex",
       "opening": "Support structure changes the descriptive pattern of cap-order differences."
     },
     {
       "id": "IV-D6",
-      "file": "paper/sections/04_evaluation.tex",
+      "file": "paper\\sections\\04_evaluation.tex",
       "opening": "The paired URL intervention does not establish that higher source concentration uniformly amplifies the cap-order effect."
     },
     {
       "id": "IV-D7",
-      "file": "paper/sections/04_evaluation.tex",
+      "file": "paper\\sections\\04_evaluation.tex",
       "opening": "Source-policy enforcement addresses admissibility, a different question from retaining designated pages."
     },
     {
       "id": "IV-D8",
-      "file": "paper/sections/04_evaluation.tex",
+      "file": "paper\\sections\\04_evaluation.tex",
       "opening": "These comparisons support a conditional diagnosis of evidence loss rather than a universal configuration rule."
     },
     {
       "id": "IV-E1",
-      "file": "paper/sections/04_evaluation.tex",
+      "file": "paper\\sections\\04_evaluation.tex",
       "opening": "We evaluate generated answers separately because available support does not guarantee that the generator uses it correctly."
     },
     {
       "id": "IV-E2",
-      "file": "paper/sections/04_evaluation.tex",
+      "file": "paper\\sections\\04_evaluation.tex",
       "opening": "The original answer study uses a fixed generator and 512-token evidence across matched conditions and negative controls."
     },
     {
       "id": "IV-E3",
-      "file": "paper/sections/04_evaluation.tex",
+      "file": "paper\\sections\\04_evaluation.tex",
       "opening": "Pre-cap and post-cap have identical complete-answer outcomes at 512 tokens, while other configurations separate correctness from grounding."
     },
     {
       "id": "IV-E4",
-      "file": "paper/sections/04_evaluation.tex",
+      "file": "paper\\sections\\04_evaluation.tex",
       "opening": "The negative controls and citation protocol delimit what these answer scores establish."
     },
     {
       "id": "IV-E5",
-      "file": "paper/sections/04_evaluation.tex",
+      "file": "paper\\sections\\04_evaluation.tex",
       "opening": "A matched 2048-token follow-up directly tests the uncapped-versus-post-cap answer contrast."
     },
     {
       "id": "IV-F1",
-      "file": "paper/sections/04_evaluation.tex",
+      "file": "paper\\sections\\04_evaluation.tex",
       "opening": "Independent request measurements quantify the online work associated with evidence construction."
     },
     {
       "id": "IV-F2",
-      "file": "paper/sections/04_evaluation.tex",
+      "file": "paper\\sections\\04_evaluation.tex",
       "opening": "Pre-capping reduces measured request time relative to post-capping in the timed sample."
     },
     {
       "id": "IV-F3",
-      "file": "paper/sections/04_evaluation.tex",
+      "file": "paper\\sections\\04_evaluation.tex",
       "opening": "The reported timings exclude model loading and answer generation and therefore are not end-to-end service latencies."
     },
     {
       "id": "V-1",
-      "file": "paper/sections/05_implications.tex",
+      "file": "paper\\sections\\05_implications.tex",
       "opening": "The findings motivate evaluating delivered support alongside source retention rather than replacing all outcomes with one score."
     },
     {
       "id": "V-2",
-      "file": "paper/sections/05_implications.tex",
+      "file": "paper\\sections\\05_implications.tex",
       "opening": "The controlled workload establishes mechanisms under stated assumptions, not their prevalence in deployed systems."
     },
     {
-      "id": "V-3",
-      "file": "paper/sections/05_implications.tex",
-      "opening": "The oncology workload confirms a delivery-stage page-retention issue without measuring the same within-page fact-loss gap."
-    },
-    {
       "id": "V-4",
-      "file": "paper/sections/05_implications.tex",
+      "file": "paper\\sections\\05_implications.tex",
       "opening": "The selection pilot finds no demonstrated benefit from changing the development metric alone."
     },
     {
       "id": "V-5",
-      "file": "paper/sections/05_implications.tex",
+      "file": "paper\\sections\\05_implications.tex",
       "opening": "A useful diagnosis identifies the failed stage while keeping recommendations conditional on the measured endpoint."
     },
     {
       "id": "VI-1",
-      "file": "paper/sections/06_related.tex",
+      "file": "paper\\sections\\06_related.tex",
       "opening": "RAG systems and component benchmarks study how retrieval and context-construction choices affect the pipeline."
     },
     {
       "id": "VI-2",
-      "file": "paper/sections/06_related.tex",
+      "file": "paper\\sections\\06_related.tex",
       "opening": "Content and citation evaluations motivate measuring evidence support beyond source identity."
     },
     {
       "id": "VI-3",
-      "file": "paper/sections/06_related.tex",
+      "file": "paper\\sections\\06_related.tex",
       "opening": "Controlled benchmarks complement end-to-end comparisons by exposing the conditions behind aggregate results."
     },
     {
       "id": "VII-1",
-      "file": "paper/sections/07_conclusion.tex",
+      "file": "paper\\sections\\07_conclusion.tex",
       "opening": "A source can survive context construction while the complete support needed from it does not."
     },
     {
       "id": "END-1",
-      "file": "paper/sections/08_endmatter.tex",
+      "file": "paper\\sections\\08_endmatter.tex",
       "opening": "Reproducible analysis requires linking each reported result to its inputs, configuration, and delivered-evidence trace."
     },
     {
       "id": "END-2",
-      "file": "paper/sections/08_endmatter.tex",
+      "file": "paper\\sections\\08_endmatter.tex",
       "opening": "AI tools assisted with the manuscript and experimental workflow, with the authors responsible for verifying the resulting content and measurements."
     }
   ]

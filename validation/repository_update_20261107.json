@@ -1,0 +1,123 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-07",
+  "repository": "YuZhengYYDS/rerankhurts",
+  "baseline_commit": "68afa6222fe20071a06e23c9bb4165e28401608b",
+  "scope": "v25 manuscript import and versioned supporting artifacts; original inference/data/result bytes preserved",
+  "manuscript": {
+    "status": "PASS",
+    "body_pages": 12,
+    "total_pages": 13,
+    "figures": 12,
+    "tables": 5,
+    "source": "Author-supplied v25 export",
+    "compiled_pdf_sha256": "2d3ee6001f8164bcbb74e7ae97e5089c273f702cde46a583a309be91ee013143",
+    "checks": "validation/manuscript_checks.json",
+    "build": "validation/paper_build.json",
+    "source_rendering_fix": "One Unicode en dash replaced with equivalent LaTeX -- syntax",
+    "visual_review": "Final body and reference pages inspected; Data and Code Availability remains on page 12"
+  },
+  "tests": {
+    "passed": 148,
+    "skipped": 3,
+    "failed": 0,
+    "errors": 0,
+    "modules": [
+      "tests/test_v25_supplements.py",
+      "tests/test_cli.py",
+      "tests/test_release_packaging.py",
+      "tests/test_frozen_files.py",
+      "tests/test_strengthening_downstream_2048.py"
+    ],
+    "platform": "Windows; Python 3.10; targeted test dependencies in a temporary directory",
+    "skip_reasons": [
+      "collection skipped",
+      "Creating symlinks is unavailable on this host: [WinError 1314] 客户端没有所需的特权。: 'C:\\\\Users\\\\19741\\\\AppData\\\\Local\\\\Temp\\\\pytest-of-19741\\\\pytest-1\\\\test_rejects_source_symlink0\\\\outside.txt' -> 'C:\\\\Users\\\\19741\\\\AppData\\\\Local\\\\Temp\\\\pytest-of-19741\\\\pytest-1\\\\test_rejects_source_symlink0\\\\repository\\\\source.txt'",
+      "Directory symlinks are unavailable"
+    ],
+    "fixture_portability_changes": "UTF-8 fixture bytes and native Path comparison; no weakened assertions"
+  },
+  "original_frozen_integrity": {
+    "status": "pass",
+    "checked_file_references": 218,
+    "checks_by_section": {
+      "e0": 70,
+      "e3": 4,
+      "simulation_spec": 5,
+      "simulation_results": 139
+    },
+    "errors": [],
+    "scope": "Local manifest consistency and recorded file bytes; not scientific rescoring or authentication of manifests.",
+    "model_cache": "Not required or downloaded. The shipped tokenizer file manifest is checked for consistency; external model/tokenizer bytes are not checked."
+  },
+  "original_strengthening_integrity": {
+    "status": "PASS",
+    "accepted": true,
+    "pending": [],
+    "worlds": 360,
+    "questions": 720,
+    "verified_trace_files": 720,
+    "expected_records": 89280,
+    "model_cache_required": false,
+    "human_review": "not established by this integrity check",
+    "scope": "Recorded file identities, exact record sets and original-source references; not a replacement for semantic or human evaluation."
+  },
+  "stage_reanalysis": {
+    "status": "PASS",
+    "source_sha256": "c574c4b707d011be99b7bc39fa5dd765b0c44e0a759c68902eb4a0cb8368bbb0",
+    "source_rows": 89280,
+    "paired_records": 1200,
+    "tasks_per_budget": 600,
+    "worlds_per_budget": 300,
+    "example_configurations_verified": 8,
+    "models_rerun": false
+  },
+  "oncology_rescoring": {
+    "status": "PASS",
+    "questions": 155,
+    "configurations": 20,
+    "records": 3100,
+    "facts": 377,
+    "exact_quotes_verified": 1241,
+    "trace_files_verified": 155,
+    "all_saved_coverage_outcomes_reproduced": true,
+    "tokenizer_boundary_map": "Saved original-character intervals; no tokenizer rerun",
+    "models_rerun": false
+  },
+  "packing_reanalysis": {
+    "status": "PASS",
+    "original_script_core_preserved": true,
+    "matched_tasks_per_budget": 600,
+    "worlds_per_budget": 300,
+    "conditional_tasks_by_budget": {
+      "512": 243,
+      "2048": 73
+    },
+    "checks": "Stage invariance, support sets, original published marginals and three trace pairs"
+  },
+  "answer_2048_recovery": {
+    "status": "PASS",
+    "raw_responses": 240,
+    "questions": 120,
+    "worlds": 60,
+    "original_generation_code_sha256": "db0e8cfa5c9c84eb8119377d359dcc5233d6828ee5e433b7677c7940fca1f913",
+    "verification": "experiments/supplements/answers_2048_120_v1/verify.py",
+    "historical_execution_code_preserved": true,
+    "new_neural_inference": false
+  },
+  "audit_records": {
+    "status": "completed_author_confirmed",
+    "worlds": 60,
+    "human_reviewers": 2,
+    "original_individual_forms_supplied": false,
+    "completion": "experiments/strengthening/data/strengthening_v1/audit/human_audit_completion.json"
+  },
+  "packaging_selection": {
+    "status": "PASS",
+    "supplement_files_in_results_selection": 306,
+    "new_full_release_archives_created": false
+  },
+  "repository_visibility_changed": false,
+  "new_model_runs": false,
+  "historical_manifests_and_frozen_results_rewritten": false
+}

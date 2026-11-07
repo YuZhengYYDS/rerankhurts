@@ -4,7 +4,7 @@
 
 Start with [guide.md](guide.md) for the directory map, data locations and common commands.
 
-The current manuscript is in [paper/](paper/README.md), with [main.tex](paper/main.tex) and the [compiled PDF](paper/main.pdf). The source project imported on 2026-10-26 contains the revised `-v2.pdf` figures for Figures 4–12. Figures 1–3 were updated on 2026-10-27 from the supplied draw.io sources, available in [paper/figures/drawio/](paper/figures/drawio/). The paper directory is a self-contained Overleaf project; compiler scratch and validation reports live outside it.
+The current v25 manuscript is in [paper/](paper/README.md), with [main.tex](paper/main.tex) and the [compiled PDF](paper/main.pdf). It contains 12 body pages, 13 total pages, 12 figures and five tables. See the [v25 artifact guide](docs/V25_ARTIFACT_GUIDE.md) for the manuscript-to-results map and the supplementary analyses. Compiler scratch stays under `build/paper/`.
 
 Authors: Zheng Yu, Jie Li, Boyang Wang and Jingbang Chen. Zheng Yu and Jie Li share **Equal Contribution**; Jie Li and Boyang Wang are affiliated with The Chinese University of Hong Kong, Shenzhen. Jingbang Chen is the corresponding author. The authoritative author block is [authors.tex](paper/authors.tex).
 
@@ -61,7 +61,7 @@ The five relocated tools have explicit dispatcher/Pixi commands: `legacy-normali
 
 ## Experimental evidence and reanalysis
 
-The original E3 workload contains 155 questions across 20 configurations (3,100 records). The controlled `pilot_v2` workload contains 120 tasks across 20 configurations (2,400 records). The separate `strengthening_v1` workload contains 360 worlds, 720 tasks and 124 configurations (89,280 main inference records), with separately recorded answer and request-timing studies. The matched 2048-token answer follow-up is documented with the historical Figure 9 source records in [the archived paper](archive/paper_20261022/figures/source_data/fig09_answers/).
+The original E3 workload contains 155 questions across 20 configurations (3,100 records). The controlled `pilot_v2` workload contains 120 tasks across 20 configurations (2,400 records). The separate `strengthening_v1` workload contains 360 worlds, 720 tasks and 124 configurations (89,280 main inference records), with separately recorded answer and request-timing studies. The matched 2048-token answer follow-up, including all 240 original responses, is in [the versioned supplement](experiments/supplements/answers_2048_120_v1/). Stage, packing and Oncology coverage analyses are in [experiments/supplements/](experiments/supplements/).
 
 ```bash
 pixi run --locked e0
@@ -70,14 +70,14 @@ pixi run --locked interactions-e3
 pixi run --locked strengthen-verify --require-complete
 ```
 
-Reanalysis outputs go under `build/`. Frozen experiment data, traces and statistical results retain their recorded identities. The current `-v2.pdf` figures are supplied manuscript assets; historical redraw tools preserve the earlier figure provenance and do not regenerate or overwrite those revised PDFs. Current editable sources for Figures 1–3 are in [paper/figures/drawio/](paper/figures/drawio/). The archived draw.io sources and original SVG icon catalog remain available under [archive/paper_20261022/figures/drawio/](archive/paper_20261022/figures/drawio/).
+Reanalysis outputs go under `build/`. Frozen experiment data, traces and statistical results retain their recorded identities. The figure PDFs referenced in `paper/layout.tex` are supplied v25 manuscript assets; historical redraw tools preserve the earlier figure provenance and do not regenerate or overwrite those revised PDFs. Current editable sources for Figures 1–3 are in [paper/figures/drawio/](paper/figures/drawio/). The archived draw.io sources and original SVG icon catalog remain available under [archive/paper_20261022/figures/drawio/](archive/paper_20261022/figures/drawio/).
 
-Human semantic annotation and independent external-workload replication retain the statuses recorded in the experiment documentation; synthetic or model-generated assessments are not human annotations. See [docs/EXPERIMENT_SCOPE.md](docs/EXPERIMENT_SCOPE.md) for the limits of the evidence.
+The 60-world semantic audit is completed as confirmed by the author; its [report and completion records](experiments/strengthening/data/strengthening_v1/audit/README.md) preserve the confirmation basis. Synthetic/model-based assessments and human-utility evaluation remain separate. See [docs/EXPERIMENT_SCOPE.md](docs/EXPERIMENT_SCOPE.md) for the limits of the evidence.
 
 ## Releases and provenance
 
 `package --split --verify` writes `rerankhuts_icde2027.zip`, `paper_icde2027_clean.zip`, the separate code/results archives, manifests and checksums to `dist/`. Archives use deterministic member ordering and exclude environments, model caches, credentials and compiler scratch. Package verification binds manuscript inputs to the current build record as well as checking archive paths, sizes and hashes.
 
-The active repository is [YuZhengYYDS/rerankhurts](https://github.com/YuZhengYYDS/rerankhurts). Earlier released packages and historical verification reports retain their original dates and scope. Current manuscript checks and the 2026-10-26 import/organization record are in [validation/manuscript_checks.json](validation/manuscript_checks.json) and [validation/repository_update_20261026.json](validation/repository_update_20261026.json).
+The active repository is [YuZhengYYDS/rerankhurts](https://github.com/YuZhengYYDS/rerankhurts). Earlier released packages and historical verification reports retain their original dates and scope. Current checks are in [validation/manuscript_checks.json](validation/manuscript_checks.json) and [validation/repository_update_20261107.json](validation/repository_update_20261107.json). Earlier import, build and verification records retain their dated scope.
 
 Code licensing is in [LICENSE](LICENSE); third-party corpus material retains its own source terms.

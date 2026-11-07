@@ -35,6 +35,7 @@ def main():
     for group, count in [("A", 3), ("B", 4), ("C", 4), ("D", 8), ("E", 5), ("F", 3)]:
         expected += [f"IV-{group}{i}" for i in range(1, count + 1)]
     expected += [f"V-{i}" for i in range(1, 6)]
+    expected = [p for p in expected if p not in {"IV-C3", "V-3"}]
     expected += [f"VI-{i}" for i in range(1, 4)] + ["VII-1", "END-1", "END-2"]
     sections = sorted((PAPER / "sections").glob("*.tex"))
     paragraphs = []
@@ -53,13 +54,13 @@ def main():
         prose = re.sub(r"\\[a-zA-Z]+", "", prose)
         words += len(re.findall(r"\b[A-Za-z]+(?:[-'][A-Za-z]+)*\b", prose))
     if [p["id"] for p in paragraphs] != expected:
-        raise RuntimeError("Paragraph IDs or bold openings do not match the 58-paragraph plan")
-    source = "\n".join(p.read_text() for p in sections)
+        raise RuntimeError("Paragraph IDs or bold openings do not match the v25 paragraph plan")
+    source = "\n".join(p.read_text(encoding="utf-8") for p in sections)
     titles = re.findall(r"\\section\{([^}]+)\}", source)
     if len(titles) != 7:
         raise RuntimeError(f"Expected seven numbered sections, found {len(titles)}")
-    main_tex = (PAPER / "main.tex").read_text()
-    active = main_tex + (PAPER / "layout.tex").read_text() + source
+    main_tex = (PAPER / "main.tex").read_text(encoding="utf-8")
+    active = main_tex + (PAPER / "layout.tex").read_text(encoding="utf-8") + source
     if re.search(r"\\placeholder\b|figure placeholder|diagram placeholder", active, re.I):
         raise RuntimeError("Unfilled figure placeholder in active manuscript")
     # The supplied source bundle contains PDF figure revisions, without the old
@@ -90,8 +91,8 @@ def main():
         raise RuntimeError("IEEE class differs from the baseline unmodified official class")
     if style_sha != "314f0ece704568faf827011bac498650691b2b5ee06320720830e782416d5a5f":
         raise RuntimeError("IEEE bibliography style differs from the official baseline")
-    stage = Path(json.loads((ROOT / "build/paper/latest_staging.json").read_text())["path"])
-    aux = (stage / "main.aux").read_text()
+    stage = Path(json.loads((ROOT / "build/paper/latest_staging.json").read_text(encoding="utf-8"))["path"])
+    aux = (stage / "main.aux").read_text(encoding="utf-8")
     figures = [{"label": m.group(1), "number": int(m.group(2)), "page": int(m.group(3))}
                for m in re.finditer(r"\\newlabel\{(fig:[^}]+)\}\{\{(\d+)\}\{(\d+)\}", aux)]
     if (len(figures) != 12 or [f["number"] for f in figures] != list(range(1, 13))
@@ -99,11 +100,13 @@ def main():
             or [f["page"] for f in figures] != sorted(f["page"] for f in figures)):
         raise RuntimeError(f"Expected twelve sequentially numbered figures within the page budget: {figures}")
     tables = re.findall(r"\\newlabel\{(tab:[^}]+)\}", aux)
-    if len(tables) != 4:
-        raise RuntimeError("Expected four tables")
-    page_check = json.loads((ROOT / "build/paper/page_check.json").read_text())
+    source_tables = re.findall(r"\\label\{(tab:[^}]+)\}", uncommented)
+    if len(tables) != len(source_tables) or set(tables) != set(source_tables):
+        raise RuntimeError("Compiled table labels differ from manuscript source")
+    page_check = json.loads((ROOT / "build/paper/page_check.json").read_text(encoding="utf-8"))
     pdf = PdfReader(PAPER / "main.pdf")
-    if len(pdf.pages) != 12 or page_check["body_pages"] > 12:
+    if (page_check["body_pages"] > 12
+            or page_check["total_pages"] != len(pdf.pages)):
         raise RuntimeError("Page budget failed")
     if any(abs(float(page.mediabox.width) - 612) > 0.1 or abs(float(page.mediabox.height) - 792) > 0.1 for page in pdf.pages):
         raise RuntimeError("Unexpected paper size")
@@ -121,7 +124,9 @@ def main():
               "paragraphs": paragraphs}
     target = ROOT / "validation/manuscript_checks.json"
     target.write_text(json.dumps(report, indent=2) + "\n")
-    print(f"PASS: {len(paragraphs)} bold openings, 7 sections, 12 pages/figures, 4 tables")
+    print(f"PASS: {len(paragraphs)} bold openings, 7 sections, "
+          f"{page_check['body_pages']} body / {len(pdf.pages)} total pages, "
+          f"{len(figures)} figures, {len(tables)} tables")
 
 
 if __name__ == "__main__":

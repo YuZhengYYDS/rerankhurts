@@ -2,16 +2,14 @@
 
 ## 论文
 
-`paper/main.tex` 是 2026-10-26 从用户提供的 ZIP 替换的当前稿件源文件。
-正文位于 `paper/sections/`，图表布局在 `paper/layout.tex`；F1–F3 使用 PDF，
-F4–F12 使用布局文件直接引用的 `*-v2.pdf`。当前稿件包含 58 个粗体开头段落、
-7 个编号章节、12 幅图和 4 张表。作者信息以 `paper/authors.tex` 为准。
+`paper/main.tex` 和 `paper/sections/` 已同步作者提供的 v25 源码，图表布局在
+`paper/layout.tex`。当前稿件为正文12页、总计13页，包含7个编号章节、12幅图和5张表。
+Data and Code Availability 在第12页；AI说明和参考文献从第13页开始。
+作者信息以 `paper/authors.tex` 为准。
 
-`python scripts/build_paper.py` 优先使用 PDFLaTeX/BibTeX，否则使用 Tectonic，
-只将最终 PDF 写入 `paper/main.pdf`，编译中间文件保存在 `build/paper/`。
-构建身份与页数见 `validation/paper_build.json`，结构检查见
-`validation/manuscript_checks.json`。当前构建为 12 页；编号图允许共享页面，
-F12 位于第 11 页。正文上限检查把与致谢或参考文献共享的正文浮动图页计入正文。
+编译使用 `python scripts/build_paper.py`，构建记录在
+`validation/paper_build.json`，结构检查在 `validation/manuscript_checks.json`。
+新补充材料、运行步骤和逐图表来源见 [v25材料索引](V25_ARTIFACT_GUIDE.md)。
 
 替换前的完整论文及绘图输入保存在 `archive/paper_20261022/`，包括旧版
 `generated/`、draw.io 文件、来源数据和历史审计记录。这些归档文件保持原字节；
@@ -29,7 +27,7 @@ F12 位于第 11 页。正文上限检查把与致谢或参考文献共享的正
 - `corpus.jsonl`、`questions.jsonl`：公开推断接口，720个互相隔离的80-chunk集合。
 - `truth.jsonl`、`metadata.jsonl`、`claims.jsonl`：世界事实、配对与split信息、已由独立parser核对的断言。
 - `specification.json`：生成代码、计划、维度及数据哈希。
-- `audit/`：独立文本解析审计和60世界人工审核包；人工表仍为空，不能视为人审结果。
+- `audit/`：独立文本解析结果、60世界审核包，以及作者确认两位审核者完成并通过的报告和完成记录；原始空表与处理时状态保留。
 
 实际主推断在 `experiments/runs/strengthening_v1/`：`manifest.json` 固定124配置、
 模型、代码和输入身份，`traces/` 保存720个压缩逐题轨迹，`status.json` 记录主推断完成数。

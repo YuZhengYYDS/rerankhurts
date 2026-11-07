@@ -1,0 +1,18 @@
+{
+  "paired_records": 1200,
+  "tasks_each_budget": 600,
+  "worlds_each_budget": 300,
+  "source_rows_independently_reconciled": 2400,
+  "raw_trace_examples_verified": 2,
+  "trace_configurations_checked": 8,
+  "original_files_unchanged": true,
+  "source_sha256": {
+    "/data/L202500309/JIELI/RAG/github files/rerankhurts-main/rerankhurts-main/experiments/strengthening/results/strengthening_v1/per_record.csv": "c574c4b707d011be99b7bc39fa5dd765b0c44e0a759c68902eb4a0cb8368bbb0",
+    "/data/L202500309/JIELI/RAG/eab_revision_20261031/03_stage_reanalysis/stage_paired_records.csv": "4c47658886db267ccea1a11c33c0efadffbd5e53f5ff957322185d7bb1e010b1",
+    "/data/L202500309/JIELI/RAG/eab_revision_20261031/03_stage_reanalysis/stage_paired_transitions.csv": "d3d6acdc2097e90ebf0691236ec80961dcde57326553f2f6fc64f939d80c438f",
+    "/data/L202500309/JIELI/RAG/github files/rerankhurts-main/rerankhurts-main/experiments/runs/strengthening_v1/traces/1b5e6126e484f3b47401fe4e.json.gz": "3a250a3678e64e41c19aa3c23771f0f3c0b0d82daac4e9c3ece794f2f291be57",
+    "/data/L202500309/JIELI/RAG/github files/rerankhurts-main/rerankhurts-main/experiments/runs/strengthening_v1/traces/2ac2203dcbd8a241edd23f9a.json.gz": "d52c2a9f2e2705becdcf7f260d55e89caa5fe860bf3b893489c33b00374d2b88"
+  },
+  "scope": "Descriptive paired stage reanalysis; no new neural inference or significance tests.",
+  "statistical_unit": "Original primary inference remains at world level; task counts here are descriptive."
+}

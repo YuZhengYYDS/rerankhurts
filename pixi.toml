@@ -74,3 +74,7 @@ legacy-eval = "python -m rerankhuts legacy-eval"
 legacy-score = "python -m rerankhuts legacy-score"
 legacy-analysis = "python -m rerankhuts legacy-analysis"
 legacy-summarize = "python -m rerankhuts legacy-summarize"
+
+stage-reanalysis = "python -m rerankhuts stage-reanalysis"
+packing-reanalysis = "python -m rerankhuts packing-reanalysis"
+oncology-coverage = "python -m rerankhuts oncology-coverage"

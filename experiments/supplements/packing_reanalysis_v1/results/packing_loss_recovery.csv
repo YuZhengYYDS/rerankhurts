@@ -1,0 +1,5 @@
+﻿budget,alternative,total_tasks,eligible_tasks,eligible_fraction,any_fact_restored_tasks,any_fact_restored_fraction,newly_lost_other_fact_tasks,newly_lost_other_fact_fraction,full_coverage_restored_tasks,full_coverage_restored_fraction,originally_lost_fact_instances,restored_fact_instances,newly_lost_fact_instances,restored_and_newly_lost_tasks,fact_count_increase_tasks,fact_count_decrease_tasks,fact_count_equal_tasks
+512,whole,600,243,0.405,1,0.00411522633744856,37,0.1522633744855967,0,0.0,507,1,39,0,1,37,205
+512,window,600,243,0.405,20,0.0823045267489712,2,0.00823045267489712,2,0.00823045267489712,507,22,2,0,20,2,221
+2048,whole,600,73,0.12166666666666667,0,0.0,5,0.0684931506849315,0,0.0,107,0,5,0,0,5,68
+2048,window,600,73,0.12166666666666667,5,0.0684931506849315,0,0.0,1,0.0136986301369863,107,5,0,0,5,0,68

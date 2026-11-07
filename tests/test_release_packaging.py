@@ -101,7 +101,7 @@ def repository(tmp_path):
     for relative, content in {**files, **{name: "EXCLUDE-ME" for name in excluded}}.items():
         path = root / relative
         path.parent.mkdir(parents=True, exist_ok=True)
-        path.write_text(content, encoding="utf-8")
+        path.write_bytes(content.encode("utf-8"))
     return root, files, excluded
 
 
@@ -666,4 +666,4 @@ def test_paper_builder_uses_explicit_tectonic_fallback(monkeypatch):
     monkeypatch.setattr(build_paper.shutil, "which", lambda name: None)
     engine, commands = build_paper.compiler_commands(tectonic=Path("/tools/tectonic"))
     assert engine == "tectonic"
-    assert commands == [["/tools/tectonic", "--keep-logs", "--keep-intermediates", "main.tex"]]
+    assert commands == [[str(Path("/tools/tectonic")), "--keep-logs", "--keep-intermediates", "main.tex"]]

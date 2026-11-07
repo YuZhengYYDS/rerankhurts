@@ -2,6 +2,8 @@
 
 这份指南说明当前论文、实验数据、代码和运行结果的位置。仓库的日常命令都从根目录执行。
 
+v25 新增材料及论文对应关系见 [V25_ARTIFACT_GUIDE.md](docs/V25_ARTIFACT_GUIDE.md)。阶段分析、packing 分析和 Oncology 事实覆盖分别使用 `stage-reanalysis`、`packing-reanalysis`、`oncology-coverage` 命令，输出到新的 `build/reanalysis/` 子目录。
+
 ## 1. 从哪里开始
 
 | 要做什么 | 入口 |

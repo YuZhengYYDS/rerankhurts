@@ -32,6 +32,9 @@ LEGACY_MODULES = {
     "legacy-summarize": "legacy.summarize_supplement_results",
 }
 COMMANDS = {
+    "stage-reanalysis": "Recompute matched stage transitions from frozen results (offline).",
+    "packing-reanalysis": "Recompute packing recovery/loss counts from frozen results (offline).",
+    "oncology-coverage": "Rescore annotated Oncology support on recorded intervals (offline).",
     "status": "Show manuscript, authors and completed experiment counts (offline).",
     "verify": "Verify frozen hashes, E3 traces and simulation paired counts (offline).",
     "e0": "Recompute the historical audit into build/reanalysis/e0 (offline).",
@@ -90,6 +93,9 @@ def commands_for(name: str, extra: list[str]) -> list[list[str]]:
                   ["-m", "experiments.analyze_factorial"])
         return [script + ["--run", "build/reanalysis/e3"]]
     plans = {
+        "stage-reanalysis": ["experiments/supplements/stage_reanalysis_v1/analyze.py"],
+        "packing-reanalysis": ["experiments/supplements/packing_reanalysis_v1/analyze.py"],
+        "oncology-coverage": ["experiments/supplements/oncology_coverage_v1/rescore.py"],
         "e0": ["validation/audit_metrics.py", "--output", "build/reanalysis/e0"],
         "e3": ["-m", "experiments.run_factorial", "--device", "cuda",
                "--rerank-batch-size", "8", "--output", "build/runs/e3",

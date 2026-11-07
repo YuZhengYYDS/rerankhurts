@@ -70,7 +70,7 @@
     "figure_update": "validation/figure_update_20261027.json"
   },
   "repository_visibility": "private",
-  "paper_pages_including_references": 12,
+  "paper_pages_including_references": 13,
   "controlled_simulation": {
     "status": "completed",
     "dataset_revision": 2,
@@ -154,32 +154,19 @@
     "current_cleanup_verification": "validation/repository_update_20261026.json"
   },
   "manuscript_revision": {
-    "date": "2026-10-26",
-    "origin": "Author-supplied source project",
+    "date": "2026-11-07",
+    "version": "v25",
     "directory": "paper",
-    "replaced_entire_paper_folder": true,
-    "active_v2_figures": [
-      4,
-      5,
-      6,
-      7,
-      8,
-      9,
-      10,
-      11,
-      12
-    ],
+    "origin": "Author-supplied v25 LaTeX project",
     "body_pages": 12,
-    "total_pages": 12,
-    "paragraph_openings_bold": 58,
+    "total_pages": 13,
+    "paragraph_openings_bold": 56,
     "numbered_figures": 12,
-    "tables": 4,
-    "author_information_preserved": true,
-    "equal_contribution_note": "Equal Contribution",
-    "model_experiments_rerun": false,
+    "tables": 5,
+    "model_experiments_rerun_for_import": false,
     "validation": "validation/manuscript_checks.json"
   },
-  "paper_body_pages": 11,
+  "paper_body_pages": 12,
   "strengthening_study": {
     "status": "all_automated_experiment_stages_completed",
     "data_revision": "strengthening_v1",
@@ -197,11 +184,12 @@
     "timing_worlds": 24,
     "primary_post_minus_pre_512": 0.0,
     "primary_post_minus_pre_2048": 0.02,
-    "human_semantic_audit_complete": false,
+    "human_semantic_audit_complete": true,
     "external_real_world_replication": false,
     "study_plan": "experiments/strengthening/study_plan.json",
     "results": "experiments/strengthening/results/strengthening_v1",
-    "guide": "docs/STRENGTHENING_GUIDE.md"
+    "guide": "docs/STRENGTHENING_GUIDE.md",
+    "human_semantic_audit_record": "experiments/strengthening/data/strengthening_v1/audit/human_audit_completion.json"
   },
   "github_delivery": {
     "baseline_commit": "74a63e2a586af8ee697ca800bd379fe4dd4c5064",
@@ -270,5 +258,46 @@
     "tex_sources_preserved": true,
     "scientific_results_changed": false,
     "model_experiments_rerun": false
+  },
+  "current_artifact_revision": {
+    "version": "v25",
+    "date": "2026-11-07",
+    "manuscript": "paper/main.pdf",
+    "latex_source": "Author-supplied v25 export",
+    "artifact_guide": "docs/V25_ARTIFACT_GUIDE.md",
+    "stage_reanalysis": "experiments/supplements/stage_reanalysis_v1",
+    "packing_reanalysis": "experiments/supplements/packing_reanalysis_v1",
+    "oncology_coverage": "experiments/supplements/oncology_coverage_v1",
+    "answer_2048_followup": "experiments/supplements/answers_2048_120_v1",
+    "historical_status_records_preserved": true,
+    "new_neural_inference_for_repository_sync": false,
+    "remaining_recovery": [],
+    "answer_2048_raw_responses": 240
+  },
+  "manuscript_revision_20261026": {
+    "date": "2026-10-26",
+    "origin": "Author-supplied source project",
+    "directory": "paper",
+    "replaced_entire_paper_folder": true,
+    "active_v2_figures": [
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "body_pages": 12,
+    "total_pages": 12,
+    "paragraph_openings_bold": 58,
+    "numbered_figures": 12,
+    "tables": 4,
+    "author_information_preserved": true,
+    "equal_contribution_note": "Equal Contribution",
+    "model_experiments_rerun": false,
+    "validation": "validation/manuscript_checks.json"
   }
 }

@@ -1,0 +1,9 @@
+﻿cohort,budget,contrast,questions,source_groups,complete_gains,complete_losses,both_complete,neither_complete,complete_difference_pp,exploratory_group_bootstrap_ci_low_pp,exploratory_group_bootstrap_ci_high_pp,macro_fact_fraction_difference_pp,page_retention_difference_pp,same_G_questions,same_G_different_complete_support,same_G_different_supported_fact_set,human_review_completed
+revised_all_155,512,no_cap_vs_post,155,20,0,0,62,93,0.0,0.0,0.0,0.0,0.0,155,0,0,False
+revised_all_155,512,pre_vs_post,155,20,9,1,53,92,5.161290322580645,1.5998936170212767,10.596026490066226,6.913978494623656,3.225806451612903,150,10,32,False
+revised_all_155,2048,no_cap_vs_post,155,20,0,12,82,61,-7.741935483870968,-13.235537592520453,-3.053318748836345,-8.440860215053764,0.0,155,12,28,False
+revised_all_155,2048,pre_vs_post,155,20,17,4,65,69,8.387096774193548,2.5,15.575051229508178,8.720430107526882,1.2903225806451613,153,21,51,False
+unchanged_only_152,512,no_cap_vs_post,152,20,0,0,61,91,0.0,0.0,0.0,0.0,0.0,152,0,0,False
+unchanged_only_152,512,pre_vs_post,152,20,9,1,52,90,5.2631578947368425,1.6214036617262426,10.828158174097663,7.050438596491229,3.289473684210526,147,10,31,False
+unchanged_only_152,2048,no_cap_vs_post,152,20,0,12,79,61,-7.894736842105263,-13.393087260677467,-3.125,-8.607456140350878,0.0,152,12,28,False
+unchanged_only_152,2048,pre_vs_post,152,20,16,4,63,69,7.894736842105263,1.9604660045836517,15.328588807785886,8.56359649122807,1.3157894736842106,150,20,50,False
