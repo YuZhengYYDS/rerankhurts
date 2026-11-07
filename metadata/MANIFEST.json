@@ -9148,16 +9148,16 @@
     "sha256": "54a85ba573c793d967413d26192ce17a5264716d278acd6c7b4a9c1a4142b7aa"
   },
   "experiments/supplements/oncology_coverage_v1/annotations/claims.jsonl": {
-    "bytes": 851139,
-    "sha256": "c79d3b1e429e7b6948ad6bada06b2c4fb15675bed4b944ad59a9713e69be56fb"
+    "bytes": 810186,
+    "sha256": "f181c5867a4755707b0ff504f82cb0d2bfb88e4942ff70c9283699c3c832a172"
   },
   "experiments/supplements/oncology_coverage_v1/annotations/rubric_freeze.json": {
-    "bytes": 600,
-    "sha256": "fe16b8d0ba7a9953718b793cd451739a686f71e6850bc3e58694ba1a64c18058"
+    "bytes": 565,
+    "sha256": "eba736ea262d3489a4ab6b589889c5dc4c2e19516dcdd64bfb346bfdb6caf0a2"
   },
   "experiments/supplements/oncology_coverage_v1/annotations/truth.jsonl": {
-    "bytes": 1080742,
-    "sha256": "c09dc09881a25494a1d1c8a041e843ff48e15450f23e3ff8388997e7bb534ab7"
+    "bytes": 1063186,
+    "sha256": "fd44651f21826035310e3848c7541595f2a836f70e993d1852d3ee408b256ffe"
   },
   "experiments/supplements/oncology_coverage_v1/inputs/QUESTION_VERSION_NOTES_EN.md": {
     "bytes": 1118,
@@ -9168,40 +9168,40 @@
     "sha256": "a0f79dcf84eb6493a36b08e8e657b715f810453cbb9930fe1cc3727452dcc5c4"
   },
   "experiments/supplements/oncology_coverage_v1/inputs/questions_revised.jsonl": {
-    "bytes": 71736,
-    "sha256": "4184a48ac46d74b64d49488a59663d7b126b8b6492fec4e4c809fb3f41c8100f"
+    "bytes": 71637,
+    "sha256": "162f2e1c2bc44c2d311b8e5560be994a8ad351cfcf97ddb9e1670d86529c7503"
   },
   "experiments/supplements/oncology_coverage_v1/inputs/trace_index.json": {
     "bytes": 54457,
     "sha256": "f331f709e568ef55a51171d2a701543321e506b8a3b9594108ec5c1888bbea01"
   },
   "experiments/supplements/oncology_coverage_v1/protocol.json": {
-    "bytes": 1428,
-    "sha256": "b7229da3ddd7670a2dab9d8970a668e19a5eceabcaea37f01e0e4f84a14a8bf9"
+    "bytes": 1393,
+    "sha256": "41df9a2ccef596f91e474e99bbbb6edbbbe4e96e28775857653e020dfaa7e902"
   },
   "experiments/supplements/oncology_coverage_v1/rescore.py": {
     "bytes": 8972,
     "sha256": "6758158d2a6df9075aee5879edcf0cf13972da53e98c06d5090e3ebecbe3c27c"
   },
   "experiments/supplements/oncology_coverage_v1/results/configuration_summary.csv": {
-    "bytes": 3225,
-    "sha256": "e8b726517bfba06323770da585fcc79e70b560000051438357bab640e5eee956"
+    "bytes": 3082,
+    "sha256": "b6d2090ad40c474e4a1de8923c52f1c37c9d8da51b22f5dbe62d59eaeb5b834c"
   },
   "experiments/supplements/oncology_coverage_v1/results/configuration_summary_unchanged_152.csv": {
-    "bytes": 3301,
-    "sha256": "83d3bf9d03f2044ae7449aa22195760a383eebb7ff664fcd44928908b973cdcd"
+    "bytes": 3158,
+    "sha256": "9bdcee72ee2cbecb015bb04438b0a7cda596c066130d25d203956a6c61df16eb"
   },
   "experiments/supplements/oncology_coverage_v1/results/paired_contrasts.csv": {
-    "bytes": 1487,
-    "sha256": "992ac29f355245d9c0084a1a09638084465b557f3c81fbf02556881dbaf571e3"
+    "bytes": 1416,
+    "sha256": "65b1abf5aa1f31e2929b826b2ca3d93297368f378ac22fe3c729e606e3d7bdd1"
   },
   "experiments/supplements/oncology_coverage_v1/results/per_fact_coverage.csv": {
-    "bytes": 1339731,
-    "sha256": "83a19e5eb75815e5dcc441e382af9451593ec517e4038e7852e339a02e97aed2"
+    "bytes": 1294468,
+    "sha256": "d2ca1ebcc24b686292edc406f749ea396937d1e59bea9b5cbe36311bad468598"
   },
   "experiments/supplements/oncology_coverage_v1/results/per_question_coverage.csv": {
-    "bytes": 1224531,
-    "sha256": "5ba83f7084be1d50d97b9e7826bc533827b4ae1f38d6f27147319453a6a1be25"
+    "bytes": 1205908,
+    "sha256": "95dcbdde782425239dbaa79300e0e1cb0376b7f268b5eccde8c2044e2d779688"
   },
   "experiments/supplements/oncology_coverage_v1/results/per_stage_coverage.csv": {
     "bytes": 1211564,
@@ -9220,8 +9220,8 @@
     "sha256": "0f942df9422d49203939a549e9eca1189472e03adeb1fd8876cae8570846309b"
   },
   "experiments/supplements/oncology_coverage_v1/results/validation.json": {
-    "bytes": 1047,
-    "sha256": "a26c9868293f3deb820cdc1cb1b2002f7c858760f98b8e3c31daf51de1e43b7a"
+    "bytes": 1012,
+    "sha256": "5f03f9de8b22d7232d26ea3e54e7197ce552f42cfb21ef3221b2de7c76807daf"
   },
   "experiments/supplements/oncology_coverage_v1/run_three/manifest.json": {
     "bytes": 5209,
@@ -9300,8 +9300,8 @@
     "sha256": "a6dcbe935c7485ab08d7d43fbee4017fc14e853fb94747f344f0b413051e24ed"
   },
   "experiments/supplements/oncology_coverage_v1/status.json": {
-    "bytes": 783,
-    "sha256": "0adae86a727ce827192c78512e7f08ea1020c539c5309c5ad1ba3924c7558d90"
+    "bytes": 748,
+    "sha256": "f733b42d9c34c64b078a457c3d020103740ec67e0611ee3d892dbc2797b8875e"
   },
   "experiments/supplements/oncology_coverage_v1/verify_tokenizer_intervals.py": {
     "bytes": 4527,
@@ -10611,13 +10611,17 @@
     "bytes": 2481,
     "sha256": "07af0fe97e65ff6b89ab9e75782209f3a5e7122ccef9ec0ef72ae3d402d54db8"
   },
+  "validation/oncology_metadata_update_20261107.json": {
+    "bytes": 5146,
+    "sha256": "1c5f62beca40684b4b14111def1868014d5ed748db3b6b5f20cb8b51e53ae7c8"
+  },
   "validation/paper_build.json": {
     "bytes": 7166,
     "sha256": "bfc6371355a7b54beb5a5347618505b8269134e0821528c82fff720700cfcbb9"
   },
   "validation/repository_followup_20261107.json": {
     "bytes": 3908,
-    "sha256": "27b5835ff53930c4c28f34a28432238fdffdac13535a2fa6bc3816e6386b08df"
+    "sha256": "ca3640dbba90c610002dd1e8c0ad9dff4921bc4b0eeb7661c618887615f77878"
   },
   "validation/repository_update_20261026.json": {
     "bytes": 9233,

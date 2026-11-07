@@ -18,7 +18,6 @@
   "no_answer_generation": true,
   "no_RAGChecker_RAGAS_experiments": true,
   "mixed_hardware_latency_not_aggregated": true,
-  "human_review_completed": false,
   "semantic_absence_established": false,
   "independent_external_validation_established": false,
   "software_checks": {
