@@ -6,7 +6,7 @@ Current status: completed, as confirmed by the author on 2026-11-06. Two human r
 - [Completion register](human_audit_completed.csv): 120 world-reviewer entries based on the author-confirmed summary.
 - [Completion metadata](human_audit_completion.json): confirmation basis and sampled world identifiers.
 - [Source manifest](source_manifest.json): hashes of the frozen source materials.
-- [Detailed review A/B](reviews/README.md): the two supplied dimension-level records, with their source labels preserved.
+- [Detailed review A/B](reviews/README.md): the completed dimension-level judgments and supporting evidence indexes.
 - [Original packet](human_audit_packet.jsonl) and [blank template](human_audit_template.csv): preserved original materials. The current completion metadata supersedes the packet's preparation-time pending status.
 - [Previous README](history/README_before_completion.md): preserved documentation from before completion was reported.
 

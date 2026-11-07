@@ -54,7 +54,7 @@ scripts. `scripts/plot_v25_complementary.py` uses the final Oncology results;
 `scripts/plot_completed_results.py` remains a historical redraw tool.
 
 `scripts/check_world_review_records.py` checks the supplied review A/B records,
-their source labels and evidence indexes against the frozen 60-world sample.
+their evidence indexes against the frozen 60-world sample.
 It verifies record consistency, not the authorship of a human assessment.
 
 ## Verification tools

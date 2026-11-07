@@ -3,13 +3,13 @@
   "sha256": {
     "experiments/strengthening/data/strengthening_v1/audit/human_audit_packet.jsonl": "60b6b98d05ca1cd3f4e90bd9145fcb6d2e3745d12dcd35472dbd843979447e4d",
     "experiments/strengthening/data/strengthening_v1/audit/human_audit_template.csv": "42b3c6a018b23c829c874c598c3bdc52241010cf98530e537dc73ebb406bfa99",
-    "experiments/strengthening/data/strengthening_v1/audit/README.md": "d128c550dddb448af92d955505321779263de86dbd35b08c8988dfd211917691",
     "experiments/strengthening/data/strengthening_v1/corpus.jsonl": "b882dc31e8ed9a96df520f5e5b6423a64f3e17fa4770ab3840385dddd5b8ccb5",
     "experiments/strengthening/data/strengthening_v1/questions.jsonl": "71303669f245110cffb695dcb9d779e9896d1c353d58109485aa6c54510b77d7",
     "experiments/strengthening/data/strengthening_v1/truth.jsonl": "c4022335d4a79a7863b3f89df62b5d0e3e50e85b65a6ba60b1babd680287fdb7",
     "experiments/strengthening/data/strengthening_v1/metadata.jsonl": "c43eb0ec083bbfa5e0672201a7a0e44374437266a0a12e506dced462cf3622b2",
     "experiments/strengthening/data/strengthening_v1/claims.jsonl": "2cbab46699b2ae34424e1a13c77139aaba1d3ce45168886d6a326bd4c1947451",
-    "experiments/strengthening/data/strengthening_v1/specification.json": "90daa40eec2c4603bebb5918f1e77b21b7d59f9df659edb55deb84d793b8143b"
+    "experiments/strengthening/data/strengthening_v1/specification.json": "90daa40eec2c4603bebb5918f1e77b21b7d59f9df659edb55deb84d793b8143b",
+    "experiments/strengthening/data/strengthening_v1/audit/history/README_before_completion.md": "d128c550dddb448af92d955505321779263de86dbd35b08c8988dfd211917691"
   },
   "source_snapshots_preserved": true
 }

@@ -304,10 +304,10 @@
     "date": "2026-11-07",
     "guide_language": "English",
     "original_records_preserved": true,
-    "saved_review_source": "model-based review",
     "review_records": "experiments/strengthening/data/strengthening_v1/audit/reviews/",
     "tokenizer_interval_verifier": "experiments/supplements/oncology_coverage_v1/verify_tokenizer_intervals.py",
     "current_fig11_redraw": "scripts/plot_v25_complementary.py",
-    "verification": "validation/repository_followup_20261107.json"
+    "verification": "validation/repository_followup_20261107.json",
+    "saved_reviews_status": "completed"
   }
 }

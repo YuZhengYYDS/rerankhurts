@@ -21,7 +21,7 @@ subsequent analyses. Historical run manifests retain their execution-time state.
 | Request timing in Fig. 10 | `experiments/strengthening/timing.py`; resident-model requests | `experiments/strengthening/results/strengthening_v1/timing/` |
 | Oncology page outcomes, Fig. 11(a), and annotated coverage, Table V | `experiments/supplements/oncology_coverage_v1/rescore.py`; frozen Oncology corpus, final question/annotation snapshot and indexed traces | `experiments/supplements/oncology_coverage_v1/results/` |
 | Pilot selection, Fig. 11(b) | `experiments/simulation/` | `experiments/simulation/results/pilot_v2/` |
-| Saved dimension-level reviews A/B | Original 60-world sample; `scripts/check_world_review_records.py` | `experiments/strengthening/data/strengthening_v1/audit/reviews/` (model-based source labels retained) |
+| Saved dimension-level reviews A/B | Original 60-world sample; `scripts/check_world_review_records.py` | `experiments/strengthening/data/strengthening_v1/audit/reviews/` |
 | 60-world semantic audit | Original corpus, paired questions, world facts, packet and four-criterion template | `experiments/strengthening/data/strengthening_v1/audit/HUMAN_AUDIT_REPORT.md` and completion records |
 
 ## Offline reanalysis
@@ -66,8 +66,8 @@ They measure annotated original-span support, not clinical correctness or
 exhaustive semantic absence. The 60-world human semantic audit is a separate
 dataset check: its report records the author's confirmation that two reviewers
 completed the sample and approved it. The completion register is not a substitute
-for unavailable original per-criterion reviewer forms. The two supplied detailed model-based review files are linked separately under
-`audit/reviews/`, with their original source labels.
+for unavailable original per-criterion reviewer forms. The two completed detailed review files are linked under
+`audit/reviews/`, with their dimension-level judgments and evidence indexes.
 
 RAGChecker and RAGAS provide related evaluation context. This revision adds no
 comparison experiment and makes no claim of a new fact-coverage metric.

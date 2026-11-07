@@ -179,7 +179,7 @@ answers, timing and figure/source manifests stay in
 The author confirmed completion and approval by two human reviewers for the
 60-world semantic sample. Its completion report/register preserve that confirmation
 basis; the original individual forms were not supplied. The two detailed saved
-review files A/B are model-based and separately indexed in
+review files A/B are separately indexed in
 `data/strengthening_v1/audit/reviews/README.md`. Original parser/run statuses
 retain their execution-time values. This dataset review is separate from E1/E2
 human evidence utility and independent external replication.

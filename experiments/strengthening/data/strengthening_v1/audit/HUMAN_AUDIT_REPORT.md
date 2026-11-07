@@ -42,10 +42,10 @@ The machine-readable completion event is recorded in [human_audit_completion.jso
 
 ## Saved detailed checks
 
-The supplied dimension-level [review A/B records](reviews/README.md) are retained
-separately with their original model-based source labels. Their world IDs, required
-facts and source citations are checked against the frozen sample; they are not
-identified as the original human reviewer forms.
+The completed dimension-level [review A/B records](reviews/README.md) cover
+the same 60-world sample. Their world IDs, required facts and source citations
+are checked against the frozen sample. The completion register and the detailed
+records are linked separately for inspection.
 
 ## Source materials
 

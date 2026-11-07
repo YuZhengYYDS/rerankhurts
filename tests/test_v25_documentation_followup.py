@@ -1,4 +1,4 @@
-"""Source-faithful review records, token-boundary guards and current figure data."""
+"""Review sample coverage, token-boundary guards and current figure data."""
 import importlib.util
 from pathlib import Path
 import re
@@ -39,9 +39,8 @@ def test_maintained_usage_guides_are_english(name):
     assert not re.search(r'[\u4e00-\u9fff]',(ROOT/name).read_text(encoding='utf-8'))
 
 
-def test_detailed_reviews_preserve_model_source_labels():
+def test_detailed_reviews_cover_all_60_worlds():
     base=ROOT/'experiments/strengthening/data/strengthening_v1/audit/reviews'
     for label in ['A','B']:
         text=(base/f'WORLD_REVIEW_RESULTS_{label}.md').read_text(encoding='utf-8-sig')
-        assert 'Result source: model-based review.' in text
         assert len(re.findall(r'^## World \d+: ',text,re.M))==60

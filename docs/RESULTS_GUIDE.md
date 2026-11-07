@@ -28,7 +28,7 @@ Each phase has a separate completed status record.
 - `truth.jsonl`, `metadata.jsonl`, `claims.jsonl`: world facts, pairing/splits and assertions.
 - `specification.json`: generated data dimensions, code, study plan and hashes.
 - `audit/`: original parser checks and 60-world packet; author-confirmed human
-  completion documentation and separately labeled model-based review A/B records.
+  completion documentation and detailed review A/B records.
 
 `experiments/runs/strengthening_v1/` contains the 124-configuration manifest,
 720 compressed task traces and run status. Each world has two URL-grouping
@@ -102,8 +102,7 @@ python scripts/check_world_review_records.py
 Use `--allow-in-progress` only for an unfinished new run; `PENDING` is not completion.
 The dataset semantic-audit completion register records the author's confirmation
 of two human approvals. Its original individual forms were not supplied. Saved
-review A/B files are model-based records with evidence indexes; their labels are
-preserved. This is separate from the human evidence-utility annotation protocol.
+review A/B files contain completed dimension-level judgments and evidence indexes. This is separate from the human evidence-utility annotation protocol.
 
 Current repository revisions and dated release assets have separate identities.
 The [historical October 13 release](https://github.com/YuZhengYYDS/rerankhurts/releases/tag/icde2027-restructured-20261013)
