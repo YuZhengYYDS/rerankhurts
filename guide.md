@@ -96,3 +96,5 @@ pixi run --locked workflow --dry-run e3
 编译、重新分析和新实验输出使用 `build/` 或明确指定的新目录。当前论文的新版图在 `paper/figures/`；历史重绘工具的输出位于 `build/reanalysis/`。
 
 图 1–3 的当前可编辑源文件位于 [paper/figures/drawio/](paper/figures/drawio/)，正文使用同目录上层的矢量 PDF 导出图。
+
+上一版完整论文保存在 [archive/paper_20261027/](archive/paper_20261027/)。作者确认已完成 60 个 world 的人工语义审核，但审核记录尚待上传；新版 377 条肿瘤事实的标注及对应实验结果也待补充。仓库目前保持私有，投稿前请补齐材料并由作者公开仓库。

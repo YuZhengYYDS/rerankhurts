@@ -26,6 +26,27 @@ def balanced_argument(text, start):
     return text[start:index - 1]
 
 
+def extract_paragraphs(text, filename):
+    """Read marked paragraph openings, allowing comments and selective emphasis."""
+    markers = list(re.finditer(r"^% P: ([\w-]+)\s*$", text, re.M))
+    paragraphs = []
+    for i, match in enumerate(markers):
+        end = markers[i + 1].start() if i + 1 < len(markers) else len(text)
+        chunk = re.sub(r"(?m)^\s*%.*$", "", text[match.end():end]).lstrip()
+        if not chunk:
+            raise RuntimeError(f"Missing paragraph opening: {match.group(1)}")
+        bold = chunk.startswith("\\textbf{")
+        opening = (balanced_argument(chunk, len("\\textbf{")) if bold
+                   else re.split(r"(?<=[.!?])\s+", chunk, maxsplit=1)[0].strip())
+        if not opening:
+            raise RuntimeError(f"Empty paragraph opening: {match.group(1)}")
+        if bold and not opening.rstrip().endswith("."):
+            raise RuntimeError(f"Incomplete bold opening: {match.group(1)}")
+        paragraphs.append({"id": match.group(1), "file": filename,
+                           "opening": opening, "opening_bold": bold})
+    return paragraphs
+
+
 def main():
     expected = ["A-1"]
     expected += [f"I-{i}" for i in range(1, 6)]
@@ -41,19 +62,17 @@ def main():
     words = 0
     for path in sections:
         text = path.read_text(encoding="utf-8")
-        for match in re.finditer(r"^% P: ([\w-]+)\s*\n\\textbf\{", text, re.M):
-            opening = balanced_argument(text, match.end())
-            if not opening.rstrip().endswith("."):
-                raise RuntimeError(f"Incomplete bold opening: {match.group(1)}")
-            paragraphs.append({"id": match.group(1), "file": str(path.relative_to(ROOT)),
-                               "opening": opening})
+        paragraphs.extend(extract_paragraphs(text, str(path.relative_to(ROOT))))
         prose = re.sub(r"(?m)^%.*$", "", text)
         prose = re.sub(r"\\(?:section|subsection|label|ref|cite)\{[^}]*\}", "", prose)
         prose = re.sub(r"\\begin\{equation\}.*?\\end\{equation\}", "", prose, flags=re.S)
         prose = re.sub(r"\\[a-zA-Z]+", "", prose)
         words += len(re.findall(r"\b[A-Za-z]+(?:[-'][A-Za-z]+)*\b", prose))
     if [p["id"] for p in paragraphs] != expected:
-        raise RuntimeError("Paragraph IDs or bold openings do not match the 58-paragraph plan")
+        raise RuntimeError("Paragraph IDs do not match the 58-paragraph plan")
+    bold_count = sum(p["opening_bold"] for p in paragraphs)
+    if not 0 < bold_count < len(paragraphs):
+        raise RuntimeError("Expected selective emphasis rather than all or no openings bold")
     source = "\n".join(p.read_text() for p in sections)
     titles = re.findall(r"\\section\{([^}]+)\}", source)
     if len(titles) != 7:
@@ -99,29 +118,33 @@ def main():
             or [f["page"] for f in figures] != sorted(f["page"] for f in figures)):
         raise RuntimeError(f"Expected twelve sequentially numbered figures within the page budget: {figures}")
     tables = re.findall(r"\\newlabel\{(tab:[^}]+)\}", aux)
-    if len(tables) != 4:
-        raise RuntimeError("Expected four tables")
+    if len(tables) != 5 or len(set(tables)) != len(tables):
+        raise RuntimeError("Expected five distinct tables")
     page_check = json.loads((ROOT / "build/paper/page_check.json").read_text())
     pdf = PdfReader(PAPER / "main.pdf")
-    if len(pdf.pages) != 12 or page_check["body_pages"] > 12:
+    if len(pdf.pages) != page_check["total_pages"] or page_check["body_pages"] > 12:
         raise RuntimeError("Page budget failed")
     if any(abs(float(page.mediabox.width) - 612) > 0.1 or abs(float(page.mediabox.height) - 792) > 0.1 for page in pdf.pages):
         raise RuntimeError("Unexpected paper size")
     log = (stage / "main.log").read_text(errors="replace")
     if re.search(r"Overfull \\[hv]box|undefined references|Citation .+ undefined", log):
         raise RuntimeError("Overflow or unresolved citation/reference in compilation log")
-    report = {"status": "PASS", "paragraph_count": len(paragraphs), "all_openings_bold": True,
+    report = {"status": "PASS", "paragraph_count": len(paragraphs),
+              "all_openings_bold": bold_count == len(paragraphs), "bold_opening_count": bold_count,
               "approximate_english_word_count": words, "numbered_sections": titles,
               "figures": figures, "referenced_graphics": graphics,
               "table_count": len(tables), "page_check": page_check,
               "unmodified_IEEE_class": True, "unmodified_IEEE_bibliography_style": True,
               "intentional_placeholder_figures": [],
               "submission_ready": False,
-              "remaining_items": ["Provide openly accessible EAB artifacts", "Complete author ORCID/contact/COI submission metadata"],
+              "remaining_items": ["Add the author-reported human audit records and updated oncology annotations/results",
+                                  "Make complete EAB artifacts openly accessible before submission",
+                                  "Complete author ORCID/contact/COI submission metadata"],
               "paragraphs": paragraphs}
     target = ROOT / "validation/manuscript_checks.json"
     target.write_text(json.dumps(report, indent=2) + "\n")
-    print(f"PASS: {len(paragraphs)} bold openings, 7 sections, 12 pages/figures, 4 tables")
+    print(f"PASS: {len(paragraphs)} paragraphs ({bold_count} bold openings), 7 sections, "
+          f"{len(pdf.pages)} total pages, {len(figures)} figures, {len(tables)} tables")
 
 
 if __name__ == "__main__":

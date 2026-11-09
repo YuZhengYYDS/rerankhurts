@@ -2,7 +2,7 @@
   "release_date": "2026-10-13",
   "target_repository": "https://github.com/YuZhengYYDS/rerankhurts",
   "publication_status": "private_repository_delivery",
-  "paper_status": "author_supplied_manuscript_with_revised_v2_figures",
+  "paper_status": "author_supplied_updated_manuscript_artifact_records_pending",
   "E0": {
     "status": "completed",
     "logs": 47,
@@ -67,10 +67,11 @@
     "manuscript_restructure": "validation/manuscript_restructure_20261013.json",
     "repository_update": "validation/repository_update_20261026.json",
     "paper_build": "validation/paper_build.json",
-    "figure_update": "validation/figure_update_20261027.json"
+    "figure_update": "validation/figure_update_20261027.json",
+    "manuscript_update": "validation/manuscript_update_20261109.json"
   },
   "repository_visibility": "private",
-  "paper_pages_including_references": 12,
+  "paper_pages_including_references": 13,
   "controlled_simulation": {
     "status": "completed",
     "dataset_revision": 2,
@@ -91,7 +92,7 @@
     ],
     "interpretation": "All ten configurations tie on development U_sim; the G-selected configuration is among these maximizers. The fixed tie rule yields a nonpositive held-out contrast, not evidence that page-retention selection harms fact coverage."
   },
-  "paper_title": "[Experiment, Analysis, and Benchmark] What Survives the Context Budget? Source Retention and Fact Coverage in RAG",
+  "paper_title": "[Experiment, Analysis, and Benchmark] What Survives in Budgeted RAG Pipelines? Source Retention and Fact Coverage",
   "authors": [
     {
       "name": "Zheng Yu",
@@ -125,12 +126,22 @@
       "corresponding_author": false
     },
     {
+      "name": "Xinle Yang",
+      "affiliations": [
+        "The Chinese University of Hong Kong, Shenzhen"
+      ],
+      "author_order": 4,
+      "first_author": false,
+      "equal_contribution": false,
+      "corresponding_author": false
+    },
+    {
       "name": "Jingbang Chen",
       "affiliations": [
         "The Chinese University of Hong Kong, Shenzhen",
         "Shenzhen Loop Area Institute"
       ],
-      "author_order": 4,
+      "author_order": 5,
       "first_author": false,
       "equal_contribution": false,
       "corresponding_author": true
@@ -179,7 +190,7 @@
     "model_experiments_rerun": false,
     "validation": "validation/manuscript_checks.json"
   },
-  "paper_body_pages": 11,
+  "paper_body_pages": 12,
   "strengthening_study": {
     "status": "all_automated_experiment_stages_completed",
     "data_revision": "strengthening_v1",
@@ -197,11 +208,12 @@
     "timing_worlds": 24,
     "primary_post_minus_pre_512": 0.0,
     "primary_post_minus_pre_2048": 0.02,
-    "human_semantic_audit_complete": false,
+    "human_semantic_audit_complete": true,
     "external_real_world_replication": false,
     "study_plan": "experiments/strengthening/study_plan.json",
     "results": "experiments/strengthening/results/strengthening_v1",
-    "guide": "docs/STRENGTHENING_GUIDE.md"
+    "guide": "docs/STRENGTHENING_GUIDE.md",
+    "human_semantic_audit_evidence_status": "Author reports two reviewers completed the 60-world audit; review records have not yet been added to this repository. Earlier frozen audit reports retain their original pending status."
   },
   "github_delivery": {
     "baseline_commit": "74a63e2a586af8ee697ca800bd379fe4dd4c5064",
@@ -270,5 +282,19 @@
     "tex_sources_preserved": true,
     "scientific_results_changed": false,
     "model_experiments_rerun": false
+  },
+  "manuscript_revision_20261109": {
+    "date": "2026-11-09",
+    "source": "Author-supplied Zheng_Yu_s_Great_Work.zip and subsequent title, abstract, introduction, author and emphasis edits",
+    "prior_paper_snapshot": "archive/paper_20261027/",
+    "body_pages": 12,
+    "total_pages": 13,
+    "numbered_figures": 12,
+    "tables": 5,
+    "bold_opening_count": 13,
+    "human_audit": "Reported complete by authors; records pending upload",
+    "oncology_annotation_and_results": "Updated 377-fact annotation and matching result records pending upload; existing frozen E3 files are the earlier version",
+    "no_experiment_rerun_for_repository_update": true,
+    "validation": "validation/manuscript_update_20261109.json"
   }
 }

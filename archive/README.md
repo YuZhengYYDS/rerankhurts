@@ -1,6 +1,6 @@
 # Historical source snapshots
 
-`paper_20261022/` preserves the complete manuscript tree from commit `c67d4dfe89e338c2ba93f6e3001580beaa8044f5`, including editable draw.io figures, the supplied SVG catalog, figure source data, build helpers and provenance. The current source project is `../paper/`; its revised Figures 4–12 use the supplied `-v2.pdf` assets.
+`paper_20261022/` preserves the complete manuscript tree from commit `c67d4dfe89e338c2ba93f6e3001580beaa8044f5`, including editable draw.io figures, the supplied SVG catalog, figure source data, build helpers and provenance. `paper_20261027/` preserves the previous active manuscript from commit `68afa6222fe20071a06e23c9bb4165e28401608b`. The current source project is `../paper/`.
 
 `code_20261022/` preserves the five Python scripts formerly stored at the repository root. These snapshots retain their original bytes for frozen input-manifest checks. Maintained tools are in `../legacy/`; invoke those through `python -m rerankhuts legacy-*` or their `python -m legacy.<module>` entry points from the repository root.
 

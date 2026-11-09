@@ -1,12 +1,12 @@
 # RerankHuts: manuscript, code and experimental artifacts
 
-**What Survives the Context Budget? Source Retention and Fact Coverage in RAG**
+**What Survives in Budgeted RAG Pipelines? Source Retention and Fact Coverage**
 
 Start with [guide.md](guide.md) for the directory map, data locations and common commands.
 
-The current manuscript is in [paper/](paper/README.md), with [main.tex](paper/main.tex) and the [compiled PDF](paper/main.pdf). The source project imported on 2026-10-26 contains the revised `-v2.pdf` figures for Figures 4–12. Figures 1–3 were updated on 2026-10-27 from the supplied draw.io sources, available in [paper/figures/drawio/](paper/figures/drawio/). The paper directory is a self-contained Overleaf project; compiler scratch and validation reports live outside it.
+The current manuscript is in [paper/](paper/README.md), with [main.tex](paper/main.tex) and the [compiled PDF](paper/main.pdf). It is based on the author-supplied `Zheng_Yu_s_Great_Work.zip`, with the subsequent title, abstract, introduction, author and emphasis edits. Figures 4 and 11 use the supplied v3 PDFs; the editable sources for Figures 1–3 are in [paper/figures/drawio/](paper/figures/drawio/). The paper directory is a self-contained Overleaf project; compiler scratch and validation reports live outside it.
 
-Authors: Zheng Yu, Jie Li, Boyang Wang and Jingbang Chen. Zheng Yu and Jie Li share **Equal Contribution**; Jie Li and Boyang Wang are affiliated with The Chinese University of Hong Kong, Shenzhen. Jingbang Chen is the corresponding author. The authoritative author block is [authors.tex](paper/authors.tex).
+Authors: Zheng Yu, Jie Li, Boyang Wang, Xinle Yang and Jingbang Chen. Zheng Yu and Jie Li share **Equal Contribution**; Jie Li, Boyang Wang and Xinle Yang are affiliated with The Chinese University of Hong Kong, Shenzhen. Jingbang Chen is the corresponding author. The authoritative author block is [authors.tex](paper/authors.tex).
 
 ## Repository layout
 
@@ -70,9 +70,9 @@ pixi run --locked interactions-e3
 pixi run --locked strengthen-verify --require-complete
 ```
 
-Reanalysis outputs go under `build/`. Frozen experiment data, traces and statistical results retain their recorded identities. The current `-v2.pdf` figures are supplied manuscript assets; historical redraw tools preserve the earlier figure provenance and do not regenerate or overwrite those revised PDFs. Current editable sources for Figures 1–3 are in [paper/figures/drawio/](paper/figures/drawio/). The archived draw.io sources and original SVG icon catalog remain available under [archive/paper_20261022/figures/drawio/](archive/paper_20261022/figures/drawio/).
+Reanalysis outputs go under `build/`. Frozen experiment data, traces and statistical results retain their recorded identities. The v2/v3 figure PDFs are supplied manuscript assets; historical redraw tools do not regenerate or overwrite them. Editable sources for Figures 1–3 are in [paper/figures/drawio/](paper/figures/drawio/). Earlier sources and the original SVG icon catalog remain in [archive/paper_20261022/figures/drawio/](archive/paper_20261022/figures/drawio/).
 
-Human semantic annotation and independent external-workload replication retain the statuses recorded in the experiment documentation; synthetic or model-generated assessments are not human annotations. See [docs/EXPERIMENT_SCOPE.md](docs/EXPERIMENT_SCOPE.md) for the limits of the evidence.
+The authors report that two reviewers completed the 60-world human semantic audit; the review records have not yet been added to this repository. The updated 377-fact oncology annotations and results underlying the current manuscript are also pending upload. The existing frozen audit and oncology results document earlier states and must not be presented as the updated records. Before the EAB submission, add the missing materials and make the complete artifact openly accessible. See [metadata/release_status.json](metadata/release_status.json) and [docs/EXPERIMENT_SCOPE.md](docs/EXPERIMENT_SCOPE.md) for provenance and scope.
 
 ## Releases and provenance
 
