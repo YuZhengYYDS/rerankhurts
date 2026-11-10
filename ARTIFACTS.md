@@ -1,6 +1,6 @@
 # Reproduction and artifact guide
 
-This public repository provides the code, inputs, recorded traces and analysis outputs for the RAG evidence-delivery study. The paper itself is not distributed here. The study is an ICDE 2027 Experiment, Analysis, and Benchmark (EAB) submission; the venue requires all artifacts needed to reproduce its results. **The repository is not yet a complete independently auditable EAB package:** the authors report that two human reviewers completed the 60-world semantic audit, but their original reviewer records have not been supplied here. See [Remaining work](#remaining-work) before relying on this repository as a complete submission artifact.This public repository provides the code, inputs, recorded traces and analysis outputs for the RAG evidence-delivery study. The paper itself is not distributed here. The study is an ICDE 2027 Experiment, Analysis, and Benchmark (EAB) submission; the venue requires all artifacts needed to reproduce its results. 
+This public repository provides the code, inputs, recorded traces and analysis outputs for the RAG evidence-delivery study. The paper itself is not distributed here. The study is an ICDE 2027 Experiment, Analysis, and Benchmark (EAB) submission; the venue requires all artifacts needed to reproduce its results. This public repository provides the code, inputs, recorded traces and analysis outputs for the RAG evidence-delivery study. The paper itself is not distributed here. The study is an ICDE 2027 Experiment, Analysis, and Benchmark (EAB) submission; the venue requires all artifacts needed to reproduce its results. 
 
 ## Material map
 
@@ -45,8 +45,5 @@ The [strengthening guide](experiments/strengthening/README.md) describes model s
 
 Original corpus and other third-party materials retain their own source terms; see [the oncology source metadata](data/oncology/sources/) and [LICENSE](LICENSE). Source provenance and exact model or tokenizer revisions are recorded in the respective frozen manifests. The oncology annotations were prepared with prior results known; they are not evidence of a blinded evaluation.
 
-## Remaining work
-
-1.  Historical documents and manifests may mention the removed manuscript or old private-delivery state. The current source-tree manifest is [metadata/MANIFEST.json](metadata/MANIFEST.json); frozen experiment manifests and logs retain their historical identities.
 
 The repository is public, but the authors should verify the complete artifact and submit its public URL in CMT before the ICDE deadline. Do not claim the package is complete while required evidence is missing.
