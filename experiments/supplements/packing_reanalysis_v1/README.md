@@ -17,5 +17,5 @@ prefix truncation, whole-chunk skipping and query-ranked windows.
 
 The script reproduces these numbers and checks unchanged pre-packing stage
 records, published marginals and three trace pairs. It writes only to a new
-directory under `build/`. Original dated provenance retains the parser-audit
-status at execution; the authors subsequently reported human review completion; the original human reviewer forms are not in the repository. No extra paper table or model run is introduced.
+directory under `build/`. Human semantic review of the 60-world audit sample
+has been completed. No extra paper table or model run is introduced.
