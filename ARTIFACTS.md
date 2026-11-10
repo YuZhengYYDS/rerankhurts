@@ -14,7 +14,7 @@ This public repository provides the code, inputs, recorded traces and analysis o
 | Pilot selection comparison | [Pilot outputs](experiments/simulation/results/pilot_v2/) and [simulation code and protocol](experiments/simulation/). |
 | 60-world review material | [Audit packet and original template](experiments/strengthening/data/strengthening_v1/audit/); [two model-based reviews](experiments/strengthening/data/strengthening_v1/audit/reviews/) are included with their original source labels. **These are not the two human reviewers' original records.** |
 
-The oncology required-fact annotations identify Codex assistant as the annotation author and are marked `domain_adjudicated: false` and `clinical_gold_eligible: false`; seven questions explicitly carry pending domain-adjudication status. They must not be described as expert-adjudicated clinical gold labels. The [metadata update record](validation/oncology_metadata_update_20261107.json) documents removal of an older human-review status field without establishing that expert review occurred.
+The oncology annotation snapshot identifies Codex assistant as the annotation author and is marked `domain_adjudicated: false` and `clinical_gold_eligible: false`; seven questions explicitly carry pending domain-adjudication status. The authors subsequently reported that expert review has been completed, but the corresponding records are not yet in this repository. The snapshot must not be treated as independently verified expert-adjudicated clinical gold without those records. The [metadata update record](validation/oncology_metadata_update_20261107.json) documents removal of an older human-review status field; it does not itself establish expert review.
 
 The oncology comparison is exploratory: its [rubric freeze](experiments/supplements/oncology_coverage_v1/annotations/rubric_freeze.json) records that prior outputs were known and the analysis was not blinded or preregistered. Missing an annotated span does not prove that semantically equivalent support is absent elsewhere, and the results do not establish clinical generalization.
 
@@ -47,7 +47,7 @@ Original corpus and other third-party materials retain their own source terms; s
 
 ## Remaining work
 
-1. Add the original records from both human reviewers and any adjudication for the 60-world semantic audit, or correct the manuscript's human-review claim if the underlying records cannot substantiate it. The authors' confirmation and the two model-based reviews must not be represented as original human reviewer forms.
+1. Add the original records from both human reviewers and any adjudication for the 60-world semantic audit, and the oncology expert-review records reported by the authors. The authors' confirmation and the two model-based reviews must not be represented as original human reviewer forms. Correct manuscript claims if the underlying records cannot substantiate them.
 2. Independently audit the complete package against every manuscript table, figure and result, including execution environments, model availability and third-party data reuse conditions. Existing checks above cover specific recorded outputs; they are not a proof that all results can be reproduced from scratch.
 3. Historical documents and manifests may mention the removed manuscript or old private-delivery state. The current source-tree manifest is [metadata/MANIFEST.json](metadata/MANIFEST.json); frozen experiment manifests and logs retain their historical identities.
 

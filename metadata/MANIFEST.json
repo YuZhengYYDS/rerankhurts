@@ -12,16 +12,16 @@
     "sha256": "6d7778004d8a69f6e10d39f9c13e7c4c5d7c1287884f30a16ac386a8cd37e26f"
   },
   "ARTIFACTS.md": {
-    "bytes": 7858,
-    "sha256": "912901350729b7d67f6eaa40dc7cb9474d9658c848e0aa67dc754d8924e3db49"
+    "bytes": 8072,
+    "sha256": "08bdedaaefcad9c9b27bf46f60b97797e67aaa6730856960b983d94b13f97338"
   },
   "LICENSE": {
     "bytes": 1380,
     "sha256": "1b1cbc087d7a0e81d683a4c3537b487d7799ab5d9e771afa5986b7f6b03c1047"
   },
   "README.md": {
-    "bytes": 5657,
-    "sha256": "d06e4d21ae722f4933741c397fb7d4e0e0f0853f36bf7d29608b6066c363d53c"
+    "bytes": 5789,
+    "sha256": "0ccfb8c772b3791f542c37ae2394a4f006d558f7970990a4c6d90de3181ae1d7"
   },
   "archive/README.md": {
     "bytes": 1069,
@@ -8732,8 +8732,8 @@
     "sha256": "ff6825d3791ce5fb4d1a522f5372b0c6cdd91bb38d1ddb0f0f902300eefb3053"
   },
   "guide.md": {
-    "bytes": 5446,
-    "sha256": "2a5cedf4ccf414bcfb1e92eb93dfb903c141ed79854a0b0157ed5c64d089dbca"
+    "bytes": 5527,
+    "sha256": "7918f235a15126969bea0c503096929efa4d1334a2d0ba19f157469de74a3474"
   },
   "legacy/README.md": {
     "bytes": 5787,
@@ -8904,8 +8904,8 @@
     "sha256": "0cb32fd8c04a6e8e9af3686c857cc23b958657188668c47a2e32ff2b1633802e"
   },
   "metadata/release_status.json": {
-    "bytes": 11751,
-    "sha256": "3dd06a229427185ec5838443e3947795e854a066fe0bcce26d8cf8a5d4e1a40c"
+    "bytes": 11901,
+    "sha256": "82aef5e96edf825356794f2229e4ca80f88a803e673fbc69686e88efc710f280"
   },
   "pixi.lock": {
     "bytes": 210901,

@@ -306,6 +306,7 @@
     "model_based_world_reviews": "Original source-labeled model-based reviews A and B preserved; not the original human-review records.",
     "human_review": "Authors report completion by two reviewers; original human-review records not yet supplied.",
     "fresh_model_runs": "Not performed",
-    "scope": "See ARTIFACTS.md; EAB completeness not yet established."
+    "scope": "See ARTIFACTS.md; EAB completeness not yet established.",
+    "oncology_expert_review": "Authors report expert review completed after the frozen annotation snapshot; expert-review records not yet supplied."
   }
 }
