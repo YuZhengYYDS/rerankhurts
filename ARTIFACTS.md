@@ -37,7 +37,7 @@ python3 experiments/supplements/answers_2048_120_v1/verify.py
 python3 scripts/check_world_review_records.py --output build/verification/world_reviews.json
 ```
 
-On 2026-11-10 these checks passed in local Python environments. They check file identities, trace membership, saved endpoints, support spans, transitions and/or model-review evidence bindings as described by each script. They **do not** rerun inference. Oncology rescoring uses saved tokenizer-to-original-text intervals; [an additional check](experiments/supplements/oncology_coverage_v1/README.md) can reconstruct those intervals with the pinned tokenizer snapshot. The oncology scorer reproduced 155 × 20 outcomes, 377 required facts and 1,241 source occurrences. The answer verifier checked 240 response hashes across 120 tasks.
+On 2026-11-10 these checks passed in local Python environments. They check file identities, trace membership, saved endpoints, support spans, transitions and/or review evidence as described by each script. They **do not** rerun inference. Oncology rescoring uses saved tokenizer-to-original-text intervals; [an additional check](experiments/supplements/oncology_coverage_v1/README.md) can reconstruct those intervals with the pinned tokenizer snapshot. The oncology scorer reproduced 155 × 20 outcomes, 377 required facts and 1,241 source occurrences. The answer verifier checked 240 response hashes across 120 tasks.
 
 ## Re-execution and environment
 
