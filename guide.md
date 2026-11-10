@@ -1,13 +1,11 @@
 # 仓库使用指南
 
-这份指南说明当前论文、实验数据、代码和运行结果的位置。仓库的日常命令都从根目录执行。
+这份指南说明实验数据、代码和运行结果的位置。论文文件与旧稿归档不包含在当前仓库中。仓库的日常命令都从根目录执行。
 
 ## 1. 从哪里开始
 
 | 要做什么 | 入口 |
 | --- | --- |
-| 阅读当前论文 | [paper/main.pdf](paper/main.pdf) |
-| 修改论文、上传 Overleaf | [paper/](paper/README.md)，主文件为 `main.tex` |
 | 查找原始语料、问题集和数据来源 | [data/oncology/](data/README.md) |
 | 查看实验完成状态 | [metadata/release_status.json](metadata/release_status.json) 或 `pixi run --locked status` |
 | 查看源码结构 | [docs/CODE_GUIDE.md](docs/CODE_GUIDE.md) |
@@ -17,8 +15,6 @@
 ## 2. 目录结构
 
 ```text
-paper/                       当前论文、参考文献、模板和配图
-
 data/oncology/
   corpus/                    原始与扩展语料 JSONL
   questions/                 问题集 JSONL
@@ -31,7 +27,7 @@ experiments/                 实验实现、冻结输入、模型运行记录和
 validation/                  独立审计程序及校验报告
 scripts/                     分析、论文构建、打包和完整性校验工具
 legacy/                      历史数据构建、评估和结果整理工具
-archive/                     原始代码和上一版论文的字节保留快照
+archive/                     原始代码的历史快照与记录
 docs/                        按主题展开的文档
 tests/                       测试
 build/                       本机编译、重新分析和新运行的输出
@@ -69,10 +65,6 @@ pixi run --locked status
 | `pixi run --locked e0` | 历史结果审计，输出 `build/reanalysis/e0/` |
 | `pixi run --locked analyze-e3` | 已发布 E3 结果的分析，输出 `build/reanalysis/e3/` |
 | `pixi run --locked interactions-e3` | 已发布 E3 的交互比较，输出同一分析目录 |
-| `pixi run --locked paper-tables` | 重新生成历史表格，输出 `build/reanalysis/tables/` |
-| `pixi run --locked -e paper paper` | 编译当前论文，最终 PDF 写入 `paper/main.pdf`，临时文件写入 `build/paper/` |
-| `python scripts/check_manuscript.py` | 检查段落首句、图表、页面和构建身份；报告位于 `validation/manuscript_checks.json` |
-| `pixi run --locked package --split --verify` | 在 `dist/` 生成并校验完整、论文、代码和结果包 |
 
 查看真实调用命令：
 
@@ -86,15 +78,11 @@ pixi run --locked workflow --dry-run e3
 
 ## 5. 清单、历史记录与输出
 
-- [metadata/MANIFEST.json](metadata/MANIFEST.json)：当前仓库文件的大小与 SHA-256 清单；清单自身不参与自身哈希。
+- [metadata/MANIFEST.json](metadata/MANIFEST.json)：历史文件大小与 SHA-256 清单；其中仍可能列出已移除的文件。
 - [metadata/release_status.json](metadata/release_status.json)：稿件、作者和实验完成状态。
 - [metadata/data_layout.json](metadata/data_layout.json)：本次数据文件迁移的路径与校验记录。
-- [archive/README.md](archive/README.md)：旧稿、可编辑图源和历史代码快照的位置。
+- [archive/](archive/)：历史代码快照；原先的论文归档已经移除。
 
-打包产生的每个 ZIP 仍有独立的根目录 `MANIFEST.json`，用于核对该压缩包的成员；它与源码仓库内的 `metadata/MANIFEST.json` 分开管理。
+历史论文构建、打包及部分校验脚本仍可能依赖已移除的论文文件；运行前需先更新这些脚本及清单。实验分析输出使用 `build/` 或明确指定的新目录。
 
-编译、重新分析和新实验输出使用 `build/` 或明确指定的新目录。当前论文的新版图在 `paper/figures/`；历史重绘工具的输出位于 `build/reanalysis/`。
-
-图 1–3 的当前可编辑源文件位于 [paper/figures/drawio/](paper/figures/drawio/)，正文使用同目录上层的矢量 PDF 导出图。
-
-上一版完整论文保存在 [archive/paper_20261027/](archive/paper_20261027/)。作者确认已完成 60 个 world 的人工语义审核，但审核记录尚待上传；新版 377 条肿瘤事实的标注及对应实验结果也待补充。仓库目前保持私有，投稿前请补齐材料并由作者公开仓库。
+作者确认已完成 60 个 world 的人工语义审核，但审核记录尚待上传；新版 377 条肿瘤事实的标注及对应实验结果也待补充。仓库目前公开，补充材料需在用于复现和评审前核对完整性。
