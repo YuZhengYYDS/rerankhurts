@@ -2,7 +2,7 @@
 
 **What Survives in Budgeted RAG Pipelines? Source Retention and Fact Coverage**
 
-Start with [guide.md](guide.md) for the directory map, data locations and common commands.
+For the ICDE artifact entry point, start with [ARTIFACTS.md](ARTIFACTS.md). The [guide.md](guide.md) provides a Chinese directory map and common commands.
 
 This repository contains code, datasets, experimental outputs, and supporting records for the study. The manuscript and its historical snapshots are not included in the current repository.
 
@@ -61,11 +61,11 @@ pixi run --locked strengthen-verify --require-complete
 
 Reanalysis outputs go under `build/`. Historical experiment data, traces and statistical results retain their recorded identities; manuscript figure files are not included.
 
-The authors report that two reviewers completed the 60-world human semantic audit; the review records have not yet been added to this repository. The updated 377-fact oncology annotations and results underlying the current manuscript are also pending upload. The existing frozen audit and oncology results document earlier states and must not be presented as the updated records. Before the EAB submission, add the missing materials and make the complete artifact openly accessible. See [metadata/release_status.json](metadata/release_status.json) and [docs/EXPERIMENT_SCOPE.md](docs/EXPERIMENT_SCOPE.md) for provenance and scope.
+The authors report that two reviewers completed the 60-world human semantic audit; the review records have not yet been added to this repository. The updated 377-fact oncology annotations and matching results are available in [the coverage package](experiments/supplements/oncology_coverage_v1/); the older frozen E3 results remain a separate historical version. The annotations identify Codex assistant as their author and are not domain-adjudicated clinical gold labels. The repository is public, but the original human-review records and a complete from-scratch reproducibility audit are still needed before claiming the EAB artifact is complete. See [metadata/release_status.json](metadata/release_status.json) and [docs/EXPERIMENT_SCOPE.md](docs/EXPERIMENT_SCOPE.md) for provenance and scope.
 
 ## Releases and provenance
 
-The [GitHub releases](https://github.com/YuZhengYYDS/rerankhurts/releases) retain separate code and results archives. Manuscript-containing archives have been removed. Historical manifests, checksums, documentation and build records may still reference removed files and have not been refreshed; do not treat them as inventories of the current tree.
+The [GitHub releases](https://github.com/YuZhengYYDS/rerankhurts/releases) retain separate code and results archives. Manuscript-containing archives have been removed. Frozen experiment manifests, release checksums and historical documentation may still reference removed files; use [metadata/MANIFEST.json](metadata/MANIFEST.json) for the current source-tree inventory.
 
 The active repository is [YuZhengYYDS/rerankhurts](https://github.com/YuZhengYYDS/rerankhurts). See [validation/](validation/) for historical verification records.
 

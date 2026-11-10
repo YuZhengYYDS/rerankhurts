@@ -1,0 +1,23 @@
+{
+  "status": "complete_exploratory_annotated_support_scoring",
+  "questions": 155,
+  "facts": 377,
+  "configurations_per_question": 20,
+  "records": 3100,
+  "per_fact_records": 7540,
+  "reused_queries": 152,
+  "rerun_queries": 3,
+  "rerun_configurations": 60,
+  "exact_source_spans_verified": 1241,
+  "token_streams_verified": 3100,
+  "selected_chunks_verified": 13276,
+  "old_interval_mappings_reproduced": 3040,
+  "unknown_overlap_changes_full_support": 0,
+  "protected_files_checked": 176,
+  "original_files_changed": [],
+  "no_answer_generation": true,
+  "no_RAGChecker_RAGAS_experiments": true,
+  "mixed_hardware_latency_not_aggregated": true,
+  "semantic_absence_established": false,
+  "independent_external_validation_established": false
+}

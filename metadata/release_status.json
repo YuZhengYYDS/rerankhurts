@@ -1,7 +1,7 @@
 {
   "release_date": "2026-10-13",
   "target_repository": "https://github.com/YuZhengYYDS/rerankhurts",
-  "publication_status": "private_repository_delivery",
+  "publication_status": "public_artifact_repository_incomplete",
   "paper_status": "author_supplied_updated_manuscript_artifact_records_pending",
   "E0": {
     "status": "completed",
@@ -70,7 +70,7 @@
     "figure_update": "validation/figure_update_20261027.json",
     "manuscript_update": "validation/manuscript_update_20261109.json"
   },
-  "repository_visibility": "private",
+  "repository_visibility": "public",
   "paper_pages_including_references": 13,
   "controlled_simulation": {
     "status": "completed",
@@ -296,5 +296,16 @@
     "oncology_annotation_and_results": "Updated 377-fact annotation and matching result records pending upload; existing frozen E3 files are the earlier version",
     "no_experiment_rerun_for_repository_update": true,
     "validation": "validation/manuscript_update_20261109.json"
+  },
+  "artifact_update_20261110": {
+    "source_branch": "v25-artifact-sync-20261107",
+    "source_commit": "ad4e76a06cc6e1f2c43c0b776205979e560d84ef",
+    "oncology_coverage": "Imported 155-question, 377-fact annotated-support snapshot and results; offline re-scoring passed using saved tokenizer intervals. Annotation author is recorded as Codex assistant; not domain adjudicated.",
+    "matched_answers_2048": "Imported 240 recorded responses and analysis; offline hash and endpoint verification passed.",
+    "stage_and_packing_reanalysis": "Imported frozen recorded outputs and scripts; offline reanalysis passed.",
+    "model_based_world_reviews": "Original source-labeled model-based reviews A and B preserved; not the original human-review records.",
+    "human_review": "Authors report completion by two reviewers; original human-review records not yet supplied.",
+    "fresh_model_runs": "Not performed",
+    "scope": "See ARTIFACTS.md; EAB completeness not yet established."
   }
 }

@@ -1,0 +1,31 @@
+{
+  "status": "frozen_before_new_query_inference_and_full_cohort_scoring",
+  "questions": 155,
+  "reused_question_count": 152,
+  "new_query_ids": [
+    "q124",
+    "q141",
+    "q297"
+  ],
+  "configurations_per_question": 20,
+  "expected_records": 3100,
+  "annotation_snapshot_sha256": "fd44651f21826035310e3848c7541595f2a836f70e993d1852d3ee408b256ffe",
+  "corpus_sha256": "7ddcfdff6f942be4f7fcf703bbba420e5cb093ba6fa29e7879e919632c94ee78",
+  "questions_sha256": "162f2e1c2bc44c2d311b8e5560be994a8ad351cfcf97ddb9e1670d86529c7503",
+  "original_files_must_remain_unchanged": true,
+  "main_comparisons": [
+    "p64_off_m3 vs p64_post_m3",
+    "p64_pre_m3 vs p64_post_m3"
+  ],
+  "budgets": [
+    512,
+    2048
+  ],
+  "no_answer_generation": true,
+  "no_RAGChecker_or_RAGAS_experiment": true,
+  "coverage_definition": "OR over annotated support sets; AND over required references; a reference is present only when a complete annotated original-character span is delivered.",
+  "limitation": "Annotated-support coverage only, not exhaustive semantic absence, current clinical correctness, or human-adjudicated utility. Prior pilot outcomes known; exploratory.",
+  "mixed_hardware_timing": "Old traces were generated on RTX5060 Windows; new three on RTX5090 Linux. Do not pool latencies as same-environment measurements.",
+  "independent_external_information_needs": false,
+  "protected_files": 176
+}

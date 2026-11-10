@@ -1,6 +1,6 @@
 # 仓库使用指南
 
-这份指南说明实验数据、代码和运行结果的位置。论文文件与旧稿归档不包含在当前仓库中。仓库的日常命令都从根目录执行。
+审稿与复现入口见 [ARTIFACTS.md](ARTIFACTS.md)。这份指南说明实验数据、代码和运行结果的位置。论文文件与旧稿归档不包含在当前仓库中。仓库的日常命令都从根目录执行。
 
 ## 1. 从哪里开始
 
@@ -78,11 +78,11 @@ pixi run --locked workflow --dry-run e3
 
 ## 5. 清单、历史记录与输出
 
-- [metadata/MANIFEST.json](metadata/MANIFEST.json)：历史文件大小与 SHA-256 清单；其中仍可能列出已移除的文件。
+- [metadata/MANIFEST.json](metadata/MANIFEST.json)：当前源代码树文件的大小与 SHA-256 清单；冻结实验及 Release 自带历史清单另行保留。
 - [metadata/release_status.json](metadata/release_status.json)：稿件、作者和实验完成状态。
 - [metadata/data_layout.json](metadata/data_layout.json)：本次数据文件迁移的路径与校验记录。
 - [archive/](archive/)：历史代码快照；原先的论文归档已经移除。
 
 历史论文构建、打包及部分校验脚本仍可能依赖已移除的论文文件；运行前需先更新这些脚本及清单。实验分析输出使用 `build/` 或明确指定的新目录。
 
-作者确认已完成 60 个 world 的人工语义审核，但审核记录尚待上传；新版 377 条肿瘤事实的标注及对应实验结果也待补充。仓库目前公开，补充材料需在用于复现和评审前核对完整性。
+作者确认已完成 60 个 world 的人工语义审核，但审核记录尚待上传；新版 377 条肿瘤事实标注及对应实验结果见 [oncology coverage](experiments/supplements/oncology_coverage_v1/)。仓库目前公开，补充材料需在用于复现和评审前核对完整性。

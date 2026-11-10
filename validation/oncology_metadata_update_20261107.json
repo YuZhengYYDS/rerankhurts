@@ -1,0 +1,116 @@
+{
+  "date": "2026-11-07",
+  "files": [
+    {
+      "after_sha256": "f181c5867a4755707b0ff504f82cb0d2bfb88e4942ff70c9283699c3c832a172",
+      "before_sha256": "c79d3b1e429e7b6948ad6bada06b2c4fb15675bed4b944ad59a9713e69be56fb",
+      "bytes": 810186,
+      "path": "experiments/supplements/oncology_coverage_v1/annotations/claims.jsonl"
+    },
+    {
+      "after_sha256": "eba736ea262d3489a4ab6b589889c5dc4c2e19516dcdd64bfb346bfdb6caf0a2",
+      "before_sha256": "fe16b8d0ba7a9953718b793cd451739a686f71e6850bc3e58694ba1a64c18058",
+      "bytes": 565,
+      "path": "experiments/supplements/oncology_coverage_v1/annotations/rubric_freeze.json"
+    },
+    {
+      "after_sha256": "fd44651f21826035310e3848c7541595f2a836f70e993d1852d3ee408b256ffe",
+      "before_sha256": "c09dc09881a25494a1d1c8a041e843ff48e15450f23e3ff8388997e7bb534ab7",
+      "bytes": 1063186,
+      "path": "experiments/supplements/oncology_coverage_v1/annotations/truth.jsonl"
+    },
+    {
+      "after_sha256": "162f2e1c2bc44c2d311b8e5560be994a8ad351cfcf97ddb9e1670d86529c7503",
+      "before_sha256": "4184a48ac46d74b64d49488a59663d7b126b8b6492fec4e4c809fb3f41c8100f",
+      "bytes": 71637,
+      "path": "experiments/supplements/oncology_coverage_v1/inputs/questions_revised.jsonl"
+    },
+    {
+      "after_sha256": "41df9a2ccef596f91e474e99bbbb6edbbbe4e96e28775857653e020dfaa7e902",
+      "before_sha256": "b7229da3ddd7670a2dab9d8970a668e19a5eceabcaea37f01e0e4f84a14a8bf9",
+      "bytes": 1393,
+      "path": "experiments/supplements/oncology_coverage_v1/protocol.json"
+    },
+    {
+      "after_sha256": "b6d2090ad40c474e4a1de8923c52f1c37c9d8da51b22f5dbe62d59eaeb5b834c",
+      "before_sha256": "e8b726517bfba06323770da585fcc79e70b560000051438357bab640e5eee956",
+      "bytes": 3082,
+      "path": "experiments/supplements/oncology_coverage_v1/results/configuration_summary.csv"
+    },
+    {
+      "after_sha256": "9bdcee72ee2cbecb015bb04438b0a7cda596c066130d25d203956a6c61df16eb",
+      "before_sha256": "83d3bf9d03f2044ae7449aa22195760a383eebb7ff664fcd44928908b973cdcd",
+      "bytes": 3158,
+      "path": "experiments/supplements/oncology_coverage_v1/results/configuration_summary_unchanged_152.csv"
+    },
+    {
+      "after_sha256": "65b1abf5aa1f31e2929b826b2ca3d93297368f378ac22fe3c729e606e3d7bdd1",
+      "before_sha256": "992ac29f355245d9c0084a1a09638084465b557f3c81fbf02556881dbaf571e3",
+      "bytes": 1416,
+      "path": "experiments/supplements/oncology_coverage_v1/results/paired_contrasts.csv"
+    },
+    {
+      "after_sha256": "d2ca1ebcc24b686292edc406f749ea396937d1e59bea9b5cbe36311bad468598",
+      "before_sha256": "83a19e5eb75815e5dcc441e382af9451593ec517e4038e7852e339a02e97aed2",
+      "bytes": 1294468,
+      "path": "experiments/supplements/oncology_coverage_v1/results/per_fact_coverage.csv"
+    },
+    {
+      "after_sha256": "95dcbdde782425239dbaa79300e0e1cb0376b7f268b5eccde8c2044e2d779688",
+      "before_sha256": "5ba83f7084be1d50d97b9e7826bc533827b4ae1f38d6f27147319453a6a1be25",
+      "bytes": 1205908,
+      "path": "experiments/supplements/oncology_coverage_v1/results/per_question_coverage.csv"
+    },
+    {
+      "after_sha256": "5f03f9de8b22d7232d26ea3e54e7197ce552f42cfb21ef3221b2de7c76807daf",
+      "before_sha256": "a26c9868293f3deb820cdc1cb1b2002f7c858760f98b8e3c31daf51de1e43b7a",
+      "bytes": 1012,
+      "path": "experiments/supplements/oncology_coverage_v1/results/validation.json"
+    },
+    {
+      "after_sha256": "f733b42d9c34c64b078a457c3d020103740ec67e0611ee3d892dbc2797b8875e",
+      "before_sha256": "0adae86a727ce827192c78512e7f08ea1020c539c5309c5ad1ba3924c7558d90",
+      "bytes": 748,
+      "path": "experiments/supplements/oncology_coverage_v1/status.json"
+    },
+    {
+      "after_sha256": "ca3640dbba90c610002dd1e8c0ad9dff4921bc4b0eeb7661c618887615f77878",
+      "before_sha256": "27b5835ff53930c4c28f34a28432238fdffdac13535a2fa6bc3816e6386b08df",
+      "bytes": 3908,
+      "path": "validation/repository_followup_20261107.json"
+    }
+  ],
+  "frozen_file_references_checked": 218,
+  "historical_execution_source_preserved": true,
+  "neural_inference_performed": false,
+  "other_json_values_and_csv_columns_unchanged": true,
+  "parent_commit": "da3497281cd0dec7b6373d1a250556ba084154c2",
+  "rescoring": {
+    "all_saved_coverage_outcomes_reproduced": true,
+    "configurations": 20,
+    "exact_quotes_verified": 1241,
+    "facts": 377,
+    "models_rerun": false,
+    "questions": 155,
+    "records": 3100,
+    "status": "PASS",
+    "tokenizer_boundary_map": "Saved original-character intervals; no tokenizer rerun",
+    "trace_files_verified": 155
+  },
+  "row_counts": {
+    "annotations/claims.jsonl": 1241,
+    "annotations/truth.jsonl": 155,
+    "inputs/questions_revised.jsonl": 155,
+    "results/configuration_summary.csv": 20,
+    "results/configuration_summary_unchanged_152.csv": 20,
+    "results/paired_contrasts.csv": 8,
+    "results/per_fact_coverage.csv": 7540,
+    "results/per_question_coverage.csv": 3100
+  },
+  "scope": "Remove optional human_review_completed metadata from current Oncology annotation and result records",
+  "tests": {
+    "failed": 0,
+    "passed": 25,
+    "skipped": 0
+  }
+}
