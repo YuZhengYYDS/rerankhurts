@@ -1314,7 +1314,7 @@ Evidence: S03, S05, S06, S08.
 
 **Findings for this world**
 
-- ????????????????????????
+- The three required R3 assertions occur at characters 3212-3339; complete support requires all three fields, and identical Annex values cannot substitute for target-entity evidence.
 
 **Original-text evidence index**
 
