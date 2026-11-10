@@ -8604,8 +8604,8 @@
     "sha256": "ebb4928327a75bbd069637339ee78748842ad31bd0ee6a2badc5505f674f4f54"
   },
   "experiments/supplements/oncology_coverage_v1/reviews/oncology_fact_review_english.xlsx": {
-    "bytes": 186085,
-    "sha256": "132045ae5127086ef41bc5a376460dd2224e756e836207ca9286900d22a215b9"
+    "bytes": 185760,
+    "sha256": "283b502f98ad2dc8d16d1692cfd5b93fe4c1ee0bdb58760df0c97268ab0e11db"
   },
   "experiments/supplements/oncology_coverage_v1/run_three/manifest.json": {
     "bytes": 5209,
