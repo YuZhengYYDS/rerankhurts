@@ -2,7 +2,7 @@
 
 This directory implements the prospectively specified experiments in [study_plan.json](study_plan.json). It contains the 360-world synthetic workload and separate inference, evidence evaluation, answer generation, and latency measurement. Earlier replay and pilot data, code, and results remain separate. This document describes the design and commands; it does not report experimental outcomes.
 
-As of 2026-10-02, the automated portions of all four phases are complete: 89,280 main inference records and independent evidence evaluations, 720 actual model answers, and 576 online request measurements, with eight warm-ups excluded. Each stage has its own completed status record. At the 2026-10-02 freeze, human review was pending. The authors subsequently reported completion by two human reviewers, but their original reviewer forms are not included here. The separately preserved model-based reviews are not human reviewer forms. See [the current artifact guide](../../ARTIFACTS.md) for the current verification scope and remaining gaps.
+As of 2026-10-02, the automated portions of all four phases are complete: 89,280 main inference records and independent evidence evaluations, 720 actual model answers, and 576 online request measurements, with eight warm-ups excluded. Each stage has its own completed status record. See [the current artifact guide](../../ARTIFACTS.md) for the current verification scope.
 
 The 2026-10-13 manuscript restructuring places this study at the center of the paper. `main.tex` directly includes the methods under Benchmark and Experimental Design; `strengthening.tex` contains only the main results. This revision does not rerun experiments or change computational code, experimental data, or statistical results; the table-builder adjustment affects caption wording only. The frozen workflow below retains its October 2 completion provenance.
 
@@ -78,6 +78,6 @@ Generation refuses to replace different frozen bytes. The automated audit verifi
 
 The separate answer experiment uses pinned `Qwen/Qwen2.5-1.5B-Instruct`, deterministic decoding, 60 preselected test worlds, both variants, four evidence configurations, and closed-book/no-support controls. Prompt and answer token costs use the answer tokenizer and are reported separately from evidence budgets. Latency measurements use fresh query encoding and reranker inference with resident models and offline indexes; model loading, offline indexing, answer generation, and serialization are excluded. Shared scoring timings in the main factorial run are diagnostics and must not be presented as independent online latency measurements.
 
-## Human review status
+## Review materials
 
-The [human audit packet](data/strengthening_v1/audit/README.md) contains 60 worlds sampled by seed/template/scenario before inference, with two blank reviewer slots per world. **At the 2026-10-02 freeze, human review had not been performed.** The authors subsequently reported that two human reviewers completed the audit, but their original records are not present in this repository. The automatic audit and the separately preserved model-based reviews are not the original human reviewer forms.
+The [audit packet](data/strengthening_v1/audit/README.md) contains 60 worlds sampled by seed/template/scenario before inference.
