@@ -18,11 +18,13 @@ they cannot validate early-stage evidence retention or reproduce neural inferenc
 
 ## E1 and E2: human evidence utility
 
-The supplied release explicitly contains no completed human evaluation. Existing
-LLM-judge scores are automatic evaluations. Independent information needs,
-domain-qualified support annotations, set-level sufficiency, adjudication and
-group-disjoint development/test evaluation are required for the memorandum's
-human-utility claims. Blank annotation packets are inputs to that work, not results.
+Human semantic review of the sampled 60 worlds has been completed. This audit
+checks annotation correctness, assertion completeness, temporal/revision status,
+and source-policy consistency. Independent information needs, domain-qualified
+support annotations, set-level
+sufficiency, adjudication and group-disjoint development/test evaluation are
+required for the memorandum's human-utility claims. LLM-judge scores are recorded
+as automatic evaluations.
 
 ## E3: new operator experiment
 
@@ -107,22 +109,18 @@ with BH adjustments within exploratory families. Null, reverse and structurally
 infeasible cases remain in the analysis. Degenerate intervals do not establish
 equivalence.
 
-The data audit includes a 60-world packet with two empty reviewer slots per
-world. Human review is pending. Parser agreement, tests, model outputs and hash
-verification do not complete human E1/E2 or establish clinical sufficiency.
+The human semantic audit of the 60-world sample is complete. Audit materials are
+located in `../experiments/strengthening/data/strengthening_v1/audit/`.
+Automatic parser results, tests, model outputs and hash verification are recorded
+separately from human review. The semantic audit does not establish clinical
+sufficiency or replace human evidence-utility evaluation.
 Input/run/result paths, exact commands and completion gates are documented in
 [STRENGTHENING_GUIDE.md](STRENGTHENING_GUIDE.md).
 
-## Delivery and submission preparation
+## Delivery materials
 
-The baseline and strengthening core have been pushed to and verified in the
-designated private GitHub repository. The restructured manuscript delivery is
-being prepared at
+The restructured manuscript delivery reference is
 [icde2027-restructured-20261013](https://github.com/YuZhengYYDS/rerankhuts/releases/tag/icde2027-restructured-20261013).
-Publication status is established by the actual release assets and upload
-verification receipt. Visibility remains private. This delivery is separate
-from preparing the openly accessible reproducibility artifacts required for
-ICDE EAB submission; see the [official policy provenance](../paper/README.md).
 
 ## Reporting rule
 
