@@ -132,7 +132,7 @@ pixi run --locked strengthen-analyze --results build/reanalysis/strengthening --
 - `answer_contrasts.csv`、`answer_world_summary.csv`、`timing_world_contrasts.csv`：世界级下游比较。
 - `analysis.json`、`figures/manifest.json`：分析设置、源文件哈希、图文件哈希与图注；图同时输出 PDF/PNG。
 
-人工语义审计仍是 **pending**。`data/strengthening_v1/audit/` 下提供了 60 个世界的盲于模型配置/结果的审核包和两位独立 reviewer 的空表。自动 parser、单元测试、哈希校验和模型回答均不能冒充真人审核。真正完成时需保存独立填写、分歧及处理记录，而不是把空表状态改成通过。
+人工语义审计已完成，覆盖审核包中的 60 个世界，由两位人工审核者完成。审核材料位于 `data/strengthening_v1/audit/`。自动 parser、单元测试、哈希校验和模型回答属于自动检查，与人工审核判断分开记录。
 
 独立的外部真实场景复现尚未完成。基线和扩展核心已推送并核验至私有GitHub仓库，本次论文重构的交付包对应下载入口为 [icde2027-restructured-20261013 Release](https://github.com/YuZhengYYDS/rerankhuts/releases/tag/icde2027-restructured-20261013)，发布状态以该页实际附件及上传校验回执为准。仓库保持private；为ICDE EAB提供公开可访问artifact仍属单独的提交准备。
 
