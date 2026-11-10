@@ -12,16 +12,16 @@
     "sha256": "6d7778004d8a69f6e10d39f9c13e7c4c5d7c1287884f30a16ac386a8cd37e26f"
   },
   "ARTIFACTS.md": {
-    "bytes": 8072,
-    "sha256": "08bdedaaefcad9c9b27bf46f60b97797e67aaa6730856960b983d94b13f97338"
+    "bytes": 8251,
+    "sha256": "1e8b1e61b51018c342f3768f99f5c53ec33195f8fc1853d30c7da540ac2b466b"
   },
   "LICENSE": {
     "bytes": 1380,
     "sha256": "1b1cbc087d7a0e81d683a4c3537b487d7799ab5d9e771afa5986b7f6b03c1047"
   },
   "README.md": {
-    "bytes": 5789,
-    "sha256": "0ccfb8c772b3791f542c37ae2394a4f006d558f7970990a4c6d90de3181ae1d7"
+    "bytes": 5975,
+    "sha256": "36e2c650208f0b5d2cbac7bb6fe5bf2b4219422b3f402c55b56eb15da1cb71a6"
   },
   "archive/README.md": {
     "bytes": 1069,
@@ -8599,6 +8599,14 @@
     "bytes": 1012,
     "sha256": "5f03f9de8b22d7232d26ea3e54e7197ce552f42cfb21ef3221b2de7c76807daf"
   },
+  "experiments/supplements/oncology_coverage_v1/reviews/README.md": {
+    "bytes": 1226,
+    "sha256": "63e786b0eafc4dc18f7db42a019eaf76f586c421748d4feb0dc01ca87ae4bca9"
+  },
+  "experiments/supplements/oncology_coverage_v1/reviews/oncology_review_ai_assisted.xlsx": {
+    "bytes": 195199,
+    "sha256": "b7c3e886ea5f8eae1427bade08b91014f0c0a2546cdbe7d24fdab58306f1d454"
+  },
   "experiments/supplements/oncology_coverage_v1/run_three/manifest.json": {
     "bytes": 5209,
     "sha256": "e66b9555d39cd1ed6f3ea0e51b2e525ebf8dba40ae0261f24783de833cecea16"
@@ -8732,8 +8740,8 @@
     "sha256": "ff6825d3791ce5fb4d1a522f5372b0c6cdd91bb38d1ddb0f0f902300eefb3053"
   },
   "guide.md": {
-    "bytes": 5527,
-    "sha256": "7918f235a15126969bea0c503096929efa4d1334a2d0ba19f157469de74a3474"
+    "bytes": 5642,
+    "sha256": "9454a3d68a8c5cadc8ea6c0999eac9798d5d53cd776981ef7e9827af39e0d955"
   },
   "legacy/README.md": {
     "bytes": 5787,
@@ -8904,8 +8912,8 @@
     "sha256": "0cb32fd8c04a6e8e9af3686c857cc23b958657188668c47a2e32ff2b1633802e"
   },
   "metadata/release_status.json": {
-    "bytes": 11901,
-    "sha256": "82aef5e96edf825356794f2229e4ca80f88a803e673fbc69686e88efc710f280"
+    "bytes": 11961,
+    "sha256": "8f2fa1b43aeba9416b8b058b0b4c9b04925e843091b78fcaf840f2a101fda220"
   },
   "pixi.lock": {
     "bytes": 210901,

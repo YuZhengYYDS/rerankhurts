@@ -307,6 +307,6 @@
     "human_review": "Authors report completion by two reviewers; original human-review records not yet supplied.",
     "fresh_model_runs": "Not performed",
     "scope": "See ARTIFACTS.md; EAB completeness not yet established.",
-    "oncology_expert_review": "Authors report expert review completed after the frozen annotation snapshot; expert-review records not yet supplied."
+    "oncology_expert_review": "Authors report that an oncology expert subsequently confirmed all 377 judgments; an AI-assisted review workbook is public, without a human signature or independent attestation."
   }
 }
