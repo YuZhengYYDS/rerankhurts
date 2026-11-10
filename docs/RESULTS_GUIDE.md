@@ -29,7 +29,7 @@ F12 位于第 11 页。正文上限检查把与致谢或参考文献共享的正
 - `corpus.jsonl`、`questions.jsonl`：公开推断接口，720个互相隔离的80-chunk集合。
 - `truth.jsonl`、`metadata.jsonl`、`claims.jsonl`：世界事实、配对与split信息、已由独立parser核对的断言。
 - `specification.json`：生成代码、计划、维度及数据哈希。
-- `audit/`：独立文本解析审计和60世界人工审核包；人工表仍为空，不能视为人审结果。
+- `audit/`：独立文本解析审计和 60 世界人工审核材料；人工语义审核已完成。
 
 实际主推断在 `experiments/runs/strengthening_v1/`：`manifest.json` 固定124配置、
 模型、代码和输入身份，`traces/` 保存720个压缩逐题轨迹，`status.json` 记录主推断完成数。
@@ -133,8 +133,6 @@ pixi run --locked strengthen-analyze --results build/reanalysis/strengthening --
 代码分包显式包含 `experiments/strengthening/study_plan.json` 与 `.gitattributes`；
 结果分包包含新结果、主轨迹、研究计划和扩展指南，完整包另含全部输入数据。
 
-基线和扩展核心版本已经推送并核验至 [私有GitHub仓库](https://github.com/YuZhengYYDS/rerankhuts)。
-本次论文重构的交付包对应[icde2027-restructured-20261013下载入口](https://github.com/YuZhengYYDS/rerankhuts/releases/tag/icde2027-restructured-20261013)
-的发布状态以实际附件及上传校验回执为准，与2026-10-02已完成的实验状态分别核验。
-60世界人工审核与外部真实场景复现仍未完成；私有交付也不等于满足EAB开放artifact要求，
-提交准备仍需公开可访问的复现地址。
+代码仓库见 [GitHub](https://github.com/YuZhengYYDS/rerankhuts)。
+交付包见 [icde2027-restructured-20261013 下载入口](https://github.com/YuZhengYYDS/rerankhuts/releases/tag/icde2027-restructured-20261013)。
+60 世界人工语义审核已完成；独立的外部真实场景复现尚未完成。
