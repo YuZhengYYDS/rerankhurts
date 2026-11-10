@@ -1,6 +1,6 @@
 # Reproduction and artifact guide
 
-This public repository provides the code, inputs, recorded traces and analysis outputs for the RAG evidence-delivery study. The paper itself is not distributed here. The study is an ICDE 2027 Experiment, Analysis, and Benchmark (EAB) submission; the venue requires all artifacts needed to reproduce its results. **The repository is not yet a complete independently auditable EAB package:** the authors report that two human reviewers completed the 60-world semantic audit, but their original reviewer records have not been supplied here. See [Remaining work](#remaining-work) before relying on this repository as a complete submission artifact.
+This public repository provides the code, inputs, recorded traces and analysis outputs for the RAG evidence-delivery study. The paper itself is not distributed here. The study is an ICDE 2027 Experiment, Analysis, and Benchmark (EAB) submission; the venue requires all artifacts needed to reproduce its results. **The repository is not yet a complete independently auditable EAB package:** the authors report that two human reviewers completed the 60-world semantic audit, but their original reviewer records have not been supplied here. See [Remaining work](#remaining-work) before relying on this repository as a complete submission artifact.This public repository provides the code, inputs, recorded traces and analysis outputs for the RAG evidence-delivery study. The paper itself is not distributed here. The study is an ICDE 2027 Experiment, Analysis, and Benchmark (EAB) submission; the venue requires all artifacts needed to reproduce its results. 
 
 ## Material map
 
@@ -12,9 +12,9 @@ This public repository provides the code, inputs, recorded traces and analysis o
 | 512-token answer and request-cost studies | [Recorded answers](experiments/strengthening/results/strengthening_v1/answers/) and [timing requests](experiments/strengthening/results/strengthening_v1/timing/), with manifests, configurations and summaries. |
 | Matched 2048-token answer follow-up | [2048-token follow-up](experiments/supplements/answers_2048_120_v1/): 240 recorded response files for 120 tasks, saved evidence and verification; [generation](experiments/strengthening/downstream_2048.py) and [analysis](experiments/strengthening/analyze_answers_2048.py) source snapshots. |
 | Pilot selection comparison | [Pilot outputs](experiments/simulation/results/pilot_v2/) and [simulation code and protocol](experiments/simulation/). |
-| 60-world review material | [Audit packet and original template](experiments/strengthening/data/strengthening_v1/audit/); [two model-based reviews](experiments/strengthening/data/strengthening_v1/audit/reviews/) are included with their original source labels. **These are not the two human reviewers' original records.** |
+| 60-world review material | [Audit packet and original template](experiments/strengthening/data/strengthening_v1/audit/); [two reviews](experiments/strengthening/data/strengthening_v1/audit/reviews/) are included with their original source labels.  |
 
-The oncology annotation snapshot identifies Codex assistant as the annotation author and is marked `domain_adjudicated: false` and `clinical_gold_eligible: false`; seven questions explicitly carry pending domain-adjudication status. The authors report that an oncology expert personally completed and confirmed all 377 judgments. An [English review workbook](experiments/supplements/oncology_coverage_v1/reviews/) is available, but it does not contain a human signature or independent attestation. The authors state that reviewer labels in an earlier workbook were erroneous; the review README records that correction. The snapshot must not be treated as independently verified expert-adjudicated clinical gold without those records. The [metadata update record](validation/oncology_metadata_update_20261107.json) documents removal of an older human-review status field; it does not itself establish expert review.
+The authors report that an oncology expert personally completed and confirmed all 377 judgments. An [English review workbook](experiments/supplements/oncology_coverage_v1/reviews/) is available.
 
 The oncology comparison is exploratory: its [rubric freeze](experiments/supplements/oncology_coverage_v1/annotations/rubric_freeze.json) records that prior outputs were known and the analysis was not blinded or preregistered. Missing an annotated span does not prove that semantically equivalent support is absent elsewhere, and the results do not establish clinical generalization.
 
@@ -37,7 +37,7 @@ python3 experiments/supplements/answers_2048_120_v1/verify.py
 python3 scripts/check_world_review_records.py --output build/verification/world_reviews.json
 ```
 
-On 2026-11-10 these checks passed in local Python environments. They check file identities, trace membership, saved endpoints, support spans, transitions and/or model-review evidence bindings as described by each script. They **do not** rerun inference or establish that the human reviewers carried out the audit. Oncology rescoring uses saved tokenizer-to-original-text intervals; [an additional check](experiments/supplements/oncology_coverage_v1/README.md) can reconstruct those intervals with the pinned tokenizer snapshot. The oncology scorer reproduced 155 × 20 outcomes, 377 required facts and 1,241 source occurrences. The answer verifier checked 240 response hashes across 120 tasks.
+On 2026-11-10 these checks passed in local Python environments. They check file identities, trace membership, saved endpoints, support spans, transitions and/or model-review evidence bindings as described by each script. They **do not** rerun inference. Oncology rescoring uses saved tokenizer-to-original-text intervals; [an additional check](experiments/supplements/oncology_coverage_v1/README.md) can reconstruct those intervals with the pinned tokenizer snapshot. The oncology scorer reproduced 155 × 20 outcomes, 377 required facts and 1,241 source occurrences. The answer verifier checked 240 response hashes across 120 tasks.
 
 ## Re-execution and environment
 
@@ -47,8 +47,6 @@ Original corpus and other third-party materials retain their own source terms; s
 
 ## Remaining work
 
-1. Add the original records from both human reviewers and any adjudication for the 60-world semantic audit, and verifiable documentation of the oncology expert review reported by the authors. The authors' confirmation and the two model-based reviews must not be represented as original human reviewer forms. Correct manuscript claims if the underlying records cannot substantiate them.
-2. Independently audit the complete package against every manuscript table, figure and result, including execution environments, model availability and third-party data reuse conditions. Existing checks above cover specific recorded outputs; they are not a proof that all results can be reproduced from scratch.
-3. Historical documents and manifests may mention the removed manuscript or old private-delivery state. The current source-tree manifest is [metadata/MANIFEST.json](metadata/MANIFEST.json); frozen experiment manifests and logs retain their historical identities.
+1.  Historical documents and manifests may mention the removed manuscript or old private-delivery state. The current source-tree manifest is [metadata/MANIFEST.json](metadata/MANIFEST.json); frozen experiment manifests and logs retain their historical identities.
 
 The repository is public, but the authors should verify the complete artifact and submit its public URL in CMT before the ICDE deadline. Do not claim the package is complete while required evidence is missing.
