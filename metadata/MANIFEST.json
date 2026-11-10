@@ -12,16 +12,16 @@
     "sha256": "6d7778004d8a69f6e10d39f9c13e7c4c5d7c1287884f30a16ac386a8cd37e26f"
   },
   "ARTIFACTS.md": {
-    "bytes": 8251,
-    "sha256": "1e8b1e61b51018c342f3768f99f5c53ec33195f8fc1853d30c7da540ac2b466b"
+    "bytes": 8343,
+    "sha256": "3c03c335cd9cee4c3b52f3071211ebf9486b3ae774f1ae764307b10eaa7957f0"
   },
   "LICENSE": {
     "bytes": 1380,
     "sha256": "1b1cbc087d7a0e81d683a4c3537b487d7799ab5d9e771afa5986b7f6b03c1047"
   },
   "README.md": {
-    "bytes": 5975,
-    "sha256": "36e2c650208f0b5d2cbac7bb6fe5bf2b4219422b3f402c55b56eb15da1cb71a6"
+    "bytes": 6063,
+    "sha256": "93bca9ecf936e29c233676109d3bdbd6946d8c2f4304c49318e6eb83bc2fd948"
   },
   "archive/README.md": {
     "bytes": 1069,
@@ -8600,12 +8600,12 @@
     "sha256": "5f03f9de8b22d7232d26ea3e54e7197ce552f42cfb21ef3221b2de7c76807daf"
   },
   "experiments/supplements/oncology_coverage_v1/reviews/README.md": {
-    "bytes": 1226,
-    "sha256": "63e786b0eafc4dc18f7db42a019eaf76f586c421748d4feb0dc01ca87ae4bca9"
+    "bytes": 1535,
+    "sha256": "ebb4928327a75bbd069637339ee78748842ad31bd0ee6a2badc5505f674f4f54"
   },
-  "experiments/supplements/oncology_coverage_v1/reviews/oncology_review_ai_assisted.xlsx": {
-    "bytes": 195199,
-    "sha256": "b7c3e886ea5f8eae1427bade08b91014f0c0a2546cdbe7d24fdab58306f1d454"
+  "experiments/supplements/oncology_coverage_v1/reviews/oncology_fact_review_english.xlsx": {
+    "bytes": 186085,
+    "sha256": "132045ae5127086ef41bc5a376460dd2224e756e836207ca9286900d22a215b9"
   },
   "experiments/supplements/oncology_coverage_v1/run_three/manifest.json": {
     "bytes": 5209,
@@ -8740,8 +8740,8 @@
     "sha256": "ff6825d3791ce5fb4d1a522f5372b0c6cdd91bb38d1ddb0f0f902300eefb3053"
   },
   "guide.md": {
-    "bytes": 5642,
-    "sha256": "9454a3d68a8c5cadc8ea6c0999eac9798d5d53cd776981ef7e9827af39e0d955"
+    "bytes": 5721,
+    "sha256": "410bf41a7b6767033c4d2f6b927d93a4c50f0b7e0e2994d38ab987bb6b74b0c2"
   },
   "legacy/README.md": {
     "bytes": 5787,
@@ -8912,8 +8912,8 @@
     "sha256": "0cb32fd8c04a6e8e9af3686c857cc23b958657188668c47a2e32ff2b1633802e"
   },
   "metadata/release_status.json": {
-    "bytes": 11961,
-    "sha256": "8f2fa1b43aeba9416b8b058b0b4c9b04925e843091b78fcaf840f2a101fda220"
+    "bytes": 12016,
+    "sha256": "fe59615f07f89bf4c81915728108578c562f7b31de2bf6b3397f6fd0a54dc086"
   },
   "pixi.lock": {
     "bytes": 210901,
