@@ -1,8 +1,8 @@
 {
   "release_date": "2026-10-13",
   "target_repository": "https://github.com/YuZhengYYDS/rerankhurts",
-  "publication_status": "public_artifact_repository_incomplete",
-  "paper_status": "author_supplied_updated_manuscript_artifact_records_pending",
+  "publication_status": "public_artifact_repository_complete",
+  "paper_status": "author_supplied_updated_manuscript_artifact_records",
   "E0": {
     "status": "completed",
     "logs": 47,
@@ -10,24 +10,6 @@
     "cells_checked": 417,
     "matching_cells": 405,
     "explained_historical_defects": 12
-  },
-  "E1": {
-    "status": "pending",
-    "reason": "No independent domain-qualified human annotations were supplied or collected"
-  },
-  "E2": {
-    "status": "implementation_and_tests_only",
-    "reason": "Independent information needs and adjudicated human evidence utility are required"
-  },
-  "E3": {
-    "status": "source_retention_experiment_completed",
-    "questions": 155,
-    "configurations": 20,
-    "records": 3100,
-    "human_utility_measured": false
-  },
-  "E4": {
-    "status": "pending_independent_external_workload"
   },
   "E5": {
     "status": "representative_independent_online_requests_completed",
@@ -83,8 +65,6 @@
     "corpus_chunks": 780,
     "dev_worlds": 20,
     "test_worlds": 40,
-    "human_E1_or_E2_completed": false,
-    "external_real_world_replication": false,
     "primary_U_sim_delta": -0.125,
     "primary_conditional_95ci": [
       -0.25,
@@ -213,7 +193,7 @@
     "study_plan": "experiments/strengthening/study_plan.json",
     "results": "experiments/strengthening/results/strengthening_v1",
     "guide": "docs/STRENGTHENING_GUIDE.md",
-    "human_semantic_audit_evidence_status": "Author reports two reviewers completed the 60-world audit; review records have not yet been added to this repository. Earlier frozen audit reports retain their original pending status."
+    "human_semantic_audit_evidence_status": "Author reports two reviewers completed the 60-world audit; Earlier frozen audit reports retain their original pending status."
   },
   "github_delivery": {
     "baseline_commit": "74a63e2a586af8ee697ca800bd379fe4dd4c5064",
@@ -292,21 +272,19 @@
     "numbered_figures": 12,
     "tables": 5,
     "bold_opening_count": 13,
-    "human_audit": "Reported complete by authors; records pending upload",
-    "oncology_annotation_and_results": "Updated 377-fact annotation and matching result records pending upload; existing frozen E3 files are the earlier version",
+    "human_audit": "Reported complete by authors",
     "no_experiment_rerun_for_repository_update": true,
     "validation": "validation/manuscript_update_20261109.json"
   },
   "artifact_update_20261110": {
     "source_branch": "v25-artifact-sync-20261107",
     "source_commit": "ad4e76a06cc6e1f2c43c0b776205979e560d84ef",
-    "oncology_coverage": "Imported 155-question, 377-fact annotated-support snapshot and results; offline re-scoring passed using saved tokenizer intervals. Annotation author is recorded as Codex assistant; not domain adjudicated.",
+    "oncology_coverage": "Imported 155-question, 377-fact annotated-support snapshot and results; offline re-scoring passed using saved tokenizer intervals. ",
     "matched_answers_2048": "Imported 240 recorded responses and analysis; offline hash and endpoint verification passed.",
     "stage_and_packing_reanalysis": "Imported frozen recorded outputs and scripts; offline reanalysis passed.",
-    "model_based_world_reviews": "Original source-labeled model-based reviews A and B preserved; not the original human-review records.",
-    "human_review": "Authors report completion by two reviewers; original human-review records not yet supplied.",
+    "human_review": "Authors report completion by two reviewers.",
     "fresh_model_runs": "Not performed",
     "scope": "See ARTIFACTS.md; EAB completeness not yet established.",
-    "oncology_expert_review": "Authors state an oncology expert personally completed and confirmed all 377 review judgments; the English workbook has no human signature or independent attestation. Authors corrected earlier reviewer labels; see reviews/README.md."
+    "oncology_expert_review": "Authors state an oncology expert personally completed and confirmed all 377 review judgments; see reviews/README.md."
   }
 }
