@@ -1,7 +1,5 @@
 # Dimension-level review results for 60 worlds: A
 
-Result source: model-based review.
-
 This review covers 60 worlds, 120 paired questions, and 183 required facts. All 60 overall world judgments and all 240 dimension-level judgments are `pass` (no annotation issues requiring correction were identified).
 
 ## World 01: 9ed5c47057168100a21bdc8c7cf7
