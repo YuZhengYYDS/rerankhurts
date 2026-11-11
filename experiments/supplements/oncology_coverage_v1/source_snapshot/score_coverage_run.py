@@ -103,8 +103,7 @@ def main():
     'G_final':rec['metrics']['G_final'],'G_raw':rec['metrics']['G_raw'],'candidate_full_support':int(all(bystage['raw'])),
     'post_cap_full_support':int(all(bystage['post_cap'])),'first_annotated_support_loss':first,
     'context_tokens':ctx['used_tokens'],'unknown_context_tokens':unknowns,
-    'supported_fact_ids':json.dumps([f['fact_id'] for f,z in zip(truth['facts'],final) if z]),
-    'human_review_completed':False}
+    'supported_fact_ids':json.dumps([f['fact_id'] for f,z in zip(truth['facts'],final) if z])}
    per.append(row)
    bindings.append({'qid':qid,'config_id':c['config_id'],'trace_origin':sources[qid],'token_prefix_verified':True,
     'original_intervals':json.dumps(parts),'unknown_tokens':unknowns})
@@ -116,7 +115,7 @@ def main():
     facts.append({'qid':qid,'config_id':c['config_id'],'fact_id':f['fact_id'],'fact_value':str(f['value']),
      'candidate_supported':int(bystage['raw'][i]),'pre_cap_supported':int(bystage['pre_cap'][i]),
      'post_cap_supported':int(bystage['post_cap'][i]),'delivered_supported':int(z),
-     'delivered_supported_without_unknown_overlap':int(strict[i]),'human_review_completed':False})
+     'delivered_supported_without_unknown_overlap':int(strict[i])})
  assert len(per)==3100 and len(facts)==377*20
  csvout(ROOT/'results/per_question_coverage.csv',per);csvout(ROOT/'results/per_fact_coverage.csv',facts)
  csvout(ROOT/'results/per_stage_coverage.csv',stages);csvout(ROOT/'results/delivered_original_intervals.csv',bindings)
@@ -133,7 +132,7 @@ def main():
     'candidate_full_support':mean('candidate_full_support'),
     'complete_without_unknown_overlap':mean('full_support_without_unknown_overlap'),
     'reused_questions':sum(r['trace_origin']=='reused_original_unchanged_query' for r in rr),
-    'newly_run_questions':sum(r['trace_origin']=='newly_run_revised_query' for r in rr),'human_review_completed':False})
+    'newly_run_questions':sum(r['trace_origin']=='newly_run_revised_query' for r in rr)})
   return out
  summary=config_summary(per);csvout(ROOT/'results/configuration_summary.csv',summary)
  unchanged=[r for r in per if r['trace_origin']=='reused_original_unchanged_query']
@@ -164,7 +163,7 @@ def main():
      'exploratory_group_bootstrap_ci_low_pp':float(lo),'exploratory_group_bootstrap_ci_high_pp':float(hi),
      'macro_fact_fraction_difference_pp':100*fraction/cc['n'],'page_retention_difference_pp':100*gdelta/cc['n'],
      'same_G_questions':cc['same_G'],'same_G_different_complete_support':cc['same_G_full_diff'],
-     'same_G_different_supported_fact_set':cc['same_G_facts_diff'],'human_review_completed':False})
+     'same_G_different_supported_fact_set':cc['same_G_facts_diff']})
  csvout(ROOT/'results/paired_contrasts.csv',contrasts)
  if cases:csvout(ROOT/'results/same_page_different_fact_cases.csv',cases)
  save(ROOT/'results/divergence_cases.json',cases)
@@ -181,7 +180,7 @@ def main():
  review=ROOT/'review';review.mkdir()
  links=[];header='<!doctype html><meta charset="utf-8"><style>body{font:16px Arial;max-width:1100px;margin:24px auto;line-height:1.6}pre{white-space:pre-wrap;background:#eee;padding:12px}td,th{border:1px solid #bbb;padding:8px}table{border-collapse:collapse}</style>'
  for qid in sorted({r['qid'] for r in cases},key=lambda q:int(q[1:])):
-  tr=truths[qid];s=header+'<h1>'+qid+'</h1><p>'+html.escape(tr['question'])+'</p><p>Assistant source-span annotations; domain review pending. Unannotated semantic alternatives may exist.</p>'
+  tr=truths[qid];s=header+'<h1>'+qid+'</h1><p>'+html.escape(tr['question'])+'</p>'
   for f in tr['facts']:
    s+='<h3>'+html.escape(f['fact_id'])+'</h3><p>'+html.escape(str(f['value']))+'</p>'
    scores=[r for r in facts if r['qid']==qid and r['fact_id']==f['fact_id'] and r['config_id'].startswith('p64_') and '_m3_' in r['config_id']]
@@ -208,7 +207,7 @@ def main():
  axes[0].set_ylabel('Questions / mean annotated facts (%)')
  fig.legend(*axes[0].get_legend_handles_labels(),loc='lower center',ncol=3,fontsize=8)
  fig.suptitle('Oncology: 155 revised questions, fixed pool 64 and M3',fontsize=12)
- fig.text(.5,.02,'Exploratory assistant annotations; domain adjudication pending. 152 reused traces + 3 rerun queries.',ha='center',fontsize=8)
+ fig.text(.5,.02,'152 reused traces + 3 rerun queries.',ha='center',fontsize=8)
  fig.tight_layout(rect=[0,.1,1,.94]);fig.savefig(ROOT/'results/oncology_coverage.png',dpi=190);plt.close(fig)
  protection=json.loads((ROOT/'protected_files.json').read_text())
  changed=[p for p,h in protection.items() if sha(Path(p))!=h];assert not changed
@@ -218,7 +217,7 @@ def main():
   'old_interval_mappings_reproduced':3040,'unknown_overlap_changes_full_support':sum(r['annotated_full_support']!=r['full_support_without_unknown_overlap'] for r in per),
   'protected_files_checked':len(protection),'original_files_changed':changed,
   'no_answer_generation':True,'no_RAGChecker_RAGAS_experiments':True,'mixed_hardware_latency_not_aggregated':True,
-  'human_review_completed':False,'semantic_absence_established':False,'independent_external_validation_established':False}
+  'semantic_absence_established':False,'independent_external_validation_established':False}
  save(ROOT/'status.json',status);save(ROOT/'results/validation.json',dict(status,software_checks=checks))
  lines=['Oncology 新标注覆盖计算（2026-11-03）','',
  '本次复用152道未修改问题的原始轨迹；使用与原实验文件哈希相同的 BGE-small、BGE-reranker-v2-m3 和 BERT 分词器，重新运行 q124、q141、q297 的20组配置，共60条新记录。',

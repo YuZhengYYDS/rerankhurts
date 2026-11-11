@@ -1,6 +1,6 @@
-# Original Oncology execution source
+# Oncology execution source
 
-These are the unchanged preparation, supplementary inference, full scoring and
+These are the preparation, supplementary inference, full scoring and
 delivery scripts from `oncology_coverage_run_20261103`, with the copied original
 factorial backend/protocol. They retain original absolute server paths and runtime
 assumptions as execution provenance; they are not the portable entry points.

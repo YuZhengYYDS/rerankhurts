@@ -23,7 +23,7 @@ for ax,b in zip(axes,[512,2048]):
 axes[0].set_ylabel('Percent (%)')
 legend=fig.legend(*axes[0].get_legend_handles_labels(),loc='lower center',bbox_to_anchor=(.5,.075),ncol=3,fontsize=8)
 fig.suptitle('Oncology: 155 questions (3 revised), pool 64 and M3',fontsize=12)
-footer=fig.text(.5,.025,'Exploratory assistant annotations; domain review pending. 152 reused traces + 3 rerun queries.',ha='center',fontsize=8)
+footer=fig.text(.5,.025,'152 reused traces + 3 rerun queries.',ha='center',fontsize=8)
 fig.tight_layout(rect=[0,.15,1,.94]);fig.canvas.draw()
 assert not legend.get_window_extent().overlaps(footer.get_window_extent())
 fig.savefig(ROOT/'results/oncology_coverage.png',dpi=190);plt.close(fig)

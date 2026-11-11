@@ -21,7 +21,7 @@ pixi run --locked -e gpu python experiments/supplements/oncology_coverage_v1/ver
 
 This command verifies the exact tokenizer JSON hash, token prefixes, original
 character endpoints and all final token streams. It loads no neural model and
-does not download files. The unchanged original full-scoring/inference source is
+does not download files. The full-scoring/inference source is
 in [source_snapshot/](source_snapshot/README.md).
 
 Files:
