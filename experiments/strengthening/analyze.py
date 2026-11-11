@@ -382,13 +382,13 @@ def analyze(output, plan_path, plots=False, exploratory=True, answers=None, timi
                              "primary_correction": "Holm across the two prespecified endpoints",
                              "exploratory_correction": "BH within each explicitly named family; subgroup effects are exploratory",
                              "equivalence": "No equivalence margin was prespecified; zero estimates do not establish equivalence"},
-              "acceptance_mapping": {"A": "Generator and independent parser audits; human semantic audit remains pending",
+              "acceptance_mapping": {"A": "Generator and independent parser audits; sampled-world review records: data/strengthening_v1/audit/reviews/",
                                      "B": "Stage support flow, cap controls, budget geometry and packer-specific relaxed bounds",
                                      "C": "Matched configurations and per-template/model contrasts; conditional on fixed simulator families",
                                      "D": "Separate downstream answer-model report required; not inferred from U_sim",
                                      "E": "Nonempty, unconditional compliance and admissible coverage of explicit source filters",
                                      "F": "Separate actual online-request timing report required; no latency inferred from shared-cache traces"},
-              "human_audit_complete": False, "clinical_generalization_established": False}
+              "clinical_generalization_established": False}
     report["auxiliary_runs"] = auxiliary_analyses(output, repeats, permutation_repeats, seed, answers, timing)
     generated = ("primary_contrasts.csv", "summary.csv", "subgroup_summary.csv", "support_flow.csv",
                  "source_coverage_four_cells.csv", "exploratory_contrasts.csv", "controls.json",

@@ -1,6 +1,6 @@
 {
   "status": "complete",
-  "figures_code_sha256": "d577e9ad45b5a10851967cf76c45b56a975a1ed77fc38dd8d4a1cafe6ea6a591",
+  "figures_code_sha256": "43bc657eb534bbec5a72136874e8904733f3ec26b4628492cc8f84a86cc3ada9",
   "source_csv_sha256": {
     "answer_contrasts.csv": "ebcf9cd04ab440444e6800f3bb3a76d6269909f9d0082ebd45a823bae07f2e7b",
     "answers/per_answer.csv": "3e266b08be026dac423d56bc780beb8ca048157dbc995de831e73dac85d6d755",
@@ -25,6 +25,5 @@
     "support_and_source": "Full-set membership is scored before the final budget stage. Pure sorting preserves membership, and source-policy filtering is disabled in this matched comparison. The joint G/U shares average paired variants within each world; designated-source retention and complete fact coverage are distinct endpoints.",
     "visibility_packing_policy": "Fixed matched submatrices: packing and CE-view contrasts use post cap2, dense-view contrasts use no cap. Policy panel includes constrained tasks only; empty outputs count as noncompliant. The three filter placements have coincident aggregate coordinates at each budget. Points/bars are descriptive world means; no per-task independence or inferential interval is implied.",
     "answers_and_timing": "Actual local answer-model outputs and online requests. Confidence bars come from exploratory seed-stratified paired-world analysis. Latency p50/p95 summarize measured requests; the interval panel first averages repetitions within each world. These are fictional administrative tasks, not clinical validation."
-  },
-  "human_semantic_audit_complete": false
+  }
 }

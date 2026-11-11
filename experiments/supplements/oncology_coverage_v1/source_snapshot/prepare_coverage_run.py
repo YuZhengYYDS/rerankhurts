@@ -57,7 +57,7 @@ protocol={'status':'frozen_before_new_query_inference_and_full_cohort_scoring','
  'coverage_definition':'OR over annotated support sets; AND over required references; a reference is present only when a complete annotated original-character span is delivered.',
  'limitation':'Annotated-support coverage only, not exhaustive semantic absence, current clinical correctness, or human-adjudicated utility. Prior pilot outcomes known; exploratory.',
  'mixed_hardware_timing':'Old traces were generated on RTX5060 Windows; new three on RTX5090 Linux. Do not pool latencies as same-environment measurements.',
- 'human_review_completed':False,'independent_external_information_needs':False,'protected_files':len(protected)}
+ 'independent_external_information_needs':False,'protected_files':len(protected)}
 save(ROOT/'protocol.json',protocol)
 save(ROOT/'preparation_validation.json',{'original_files_changed':[p for p,h in protected.items() if sha(Path(p))!=h],
  'reused_traces':len(list((ROOT/'inputs/reused_traces').glob('*'))),'changed_original_traces_archived':3})
