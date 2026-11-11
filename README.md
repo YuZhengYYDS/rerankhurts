@@ -61,7 +61,7 @@ pixi run --locked strengthen-verify --require-complete
 
 Reanalysis outputs go under `build/`. Historical experiment data, traces and statistical results retain their recorded identities; manuscript figure files are not included.
 
-The authors report that two reviewers completed the 60-world human semantic audit. The updated 377-fact oncology annotations and matching results are available in [the coverage package](experiments/supplements/oncology_coverage_v1/); the older frozen E3 results remain a separate historical version. The authors state that an oncology expert personally completed and confirmed all 377 review judgments. The repository is public. See [metadata/release_status.json](metadata/release_status.json) and [docs/EXPERIMENT_SCOPE.md](docs/EXPERIMENT_SCOPE.md) for provenance and scope.
+Two reviewers completed the [60-world human semantic audit](experiments/strengthening/data/strengthening_v1/audit/reviews/completion.json). An oncology expert completed and confirmed the [377 fact-review judgments](experiments/supplements/oncology_coverage_v1/reviews/). The [coverage package](experiments/supplements/oncology_coverage_v1/) contains the 155-question rubric and matching results. The repository is public.
 
 ## Releases and provenance
 

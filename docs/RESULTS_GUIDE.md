@@ -1,21 +1,8 @@
 # 结果与论文的对应关系
 
-## 论文
+## 当前交付范围
 
-`paper/main.tex` 是 2026-10-26 从用户提供的 ZIP 替换的当前稿件源文件。
-正文位于 `paper/sections/`，图表布局在 `paper/layout.tex`；F1–F3 使用 PDF，
-F4–F12 使用布局文件直接引用的 `*-v2.pdf`。当前稿件包含 58 个粗体开头段落、
-7 个编号章节、12 幅图和 4 张表。作者信息以 `paper/authors.tex` 为准。
-
-`python scripts/build_paper.py` 优先使用 PDFLaTeX/BibTeX，否则使用 Tectonic，
-只将最终 PDF 写入 `paper/main.pdf`，编译中间文件保存在 `build/paper/`。
-构建身份与页数见 `validation/paper_build.json`，结构检查见
-`validation/manuscript_checks.json`。当前构建为 12 页；编号图允许共享页面，
-F12 位于第 11 页。正文上限检查把与致谢或参考文献共享的正文浮动图页计入正文。
-
-替换前的完整论文及绘图输入保存在 `archive/paper_20261022/`，包括旧版
-`generated/`、draw.io 文件、来源数据和历史审计记录。这些归档文件保持原字节；
-下文冻结实验的目录和统计结果保持不变，本次替换没有重新运行模型。
+当前仓库交付代码、输入数据、保存轨迹、分析结果和审核记录。论文单独分发。图表与指标的实验来源见下文，离线核验命令见 [VALIDATION.md](VALIDATION.md)。
 
 ## 扩展实验：360个世界、720任务 × 124配置
 
@@ -45,16 +32,11 @@ F12 位于第 11 页。正文上限检查把与致谢或参考文献共享的正
 - `timing/`：24测试世界、每世界一个变体、四配置的96个first-pass和480个steady测量；8次warm-up不计入。
 - `analysis.json`、`figures/manifest.json`：统计设置、输入身份和图文件来源。
 
-当前稿件直接包含正文中的表格，不依赖历史 `paper/generated/` 文件。
-历史扩展实验表及来源记录保存在 `archive/paper_20261022/generated/`。
 `python -m rerankhuts tables` 使用 `scripts/paper/` 下的生成器，
 将 E3、pilot 和扩展实验表重算到 `build/reanalysis/tables/`，不写入当前论文或归档。
 主研究与旧 E3、`pilot_v2` 使用不同目录。
 
 ```text
-# 新复现尚未结束时可使用的检查，不将PENDING当作完成
-pixi run --locked strengthen-verify --allow-in-progress
-
 # 已完成交付结果的严格检查
 pixi run --locked strengthen-verify --require-complete
 ```
@@ -120,7 +102,7 @@ pixi run --locked strengthen-analyze --results build/reanalysis/strengthening --
 ```
 
 该评分只需要固定fast tokenizer，不运行检索或答案模型。答案/测时目录必须是已完成版本，
-缺失或未完成的步骤不能通过新增CSV名称补成结果。输入与模型准备细节见扩展实验指南。
+输入与模型准备细节见扩展实验指南。
 
 结果专用 ZIP 保留上述冻结文件的原相对路径和来源清单。它便于查看结果，
 但不等于完整复现包；需要代码与输入语料时请使用 `rerankhuts_icde2027.zip`。
@@ -135,4 +117,4 @@ pixi run --locked strengthen-analyze --results build/reanalysis/strengthening --
 
 代码仓库见 [GitHub](https://github.com/YuZhengYYDS/rerankhuts)。
 交付包见 [icde2027-restructured-20261013 下载入口](https://github.com/YuZhengYYDS/rerankhuts/releases/tag/icde2027-restructured-20261013)。
-60 世界人工语义审核已完成；独立的外部真实场景复现尚未完成。
+60 世界人工语义审核已完成；当前实验覆盖受控世界、Oncology 固定语料及 pilot 工作负载。

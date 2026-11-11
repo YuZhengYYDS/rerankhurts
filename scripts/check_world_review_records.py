@@ -47,8 +47,8 @@ def verify(root=ROOT):
             for match in CITATION.finditer(section):
                 quote=section[match.end():].lstrip().splitlines()[0]
                 assert quote.startswith('> ')
-                citation=(*match.groups(),quote[2:])
-                citations.append(citation);wanted.add(citation[0])
+                citation=(world,*match.groups(),quote[2:])
+                citations.append(citation);wanted.add(match.group(1))
         assert seen==set(packet) and len(seen)==60
         reviews.append((label,path,citations))
     corpus={};claims={}
@@ -60,8 +60,10 @@ def verify(root=ROOT):
     reports=[]
     for label,path,citations in reviews:
         normalized=0
-        for cid,claimid,left,right,url,quote in citations:
+        for world,cid,claimid,left,right,url,quote in citations:
             a,b=int(left),int(right);chunk=corpus[cid];claim=claims[claimid]
+            if chunk['collection_id'] not in packet[world]['collection_ids']:
+                raise ValueError(f'Citation collection does not belong to world {world}: {cid}')
             assert (claim['chunk_id'],claim['start_char'],claim['end_char'])==(cid,a,b)
             assert chunk['url']==url
             original=chunk['text'][a:b]
@@ -72,7 +74,7 @@ def verify(root=ROOT):
             sha256=hashlib.sha256(path.read_bytes()).hexdigest()))
     return dict(status='PASS',worlds=60,
                 paired_questions=120,required_facts=183,reviews=reports,
-                checks='World/sample membership, identical required facts, all four dimension entries, source claim bindings, exact offsets/URLs and whitespace-normalized displayed quotes')
+                checks='World/sample membership, citation collection membership in its world, identical required facts, all four dimension entries, source claim bindings, exact offsets/URLs and whitespace-normalized displayed quotes')
 
 
 def main():

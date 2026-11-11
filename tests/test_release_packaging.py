@@ -101,7 +101,7 @@ def repository(tmp_path):
     for relative, content in {**files, **{name: "EXCLUDE-ME" for name in excluded}}.items():
         path = root / relative
         path.parent.mkdir(parents=True, exist_ok=True)
-        path.write_text(content, encoding="utf-8")
+        path.write_bytes(content.encode("utf-8"))
     return root, files, excluded
 
 
@@ -666,4 +666,31 @@ def test_paper_builder_uses_explicit_tectonic_fallback(monkeypatch):
     monkeypatch.setattr(build_paper.shutil, "which", lambda name: None)
     engine, commands = build_paper.compiler_commands(tectonic=Path("/tools/tectonic"))
     assert engine == "tectonic"
-    assert commands == [["/tools/tectonic", "--keep-logs", "--keep-intermediates", "main.tex"]]
+    assert commands == [[str(Path("/tools/tectonic")), "--keep-logs", "--keep-intermediates", "main.tex"]]
+
+
+def test_release_without_manuscript_verifies_all_three_artifact_archives(repository):
+    root, _, _ = repository
+    for path in (root / "paper").iterdir():
+        path.unlink()
+    (root / "paper").rmdir()
+    report = package.package(root, split=True)
+    assert set(report["archives"]) == {
+        "rerankhuts_icde2027.zip", "rerankhuts_icde2027_code.zip",
+        "rerankhuts_icde2027_results.zip",
+    }
+    assert not (root / "dist/paper_icde2027_clean.zip").exists()
+    assert verify.verify_release(root / "dist") == report
+
+
+def test_release_with_manuscript_still_requires_matching_clean_archive(repository):
+    root, _, _ = repository
+    package.package(root)
+    output = root / "dist"
+    sums_path = output / "sha256sums.json"
+    sums = json.loads(sums_path.read_bytes())
+    del sums["paper_icde2027_clean.zip"]
+    sums_path.write_text(json.dumps(sums), encoding="utf-8")
+    (output / "paper_icde2027_clean.zip").unlink()
+    with pytest.raises(ValueError, match="Missing clean paper archive"):
+        verify.verify_release(output)

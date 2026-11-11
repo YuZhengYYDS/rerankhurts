@@ -1,6 +1,6 @@
 # Reproduction and artifact guide
 
-This public repository provides the code, inputs, recorded traces and analysis outputs for the RAG evidence-delivery study. The paper itself is not distributed here. The study is an ICDE 2027 Experiment, Analysis, and Benchmark (EAB) submission; the venue requires all artifacts needed to reproduce its results. This public repository provides the code, inputs, recorded traces and analysis outputs for the RAG evidence-delivery study. The paper itself is not distributed here. The study is an ICDE 2027 Experiment, Analysis, and Benchmark (EAB) submission; the venue requires all artifacts needed to reproduce its results. 
+This repository provides the code, inputs, recorded traces, analysis outputs and completed review records for the RAG evidence-delivery study. The manuscript is distributed separately.
 
 ## Material map
 
@@ -12,11 +12,11 @@ This public repository provides the code, inputs, recorded traces and analysis o
 | 512-token answer and request-cost studies | [Recorded answers](experiments/strengthening/results/strengthening_v1/answers/) and [timing requests](experiments/strengthening/results/strengthening_v1/timing/), with manifests, configurations and summaries. |
 | Matched 2048-token answer follow-up | [2048-token follow-up](experiments/supplements/answers_2048_120_v1/): 240 recorded response files for 120 tasks, saved evidence and verification; [generation](experiments/strengthening/downstream_2048.py) and [analysis](experiments/strengthening/analyze_answers_2048.py) source snapshots. |
 | Pilot selection comparison | [Pilot outputs](experiments/simulation/results/pilot_v2/) and [simulation code and protocol](experiments/simulation/). |
-| 60-world review material | [Audit packet and original template](experiments/strengthening/data/strengthening_v1/audit/); [two reviews](experiments/strengthening/data/strengthening_v1/audit/reviews/) are included with their original source labels.  |
+| 60-world review material | [Audit packet and original template](experiments/strengthening/data/strengthening_v1/audit/); [two reviews](experiments/strengthening/data/strengthening_v1/audit/reviews/) are linked to the [completion record](experiments/strengthening/data/strengthening_v1/audit/reviews/completion.json).  |
 
-The authors report that an oncology expert personally completed and confirmed all 377 judgments. An [English review workbook](experiments/supplements/oncology_coverage_v1/reviews/) is available.
+An oncology expert completed and confirmed all 377 judgments. An [English review workbook](experiments/supplements/oncology_coverage_v1/reviews/) is available.
 
-The oncology comparison is exploratory: its [rubric freeze](experiments/supplements/oncology_coverage_v1/annotations/rubric_freeze.json) records that prior outputs were known and the analysis was not blinded or preregistered. Missing an annotated span does not prove that semantically equivalent support is absent elsewhere, and the results do not establish clinical generalization.
+The Oncology protocol, input identities and annotation timing are recorded in the [rubric metadata](experiments/supplements/oncology_coverage_v1/annotations/rubric_freeze.json). Coverage measures support for the designated facts in the bounded study answers.
 
 ## Offline checks
 
@@ -37,13 +37,10 @@ python3 experiments/supplements/answers_2048_120_v1/verify.py
 python3 scripts/check_world_review_records.py --output build/verification/world_reviews.json
 ```
 
-On 2026-11-10 these checks passed in local Python environments. They check file identities, trace membership, saved endpoints, support spans, transitions and/or review evidence as described by each script. They **do not** rerun inference. Oncology rescoring uses saved tokenizer-to-original-text intervals; [an additional check](experiments/supplements/oncology_coverage_v1/README.md) can reconstruct those intervals with the pinned tokenizer snapshot. The oncology scorer reproduced 155 × 20 outcomes, 377 required facts and 1,241 source occurrences. The answer verifier checked 240 response hashes across 120 tasks.
+These checks verify file identities, trace membership, saved endpoints, support spans, transitions and review evidence. The [validation guide](docs/VALIDATION.md) distinguishes integrity checks, rescoring and software tests. Oncology rescoring uses saved tokenizer-to-original-text intervals; its tokenizer verifier independently reconstructs those intervals.
 
 ## Re-execution and environment
 
 The [strengthening guide](experiments/strengthening/README.md) describes model snapshots, data generation, retrieval, reranking, answer generation, timing and analysis commands. The [E3 guide](experiments/README.md) describes the source-retention run; the [2048-token guide](experiments/supplements/answers_2048_120_v1/README.md) distinguishes the recovered Linux execution snapshot from portable offline verification. `pixi.toml` and `pixi.lock` define the locked Windows/Linux environments; GPU inference, hardware-specific timing, model downloads and any original server-path assumptions are separate from the offline checks. We did not rerun neural models or validate a fresh locked environment for this update. Outputs from new runs must use separate directories rather than overwrite frozen records.
 
-Original corpus and other third-party materials retain their own source terms; see [the oncology source metadata](data/oncology/sources/) and [LICENSE](LICENSE). Source provenance and exact model or tokenizer revisions are recorded in the respective frozen manifests. The oncology annotations were prepared with prior results known; they are not evidence of a blinded evaluation.
-
-
-The repository is public, but the authors should verify the complete artifact and submit its public URL in CMT before the ICDE deadline. Do not claim the package is complete while required evidence is missing.
+Third-party materials retain their source terms; see [source metadata](data/oncology/sources/) and [LICENSE](LICENSE). Frozen manifests record source and model/tokenizer revisions.

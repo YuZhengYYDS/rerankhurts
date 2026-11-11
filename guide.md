@@ -83,6 +83,6 @@ pixi run --locked workflow --dry-run e3
 - [metadata/data_layout.json](metadata/data_layout.json)：本次数据文件迁移的路径与校验记录。
 - [archive/](archive/)：历史代码快照；原先的论文归档已经移除。
 
-历史论文构建、打包及部分校验脚本仍可能依赖已移除的论文文件；运行前需先更新这些脚本及清单。实验分析输出使用 `build/` 或明确指定的新目录。
+运行 `python scripts/package_release.py --split --verify` 可生成完整包、代码包和结果包。提供论文文件时会同时生成论文包。实验分析输出使用 `build/` 或明确指定的新目录。
 
 作者确认已完成 60 个 world 的人工语义审核；新版 377 条肿瘤事实标注及对应实验结果见 [oncology coverage](experiments/supplements/oncology_coverage_v1/)。作者表示肿瘤专家本人填写并确认了 377 项判断；[英文审核表](experiments/supplements/oncology_coverage_v1/reviews/)已公开。仓库目前公开，补充材料需在用于复现和评审前核对完整性。

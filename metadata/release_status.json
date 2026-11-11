@@ -189,11 +189,11 @@
     "primary_post_minus_pre_512": 0.0,
     "primary_post_minus_pre_2048": 0.02,
     "human_semantic_audit_complete": true,
-    "external_real_world_replication": false,
     "study_plan": "experiments/strengthening/study_plan.json",
     "results": "experiments/strengthening/results/strengthening_v1",
     "guide": "docs/STRENGTHENING_GUIDE.md",
-    "human_semantic_audit_evidence_status": "Author reports two reviewers completed the 60-world audit; Earlier frozen audit reports retain their original pending status."
+    "human_semantic_audit_evidence_status": "Completed; current confirmation and record identities are in audit/reviews/completion.json.",
+    "human_semantic_audit_completion_record": "experiments/strengthening/data/strengthening_v1/audit/reviews/completion.json"
   },
   "github_delivery": {
     "baseline_commit": "74a63e2a586af8ee697ca800bd379fe4dd4c5064",
@@ -282,9 +282,14 @@
     "oncology_coverage": "Imported 155-question, 377-fact annotated-support snapshot and results; offline re-scoring passed using saved tokenizer intervals. ",
     "matched_answers_2048": "Imported 240 recorded responses and analysis; offline hash and endpoint verification passed.",
     "stage_and_packing_reanalysis": "Imported frozen recorded outputs and scripts; offline reanalysis passed.",
-    "human_review": "Authors report completion by two reviewers.",
+    "human_review": "Completed by two reviewers.",
     "fresh_model_runs": "Not performed",
-    "scope": "See ARTIFACTS.md; EAB completeness not yet established.",
-    "oncology_expert_review": "Authors state an oncology expert personally completed and confirmed all 377 review judgments; see reviews/README.md."
-  }
+    "scope": "Code, data, recorded traces, analysis outputs and review records for the listed study workloads.",
+    "oncology_expert_review": "377 judgments completed and confirmed by an oncology expert; author dispositions retain the 155-question rubric."
+  },
+  "study_workloads": [
+    "controlled_360_worlds",
+    "frozen_oncology_155_questions",
+    "pilot_60_worlds"
+  ]
 }

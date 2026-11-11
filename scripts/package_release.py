@@ -208,12 +208,13 @@ def package(root=ROOT, output=None, split=False):
     members = collect_files(root, output)
     require(bool(members), "No packageable source files")
     paper = {name.removeprefix("paper/"): path for name, path in members.items() if name.startswith("paper/")}
-    require(bool(paper), "No packageable paper files")
-    paper_build = check_paper_build(root, paper)
+    paper_build = check_paper_build(root, paper) if paper else {}
     full_manifest = manifest_for(members, root)
     require(all(full_manifest.get(name) == metadata for name, metadata in paper_build.items()),
             "Paper build changed while preparing the release")
-    selections = {"rerankhuts_icde2027.zip": members, "paper_icde2027_clean.zip": paper}
+    selections = {"rerankhuts_icde2027.zip": members}
+    if paper:
+        selections["paper_icde2027_clean.zip"] = paper
     if split:
         selections["rerankhuts_icde2027_code.zip"] = {name: path for name, path in members.items() if is_code(name)}
         selections["rerankhuts_icde2027_results.zip"] = {

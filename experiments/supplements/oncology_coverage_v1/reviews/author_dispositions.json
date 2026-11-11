@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "decision_recorded_on": "2026-11-12",
+  "decision_source": "Author instruction",
+  "questions": 155,
+  "decision": "Retain the existing questions, facts and scoring definitions",
+  "workbook_judgments": "Preserved",
+  "numerical_results": "Unchanged",
+  "items": [
+    {
+      "fact_id": "q10::biomarker_assessment",
+      "disposition": "retained"
+    },
+    {
+      "fact_id": "q12::biomarker_assessment",
+      "disposition": "retained"
+    },
+    {
+      "fact_id": "q16::progression_targeted",
+      "disposition": "retained"
+    },
+    {
+      "fact_id": "q17::recurrent_local_selection",
+      "disposition": "retained"
+    },
+    {
+      "fact_id": "q32::tnbc_chemotherapy",
+      "disposition": "retained"
+    },
+    {
+      "fact_id": "q39::tnbc_chemotherapy",
+      "disposition": "retained"
+    },
+    {
+      "fact_id": "q47::metastatic_chemo",
+      "disposition": "retained"
+    },
+    {
+      "fact_id": "q77::stage_not_alone",
+      "disposition": "retained"
+    },
+    {
+      "fact_id": "q106::ip_selected_evidence",
+      "disposition": "retained"
+    },
+    {
+      "fact_id": "q303::DSS_with_radiation",
+      "disposition": "retained"
+    }
+  ]
+}

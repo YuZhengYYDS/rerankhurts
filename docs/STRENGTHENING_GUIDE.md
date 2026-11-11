@@ -134,7 +134,7 @@ pixi run --locked strengthen-analyze --results build/reanalysis/strengthening --
 
 人工语义审计已完成，覆盖审核包中的 60 个世界，由两位人工审核者完成。审核材料位于 `data/strengthening_v1/audit/`。自动 parser、单元测试、哈希校验和模型回答属于自动检查，与人工审核判断分开记录。
 
-独立的外部真实场景复现尚未完成。基线和扩展核心已推送并核验至私有GitHub仓库，本次论文重构的交付包对应下载入口为 [icde2027-restructured-20261013 Release](https://github.com/YuZhengYYDS/rerankhuts/releases/tag/icde2027-restructured-20261013)，发布状态以该页实际附件及上传校验回执为准。仓库保持private；为ICDE EAB提供公开可访问artifact仍属单独的提交准备。
+仓库公开交付受控 360-world 主实验、Oncology 固定语料对照、pilot、回答和请求计时记录。发布包的内容与哈希由打包工具核验，当前审核完成记录见 `experiments/strengthening/data/strengthening_v1/audit/reviews/completion.json`。
 
 旧 `experiments/runs/e3_m3/`、`experiments/simulation/data/pilot_v2/`、`experiments/runs/simulation_pilot_v2/` 和旧结果保持原版本。`legacy_null_audit.json` 只是从旧保存结果重算 pre/post 差异，不是重新运行旧模型，也不允许用新世界结果覆盖原有零效应、并列或反向选择结果。
 

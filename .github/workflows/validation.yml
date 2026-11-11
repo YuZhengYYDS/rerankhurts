@@ -1,0 +1,65 @@
+name: Tests and artifact verification
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validation:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 60
+    env:
+      PYTHONUTF8: "1"
+      TOKENIZERS_PARALLELISM: "false"
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.11"
+      - name: Install declared dependencies and fixed tokenizer
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import subprocess, sys, tomllib
+          config = tomllib.loads(Path('pixi.toml').read_text(encoding='utf-8'))
+          requirements = [name + version for name, version in config['pypi-dependencies'].items()]
+          requirements.append('transformers' + config['feature']['gpu']['pypi-dependencies']['transformers'])
+          subprocess.check_call([sys.executable, '-m', 'pip', 'install', *requirements])
+          from huggingface_hub import snapshot_download
+          from experiments.simulation.evaluate import PINNED_MODELS
+          name, revision = PINNED_MODELS['tokenizer']
+          snapshot_download(name, revision=revision,
+                            allow_patterns=['tokenizer.json', 'tokenizer_config.json', 'vocab.txt', 'config.json'],
+                            local_dir=Path('.cache/models') / name.replace('/', '--') / revision)
+          PY
+      - name: Run complete test suite
+        run: python -m pytest tests -q --junitxml=build/ci/tests.xml
+      - name: Verify current inventory and recorded artifacts
+        run: |
+          python scripts/check_repository_manifest.py
+          python -m rerankhuts verify
+          python -m rerankhuts strengthen-verify --require-complete
+          python -m rerankhuts stage-reanalysis --output build/ci/stage
+          python -m rerankhuts packing-reanalysis --output build/ci/packing
+          python -m rerankhuts oncology-coverage --output build/ci/oncology
+          python experiments/supplements/oncology_coverage_v1/verify_tokenizer_intervals.py --tokenizer .cache/models/google-bert--bert-base-uncased/86b5e0934494bd15c9632b12f734a8a67f723594
+          python experiments/supplements/answers_2048_120_v1/verify.py
+          python scripts/check_world_review_records.py --output build/ci/world_reviews.json
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: validation-${{ matrix.os }}
+          path: build/ci/

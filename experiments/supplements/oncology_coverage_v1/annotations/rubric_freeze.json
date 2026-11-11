@@ -1,10 +1,19 @@
 {
-  "questions_sha256": "162f2e1c2bc44c2d311b8e5560be994a8ad351cfcf97ddb9e1670d86529c7503",
-  "truth_sha256": "fd44651f21826035310e3848c7541595f2a836f70e993d1852d3ee408b256ffe",
-  "claims_sha256": "f181c5867a4755707b0ff504f82cb0d2bfb88e4942ff70c9283699c3c832a172",
+  "questions_sha256": "d8e3d64d3116b515c53ac50523a5488e6eb49dc1bdd7113ff5e5982b3afe9df5",
+  "truth_sha256": "459dc6d07a390e93fd66e6ab4c9f2c41f470fe32c9b3b6d2f6174e176c98d8dd",
+  "claims_sha256": "5e172b68124ffa2d8adebe6d1d361c0127fe12a63b00faa8c8c0053eed9f621d",
   "corpus_sha256": "7ddcfdff6f942be4f7fcf703bbba420e5cb093ba6fa29e7879e919632c94ee78",
   "revision_script_sha256": "39d97d73f3d9174fbb88de41a0f42f01f85bb93624e8aa7b00146a00ac0c83af",
   "frozen_before_new_query_inference": true,
   "prior_outputs_known": true,
-  "not_blinded_or_preregistered": true
+  "not_blinded_or_preregistered": true,
+  "metadata_identity_update": {
+    "date": "2026-11-12",
+    "scope": "Synchronize hashes after metadata edits; question text, facts, evidence intervals and saved outcomes unchanged",
+    "original_input_sha256": {
+      "questions_sha256": "162f2e1c2bc44c2d311b8e5560be994a8ad351cfcf97ddb9e1670d86529c7503",
+      "truth_sha256": "fd44651f21826035310e3848c7541595f2a836f70e993d1852d3ee408b256ffe",
+      "claims_sha256": "f181c5867a4755707b0ff504f82cb0d2bfb88e4942ff70c9283699c3c832a172"
+    }
+  }
 }

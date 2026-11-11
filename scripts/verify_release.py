@@ -17,7 +17,8 @@ ARCHIVE_ROOTS = {
     "rerankhuts_icde2027_code.zip": "rerankhuts",
     "rerankhuts_icde2027_results.zip": "rerankhuts",
 }
-REQUIRED_ARCHIVES = {"rerankhuts_icde2027.zip", "paper_icde2027_clean.zip"}
+BASE_REQUIRED_ARCHIVES = {"rerankhuts_icde2027.zip"}
+REQUIRED_ARCHIVES = BASE_REQUIRED_ARCHIVES | {"paper_icde2027_clean.zip"}
 SHA256_PATTERN = re.compile(r"[0-9a-f]{64}\Z")
 
 
@@ -222,9 +223,9 @@ def verify_release(directory):
     require(sums_path.is_file() and not sums_path.is_symlink(), "Missing regular sha256sums.json")
     sums = read_json(sums_path.read_bytes())
     require(isinstance(sums, dict), "Checksums must be an object")
-    require((REQUIRED_ARCHIVES | {"manifest.json"}) <= set(sums), "Required release files missing from checksums")
+    require((BASE_REQUIRED_ARCHIVES | {"manifest.json"}) <= set(sums), "Required release files missing from checksums")
     require(set(sums) <= (set(ARCHIVE_ROOTS) | {"manifest.json"}), "Unknown release checksum entries")
-    optional = set(ARCHIVE_ROOTS) - REQUIRED_ARCHIVES
+    optional = {"rerankhuts_icde2027_code.zip", "rerankhuts_icde2027_results.zip"}
     require(not (set(sums) & optional) or optional <= set(sums), "Both split archives must be present")
     for name, digest in sums.items():
         safe_name(name)
@@ -241,8 +242,12 @@ def verify_release(directory):
     full = reports["rerankhuts_icde2027.zip"]["manifest"]
     paper = {name.removeprefix("paper/"): metadata for name, metadata in full.items()
              if name.startswith("paper/")}
-    require(paper == reports["paper_icde2027_clean.zip"]["manifest"],
-            "Clean paper archive differs from full release paper")
+    if paper:
+        require("paper_icde2027_clean.zip" in reports, "Missing clean paper archive for full release paper")
+        require(paper == reports["paper_icde2027_clean.zip"]["manifest"],
+                "Clean paper archive differs from full release paper")
+    else:
+        require("paper_icde2027_clean.zip" not in reports, "Clean paper archive has no corresponding full release paper")
     for name in optional & set(reports):
         require(all(full.get(path) == metadata for path, metadata in reports[name]["manifest"].items()),
                 f"Split archive differs from full release: {name}")
