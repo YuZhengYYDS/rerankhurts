@@ -17,7 +17,7 @@
 - `experiments/simulation/generate.py`：事实先于文本的虚构世界生成；固定 split、oracle 和 specification。
 - `experiments/simulation/backend.py`：受控仿真实际模型运行；不读取 oracle 标签。
 - `experiments/simulation/evaluate.py`：独立检查已交付文本、事实跨度、源约束、选择规则和 bootstrap。
-- `experiments/annotation.py`、`analyze_selection.py`：尚未开展的人工标注/效用研究工具，有标签来源守卫。
+- `experiments/annotation.py`、`analyze_selection.py`：人工标签导入与效用分析工具，包含标签来源校验。
 
 新扩展模块位于 `experiments/strengthening/`，详细接口见其
 [README](../experiments/strengthening/README.md) 和 [扩展指南](STRENGTHENING_GUIDE.md)：

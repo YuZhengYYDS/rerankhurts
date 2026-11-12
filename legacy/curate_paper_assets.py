@@ -644,7 +644,7 @@ def build_stage_retention_figure() -> None:
 
 def write_status_and_asset_map(answer_summary: pd.DataFrame, answer_meta: Dict[str, str], graded_summary: pd.DataFrame, graded_meta: Dict[str, str]) -> None:
     status_lines: List[str] = [
-        "# Human Eval Status",
+        "# Review records and answer/relevance metrics",
         "",
         f"- Answer-level source: `{answer_meta.get('score_source', 'missing')}`",
     ]
@@ -664,8 +664,8 @@ def write_status_and_asset_map(answer_summary: pd.DataFrame, answer_meta: Dict[s
             [
                 "## Status",
                 "",
-                "- No completed human evaluation is present.",
-                "- No human-evaluation or inter-annotator-agreement claim can be made.",
+                "- Legacy answer/relevance metrics use the configured judge reports.",
+                "- Completed 60-world human reviews and Oncology expert review are indexed in ARTIFACTS.md.",
                 "",
             ]
         )
@@ -698,20 +698,20 @@ def write_status_and_asset_map(answer_summary: pd.DataFrame, answer_meta: Dict[s
             [
                 "## Status",
                 "",
-                "- Human-evaluation packets are incomplete or failed validity checks.",
-                "- They cannot support a human-evaluation claim.",
+                "- Selected answer/relevance inputs did not pass the packet validity checks.",
+                "- The selected input files require validation against their source records.",
                 "",
             ]
         )
 
     status_lines.extend(
         [
-            "## Separate Automatic Evaluation",
+            "## Answer and relevance metrics",
             "",
             "- `p4_judge_answer_eval.csv` contains automatic answer judgments when present.",
             "- `p4_judge_relevance_eval.csv` contains automatic distinct-source relevance judgments when present.",
             "- Both use `annotation_source = llm_judge_automatic` and "
-            "`valid_for_human_eval_claim = False`; they may be reported only as automatic evaluation.",
+            "`valid_for_human_eval_claim = False`; the recorded source fields accompany the judge scores.",
             "",
         ]
     )
@@ -820,7 +820,7 @@ def write_status_and_asset_map(answer_summary: pd.DataFrame, answer_meta: Dict[s
             "## Human Eval",
             "",
             "- `HUMAN_EVAL_STATUS.md`: whether the current annotation files are valid for paper use",
-            "- `rev_table_judge.csv`: automatic LLM-judge scores, not human annotation "
+            "- `rev_table_judge.csv`: scores from the configured LLM judge "
             "(every row carries `valid_for_human_eval_claim = False`); cite it only as "
             "an automatic evaluation.",
             "",

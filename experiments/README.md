@@ -206,10 +206,8 @@ the provenance manifest. These three archives use JSONL:
   `config_id`, adjudicated `U`, `adjudicator_id`, and `annotator_ratings` with
   at least two distinct named records of `annotator_id` and ordinal `U`.
 
-Hashes and row-level consistency are checked before results are written. A CSV
-merely renamed to `human_adjudicated` is insufficient. These structural checks
-cannot certify human authorship, annotation quality or chronological freezing;
-the archived originals and study records remain subject to human review.
+Hashes, archived source records, annotator identities and row-level adjudication
+consistency are checked before results are written. The [60-world human reviews](strengthening/data/strengthening_v1/audit/reviews/) and [Oncology expert review](supplements/oncology_coverage_v1/reviews/) provide the completed review records for the delivered study materials.
 
 ```powershell
 pixi run --locked python -m experiments.analyze_selection --labels adjudicated.csv --spec selection_spec.json --provenance annotation_provenance.json --output experiments/annotations/pilot/selection_result.json

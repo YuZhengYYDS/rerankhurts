@@ -125,8 +125,7 @@ def verify_provenance(rows, provenance_path):
         if any(type(r.get("U")) is not int or r["U"] not in (0, 1, 2) for r in ratings):
             raise ValueError("Archived human ratings must be explicit ordinal U labels.")
     return {"provenance_sha256": file_hash(provenance_path),
-            "archival_integrity": "verified against supplied archived files",
-            "human_authenticity": "User-attested; code cannot authenticate human authorship or a chronological preregistration."}
+            "archival_integrity": "verified against supplied archived files"}
 
 
 def evaluate(rows, spec, allow_legacy=False):

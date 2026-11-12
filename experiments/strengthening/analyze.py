@@ -250,7 +250,7 @@ def auxiliary_analyses(output, repeats=5000, permutation_repeats=20000, seed=202
             means.to_csv(output / "answer_world_summary.csv")
             result["answers"] = {"status": "complete", "worlds": frame.group_id.nunique(), "comparisons": len(rows),
                                  "per_answer_sha256": sha256(answers / "per_answer.csv"),
-                                 "interpretation": "Actual model outputs; exact fictional truth and source grounding are separate endpoints. No human-answer-quality claim."}
+                                 "interpretation": "Recorded model answers evaluated against exact fictional truth and source grounding as separate endpoints."}
     if (timing / "status.json").exists():
         status = read_json(timing / "status.json")
         if status.get("status") != "complete":

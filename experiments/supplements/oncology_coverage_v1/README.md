@@ -5,6 +5,10 @@ and the Oncology part of Fig. 11. It includes 377 annotated required facts and
 1,241 exact source occurrences. The original corpus stays at
 `data/oncology/corpus/corpus_chunks_v2.jsonl`.
 
+An oncology expert completed and confirmed all 377 fact-level judgments for
+the 155-question annotation rubric. The [expert-review workbook](reviews/)
+contains the completed judgments and source-evidence review.
+
 Run `python -m rerankhuts oncology-coverage` from the repository root. Outputs
 go to a new directory under `build/reanalysis/`; original inputs and outputs
 are not overwritten. This offline command reproduces saved coverage using the
@@ -38,9 +42,10 @@ Files:
 - `results/paired_contrasts.csv`, `same_page_different_fact_cases.csv`: paired
   configuration effects, source-group bootstrap intervals and divergence cases.
 - `protocol.json`, `status.json`, `run_three/`, `results/validation.json` and
-  `trace_provenance.json`: original processing/run records, preserved unchanged.
+  `trace_provenance.json`: processing records, protocol definitions and recorded run identities.
 
-The source snapshot documents the input revisions and review status; see
-[the artifact guide](../../../ARTIFACTS.md) for the exact reuse/rerun
-mapping. Do not pool hardware-specific timings or reinterpret annotated-span
-coverage as clinical correctness or exhaustive support adjudication.
+The source snapshot documents the input revisions. See
+[the artifact guide](../../../ARTIFACTS.md) for the reuse/rerun mapping and
+[completed expert review](reviews/) for the annotation review. Coverage is
+measured over the frozen reference-answer facts and annotated source spans;
+timings are recorded separately for each hardware environment.

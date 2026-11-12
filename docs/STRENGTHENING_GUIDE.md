@@ -22,7 +22,7 @@ pixi run --locked test
 python scripts/check_strengthening_files.py --require-complete
 ```
 
-在新的复现尚未结束时可使用 `--allow-in-progress`；其 `PENDING` 只表示存在未完成步骤，不是实验完成声明。离线完整性通过也不等于人工语义审计通过。
+验证当前交付使用 `--require-complete`；`--allow-in-progress` 用于开发过程中检查新生成的运行目录。当前 60-world 的 A、B 两轮人工核查已完成，见[完成记录](../experiments/strengthening/data/strengthening_v1/audit/reviews/completion.json)。
 
 ## 固定的数据与独立单位
 

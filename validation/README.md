@@ -4,8 +4,8 @@ For the completed 360-world strengthening study, use
 `pixi run --locked strengthen-verify --require-complete` from the repository root.
 Its offline checker is `scripts/check_strengthening_files.py`; the
 [strengthening guide](../docs/STRENGTHENING_GUIDE.md) describes its data, traces,
-independent scoring, answers and request timing. The historical E0 audit below
-retains its original scope; automatic checks do not complete human review.
+independent scoring, answers and request timing. Two rounds of human review
+are complete for the sampled 60 worlds; see the [human review records](../experiments/strengthening/data/strengthening_v1/audit/reviews/). The historical E0 audit below documents the frozen-output checks.
 
 Run from the repository root (standard library only):
 

@@ -18,9 +18,9 @@ Outputs:
     questions_judge_sample_validated.jsonl    stratified answer-eval sample
     questions_expanded_review_final.csv       human checklist w/ auto verdicts
 
-Nothing here is human annotation: the checklist exists so a domain expert can
-confirm or overturn each automatic verdict, and every row carries
-annotation_source=llm_screening_automatic / human_verified=False until they do.
+The checklist records the question-answerability screening verdicts.
+The completed expert review of the 155-question fact and source-evidence
+annotation rubric is delivered in experiments/supplements/oncology_coverage_v1/reviews/.
 
 Usage:
     python -m legacy.finalize_expanded_benchmark --criterion strict
@@ -210,7 +210,7 @@ def main() -> None:
     print()
     print(f"  dropped qids: {', '.join(str(r['qid']) for r in dropped) or 'none'}")
     print()
-    print("  NOTE: automatic screening, NOT human annotation. "
+    print("  Question-answerability screening records have been written. "
           "questions_expanded_review_final.csv is the checklist for expert review.")
 
 

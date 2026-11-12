@@ -61,7 +61,7 @@ pixi run --locked strengthen-verify --require-complete
 
 Reanalysis outputs go under `build/`. Historical experiment data, traces and statistical results retain their recorded identities; manuscript figure files are not included.
 
-Two reviewers completed the [60-world human semantic audit](experiments/strengthening/data/strengthening_v1/audit/reviews/completion.json). An oncology expert completed and confirmed the [377 fact-review judgments](experiments/supplements/oncology_coverage_v1/reviews/). The [coverage package](experiments/supplements/oncology_coverage_v1/) contains the 155-question rubric and matching results. The repository is public.
+Two rounds of [60-world human semantic review](experiments/strengthening/data/strengthening_v1/audit/reviews/completion.json), A and B, are complete. An oncology expert completed and confirmed all [377 fact-level judgments](experiments/supplements/oncology_coverage_v1/reviews/) for the 155-question annotation rubric. The [coverage package](experiments/supplements/oncology_coverage_v1/) contains the expert-reviewed facts, source evidence and matching experimental results. The repository is public.
 
 ## Releases and provenance
 

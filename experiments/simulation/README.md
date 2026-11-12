@@ -4,9 +4,8 @@ This experiment tests how a retrieval configuration selected by designated-page
 retention differs from one selected by complete fact coverage in a controlled
 synthetic environment. It supplies an exact, inspectable content oracle for
 fictional documents while executing the actual dense retriever and cross-encoder.
-It complements the historical E0 audit and the oncology E3 experiment; it does
-not replace independent human annotation, the human-only E2 gate, or an external
-medical benchmark.
+It complements the historical E0 audit and the Oncology E3 experiment.
+The completed [60-world human reviews](../strengthening/data/strengthening_v1/audit/reviews/) and [Oncology expert review](../supplements/oncology_coverage_v1/reviews/) are available with the main study materials.
 
 The contract was frozen before model execution, with generation and analysis
 seed **20260928**. The current dataset is `pilot_v2`. A pre-analysis semantic

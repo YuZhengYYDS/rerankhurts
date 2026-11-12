@@ -14,7 +14,7 @@ This repository provides the code, inputs, recorded traces, analysis outputs and
 | Pilot selection comparison | [Pilot outputs](experiments/simulation/results/pilot_v2/) and [simulation code and protocol](experiments/simulation/). |
 | 60-world review material | [Audit packet and original template](experiments/strengthening/data/strengthening_v1/audit/); [two reviews](experiments/strengthening/data/strengthening_v1/audit/reviews/) are linked to the [completion record](experiments/strengthening/data/strengthening_v1/audit/reviews/completion.json).  |
 
-An oncology expert completed and confirmed all 377 judgments. An [English review workbook](experiments/supplements/oncology_coverage_v1/reviews/) is available.
+Two rounds of human semantic review, A and B, are complete for the sampled 60 worlds. An oncology expert completed and confirmed all 377 fact-level judgments for the 155-question annotation rubric. The [60-world human review records](experiments/strengthening/data/strengthening_v1/audit/reviews/) and [English expert-review workbook](experiments/supplements/oncology_coverage_v1/reviews/) are available.
 
 The Oncology protocol, input identities and annotation timing are recorded in the [rubric metadata](experiments/supplements/oncology_coverage_v1/annotations/rubric_freeze.json). Coverage measures support for the designated facts in the bounded study answers.
 

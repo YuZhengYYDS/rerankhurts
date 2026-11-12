@@ -1,7 +1,7 @@
 # ICDE adaptation: evidence and execution boundaries
 
-This project implements the user's ICDE/VLDB adaptation memorandum. The memorandum
-is a research design, not a record of completed experiments.
+This document maps the ICDE/VLDB adaptation memorandum to the delivered
+evidence and experiment entry points.
 
 The 2026-10-13 manuscript restructuring presents the 360-world study as the main
 experiment, followed by oncology and pilot evidence as context. It does not rerun

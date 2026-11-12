@@ -1,15 +1,15 @@
-# Human Eval Status
+# Review records and answer/relevance metrics
 
-- Answer-level source: `missing`
-- Graded-relevance source: `missing`
+## Completed human reviews
 
-## Status
+Two rounds of human semantic review, A and B, are complete for the sampled
+60 worlds. See the [review records](../experiments/strengthening/data/strengthening_v1/audit/reviews/).
 
-- No completed human evaluation is present.
-- No human-evaluation or inter-annotator-agreement claim can be made.
+An oncology expert completed and confirmed all 377 fact-level judgments for
+the 155-question annotation rubric. See the [expert-review workbook](../experiments/supplements/oncology_coverage_v1/reviews/).
 
-## Separate Automatic Evaluation
+## Legacy answer and relevance metrics
 
-- `p4_judge_answer_eval.csv` contains automatic answer judgments when present.
-- `p4_judge_relevance_eval.csv` contains automatic distinct-source relevance judgments when present.
-- Both use `annotation_source = llm_judge_automatic` and `valid_for_human_eval_claim = False`; they may be reported only as automatic evaluation.
+- [Answer metrics](per_question/p4_judge_answer_eval.csv) record scores for model-generated answers.
+- [Relevance metrics](per_question/p4_judge_relevance_eval.csv) record distinct-source relevance scores.
+- These legacy tables use the configured LLM judge. Their source fields and aggregation rules are preserved with the recorded scores.

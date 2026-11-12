@@ -55,7 +55,7 @@
   ],
   "n_exploratory_contrasts": 446,
   "study_plan_sha256": "074b840e66408deeb7dce116a83245bf5fd3213e20137559c5fc96fc3b4afb0a",
-  "analysis_code_sha256": "09fe8efd9289cdfd4681ef440ac8507c55bbcc31bec4c4fb20a848f762dc4433",
+  "analysis_code_sha256": "fbfcdb9b42bf6262f07cc63eca8c84d33b756f6970bc89785f9da04354660d8e",
   "evaluated_per_record_sha256": "c574c4b707d011be99b7bc39fa5dd765b0c44e0a759c68902eb4a0cb8368bbb0",
   "statistics": {
     "unit": "world",
@@ -83,7 +83,7 @@
       "worlds": 60,
       "comparisons": 8,
       "per_answer_sha256": "3e266b08be026dac423d56bc780beb8ca048157dbc995de831e73dac85d6d755",
-      "interpretation": "Actual model outputs; exact fictional truth and source grounding are separate endpoints. No human-answer-quality claim."
+      "interpretation": "Recorded model answers evaluated against exact fictional truth and source grounding as separate endpoints."
     },
     "timing": {
       "status": "complete",

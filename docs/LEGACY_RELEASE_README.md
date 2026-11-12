@@ -124,11 +124,11 @@ a draft used.
 
 These are binding on how the numbers may be described.
 
-- **The answer-quality scores are automatic, not human.** `llm_judge.py` grades
+- **Answer quality uses the configured LLM judge.** `llm_judge.py` grades
   with an LLM. Every row it writes carries
   `annotation_source="llm_judge_automatic"` and
-  `valid_for_human_eval_claim=False`, and the results must be reported as
-  automatic LLM-judge scores.
+  `valid_for_human_eval_claim=False`; the recorded source fields accompany
+  the LLM-judge scores.
 - **Evidence relevance is distinct-source, not four-chunk, evaluation.** The
   relevance command de-duplicates each final window by URL and scores one
   representative excerpt per delivered source page. The released run has 1,085

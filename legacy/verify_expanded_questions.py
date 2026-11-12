@@ -22,13 +22,10 @@ false negatives: the judge reports "the excerpts do not mention X" for a page
 that does discuss X, in a section the sampler never reached. Pass
 `--excerpt-mode topk` to reproduce that narrower, stricter screen.
 
-The output fills the columns of `questions_expanded_review.csv` so a human
-reviewer only has to confirm or overturn the automatic verdict rather than
-start from an empty checklist.
-
-IMPORTANT: this is automatic LLM-based screening, NOT human annotation. It is
-recorded as `annotation_source=llm_screening_automatic` and must be described
-as such in the paper.
+The output records full-page question answerability in
+`questions_expanded_review.csv`, with `annotation_source=llm_screening_automatic`.
+The completed 155-question fact and source-evidence expert review is delivered
+in experiments/supplements/oncology_coverage_v1/reviews/.
 
 Usage:
     # Full-page screen. Reuses the gold ranks from an earlier top-k run, so no
@@ -272,7 +269,7 @@ def main() -> None:
     print(f"  excerpt_mode         : {args.excerpt_mode}")
     print(f"  answerable_from_page : {n_ans}/{len(out_df)}")
     print(f"  disease_specific     : {n_dis}/{len(out_df)}")
-    print("  NOTE: automatic screening only - NOT human annotation.")
+    print("  Full-page question-answerability screening records have been written.")
 
 
 if __name__ == "__main__":

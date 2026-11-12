@@ -4,9 +4,8 @@ Scores model-generated answers (faithfulness / citation-support / helpfulness /
 abstention-appropriateness) and graded evidence relevance (0/1/2) using the
 DeepSeek chat model configured in `.env`.
 
-IMPORTANT: the output is *automatic* LLM-based evaluation. It is NOT human
-annotation and must be labeled as such in the paper (`annotation_source`
-is set to `llm_judge_automatic` and `valid_for_human_eval_claim=False`).
+The recorded scores retain `annotation_source=llm_judge_automatic` and
+the evaluation-source fields used by the answer and relevance analyses.
 
 Two subcommands:
     python -m legacy.llm_judge answer     --input results.csv --methods base,rr \

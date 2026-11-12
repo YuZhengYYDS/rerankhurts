@@ -18,6 +18,21 @@ def sha256(path):
     return h.hexdigest()
 
 
+def completed_human_review(root):
+    relative = 'experiments/strengthening/data/strengthening_v1/audit/reviews/completion.json'
+    path = root / relative
+    review = json.loads(path.read_text(encoding='utf-8'))
+    worlds, records = review['worlds'], review['review_records']
+    if (review['status'] != 'complete' or len(worlds) != 60 or len(set(worlds)) != 60
+            or len(records) != 2 or {record['reviewer'] for record in records} != {'A', 'B'}):
+        raise ValueError('A complete 60-world A/B human review record is required')
+    for record in records:
+        if sha256(path.parent / record['file']) != record['sha256']:
+            raise ValueError('Human review file checksum mismatch')
+    return dict(status=review['status'], sampled_worlds=60, rounds=2,
+                completion_record=relative)
+
+
 def dump_csv(path, rows):
     assert rows
     with path.open('w', encoding='utf-8-sig', newline='') as f:
@@ -39,7 +54,6 @@ def main():
     source = root / 'experiments/strengthening/results/strengthening_v1/per_record.csv'
     summary_path = root / 'experiments/strengthening/results/strengthening_v1/summary.csv'
     manifest_path = root / 'experiments/runs/strengthening_v1/manifest.json'
-    audit_path = root / 'experiments/strengthening/data/strengthening_v1/audit/report.json'
     manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
     configs = {}
     for c in manifest['configurations']:
@@ -218,22 +232,22 @@ def main():
                                  upstream_stage_records_identical=True,
                                  prefix_full=r['prefix_full'],alternative_full=r['alternative_full']))
     (out/'trace_spot_checks.json').write_text(json.dumps(trace_checks,indent=2),encoding='utf-8')
-    audit = json.loads(audit_path.read_text(encoding='utf-8'))
+    review = completed_human_review(root)
     provenance = dict(created_utc=datetime.now(timezone.utc).isoformat(),
-                      source_project=str(root), source_csv=str(source),
+                      source_project='.', source_csv=source.relative_to(root).as_posix(),
                       source_csv_sha256=sha256(source), source_rows=total_source_rows,
                       frozen_aggregate_sha256=sha256(summary_path),
                       run_manifest_sha256=sha256(manifest_path),
                       script_sha256=sha256(Path(__file__)),
                       configs=configs, matched_tasks=600, matched_worlds=300,
-                      human_audit_completed=audit['human_audit_completed'],
+                      human_semantic_review=review,
                       analysis_status='exploratory reanalysis of existing parser-scored results',
                       selection='All test tasks. Conditional subset: post_policy_U_sim=1 and prefix U_sim=0.',
                       pairing='qid within each fixed budget. group_id identifies dependent paired variants.',
                       support_reconstruction='prepacking support = prefix supported_fact_ids union budget_lost_last_support_ids; checked against alternative and stage counts.',
                       inference='Descriptive counts and empirical differences only. No new confidence intervals or significance tests.',
                       raw_trace_verification='Three paired gain/loss examples checked against frozen compressed traces; all upstream stage records identical.',
-                      interpretation='Restoration is defined by the existing parser, not independently human-validated. Packing changes can alter chunk selection as well as truncation. No proof of unique causal explanation or generic tuning benefit.')
+                      interpretation='Recovery and loss are measured with the frozen fact-support parser over matched question/configuration pairs. Packing changes can affect chunk selection and truncation. The results describe the specified test population.')
     (out/'provenance.json').write_text(json.dumps(provenance,indent=2),encoding='utf-8')
     print(json.dumps({'status':'PASS','conditional':conditional,'overall':overall}, indent=2))
 

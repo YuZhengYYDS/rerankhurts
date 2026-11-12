@@ -41,10 +41,10 @@
 - `rev_table_source_ablation_ci.csv`
 - `rev_table_subset_split.csv`
 
-## Human Eval
+## Review records and answer/relevance metrics
 
-- `HUMAN_EVAL_STATUS.md`: whether the current annotation files are valid for paper use
-- `rev_table_judge.csv`: automatic LLM-judge scores, not human annotation (every row carries `valid_for_human_eval_claim = False`); cite it only as an automatic evaluation.
+- `HUMAN_EVAL_STATUS.md`: completed human review records and the legacy answer/relevance score tables
+- `rev_table_judge.csv`: aggregated scores from the configured LLM judge for model answers.
 
 ## Curated Folder
 

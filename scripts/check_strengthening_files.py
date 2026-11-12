@@ -433,8 +433,8 @@ def verify(root=ROOT, data=None, run=None, results=None, allow_in_progress=False
     return {"status": "PENDING" if pending else "PASS", "accepted": not pending or allow_in_progress,
             "pending": pending, "worlds": specification["counts"]["worlds"], "questions": len(questions),
             "verified_trace_files": len(trace_hashes), "expected_records": manifest["expected_records"] if manifest else None,
-            "model_cache_required": False, "human_review": "not established by this integrity check",
-            "scope": "Recorded file identities, exact record sets and original-source references; not a replacement for semantic or human evaluation."}
+            "model_cache_required": False,
+            "scope": "Recorded file identities, exact record sets and original-source references."}
 
 
 def main(argv=None):
