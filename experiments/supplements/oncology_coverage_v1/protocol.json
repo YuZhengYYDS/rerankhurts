@@ -29,7 +29,6 @@
   "independent_external_information_needs": false,
   "protected_files": 176,
   "metadata_revision": {
-    "date": "2026-11-13",
     "previous_annotation_snapshot_sha256": "459dc6d07a390e93fd66e6ab4c9f2c41f470fe32c9b3b6d2f6174e176c98d8dd",
     "scope": "Completed-review descriptions only; experimental inputs and numerical results are unchanged."
   }

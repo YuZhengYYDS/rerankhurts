@@ -8,7 +8,6 @@
   "prior_outputs_known": true,
   "not_blinded_or_preregistered": true,
   "metadata_identity_update": {
-    "date": "2026-11-12",
     "scope": "Synchronize hashes after metadata edits; question text, facts, evidence intervals and saved outcomes unchanged",
     "original_input_sha256": {
       "questions_sha256": "162f2e1c2bc44c2d311b8e5560be994a8ad351cfcf97ddb9e1670d86529c7503",
@@ -16,8 +15,7 @@
       "claims_sha256": "f181c5867a4755707b0ff504f82cb0d2bfb88e4942ff70c9283699c3c832a172"
     }
   },
-  "metadata_identity_update_20261113": {
-    "date": "2026-11-13",
+  "completed_review_metadata_update": {
     "previous_truth_sha256": "459dc6d07a390e93fd66e6ab4c9f2c41f470fe32c9b3b6d2f6174e176c98d8dd",
     "source_commit": "6f340d30751214f7f2de91c68e2a28a7d272a3d7",
     "scope": "Update completed-review descriptions; all 155 questions, facts, evidence and scoring definitions are unchanged."
