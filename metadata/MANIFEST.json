@@ -8556,12 +8556,12 @@
     "sha256": "2c2271e594566a99d302b7f8383b0f64ccbad6944f0e31f028020da973cf6bfc"
   },
   "experiments/supplements/oncology_coverage_v1/README.md": {
-    "bytes": 3137,
-    "sha256": "0c076efea64c45e911f70bb3367fc4f17735d64e542194dc48600bb8f6e34052"
+    "bytes": 3072,
+    "sha256": "605279370b8ac6d424995f5e91a1784b2864e7310574d466138d26502432ed4f"
   },
   "experiments/supplements/oncology_coverage_v1/annotations/README.md": {
-    "bytes": 709,
-    "sha256": "10d5a97c447a21698400924b1d3318fc41c5f36d6e2842f02dc8c7747ecd7bdf"
+    "bytes": 720,
+    "sha256": "ea2601bbd48abd84c5671aae264f286eca8da21d8abb0461e9dc51bb3e498cce"
   },
   "experiments/supplements/oncology_coverage_v1/annotations/claims.jsonl": {
     "bytes": 678640,
@@ -8640,20 +8640,16 @@
     "sha256": "5f03f9de8b22d7232d26ea3e54e7197ce552f42cfb21ef3221b2de7c76807daf"
   },
   "experiments/supplements/oncology_coverage_v1/reviews/README.md": {
-    "bytes": 1255,
-    "sha256": "def7dcecbd77a73a4c4a6992ce893bdc802a91ab2f5d536c6d9d599905777f17"
+    "bytes": 853,
+    "sha256": "91770dda0b597c83d60b8d2ec5333964f24b988d08787b3dc4fee4df9eae1671"
   },
   "experiments/supplements/oncology_coverage_v1/reviews/author_dispositions.json": {
-    "bytes": 2642,
-    "sha256": "e73cccf41f464e9fea761ce50fe01c1a386006f6653edc91ec05ac93c335fc98"
-  },
-  "experiments/supplements/oncology_coverage_v1/reviews/expert_rereview_20261113.json": {
-    "bytes": 2662,
-    "sha256": "7eea937622e29e07c1ebd56cb23399275ecef736d8d66fae23cb39e7851ccb8f"
+    "bytes": 2572,
+    "sha256": "2636d2cb0247d61669b39bbf2a570c23b7d0d4809cc015cfab165fdaae94d31f"
   },
   "experiments/supplements/oncology_coverage_v1/reviews/oncology_fact_review_english.xlsx": {
-    "bytes": 190210,
-    "sha256": "9747344aecf6f5e6d76fd32d98d89430fee6a682ae61c2c8f2c90bc8dd09dfc2"
+    "bytes": 189937,
+    "sha256": "f0125de446e6d540dea353c231a60ebd89bbd91642a55763ccc0aaac17b2afb2"
   },
   "experiments/supplements/oncology_coverage_v1/run_three/manifest.json": {
     "bytes": 5209,

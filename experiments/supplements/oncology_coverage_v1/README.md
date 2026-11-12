@@ -7,9 +7,9 @@ and the Oncology part of Fig. 11. It includes 377 annotated required facts and
 
 An oncology expert completed and confirmed all 377 fact-level judgments for
 the 155-question annotation rubric. The [expert-review workbook](reviews/)
-contains the completed judgments and source-evidence review. All 377 facts passed
-both source-support and necessity review, including the 10 facts confirmed in the
-[completed expert re-review](reviews/expert_rereview_20261113.json).
+contains the completed judgments and source-evidence review. All 155 questions
+passed expert review, and all 377 facts passed both source-support and necessity
+review.
 
 Run `python -m rerankhuts oncology-coverage` from the repository root. Outputs
 go to a new directory under `build/reanalysis/`; original inputs and outputs

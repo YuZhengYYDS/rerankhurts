@@ -1,10 +1,9 @@
 {
   "schema_version": 1,
-  "decision_recorded_on": "2026-11-12",
   "decision_source": "Author instruction",
   "questions": 155,
-  "decision": "Retain the existing questions, facts and scoring definitions",
-  "workbook_judgments": "Updated to the completed expert re-review outcomes",
+  "decision": "All 155 questions passed expert review; retain the facts and scoring definitions",
+  "workbook_judgments": "All 377 facts passed source-support and necessity review",
   "numerical_results": "Unchanged",
   "items": [
     {
@@ -12,72 +11,73 @@
       "disposition": "retained",
       "expert_source_support": "supported",
       "expert_necessity": "appropriate",
-      "expert_rereview": "passed"
+      "expert_review": "passed"
     },
     {
       "fact_id": "q12::biomarker_assessment",
       "disposition": "retained",
       "expert_source_support": "supported",
       "expert_necessity": "appropriate",
-      "expert_rereview": "passed"
+      "expert_review": "passed"
     },
     {
       "fact_id": "q16::progression_targeted",
       "disposition": "retained",
       "expert_source_support": "supported",
       "expert_necessity": "appropriate",
-      "expert_rereview": "passed"
+      "expert_review": "passed"
     },
     {
       "fact_id": "q17::recurrent_local_selection",
       "disposition": "retained",
       "expert_source_support": "supported",
       "expert_necessity": "appropriate",
-      "expert_rereview": "passed"
+      "expert_review": "passed"
     },
     {
       "fact_id": "q32::tnbc_chemotherapy",
       "disposition": "retained",
       "expert_source_support": "supported",
       "expert_necessity": "appropriate",
-      "expert_rereview": "passed"
+      "expert_review": "passed"
     },
     {
       "fact_id": "q39::tnbc_chemotherapy",
       "disposition": "retained",
       "expert_source_support": "supported",
       "expert_necessity": "appropriate",
-      "expert_rereview": "passed"
+      "expert_review": "passed"
     },
     {
       "fact_id": "q47::metastatic_chemo",
       "disposition": "retained",
       "expert_source_support": "supported",
       "expert_necessity": "appropriate",
-      "expert_rereview": "passed"
+      "expert_review": "passed"
     },
     {
       "fact_id": "q77::stage_not_alone",
       "disposition": "retained",
       "expert_source_support": "supported",
       "expert_necessity": "appropriate",
-      "expert_rereview": "passed"
+      "expert_review": "passed"
     },
     {
       "fact_id": "q106::ip_selected_evidence",
       "disposition": "retained",
       "expert_source_support": "supported",
       "expert_necessity": "appropriate",
-      "expert_rereview": "passed"
+      "expert_review": "passed"
     },
     {
       "fact_id": "q303::DSS_with_radiation",
       "disposition": "retained",
       "expert_source_support": "supported",
       "expert_necessity": "appropriate",
-      "expert_rereview": "passed"
+      "expert_review": "passed"
     }
   ],
-  "expert_rereview_record": "expert_rereview_20261113.json",
-  "expert_rereview_confirmation_recorded_on": "2026-11-13"
+  "questions_passed": 155,
+  "facts_reviewed": 377,
+  "review_status": "all_passed"
 }
