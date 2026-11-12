@@ -9,3 +9,7 @@ contains the final questions, facts, source spans and 3,100 recorded outcomes.
 The question files in this directory retain their construction and screening
 snapshots. The current expert-reviewed rubric and final question mapping are
 in the coverage package linked above.
+
+The original files record question-construction and answerability-screening
+methods. These fields describe that construction stage. The completed expert
+fact and source-evidence review is recorded in the coverage package above.

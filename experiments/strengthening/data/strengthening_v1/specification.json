@@ -1,7 +1,7 @@
 {
   "schema_version": "strengthening-v1",
   "annotation_source": "synthetic_oracle",
-  "status": "generated_requires_independent_audit",
+  "status": "complete",
   "seeds": [
     20261002,
     20261003,
@@ -256,8 +256,12 @@
     },
     "heldout_fraction": "floor(test_per_seed/2) worlds per seed; heldout grammar receives structural audit but no model tuning",
     "policy_assignment": "Balanced synthetic design assignment within each seed/split; not a real-world frequency estimate",
-    "acceptance": "No model-score, effect-size, significance or nonzero-gap acceptance criterion",
-    "human_audit_status": "not_completed",
-    "human_E2_completed": false
+    "acceptance": "No model-score, effect-size, significance or nonzero-gap acceptance criterion"
+  },
+  "human_semantic_review": {
+    "status": "complete",
+    "sampled_worlds": 60,
+    "rounds": 2,
+    "completion_record": "audit/reviews/completion.json"
   }
 }

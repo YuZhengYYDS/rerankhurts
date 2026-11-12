@@ -291,3 +291,39 @@ def test_stale_auxiliary_analysis_is_rejected(artifact, label, field):
          "output_hashes": {}, "auxiliary_runs": {label: {"status": "complete", field: "0" * 64}}})
     with pytest.raises(ValueError, match="SHA-256 mismatch"):
         check.verify(root)
+
+
+def test_review_status_revision_preserves_experimental_identity(tmp_path):
+    data = tmp_path
+    original = {"status": "generated_requires_independent_audit", "counts": {"worlds": 360},
+                "design": {"acceptance": "fixed", "human_audit_status": "not_completed",
+                           "human_E2_completed": False}}
+    recorded = data / "specification_at_inference.json"
+    dump(recorded, original)
+    expected = check.sha256(recorded)
+    review_dir = data / "audit/reviews"
+    review_dir.mkdir(parents=True)
+    records = []
+    for reviewer in ("A", "B"):
+        path = review_dir / (reviewer + ".md")
+        path.write_text("Completed review " + reviewer, encoding="utf-8")
+        records.append({"reviewer": reviewer, "file": path.name, "sha256": check.sha256(path)})
+    dump(review_dir / "completion.json", {"status": "complete", "worlds": [str(i) for i in range(60)],
+                                         "review_records": records})
+    current = {"status": "complete", "counts": {"worlds": 360}, "design": {"acceptance": "fixed"},
+               "human_semantic_review": {"status": "complete", "sampled_worlds": 60, "rounds": 2,
+                                         "completion_record": "audit/reviews/completion.json"}}
+    dump(data / "specification.json", current)
+    assert check.recorded_specification(data, expected) == recorded
+    current["counts"]["worlds"] = 359
+    dump(data / "specification.json", current)
+    with pytest.raises(ValueError, match="beyond review metadata"):
+        check.recorded_specification(data, expected)
+    current["counts"]["worlds"] = 360
+    dump(data / "specification.json", current)
+    (review_dir / "A.md").write_text("altered", encoding="utf-8")
+    with pytest.raises(ValueError, match="SHA-256 mismatch"):
+        check.recorded_specification(data, expected)
+    recorded.write_bytes(recorded.read_bytes() + b" ")
+    with pytest.raises(ValueError, match="SHA-256 mismatch"):
+        check.recorded_specification(data, expected)

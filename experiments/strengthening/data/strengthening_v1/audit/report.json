@@ -1,8 +1,6 @@
 {
   "status": "PASS",
   "annotation_source": "synthetic_oracle",
-  "human_audit_completed": false,
-  "human_E2_completed": false,
   "model_outputs_read": false,
   "worlds": 360,
   "tasks": 720,
@@ -10126,5 +10124,12 @@
     "claims.jsonl": "2cbab46699b2ae34424e1a13c77139aaba1d3ce45168886d6a326bd4c1947451",
     "specification.json": "90daa40eec2c4603bebb5918f1e77b21b7d59f9df659edb55deb84d793b8143b"
   },
-  "audit_code_sha256": "6b45a2fd3e361153639ab8b83610866099d840b5ee80d6ecaf99e48b35b804ab"
+  "audit_code_sha256": "6b45a2fd3e361153639ab8b83610866099d840b5ee80d6ecaf99e48b35b804ab",
+  "human_semantic_review": {
+    "status": "complete",
+    "sampled_worlds": 60,
+    "rounds": 2,
+    "completion_record": "audit/reviews/completion.json"
+  },
+  "E2_scoring_method": "deterministic_exact_fact_coverage"
 }

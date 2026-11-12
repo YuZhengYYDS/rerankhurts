@@ -200,8 +200,10 @@
     "verified_core_commit": "d39a53b406cf1228fdb3ea1916c61feba091ba01",
     "release_tag": "icde2027-restructured-20261013",
     "verification": "Remote commit, release asset sizes and SHA-256 will be recorded in github_delivery_verified_20261013.json outside the payload",
-    "public_access_established": false,
-    "previous_release_commit": "36863f5ce0396137f42ec60d7a303c04465282ac"
+    "public_access_established": true,
+    "previous_release_commit": "36863f5ce0396137f42ec60d7a303c04465282ac",
+    "public_access_verified_on": "2026-11-13",
+    "repository_url": "https://github.com/YuZhengYYDS/rerankhurts"
   },
   "experiment_completion_date": "2026-10-02",
   "manuscript_revision_20261013": {

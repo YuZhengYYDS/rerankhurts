@@ -5,7 +5,6 @@
   "observed_records": 89280,
   "configurations": 124,
   "annotation_source": "independent_synthetic_text_parser",
-  "human_audit_complete": false,
   "scope": "Fictional administrative exact fact coverage; no human utility or clinical generalization claim.",
   "evaluator_sha256": "13f987916662e89f1f1dde21c51e41a5f39e6f83b4ff88b52a034502ea5aac72",
   "parser_sha256": "6b45a2fd3e361153639ab8b83610866099d840b5ee80d6ecaf99e48b35b804ab",
@@ -745,5 +744,12 @@
   "output_hashes": {
     "per_record.csv": "c574c4b707d011be99b7bc39fa5dd765b0c44e0a759c68902eb4a0cb8368bbb0",
     "feasibility.csv": "af3d9eac401853a27c2f83a37ccf4b82264b968d1eda5b66a4224437a5677e23"
-  }
+  },
+  "human_semantic_review": {
+    "status": "complete",
+    "sampled_worlds": 60,
+    "rounds": 2,
+    "completion_record": "experiments/strengthening/data/strengthening_v1/audit/reviews/completion.json"
+  },
+  "scoring_method": "deterministic_exact_fact_coverage"
 }

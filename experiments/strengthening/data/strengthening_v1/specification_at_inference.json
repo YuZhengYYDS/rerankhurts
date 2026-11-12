@@ -1,0 +1,263 @@
+{
+  "schema_version": "strengthening-v1",
+  "annotation_source": "synthetic_oracle",
+  "status": "generated_requires_independent_audit",
+  "seeds": [
+    20261002,
+    20261003,
+    20261004
+  ],
+  "dev_per_seed": 20,
+  "test_per_seed": 100,
+  "counts": {
+    "worlds": 360,
+    "tasks": 720,
+    "collections": 720,
+    "chunks_per_collection": 80,
+    "chunks": 57600
+  },
+  "public_files": [
+    "corpus.jsonl",
+    "questions.jsonl"
+  ],
+  "evaluation_only_files": [
+    "truth.jsonl",
+    "metadata.jsonl",
+    "claims.jsonl"
+  ],
+  "generator_sha256": "4bfe42034a9d8cea80ec103199c36be52f1d03e02291e1cf523689f810458e12",
+  "study_plan_sha256": "074b840e66408deeb7dce116a83245bf5fd3213e20137559c5fc96fc3b4afb0a",
+  "study_plan_snapshot": {
+    "version": "strengthening-v1-20261002",
+    "status": "design_fixed_before_new_model_outcomes",
+    "user_scope": "Run the experiments from all four stages of the supplied six-week plan now, using the local machine, and publish the completed artifact to the specified GitHub repository.",
+    "old_results": "Immutable. New data, model runs and analyses use new directories.",
+    "population": {
+      "independent_worlds": 360,
+      "generation_seeds": [
+        20261002,
+        20261003,
+        20261004
+      ],
+      "dev_worlds_per_seed": 20,
+      "test_worlds_per_seed": 100,
+      "paired_variants_per_world": 2,
+      "chunks_per_tenant_collection": 80,
+      "scope": "Fictional tenant-specific collections. All variants of a latent world remain in one split. A collection contains no other variant of the same world. This tests conditional mechanisms, not open-domain population prevalence.",
+      "policy": "Balanced open/constrained assignment by world; paired variants share policy.",
+      "templates": "Development prose/list; test includes seen expression families and a held-out QA family. Rendering choices and parameter ranges are not revised to obtain test effects.",
+      "required_facts": [
+        2,
+        3,
+        4
+      ]
+    },
+    "primary_comparisons": [
+      {
+        "name": "cap_order_512",
+        "retriever": "dense",
+        "pool": 64,
+        "reranker": "m3",
+        "cap": 2,
+        "contrast": "post minus pre",
+        "budget": 512,
+        "packing": "prefix",
+        "score_view": "prefix512",
+        "policy_stage": "none",
+        "endpoint": "U_sim"
+      },
+      {
+        "name": "cap_order_2048",
+        "retriever": "dense",
+        "pool": 64,
+        "reranker": "m3",
+        "cap": 2,
+        "contrast": "post minus pre",
+        "budget": 2048,
+        "packing": "prefix",
+        "score_view": "prefix512",
+        "policy_stage": "none",
+        "endpoint": "U_sim"
+      }
+    ],
+    "statistics": {
+      "unit": "latent world; average paired-variant differences within each world before inference",
+      "bootstrap_repetitions": 5000,
+      "bootstrap_seed": 20261002,
+      "interval": "paired world bootstrap 95%, stratified by generation seed",
+      "primary_multiple_comparisons": "Holm adjustment for two primary comparisons",
+      "p_values": "20,000 world-level paired sign flips under a symmetry/exchangeability null, with seed 20261002. This is a model-based test, not evidence of randomized population assignment. All-zero differences yield p=1 and a degenerate empirical interval, not an equivalence claim.",
+      "exploration": "Other factors, templates, policies, seeds, subgroups and secondary endpoints are exploratory; keep all null, reversed and infeasible observations.",
+      "weights": "equal latent worlds; simulator mixture weights are designed, not estimated real-world frequencies"
+    },
+    "mechanisms": {
+      "budgets": [
+        256,
+        512,
+        1024,
+        2048
+      ],
+      "caps": [
+        0,
+        1,
+        2,
+        4
+      ],
+      "cap_stages": [
+        "off",
+        "pre",
+        "post"
+      ],
+      "packing": [
+        "prefix",
+        "whole",
+        "window"
+      ],
+      "retrievers": [
+        "dense",
+        "bm25",
+        "fusion"
+      ],
+      "rerankers": [
+        "none",
+        "m3",
+        "minilm"
+      ],
+      "additional": [
+        "refill",
+        "MMR",
+        "source-policy placement",
+        "scoring-view separation",
+        "pool depth"
+      ],
+      "matrix": "Main 28 budget/cap configurations plus predefined targeted submatrices, deduplicated. Exact configuration records are frozen in the backend manifest before scoring.",
+      "no_loss_controls": "Candidate counts within cap, and redundant support retained; verify as specified controls, not by accepting only worlds with desired outcomes.",
+      "stage_accounting": "Candidate absence, pre-cap, post-cap and final budget. Pure sorting preserves full-set support membership."
+    },
+    "downstream": {
+      "model": "Qwen/Qwen2.5-1.5B-Instruct",
+      "revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+      "test_worlds": 60,
+      "selection": "Deterministic stratified sampling before inference; 20 worlds per generation seed, both variants retained.",
+      "evidence_conditions": [
+        "dense without reranker prefix",
+        "m3 pre-cap2 prefix",
+        "m3 post-cap2 prefix",
+        "m3 post-cap2 window"
+      ],
+      "evidence_budget": 512,
+      "controls": [
+        "closed book with no evidence",
+        "evidence from a deterministically different world without target support"
+      ],
+      "decoding": {
+        "do_sample": false,
+        "max_new_tokens": 256
+      },
+      "response": "JSON with one value and evidence-source label for each requested fact; unknown for unsupported fields",
+      "evaluation": "Exact fictional fact values, complete correctness, per-field correctness, cited evidence support and unsupported-field abstention. No LLM judge is treated as human annotation.",
+      "prompt_cost": "Record full prompt tokens and generated tokens under the answer tokenizer, separate from the BERT evidence budget."
+    },
+    "online_timing": {
+      "questions": 24,
+      "selection": "Deterministic test-world sample fixed before outcomes, spanning seeds and templates",
+      "configurations": 4,
+      "cold_first_passes": 1,
+      "warmup_requests_per_configuration": 2,
+      "steady_repetitions_per_question_configuration": 5,
+      "order": "Seeded random request/configuration order; CUDA synchronized around whole requests",
+      "included": [
+        "query encoding",
+        "retrieval",
+        "real reranker inference",
+        "cap/filter/MMR when configured",
+        "packing"
+      ],
+      "excluded": [
+        "model loading",
+        "offline document encoding/index construction",
+        "answer generation",
+        "result serialization"
+      ],
+      "cache_policy": "No reused query embeddings or reranker scores in timed requests. Offline document indexes and resident weights are reused as in a warm service.",
+      "interpretation": "Local request latency on fictional inputs; no production-throughput or real-user latency claim."
+    },
+    "human_audit": {
+      "initial_worlds": 60,
+      "status": "packet_preparation_only_until_two_humans_provide_independent_judgments",
+      "automated_audit": "Independently parse rendered assertions and reconcile with fact tables and delivered text; do not relabel automatic checks as human review."
+    },
+    "publication": {
+      "repository": "https://github.com/YuZhengYYDS/rerankhuts",
+      "authorization": "Explicit user instruction to upload on 2026-10-02",
+      "completion_criterion": "Verify committed repository files and downloadable artifacts after upload; report any remaining access blocker honestly."
+    }
+  },
+  "files": {
+    "corpus.jsonl": {
+      "sha256": "b882dc31e8ed9a96df520f5e5b6423a64f3e17fa4770ab3840385dddd5b8ccb5",
+      "rows": 57600
+    },
+    "questions.jsonl": {
+      "sha256": "71303669f245110cffb695dcb9d779e9896d1c353d58109485aa6c54510b77d7",
+      "rows": 720
+    },
+    "metadata.jsonl": {
+      "sha256": "c43eb0ec083bbfa5e0672201a7a0e44374437266a0a12e506dced462cf3622b2",
+      "rows": 720
+    },
+    "truth.jsonl": {
+      "sha256": "c4022335d4a79a7863b3f89df62b5d0e3e50e85b65a6ba60b1babd680287fdb7",
+      "rows": 360
+    },
+    "claims.jsonl": {
+      "sha256": "2cbab46699b2ae34424e1a13c77139aaba1d3ce45168886d6a326bd4c1947451",
+      "rows": 11808
+    }
+  },
+  "design": {
+    "independent_unit": "latent world; both variants remain in one group",
+    "collection_scope": "Independent 80-chunk tenant collection; no other variant or world is searchable",
+    "paired_intervention": "Only source URL concentration changes; ordered document texts, questions, hosts and facts are identical",
+    "duplicate_chunks_between_worlds": [
+      0,
+      4,
+      12
+    ],
+    "facts_per_world": [
+      2,
+      3,
+      4
+    ],
+    "support_position": "Independent continuous fraction Uniform(0.05,0.95), rendered with full sentences; actual token visibility is measured later",
+    "target_words": {
+      "ordinary": [
+        60,
+        360
+      ],
+      "position_pressure": [
+        180,
+        900
+      ]
+    },
+    "range_rationale": "Finite mechanism stress ranges spanning short/long contexts; no empirical deployment-frequency claim",
+    "templates": {
+      "dev": [
+        "prose",
+        "list"
+      ],
+      "test_seen": [
+        "prose",
+        "list"
+      ],
+      "test_heldout": [
+        "qa"
+      ]
+    },
+    "heldout_fraction": "floor(test_per_seed/2) worlds per seed; heldout grammar receives structural audit but no model tuning",
+    "policy_assignment": "Balanced synthetic design assignment within each seed/split; not a real-world frequency estimate",
+    "acceptance": "No model-score, effect-size, significance or nonzero-gap acceptance criterion",
+    "human_audit_status": "not_completed",
+    "human_E2_completed": false
+  }
+}

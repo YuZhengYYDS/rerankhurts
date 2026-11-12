@@ -2,7 +2,7 @@
 
 Two rounds of human semantic review, A and B, are complete for the 60-world sample. See the [completed review records](reviews/) and [completion record](reviews/completion.json).
 
-This packet contains 60 latent worlds with both paired collections. Selection used generation seed, rendering family, and scenario, without model configurations, predictions, or outcomes. `report.json` and `claims_reparsed.jsonl` contain automatic parser outputs.
+This packet contains 60 latent worlds with both paired collections. Selection used generation seed, rendering family, and scenario, without model configurations, predictions, or outcomes. `report.json` links the completed human review and records the parser checks. `claims_reparsed.jsonl` contains the parser output.
 
 Keep this directory with its parent dataset directory. The files needed for review are:
 
@@ -11,7 +11,8 @@ Keep this directory with its parent dataset directory. The files needed for revi
 - [../corpus.jsonl](../corpus.jsonl): actual original document text and URLs. Repository-relative path: `experiments/strengthening/data/strengthening_v1/corpus.jsonl`.
 - [../questions.jsonl](../questions.jsonl): questions and explicit allowed source prefixes. Repository-relative path: `experiments/strengthening/data/strengthening_v1/questions.jsonl`.
 - [../truth.jsonl](../truth.jsonl): all world fact tables; each packet entry already includes its relevant table.
-- [../specification.json](../specification.json): frozen file hashes and design.
+- [../specification.json](../specification.json): current design and completed human-review status.
+- [../specification_at_inference.json](../specification_at_inference.json): the exact specification bytes used by the recorded inference identity.
 
 The packet's `documents_file` value `../corpus.jsonl` is relative to this `audit/` directory, not the repository root or the reviewer's working directory. For each packet row, select corpus rows whose `collection_id` occurs in that row's `collection_ids`; each collection has 80 ordered chunks. Select the two question rows by `qids`. Do not substitute excerpts from model traces for the original corpus.
 

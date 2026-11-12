@@ -12,8 +12,11 @@ import hashlib
 import json
 import math
 from pathlib import Path
+import sys
 
 ROOT = Path(__file__).resolve().parents[2]
+if __package__ in (None, ""):
+    sys.path.insert(0, str(ROOT))
 DEFAULT_RESULTS = ROOT / "experiments/strengthening/results/strengthening_v1"
 DEFAULT_RUN = ROOT / "experiments/runs/strengthening_v1"
 DEFAULT_DATA = ROOT / "experiments/strengthening/data/strengthening_v1"
@@ -98,7 +101,8 @@ def validated_inputs(source, run, data):
     require((status.get("observed_tasks"), status.get("expected_tasks"), status.get("observed_records"),
              status.get("configurations")) == (720, 720, 89280, 124), "Full strengthening population required")
     require(status.get("annotation_source") == "independent_synthetic_text_parser"
-            and status.get("human_audit_complete") is False, "Synthetic endpoint identity changed")
+            and (status.get("scoring_method") == "deterministic_exact_fact_coverage"
+                 or status.get("human_audit_complete") is False), "Synthetic endpoint identity changed")
     for name in ("per_record.csv", "feasibility.csv"):
         check_hash(source / name, status["output_hashes"][name])
     check_hash(source / "per_record.csv", analysis["evaluated_per_record_sha256"])
@@ -118,7 +122,11 @@ def validated_inputs(source, run, data):
     require(len(configs) == len(manifest["configurations"]) == 124, "Duplicate/missing configurations")
     for name, expected in status["input_hashes"].items():
         require(Path(name).name == name, "Unexpected data reference")
-        check_hash(data / name, expected)
+        if name == "specification.json":
+            from scripts.check_strengthening_files import recorded_specification
+            check_hash(recorded_specification(data, expected), expected)
+        else:
+            check_hash(data / name, expected)
     for key, filename in (("evaluator_sha256", "evaluate.py"), ("parser_sha256", "audit_data.py")):
         check_hash(ROOT / "experiments/strengthening" / filename, status[key])
     check_hash(ROOT / "experiments/strengthening/analyze.py", analysis["analysis_code_sha256"])

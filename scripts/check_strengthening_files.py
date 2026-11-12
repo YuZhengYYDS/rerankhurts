@@ -99,13 +99,44 @@ def check_hash(path, expected):
     require(sha256(path) == expected, f"SHA-256 mismatch: {path}")
 
 
+def recorded_specification(data, expected):
+    """Verify inference bytes and permit only the documented review-status update."""
+    current = data / "specification.json"
+    if sha256(current) == expected:
+        return current
+    recorded = data / "specification_at_inference.json"
+    check_hash(recorded, expected)
+    original, revised = read_json(recorded), read_json(current)
+    require(revised.pop("status") == "complete", "Current dataset status differs")
+    original.pop("status")
+    review = revised.pop("human_semantic_review")
+    require(review == {"status": "complete", "sampled_worlds": 60, "rounds": 2,
+                       "completion_record": "audit/reviews/completion.json"},
+            "Unexpected human-review metadata revision")
+    for key in ("human_audit_status", "human_E2_completed"):
+        original["design"].pop(key, None)
+    require(original == revised, "Experimental specification changed beyond review metadata")
+    completion_path = reference(data, review["completion_record"])
+    completion = read_json(completion_path)
+    require(completion["status"] == "complete" and len(completion["worlds"]) == 60
+            and len(set(completion["worlds"])) == 60, "Completed 60-world review required")
+    records = completion["review_records"]
+    require(len(records) == 2 and {r["reviewer"] for r in records} == {"A", "B"},
+            "Completed A/B review records required")
+    for record in records:
+        check_hash(reference(completion_path.parent, record["file"]), record["sha256"])
+    return recorded
+
+
 def check_hash_map(base, mapping, exact=None):
     require(isinstance(mapping, dict), "File hashes must be an object")
     require(len({name.casefold() for name in mapping}) == len(mapping), "Aliased hash-map filenames")
     if exact is not None:
         require(set(mapping) == set(exact), f"Recorded file set differs: {base}")
     for name, expected in mapping.items():
-        check_hash(reference(base, name), expected)
+        path = (recorded_specification(base, expected) if name == "specification.json"
+                else reference(base, name))
+        check_hash(path, expected)
 
 
 def check_model_identity(model):
@@ -197,7 +228,8 @@ def check_run(run, source, data, specification, corpus, questions, pending):
     manifest = read_json(run / "manifest.json")
     identity = check_identity(manifest)
     check_hash(source / "study_plan.json", identity["study_plan_sha256"])
-    check_hash(data / "specification.json", identity["specification_sha256"])
+    check_hash(recorded_specification(data, identity["specification_sha256"]),
+               identity["specification_sha256"])
     for name, field in (("corpus.jsonl", "corpus_sha256"), ("questions.jsonl", "questions_sha256")):
         check_hash(data / name, identity[field])
     check_hash_map(source, identity["code_sha256"], {"backend.py", "protocol.py"})
