@@ -9,7 +9,7 @@
   ],
   "configurations_per_question": 20,
   "expected_records": 3100,
-  "annotation_snapshot_sha256": "3a6c8974904885539b62966c919690d59051fe9086b68eeedbeb21da2fd0d70c",
+  "annotation_snapshot_sha256": "5823e0aadd0f8aa490e90976903e3b67e025eb7639982c2ae764f0e00340a541",
   "corpus_sha256": "7ddcfdff6f942be4f7fcf703bbba420e5cb093ba6fa29e7879e919632c94ee78",
   "questions_sha256": "d8e3d64d3116b515c53ac50523a5488e6eb49dc1bdd7113ff5e5982b3afe9df5",
   "original_files_must_remain_unchanged": true,
@@ -29,7 +29,7 @@
   "independent_external_information_needs": false,
   "protected_files": 176,
   "metadata_revision": {
-    "previous_annotation_snapshot_sha256": "459dc6d07a390e93fd66e6ab4c9f2c41f470fe32c9b3b6d2f6174e176c98d8dd",
-    "scope": "Completed-review descriptions only; experimental inputs and numerical results are unchanged."
+    "previous_annotation_snapshot_sha256": "3a6c8974904885539b62966c919690d59051fe9086b68eeedbeb21da2fd0d70c",
+    "scope": "Review-date metadata only; facts, source evidence, scoring definitions and numerical results are unchanged."
   }
 }
