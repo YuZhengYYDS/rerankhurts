@@ -2,11 +2,15 @@
 import csv
 import hashlib
 import json
+import sys
 from collections import defaultdict
 from pathlib import Path
 
 HERE=Path(__file__).resolve().parent
 ROOT=HERE.parents[2]
+if __package__ in (None, ''):
+    sys.path.insert(0,str(ROOT))
+from scripts.check_strengthening_files import recorded_source
 
 
 def digest(value):
@@ -48,7 +52,7 @@ def verify():
         for endpoint in endpoints:
             assert abs(sum(r['evaluation'][endpoint] for r in rr)/120-float(row[endpoint+'_world_mean']))<1e-12
     for name,h in status['generation_code_sha256'].items():
-        p=ROOT/'experiments/strengthening'/name
+        p=recorded_source(ROOT/'experiments/strengthening',name,h)
         if p.exists(): assert hashlib.sha256(p.read_bytes()).hexdigest()==h
     return dict(status='PASS',raw_response_hashes_verified=240,questions=120,worlds=60,
                 saved_endpoint_means_reconciled=True,models_rerun=False)

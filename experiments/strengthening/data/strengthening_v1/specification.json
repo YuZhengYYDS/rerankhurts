@@ -184,8 +184,14 @@
     },
     "human_audit": {
       "initial_worlds": 60,
-      "status": "packet_preparation_only_until_two_humans_provide_independent_judgments",
-      "automated_audit": "Independently parse rendered assertions and reconcile with fact tables and delivered text; do not relabel automatic checks as human review."
+      "automated_audit": "Independently parse rendered assertions and reconcile with fact tables and delivered text; do not relabel automatic checks as human review.",
+      "delivered_benchmark_review": {
+        "dataset": "strengthening_v1",
+        "status": "complete",
+        "sampled_worlds": 60,
+        "rounds": 2,
+        "completion_record": "data/strengthening_v1/audit/reviews/completion.json"
+      }
     },
     "publication": {
       "repository": "https://github.com/YuZhengYYDS/rerankhuts",

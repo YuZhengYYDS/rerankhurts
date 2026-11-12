@@ -3,7 +3,8 @@
 Public evaluator API: parse_claims(text) returns semantic statements with exact
 character spans; classify(truth, claim) derives fact_id/status from the dated
 functional fact table. Generator labels are only checked against these results.
-This is automated semantic/structural quality control, not human annotation.
+This module checks semantic and structural properties of rendered statements.
+Completed human judgments are stored separately in the review records.
 """
 from __future__ import annotations
 
@@ -95,6 +96,8 @@ def classify(truth, claim):
 
 
 def audit_dataset(data, output=None, human_sample_worlds=60):
+    if output is not None and Path(output).exists():
+        raise FileExistsError("Refusing to replace an existing audit directory; use a new output under build/")
     data = Path(data)
     spec = json.loads((data / "specification.json").read_text(encoding="utf-8"))
     require(spec.get("schema_version") == "strengthening-v1" and spec.get("annotation_source") == "synthetic_oracle", "Unexpected dataset schema/scope")
@@ -216,7 +219,7 @@ def audit_dataset(data, output=None, human_sample_worlds=60):
               "audit_code_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest()}
     if output is not None:
         output = Path(output)
-        output.mkdir(parents=True, exist_ok=True)
+        output.mkdir(parents=True, exist_ok=False)
         (output / "report.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
         (output / "claims_reparsed.jsonl").write_text("".join(json.dumps(r, sort_keys=True) + "\n" for r in reparsed), encoding="utf-8")
         # Round-robin template/scenario strata within equal seed quotas. The

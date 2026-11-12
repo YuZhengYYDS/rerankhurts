@@ -294,11 +294,14 @@ def test_stale_auxiliary_analysis_is_rejected(artifact, label, field):
 
 
 def test_review_status_revision_preserves_experimental_identity(tmp_path):
-    data = tmp_path
+    data = tmp_path / "experiments/strengthening/data/strengthening_v1"
+    data.mkdir(parents=True)
     original = {"status": "generated_requires_independent_audit", "counts": {"worlds": 360},
                 "design": {"acceptance": "fixed", "human_audit_status": "not_completed",
-                           "human_E2_completed": False}}
-    recorded = data / "specification_at_inference.json"
+                           "human_E2_completed": False},
+                "study_plan_snapshot": {"human_audit": {"initial_worlds": 60, "status": "at_plan_freeze"}}}
+    recorded = tmp_path / "archive/strengthening_review_state_20261113/specification.json"
+    recorded.parent.mkdir(parents=True)
     dump(recorded, original)
     expected = check.sha256(recorded)
     review_dir = data / "audit/reviews"
@@ -311,6 +314,9 @@ def test_review_status_revision_preserves_experimental_identity(tmp_path):
     dump(review_dir / "completion.json", {"status": "complete", "worlds": [str(i) for i in range(60)],
                                          "review_records": records})
     current = {"status": "complete", "counts": {"worlds": 360}, "design": {"acceptance": "fixed"},
+               "study_plan_snapshot": {"human_audit": {"initial_worlds": 60, "delivered_benchmark_review": {
+                   "dataset": "strengthening_v1", "status": "complete", "sampled_worlds": 60, "rounds": 2,
+                   "completion_record": "data/strengthening_v1/audit/reviews/completion.json"}}},
                "human_semantic_review": {"status": "complete", "sampled_worlds": 60, "rounds": 2,
                                          "completion_record": "audit/reviews/completion.json"}}
     dump(data / "specification.json", current)

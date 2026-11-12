@@ -38,7 +38,7 @@ pixi run --locked verify
 pixi run --locked test
 ```
 
-The lockfile covers Windows and Linux. Use the `gpu` environment for model inference. Model execution and historical API-based workflows require explicit commands. Some historical manuscript, packaging, and verification commands expect files that are no longer included and need updating before use.
+The lockfile covers Windows and Linux. Use the `gpu` environment for model inference. Model execution and historical API-based workflows require explicit commands. The maintained offline verification and reanalysis commands are listed in [docs/VALIDATION.md](docs/VALIDATION.md). Manuscript commands operate on a separate manuscript tree.
 
 ```bash
 # Inspect an execution plan without running it.
@@ -65,7 +65,7 @@ Two rounds of [60-world human semantic review](experiments/strengthening/data/st
 
 ## Releases and provenance
 
-The [GitHub releases](https://github.com/YuZhengYYDS/rerankhurts/releases) retain separate code and results archives. Manuscript-containing archives have been removed. Frozen experiment manifests, release checksums and historical documentation may still reference removed files; use [metadata/MANIFEST.json](metadata/MANIFEST.json) for the current source-tree inventory.
+Download the [current artifacts](https://github.com/YuZhengYYDS/rerankhurts/archive/refs/heads/main.zip) for the code, data, saved results and completed reviews. The [artifact version guide](releases/README.md) distinguishes this current deliverable from the dated historical Releases. Use [metadata/MANIFEST.json](metadata/MANIFEST.json) to verify the current source-tree inventory.
 
 The active repository is [YuZhengYYDS/rerankhurts](https://github.com/YuZhengYYDS/rerankhurts). See [validation/](validation/) for historical verification records.
 

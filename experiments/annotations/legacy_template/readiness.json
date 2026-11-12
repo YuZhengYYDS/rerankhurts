@@ -1,1 +1,14 @@
-{"input_questions_sha256":"dd957a44b532261bdf0d0f6134d50035315b8f444d224a38aa4455328e37699c","questions":155,"status":"awaiting_domain_expert_rubric_and_independent_questions","warning":"Export requires named rubric authors, nonempty necessary facts and a declared pre-output freeze. Existing 78/155 questions do not become independent by creating this template."}
+{
+  "input_questions_sha256": "dd957a44b532261bdf0d0f6134d50035315b8f444d224a38aa4455328e37699c",
+  "questions": 155,
+  "status": "archived_template",
+  "record_role": "Historical export template, superseded by the delivered Oncology annotation package",
+  "historical_source_commit": "93404c4338b2d21a88ea3b540106fb88d603db16",
+  "current_review": {
+    "status": "complete",
+    "questions": 155,
+    "fact_judgments": 377,
+    "review_directory": "experiments/supplements/oncology_coverage_v1/reviews/",
+    "annotation_directory": "experiments/supplements/oncology_coverage_v1/annotations/"
+  }
+}

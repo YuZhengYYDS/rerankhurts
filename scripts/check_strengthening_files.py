@@ -99,12 +99,26 @@ def check_hash(path, expected):
     require(sha256(path) == expected, f"SHA-256 mismatch: {path}")
 
 
+def recorded_source(source, name, expected):
+    """Resolve exactly recorded code/plan bytes after the review-state update."""
+    active = source / name
+    if active.is_file() and sha256(active) == expected:
+        return active
+    if name in {"audit_data.py", "study_plan.json"}:
+        archived = source.parents[1] / "archive/strengthening_review_state_20261113" / name
+        if archived.is_file():
+            return archived
+    return active
+
+
 def recorded_specification(data, expected):
     """Verify inference bytes and permit only the documented review-status update."""
     current = data / "specification.json"
     if sha256(current) == expected:
         return current
     recorded = data / "specification_at_inference.json"
+    if not recorded.exists():
+        recorded = data.parents[3] / "archive/strengthening_review_state_20261113/specification.json"
     check_hash(recorded, expected)
     original, revised = read_json(recorded), read_json(current)
     require(revised.pop("status") == "complete", "Current dataset status differs")
@@ -115,6 +129,15 @@ def recorded_specification(data, expected):
             "Unexpected human-review metadata revision")
     for key in ("human_audit_status", "human_E2_completed"):
         original["design"].pop(key, None)
+    if "study_plan_snapshot" in revised:
+        old_review = original["study_plan_snapshot"]["human_audit"]
+        new_review = revised["study_plan_snapshot"]["human_audit"]
+        old_review.pop("status", None)
+        delivered = new_review.pop("delivered_benchmark_review")
+        require(delivered == {"dataset": "strengthening_v1", "status": "complete",
+                "sampled_worlds": 60, "rounds": 2,
+                "completion_record": "data/strengthening_v1/audit/reviews/completion.json"},
+                "Unexpected delivered-benchmark review metadata")
     require(original == revised, "Experimental specification changed beyond review metadata")
     completion_path = reference(data, review["completion_record"])
     completion = read_json(completion_path)
@@ -135,6 +158,7 @@ def check_hash_map(base, mapping, exact=None):
         require(set(mapping) == set(exact), f"Recorded file set differs: {base}")
     for name, expected in mapping.items():
         path = (recorded_specification(base, expected) if name == "specification.json"
+                else recorded_source(base, name, expected) if name in {"audit_data.py", "study_plan.json"}
                 else reference(base, name))
         check_hash(path, expected)
 
@@ -173,7 +197,7 @@ def check_dataset(root, data, source):
     specification = read_json(data / "specification.json")
     plan = read_json(source / "study_plan.json")
     require(specification["study_plan_snapshot"] == plan, "Dataset study-plan snapshot differs")
-    check_hash(source / "study_plan.json", specification["study_plan_sha256"])
+    check_hash(recorded_source(source, "study_plan.json", specification["study_plan_sha256"]), specification["study_plan_sha256"])
     check_hash(source / "generate.py", specification["generator_sha256"])
     require(set(specification["files"]) == DATA_FILES, "Unexpected dataset file set")
     require({path.name for path in data.glob("*.jsonl")} == DATA_FILES, "Unrecorded dataset JSONL files")
@@ -215,7 +239,7 @@ def check_dataset(root, data, source):
     audit = read_json(data / "audit/report.json")
     require(audit["status"] == "PASS", "Independent data audit did not pass")
     check_hash_map(data, audit["input_sha256"], DATA_FILES | {"specification.json"})
-    check_hash(source / "audit_data.py", audit["audit_code_sha256"])
+    check_hash(recorded_source(source, "audit_data.py", audit["audit_code_sha256"]), audit["audit_code_sha256"])
     require((audit["worlds"], audit["tasks"], audit["chunks"], audit["claims_independently_parsed"]) ==
             (len(worlds), len(questions), len(corpus), len(loaded["claims.jsonl"])), "Audit counts differ")
     return specification, plan, corpus, questions, metadata
@@ -227,7 +251,7 @@ def check_run(run, source, data, specification, corpus, questions, pending):
         return None, {}
     manifest = read_json(run / "manifest.json")
     identity = check_identity(manifest)
-    check_hash(source / "study_plan.json", identity["study_plan_sha256"])
+    check_hash(recorded_source(source, "study_plan.json", identity["study_plan_sha256"]), identity["study_plan_sha256"])
     check_hash(recorded_specification(data, identity["specification_sha256"]),
                identity["specification_sha256"])
     for name, field in (("corpus.jsonl", "corpus_sha256"), ("questions.jsonl", "questions_sha256")):
@@ -301,7 +325,7 @@ def check_evaluation(results, run, data, source, manifest, trace_hashes, questio
     status = read_json(results / "status.json")
     require(manifest is not None and status["run_identity_hash"] == manifest["identity_hash"], "Evaluation references a foreign run")
     check_hash(source / "evaluate.py", status["evaluator_sha256"])
-    check_hash(source / "audit_data.py", status["parser_sha256"])
+    check_hash(recorded_source(source, "audit_data.py", status["parser_sha256"]), status["parser_sha256"])
     check_hash(run / "manifest.json", status["run_manifest_sha256"])
     check_hash(run / "status.json", status["run_status_sha256"])
     check_hash_map(data, status["input_hashes"], {"corpus.jsonl", "questions.jsonl", "metadata.jsonl", "truth.jsonl", "specification.json"})
@@ -429,7 +453,7 @@ def check_optional_analysis(results, source):
     if path.exists():
         report = read_json(path)
         check_hash(source / "analyze.py", report["analysis_code_sha256"])
-        check_hash(source / "study_plan.json", report["study_plan_sha256"])
+        check_hash(recorded_source(source, "study_plan.json", report["study_plan_sha256"]), report["study_plan_sha256"])
         check_hash(results / "per_record.csv", report["evaluated_per_record_sha256"])
         if "output_hashes" in report:
             check_hash_map(results, report["output_hashes"])

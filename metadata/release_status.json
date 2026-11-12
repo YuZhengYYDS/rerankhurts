@@ -203,7 +203,9 @@
     "public_access_established": true,
     "previous_release_commit": "36863f5ce0396137f42ec60d7a303c04465282ac",
     "public_access_verified_on": "2026-11-13",
-    "repository_url": "https://github.com/YuZhengYYDS/rerankhurts"
+    "repository_url": "https://github.com/YuZhengYYDS/rerankhurts",
+    "current_artifacts": "https://github.com/YuZhengYYDS/rerankhurts/archive/refs/heads/main.zip",
+    "historical_release_scope": "Release tags dated 2026-10-02 and 2026-10-13 preserve their original versions"
   },
   "experiment_completion_date": "2026-10-02",
   "manuscript_revision_20261013": {
@@ -211,12 +213,6 @@
     "author_information_supplied": true,
     "overview_placeholder_page": 2,
     "overview_placeholder_height_cm": 4.1,
-    "remaining_submission_preparation": [
-      "Replace requested Overview figure space",
-      "Provide ORCIDs and submission-system contact metadata",
-      "Establish public artifact access",
-      "Author review of final manuscript and AI disclosure"
-    ],
     "author_roles_confirmed": true,
     "date": "2026-10-13",
     "writing_skill": "anti-defensive-writing",
@@ -235,7 +231,14 @@
     "model_experiments_rerun": false,
     "numerical_table_rows_unchanged": true,
     "body_pages_before": 12,
-    "body_pages_after": 10
+    "body_pages_after": 10,
+    "historical_submission_topics": [
+      "Overview illustration",
+      "ORCID and contact metadata",
+      "Artifact publication",
+      "Author manuscript review and model-use disclosure"
+    ],
+    "record_scope": "Manuscript preparation snapshot dated 2026-10-13; current artifact completion is linked in README.md"
   },
   "data_organization": {
     "date": "2026-10-26",
@@ -274,7 +277,7 @@
     "numbered_figures": 12,
     "tables": 5,
     "bold_opening_count": 13,
-    "human_audit": "Reported complete by authors",
+    "human_audit": "Completed; the A/B records and completion.json are available",
     "no_experiment_rerun_for_repository_update": true,
     "validation": "validation/manuscript_update_20261109.json"
   },

@@ -75,6 +75,23 @@ def dataset(tmp_path):
     return target
 
 
+def test_audit_rerun_preserves_completed_human_review(dataset, tmp_path):
+    output = tmp_path / "audit"
+    audit_dataset(dataset, output)
+    packet = output / "human_audit_packet.jsonl"
+    rows = read_rows(packet)
+    for row in rows:
+        row["human_review_status"] = "complete"
+    packet.write_text("".join(json.dumps(row) + "\n" for row in rows), encoding="utf-8")
+    review_dir = output / "reviews"
+    review_dir.mkdir()
+    (review_dir / "completion.json").write_text('{"status":"complete"}\n', encoding="utf-8")
+    before = {p.relative_to(output): p.read_bytes() for p in output.rglob("*") if p.is_file()}
+    with pytest.raises(FileExistsError, match="Refusing to replace"):
+        audit_dataset(dataset, output)
+    assert before == {p.relative_to(output): p.read_bytes() for p in output.rglob("*") if p.is_file()}
+
+
 def replace_rows(directory, name, rows, update_hash=True):
     payload = "".join(json.dumps(r, sort_keys=True) + "\n" for r in rows).encode()
     (directory / name).write_bytes(payload)

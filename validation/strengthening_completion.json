@@ -33,12 +33,13 @@
       "Locked Pixi environments",
       "Full, paper, code and results archive workflow"
     ],
-    "remaining": [
-      "User-requested Overview illustration space",
-      "Public artifact access before EAB submission",
-      "Author ORCIDs and submission-system metadata",
-      "Final author review"
-    ]
+    "historical_submission_topics": [
+      "Overview illustration",
+      "Artifact publication",
+      "Author ORCID and contact metadata",
+      "Author manuscript review"
+    ],
+    "record_scope": "Historical manuscript-preparation record; current review completion is linked in phase_1"
   },
   "not_claimed": [
     "Human sufficiency or human answer review",

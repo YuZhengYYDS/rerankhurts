@@ -5,7 +5,11 @@
   "old_results": "Immutable. New data, model runs and analyses use new directories.",
   "population": {
     "independent_worlds": 360,
-    "generation_seeds": [20261002, 20261003, 20261004],
+    "generation_seeds": [
+      20261002,
+      20261003,
+      20261004
+    ],
     "dev_worlds_per_seed": 20,
     "test_worlds_per_seed": 100,
     "paired_variants_per_world": 2,
@@ -13,11 +17,39 @@
     "scope": "Fictional tenant-specific collections. All variants of a latent world remain in one split. A collection contains no other variant of the same world. This tests conditional mechanisms, not open-domain population prevalence.",
     "policy": "Balanced open/constrained assignment by world; paired variants share policy.",
     "templates": "Development prose/list; test includes seen expression families and a held-out QA family. Rendering choices and parameter ranges are not revised to obtain test effects.",
-    "required_facts": [2, 3, 4]
+    "required_facts": [
+      2,
+      3,
+      4
+    ]
   },
   "primary_comparisons": [
-    {"name": "cap_order_512", "retriever": "dense", "pool": 64, "reranker": "m3", "cap": 2, "contrast": "post minus pre", "budget": 512, "packing": "prefix", "score_view": "prefix512", "policy_stage": "none", "endpoint": "U_sim"},
-    {"name": "cap_order_2048", "retriever": "dense", "pool": 64, "reranker": "m3", "cap": 2, "contrast": "post minus pre", "budget": 2048, "packing": "prefix", "score_view": "prefix512", "policy_stage": "none", "endpoint": "U_sim"}
+    {
+      "name": "cap_order_512",
+      "retriever": "dense",
+      "pool": 64,
+      "reranker": "m3",
+      "cap": 2,
+      "contrast": "post minus pre",
+      "budget": 512,
+      "packing": "prefix",
+      "score_view": "prefix512",
+      "policy_stage": "none",
+      "endpoint": "U_sim"
+    },
+    {
+      "name": "cap_order_2048",
+      "retriever": "dense",
+      "pool": 64,
+      "reranker": "m3",
+      "cap": 2,
+      "contrast": "post minus pre",
+      "budget": 2048,
+      "packing": "prefix",
+      "score_view": "prefix512",
+      "policy_stage": "none",
+      "endpoint": "U_sim"
+    }
   ],
   "statistics": {
     "unit": "latent world; average paired-variant differences within each world before inference",
@@ -30,13 +62,45 @@
     "weights": "equal latent worlds; simulator mixture weights are designed, not estimated real-world frequencies"
   },
   "mechanisms": {
-    "budgets": [256, 512, 1024, 2048],
-    "caps": [0, 1, 2, 4],
-    "cap_stages": ["off", "pre", "post"],
-    "packing": ["prefix", "whole", "window"],
-    "retrievers": ["dense", "bm25", "fusion"],
-    "rerankers": ["none", "m3", "minilm"],
-    "additional": ["refill", "MMR", "source-policy placement", "scoring-view separation", "pool depth"],
+    "budgets": [
+      256,
+      512,
+      1024,
+      2048
+    ],
+    "caps": [
+      0,
+      1,
+      2,
+      4
+    ],
+    "cap_stages": [
+      "off",
+      "pre",
+      "post"
+    ],
+    "packing": [
+      "prefix",
+      "whole",
+      "window"
+    ],
+    "retrievers": [
+      "dense",
+      "bm25",
+      "fusion"
+    ],
+    "rerankers": [
+      "none",
+      "m3",
+      "minilm"
+    ],
+    "additional": [
+      "refill",
+      "MMR",
+      "source-policy placement",
+      "scoring-view separation",
+      "pool depth"
+    ],
     "matrix": "Main 28 budget/cap configurations plus predefined targeted submatrices, deduplicated. Exact configuration records are frozen in the backend manifest before scoring.",
     "no_loss_controls": "Candidate counts within cap, and redundant support retained; verify as specified controls, not by accepting only worlds with desired outcomes.",
     "stage_accounting": "Candidate absence, pre-cap, post-cap and final budget. Pure sorting preserves full-set support membership."
@@ -46,10 +110,21 @@
     "revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
     "test_worlds": 60,
     "selection": "Deterministic stratified sampling before inference; 20 worlds per generation seed, both variants retained.",
-    "evidence_conditions": ["dense without reranker prefix", "m3 pre-cap2 prefix", "m3 post-cap2 prefix", "m3 post-cap2 window"],
+    "evidence_conditions": [
+      "dense without reranker prefix",
+      "m3 pre-cap2 prefix",
+      "m3 post-cap2 prefix",
+      "m3 post-cap2 window"
+    ],
     "evidence_budget": 512,
-    "controls": ["closed book with no evidence", "evidence from a deterministically different world without target support"],
-    "decoding": {"do_sample": false, "max_new_tokens": 256},
+    "controls": [
+      "closed book with no evidence",
+      "evidence from a deterministically different world without target support"
+    ],
+    "decoding": {
+      "do_sample": false,
+      "max_new_tokens": 256
+    },
     "response": "JSON with one value and evidence-source label for each requested fact; unknown for unsupported fields",
     "evaluation": "Exact fictional fact values, complete correctness, per-field correctness, cited evidence support and unsupported-field abstention. No LLM judge is treated as human annotation.",
     "prompt_cost": "Record full prompt tokens and generated tokens under the answer tokenizer, separate from the BERT evidence budget."
@@ -62,15 +137,32 @@
     "warmup_requests_per_configuration": 2,
     "steady_repetitions_per_question_configuration": 5,
     "order": "Seeded random request/configuration order; CUDA synchronized around whole requests",
-    "included": ["query encoding", "retrieval", "real reranker inference", "cap/filter/MMR when configured", "packing"],
-    "excluded": ["model loading", "offline document encoding/index construction", "answer generation", "result serialization"],
+    "included": [
+      "query encoding",
+      "retrieval",
+      "real reranker inference",
+      "cap/filter/MMR when configured",
+      "packing"
+    ],
+    "excluded": [
+      "model loading",
+      "offline document encoding/index construction",
+      "answer generation",
+      "result serialization"
+    ],
     "cache_policy": "No reused query embeddings or reranker scores in timed requests. Offline document indexes and resident weights are reused as in a warm service.",
     "interpretation": "Local request latency on fictional inputs; no production-throughput or real-user latency claim."
   },
   "human_audit": {
     "initial_worlds": 60,
-    "status": "packet_preparation_only_until_two_humans_provide_independent_judgments",
-    "automated_audit": "Independently parse rendered assertions and reconcile with fact tables and delivered text; do not relabel automatic checks as human review."
+    "automated_audit": "Independently parse rendered assertions and reconcile with fact tables and delivered text; do not relabel automatic checks as human review.",
+    "delivered_benchmark_review": {
+      "dataset": "strengthening_v1",
+      "status": "complete",
+      "sampled_worlds": 60,
+      "rounds": 2,
+      "completion_record": "data/strengthening_v1/audit/reviews/completion.json"
+    }
   },
   "publication": {
     "repository": "https://github.com/YuZhengYYDS/rerankhuts",

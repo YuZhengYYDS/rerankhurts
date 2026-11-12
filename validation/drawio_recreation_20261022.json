@@ -170,11 +170,11 @@
     },
     "status": "PASS",
     "all_openings_bold": true,
-    "submission_ready": false,
-    "remaining_submission_items": [
-      "Provide openly accessible EAB artifacts",
-      "Complete author ORCID/contact/COI submission metadata"
-    ]
+    "historical_submission_topics": [
+      "Artifact publication",
+      "Author ORCID, contact and conflict metadata"
+    ],
+    "record_scope": "Historical manuscript snapshot dated 2026-10-22"
   },
   "authors": {
     "metadata": "Zheng Yu, Jie Li, Boyang Wang, and Jingbang Chen",

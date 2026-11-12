@@ -128,11 +128,12 @@ def validated_inputs(source, run, data):
         else:
             check_hash(data / name, expected)
     for key, filename in (("evaluator_sha256", "evaluate.py"), ("parser_sha256", "audit_data.py")):
-        check_hash(ROOT / "experiments/strengthening" / filename, status[key])
+        from scripts.check_strengthening_files import recorded_source
+        check_hash(recorded_source(ROOT / "experiments/strengthening", filename, status[key]), status[key])
     check_hash(ROOT / "experiments/strengthening/analyze.py", analysis["analysis_code_sha256"])
     plan_path = ROOT / "experiments/strengthening/study_plan.json"
     for payload in (status, analysis):
-        check_hash(plan_path, payload["study_plan_sha256"])
+        check_hash(recorded_source(plan_path.parent, plan_path.name, payload["study_plan_sha256"]), payload["study_plan_sha256"])
     stats = analysis["statistics"]
     require(stats["unit"] == "world" and stats["within_world"] == "equal paired-variant mean"
             and stats["bootstrap"] == "generation-seed stratified"
