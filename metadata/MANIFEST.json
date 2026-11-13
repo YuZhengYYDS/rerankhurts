@@ -4420,8 +4420,8 @@
     "sha256": "0649d51eae8e533035b8779ac776b0f458613ff384a8fc8497c16c2ae76aee61"
   },
   "experiments/strengthening/data/strengthening_v1/audit/reviews/completion.json": {
-    "bytes": 2724,
-    "sha256": "5dc0f7a38465b7d5762698eddcc849b79416ec1d70966fd621679da8ad60dcbe"
+    "bytes": 2680,
+    "sha256": "3d92422002002be0e43d194cfffcd162fb4c84c0da436cc7e1227c3db8ae17d7"
   },
   "experiments/strengthening/data/strengthening_v1/claims.jsonl": {
     "bytes": 3649150,
