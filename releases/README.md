@@ -13,7 +13,8 @@ Run the commands in [VALIDATION.md](../docs/VALIDATION.md) after extraction.
 
 The release tags `icde2027-strengthening-20261002` and
 `icde2027-restructured-20261013`, and the `20260928/` archives, preserve their
-original dated deliverables. State fields inside those versions describe their
-recording dates. The current completion records are linked above.
+original dated deliverables. These dates identify experiment and release versions.
+The 60-world human audit and Oncology expert annotation were completed before
+the ICDE paper submission; the completion records are linked above.
 Recorded strengthening code and input identities are preserved in the
-[historical snapshot](../archive/strengthening_review_state_20261113/).
+[historical snapshot](../archive/strengthening_recorded_inputs/).

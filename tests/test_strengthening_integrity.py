@@ -300,7 +300,7 @@ def test_review_status_revision_preserves_experimental_identity(tmp_path):
                 "design": {"acceptance": "fixed", "human_audit_status": "not_completed",
                            "human_E2_completed": False},
                 "study_plan_snapshot": {"human_audit": {"initial_worlds": 60, "status": "at_plan_freeze"}}}
-    recorded = tmp_path / "archive/strengthening_review_state_20261113/specification.json"
+    recorded = tmp_path / "archive/strengthening_recorded_inputs/specification.json"
     recorded.parent.mkdir(parents=True)
     dump(recorded, original)
     expected = check.sha256(recorded)

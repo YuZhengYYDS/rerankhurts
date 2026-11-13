@@ -147,4 +147,4 @@ pixi run --locked verify-package
 
 发布包排除 `.pixi/`、`.cache/`、本地模型权重和 `build/`。最终完整包必须包含冻结数据、run manifest/status/轨迹、独立评估与下游产物，才能在无模型缓存的另一台机器上通过 `strengthen-verify --require-complete`。
 
-审计命令只接受新的输出目录。复核已交付数据时，将 `--output` 指向新的 `build/` 子目录；已有人工审核记录及完成状态受到覆盖保护。冻结身份使用的原始计划和审计源码见 [历史来源快照](../archive/strengthening_review_state_20261113/README.md)。
+审计命令只接受新的输出目录。复核已交付数据时，将 `--output` 指向新的 `build/` 子目录；已有人工审核记录及完成状态受到覆盖保护。冻结身份使用的原始计划和审计源码见 [历史来源快照](../archive/strengthening_recorded_inputs/README.md)。

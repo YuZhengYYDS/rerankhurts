@@ -105,7 +105,7 @@ def recorded_source(source, name, expected):
     if active.is_file() and sha256(active) == expected:
         return active
     if name in {"audit_data.py", "study_plan.json"}:
-        archived = source.parents[1] / "archive/strengthening_review_state_20261113" / name
+        archived = source.parents[1] / "archive/strengthening_recorded_inputs" / name
         if archived.is_file():
             return archived
     return active
@@ -118,7 +118,7 @@ def recorded_specification(data, expected):
         return current
     recorded = data / "specification_at_inference.json"
     if not recorded.exists():
-        recorded = data.parents[3] / "archive/strengthening_review_state_20261113/specification.json"
+        recorded = data.parents[3] / "archive/strengthening_recorded_inputs/specification.json"
     check_hash(recorded, expected)
     original, revised = read_json(recorded), read_json(current)
     require(revised.pop("status") == "complete", "Current dataset status differs")

@@ -12,7 +12,7 @@ Keep this directory with its parent dataset directory. The files needed for revi
 - [../questions.jsonl](../questions.jsonl): questions and explicit allowed source prefixes. Repository-relative path: `experiments/strengthening/data/strengthening_v1/questions.jsonl`.
 - [../truth.jsonl](../truth.jsonl): all world fact tables; each packet entry already includes its relevant table.
 - [../specification.json](../specification.json): current design and completed human-review status.
-- [Recorded inference specification](../../../../../archive/strengthening_review_state_20261113/specification.json): exact bytes used by the recorded inference identity.
+- [Recorded inference specification](../../../../../archive/strengthening_recorded_inputs/specification.json): exact bytes used by the recorded inference identity.
 
 The packet's `documents_file` value `../corpus.jsonl` is relative to this `audit/` directory, not the repository root or the reviewer's working directory. For each packet row, select corpus rows whose `collection_id` occurs in that row's `collection_ids`; each collection has 80 ordered chunks. Select the two question rows by `qids`. Do not substitute excerpts from model traces for the original corpus.
 
