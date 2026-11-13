@@ -1,5 +1,5 @@
 {
-  "questions_sha256": "05bc17cb7dbb2c4906266206356cb9dbc332052b50be94566be82b15b9dad71c",
+  "questions_sha256": "90dfdb0148ec7504c279b6b46a01c19357799a7b20f6a06303875192f22b8f5d",
   "truth_sha256": "d7c387146ad2f29e7fe5268199e90b989b7d056a04d3b3ba204b991d4523a561",
   "claims_sha256": "5e172b68124ffa2d8adebe6d1d361c0127fe12a63b00faa8c8c0053eed9f621d",
   "corpus_sha256": "7ddcfdff6f942be4f7fcf703bbba420e5cb093ba6fa29e7879e919632c94ee78",
@@ -16,9 +16,9 @@
     }
   },
   "completed_review_metadata_update": {
-    "previous_truth_sha256": "5823e0aadd0f8aa490e90976903e3b67e025eb7639982c2ae764f0e00340a541",
-    "previous_questions_sha256": "d8e3d64d3116b515c53ac50523a5488e6eb49dc1bdd7113ff5e5982b3afe9df5",
-    "source_commit": "2a87e1bbd40f5549d0ebb5c1b2a5510e180f7074",
+    "previous_truth_sha256": "d7c387146ad2f29e7fe5268199e90b989b7d056a04d3b3ba204b991d4523a561",
+    "previous_questions_sha256": "05bc17cb7dbb2c4906266206356cb9dbc332052b50be94566be82b15b9dad71c",
+    "source_commit": "df8afaef35bf4b352bee50671bda5cf54d00e69b",
     "scope": "Clarify final question-scope descriptions and undated revision identifiers; question text, facts, source evidence and scoring definitions are unchanged."
   }
 }

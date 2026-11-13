@@ -8569,7 +8569,7 @@
   },
   "experiments/supplements/oncology_coverage_v1/annotations/rubric_freeze.json": {
     "bytes": 1540,
-    "sha256": "7b06b14b675ba5c66a8c3b5c729af02748137c35c3f67616eb8b2ebab2465ae3"
+    "sha256": "10c43107448b26bfa5e3b8adbba552a146ce75925d534af7d331a34ae8489cb4"
   },
   "experiments/supplements/oncology_coverage_v1/annotations/truth.jsonl": {
     "bytes": 1019385,
@@ -8585,7 +8585,7 @@
   },
   "experiments/supplements/oncology_coverage_v1/inputs/questions_revised.jsonl": {
     "bytes": 67845,
-    "sha256": "05bc17cb7dbb2c4906266206356cb9dbc332052b50be94566be82b15b9dad71c"
+    "sha256": "90dfdb0148ec7504c279b6b46a01c19357799a7b20f6a06303875192f22b8f5d"
   },
   "experiments/supplements/oncology_coverage_v1/inputs/trace_index.json": {
     "bytes": 54457,
@@ -8593,7 +8593,7 @@
   },
   "experiments/supplements/oncology_coverage_v1/protocol.json": {
     "bytes": 1924,
-    "sha256": "4d5aa337ab4fd342c8bb510a9e9d60c9e79bb4f1f08d4d45ad9595968b436eea"
+    "sha256": "167db54e70ba440009d8a1287447cd330c46b8dcb6134e039c178c7924e2e64c"
   },
   "experiments/supplements/oncology_coverage_v1/rescore.py": {
     "bytes": 8972,

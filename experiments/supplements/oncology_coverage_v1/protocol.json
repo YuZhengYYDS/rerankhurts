@@ -11,7 +11,7 @@
   "expected_records": 3100,
   "annotation_snapshot_sha256": "d7c387146ad2f29e7fe5268199e90b989b7d056a04d3b3ba204b991d4523a561",
   "corpus_sha256": "7ddcfdff6f942be4f7fcf703bbba420e5cb093ba6fa29e7879e919632c94ee78",
-  "questions_sha256": "05bc17cb7dbb2c4906266206356cb9dbc332052b50be94566be82b15b9dad71c",
+  "questions_sha256": "90dfdb0148ec7504c279b6b46a01c19357799a7b20f6a06303875192f22b8f5d",
   "original_files_must_remain_unchanged": true,
   "main_comparisons": [
     "p64_off_m3 vs p64_post_m3",
@@ -29,9 +29,9 @@
   "independent_external_information_needs": false,
   "protected_files": 176,
   "metadata_revision": {
-    "previous_annotation_snapshot_sha256": "5823e0aadd0f8aa490e90976903e3b67e025eb7639982c2ae764f0e00340a541",
-    "previous_questions_sha256": "d8e3d64d3116b515c53ac50523a5488e6eb49dc1bdd7113ff5e5982b3afe9df5",
-    "source_commit": "2a87e1bbd40f5549d0ebb5c1b2a5510e180f7074",
+    "previous_annotation_snapshot_sha256": "d7c387146ad2f29e7fe5268199e90b989b7d056a04d3b3ba204b991d4523a561",
+    "previous_questions_sha256": "05bc17cb7dbb2c4906266206356cb9dbc332052b50be94566be82b15b9dad71c",
+    "source_commit": "df8afaef35bf4b352bee50671bda5cf54d00e69b",
     "scope": "Clarify final question-scope descriptions and undated revision identifiers; question text, facts, source evidence, scoring definitions and numerical results are unchanged."
   }
 }
