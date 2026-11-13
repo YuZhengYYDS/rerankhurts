@@ -9976,8 +9976,8 @@
     "sha256": "a4abf7d445fdcd97072082869bf26840f5cff3039f9b450139497ad5ad79f209"
   },
   "validation/strengthening_completion.json": {
-    "bytes": 3770,
-    "sha256": "22b4f5f75d19960a57e540cdadcb7f252f53bb4873110aa943abdb1f9ad8b64f"
+    "bytes": 3725,
+    "sha256": "823355398d720cda208fc2926f905e468fe0f89641cd8b751fb87ebb91eec4fd"
   },
   "validation/strengthening_tests_20261002.xml": {
     "bytes": 32169,
