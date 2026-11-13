@@ -4,9 +4,8 @@ These three files preserve the exact specification, study plan and audit source
 used by the recorded inference and scoring identities. Their state fields describe
 the time of that recorded run. Current review status is recorded separately:
 
-The completion record contains author confirmation recorded on 2026-11-12;
-the snapshots describe the earlier inference run. The directory date, 2026-11-13,
-is the date these original bytes were preserved here.
+The completed 60-world human review is documented in the linked completion record.
+The snapshots describe the earlier inference run.
 
 - [Completed 60-world A/B human review](../../experiments/strengthening/data/strengthening_v1/audit/reviews/completion.json).
 - [Completed Oncology expert review](../../experiments/supplements/oncology_coverage_v1/reviews/).
